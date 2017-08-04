@@ -13,6 +13,11 @@
 			$this->load->helper('url');
 		}
 
+		public function menu_tambah()
+		{
+			# code...
+		}
+
 	}
 
 ?>
