@@ -20,6 +20,15 @@ class Home extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('welcome_message');
+		$this->load->view('front_head');
+		$this->load->view('front_header');
+		$this->compose();
+		$this->load->view('front_footer');
+	}
+
+	public function compose()
+	{
+		$data['content'] = 'oi';
+		$this->load->view('front_body', $data);
 	}
 }
