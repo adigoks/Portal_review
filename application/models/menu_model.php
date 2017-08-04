@@ -4,11 +4,12 @@
         function __construct()
         {
             parent::__construct();
+            $this->load->database();
         }
         
         function insert($data)
         {
-            $this->db->insert('portal_menu'$data);
+            $this->db->insert('portal_menu',$data);
         }
         
         function showAll()
@@ -35,10 +36,11 @@
         
         function delete($id)
         {
-            $this->db->where('id'$id);
+            $this->db->where('id',$id);
             $this->db->delete('portal_menu');
         }
-        function pagination($limit==array())
+
+        function pagination($limit=array())
         {
             $this->db->select('*');
             $this->db->from('portal_menu');
