@@ -12,6 +12,11 @@
 			parent::__construct()
 			$this->load->helper('url');
 		}
+		
+		public function menu_edit()
+		{
+			$data=$this
+		}
 
 	}
 
