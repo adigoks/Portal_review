@@ -18,6 +18,11 @@
 			$data=$this
 		}
 
+		public function menu_tambah()
+		{
+			# code...
+		}
+
 	}
 
 ?>
