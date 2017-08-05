@@ -9,18 +9,38 @@
 		function __construct()
 		{
 			# code...
-			parent::__construct()
+			parent::__construct();
+			$this->load->helper('html');
 			$this->load->helper('url');
+
 		}
-		
+		public function index()
+		{
+
+		}
 		public function menu_edit()
 		{
-			$data=$this
+			
 		}
 
 		public function menu_tambah()
 		{
 			# code...
+		}
+
+		public function menu_sesuaikan()
+		{
+			$this->load->model('menu_model');
+
+			$menu['list'] = $this->menu_model->selectSort();
+
+			
+
+			$data['content'] = $this->load->view('menu_config', $menu, true);
+
+			$data['content'] =$this->load->view('admin_body', $data,true);
+			$this->load->view('admin_pane', $data);
+
 		}
 
 	}

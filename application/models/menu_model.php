@@ -4,11 +4,12 @@
         function __construct()
         {
             parent::__construct();
+            $this->load->database();
         }
         
         function insert($data)
         {
-            $this->db->insert('portal_menu'$data);
+            $this->db->insert('portal_menu',$data);
         }
         
         function showAll()
@@ -18,7 +19,16 @@
             
             return $this->db->get();
         }
-        
+        function selectSort()
+        {
+            $this->db->select('*');
+            $this->db->from('portal_menu');
+            $this->db->order_by('menu_parent ASC, menu_order ASC');
+            
+            $query = $this->db->get();
+            return $query->result_array();
+            
+        }
         function selectId($id)
         {
             $this->db->select('*');
@@ -35,10 +45,11 @@
         
         function delete($id)
         {
-            $this->db->where('id'$id);
+            $this->db->where('id',$id);
             $this->db->delete('portal_menu');
         }
-        function pagination($limit==array())
+
+        function pagination($limit = array())
         {
             $this->db->select('*');
             $this->db->from('portal_menu');
