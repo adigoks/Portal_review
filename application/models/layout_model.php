@@ -8,7 +8,7 @@
         
         function insert($data)
         {
-            $this->db->insert('portal_layout'$data);
+            $this->db->insert('portal_layout',$data);
         }
         
         function showAll()
@@ -35,10 +35,10 @@
         
         function delete($id)
         {
-            $this->db->where('id'$id);
+            $this->db->where('id',$id);
             $this->db->delete('portal_layout');
         }
-        function pagination($limit==array())
+        function pagination($limit=array())
         {
             $this->db->select('*');
             $this->db->from('portal_layout');
