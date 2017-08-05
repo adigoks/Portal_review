@@ -49,6 +49,7 @@
             $this->db->delete('portal_menu');
         }
 
+
         function pagination($limit = array())
         {
             $this->db->select('*');
