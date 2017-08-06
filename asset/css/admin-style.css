@@ -1,0 +1,35 @@
+#container{
+	height: 100%;
+	width: 100%;
+	background-color: #c66f28;
+	margin: 0;
+}
+#login-box{
+	top: 50%;
+	height: 400px;
+	margin-top: -200px;
+	background-color: white;
+	border-radius: 20px;
+	box-shadow: 0px 0px 20px -10px #000000;
+}
+
+#sidebar{
+	background-color: #d3823a;
+	height: 100%;
+}
+
+#topbar{
+	height: 50px;
+	width: 100%;
+	background-color: #efa660;
+}
+
+#main{
+	min-height: 600px;
+	margin: 0px;
+}
+
+#footer{
+	height: 50px;
+	background-color: #a96930;
+}
