@@ -3,6 +3,7 @@
 	/**
 	* 
 	*/
+
 	class Admin_menu extends CI_Controller
 	{
 		
@@ -12,7 +13,16 @@
 			parent::__construct();
 			$this->load->helper('html');
 			$this->load->helper('url');
+			$this->load->library('session');
 
+		}
+
+		function cek_login()
+		{
+			if ($this->session->userdata('logged_in') == FALSE) 
+			{
+				redirect(site_url('admin_login'));
+			}
 		}
 		
 		function index()
@@ -23,14 +33,13 @@
 		}
 		public function menu_edit()
 		{
+			$this->cek_login();
 
 			$this->load->model('menu_model');
 			$this->load->helper('url');
 			$this->load->library('form_validation');
 			$this->load->helper('form');
 		}
-
-		
 
 		function menu_tambah()
 		{
@@ -88,6 +97,7 @@
 
 		public function menu_sesuaikan()
 		{
+			$this->cek_login();
 			$this->load->model('menu_model');
 
 			$menu['list'] = $this->menu_model->selectSort();
