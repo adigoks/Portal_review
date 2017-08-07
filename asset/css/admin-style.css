@@ -15,9 +15,12 @@
 
 #sidebar{
 	background-color: #d3823a;
+	
+}
+.sidebar{
+	min-height: 600px;
 	height: 100%;
 }
-
 #topbar{
 	height: 50px;
 	width: 100%;
@@ -25,11 +28,23 @@
 }
 
 #main{
-	min-height: 600px;
+
+	display: flex;
+	flex-direction: row;
 	margin: 0px;
 }
 
 #footer{
 	height: 50px;
 	background-color: #a96930;
+}
+
+#content{
+	padding-top: 10px;
+}
+
+.panel-default > .panel-heading
+{
+	background-image: -webkit-linear-gradient(top, #ffecdc 0%, #f5d0b2 100%);
+	background-image: linear-gradient(top, #ffecdc 0%, #f5d0b2 100%);
 }

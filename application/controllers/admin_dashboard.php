@@ -16,7 +16,14 @@
 
 		public function index()
 		{
-			$this->load->view('admin_pane');
+			// if(cek session e sudah loginkah?)
+			// {
+				$this->load->view('admin_pane');	
+			// }else
+			// {
+			// 	mbalik ning admin login
+			// }
+			
 		}
 	}
 
