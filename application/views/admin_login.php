@@ -15,6 +15,8 @@
 				<br>
 				<div class="col-md-10 col-md-offset-1">
 					<!-- form disini  -->
+					<?php echo validation_errors(); ?>
+					<?php echo form_open('admin_login/login'); ?>
 					<div class="form-group">
 	    				<label for="user_name" >User Name</label>
 						<input type="text" class="form-control" id="user_name" name="user_name" placeholder="user name">
