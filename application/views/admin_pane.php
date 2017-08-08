@@ -25,8 +25,8 @@
 				      	</div>
 				    	<div id="collapse1" class="panel-collapse collapse" >
 				        	<ul class="list-group">
-				          		<li class="list-group-item">Tambah</li>
-				          		<li class="list-group-item">Sesuaikan</li>
+				          		<li class="list-group-item"><a href="<?=site_url('admin-dashboard/menu');?>">Tambah</a></li>
+				          		<li class="list-group-item"><a href="<?=site_url('admin-dashboard/menu/sesuaikan');?>">Sesuaikan</a></li>
 				          		
 				        	</ul>
 				        
@@ -40,8 +40,8 @@
 				      	</div>
 				    	<div id="collapse2" class="panel-collapse collapse">
 				        	<ul class="list-group">
-				          		<li class="list-group-item">Tambah</li>
-				          		<li class="list-group-item">Sesuaikan</li>
+				          		<li class="list-group-item"><a href="<?=site_url('admin-dashboard/post');?>">Tambah</a></li>
+				          		<li class="list-group-item"><a href="<?=site_url('admin-dashboard/post/sesuaikan');?>">Sesuaikan</a></li>
 				          		
 				        	</ul>
 				        
@@ -92,5 +92,10 @@
 	
 </div>
 <div id="footer">
-	
+	<div style="margin: auto;">
+		<span style="vertical-align: middle;color: white;">
+		<center>&copy; Nama aplikasi</center>
+		<center>2017</center>
+		</span>
+	</div>
 </div>

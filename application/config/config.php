@@ -37,7 +37,7 @@ $config['base_url'] = '';
 |
 */
 // $config['index_page'] = 'index.php'; ini nilai defaultnya
-$config['index_page'] = 'index.php';
+$config['index_page'] = '';
 
 /*
 |--------------------------------------------------------------------------
