@@ -16,6 +16,7 @@
 			$this->load->library('form_validation');
 			$this->load->model('user_model');
 			$this->load->library('session');
+			
 		}
 
 		public function index()
@@ -28,8 +29,8 @@
 		{
 			$username = $this->input->post('user_name', true);
 			$password= $this->input->post('password', true);
-
-			$temp = $this->user_model->select_us($username, $password)->row();
+			$password = "pnvs#%12".$password."41;1*";
+			$temp = $this->user_model->select_us($username, md5($password))->row();
 			$num = count($temp);
 
 			$this->form_validation->set_rules('user_name','User Name','required');

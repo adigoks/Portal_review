@@ -35,6 +35,14 @@
 			$this->load->view('admin_pane', $data);
 		}
 
+		function sesuaikan_post()
+		{
+			$data['content'] = $this->load->view('admin_sesuaikan_post', '', true);
+
+			$data['content'] =$this->load->view('admin_body', $data,true);
+			$this->load->view('admin_pane', $data);
+		}
+
 	}
 
 ?>
