@@ -7,15 +7,22 @@
 
 		<div class="tab-content">
 		    <div id="home" class="tab-pane fade in active">
+		    
+		    	<?php echo $this->session->flashdata('pesan'); ?>
 				<h3>Tambah Artikel</h3>
+
 				<!-- form open here Post here -->
+				<?php echo form_open('admin_post/add_post', 'id="post-article"'); ?>
+
+				<?php echo validation_errors(); ?>
+				
 					<div class="form-group">
 						<label for="judul_post" >Judul Artikel</label>
 						<input class="form-control" type="text" id="judul_post" name="judul_post" placeholder="judul artikel">
 					</div>
 					<div class="form-group">
 						<label for="isi_post" >Isi Artikel</label>
-						<textarea class="form-control" id="isi_post" form="post-article" cols="150" rows="10"></textarea>
+						<textarea class="form-control" id="isi_post" form="post-article" name="isi_post" cols="150" rows="10"></textarea>
 					</div>
 					<div class="form-group">
 						<label for="tag_post" >tag</label>
@@ -23,7 +30,7 @@
 					</div>
 					<div class="form-group">
 						<label for="kategori_post" >kategori</label>
-						<select id="kategori" form="post-article" class="form-control">
+						<select id="kategori" form="post-article" name="kategori_post" class="form-control">
 							<option >-</option>
 							<!-- list kategori sesuai database -->
 							<option >kategori 1</option>
@@ -35,17 +42,17 @@
 					</div>
 					<div class="checkbox col-md-12">
 						<label>
-						<input  type="checkbox" name="enable-comment" value="enable_comment">perbolehkan komentar 
+						<input  type="checkbox" name="enable_comment" value="enable_comment">perbolehkan komentar 
 						</label>
 					</div>
 
 					<div class="form-group">
 						
-						<input class="form-control"  type="submit" name="simpan_post" value="simpan_post">
+						<input class="form-control"  type="submit" name="simpan_post" value="simpan post">
 					</div>
 					<div class="form-group">
 						
-						<input class="form-control"  type="submit" name="terbitkan_post" value="terbitkan_post">
+						<input class="form-control"  type="submit" name="terbitkan_post" value="terbitkan post">
 					</div>
 				</form>
 			</div>
