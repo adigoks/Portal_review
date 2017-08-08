@@ -41,7 +41,7 @@
 			TANGGAL
 	</span>
 	<span style='width:22%;font-size: 16px;' class=' input-group-addon'>AUTHOR</span>
-	<span style='width:8%;font-size: 16px;' class=' input-group-btn '>
+	<span style='font-size: 16px;' class=' input-group-btn '>
 		<a href='#'  class='btn btn-default input-group-btn'>
 			
 			<span style ='font-size: 16px;' class='glyphicon glyphicon-comment'></span>						
