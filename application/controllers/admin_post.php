@@ -15,7 +15,10 @@
 			$this->load->helper('html');
 			$this->load->library('form_validation');
 			$this->load->helper('form');
-			$this->load->model('post_model');
+			$this->load->model(array('post_model','user_model'));
+			$this->load->library('pagination');
+			
+			
 
 			if ($this->session->userdata('logged_in') == FALSE) 
 			{
@@ -38,13 +41,33 @@
 		}
 
 
-		function sesuaikan_post()
+		function sesuaikan_post($offset=0)
 		{
-			$data['content'] = $this->load->view('admin_sesuaikan_post', '', true);
-
+			
+			$data['post']=$this->post_model->showAll()->result();
+			$a=$this->session->userdata('id_author');
+			$b=intval($a);
+			$data['post_id']=$this->user_model->selectId($b)->result();
+			
+						#paginasi
+			$perpage =10;
+			
+			$config = array(
+							'base_url'=>site_url('admin_sesuaikan_post'),
+							'total_rows'=>count($this->post_model->showAll()->result()),
+							'per_page'=>$perpage);
+			$this->pagination->initialize($config);
+			$limit['perpage']=$perpage;
+			$limit['offset']=$offset;
+			$data['post']=$this->post_model->paging($limit)->result();
+			
+			$data['content'] = $this->load->view('admin_sesuaikan_post', $data, true);
+			
 			$data['content'] =$this->load->view('admin_body', $data,true);
 			$this->load->view('admin_pane', $data);
 		}
+		
+		
 
 		function add_post()
 		{
@@ -88,6 +111,10 @@
 				echo('sss');
 			}		
 
+		}
+		
+		function edit_post(){
+			
 		}
 
 	}
