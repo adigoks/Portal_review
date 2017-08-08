@@ -16,7 +16,12 @@
 			$this->load->library('form_validation');
 			$this->load->model('user_model');
 			$this->load->library('session');
-			
+
+			if ($this->session->userdata('logged_in') == TRUE) 
+			{
+				redirect(site_url('admin-dashboard'));
+			}
+
 		}
 
 		public function index()
@@ -45,8 +50,8 @@
 				if ($num > 0) 
 				{
 					$array_item = array(
+						'id_author' => $temp->id,
 						'username' => $temp->user_name,
-						'password' => $temp->user_password,
 						'level'=> $temp->user_level,
 						'logged_in' => true );
 
