@@ -137,7 +137,7 @@
 
 		function edit_post()
 		{
-			$
+
 		}
 
 		function add_page()
