@@ -110,27 +110,24 @@
 			$this->form_validation->set_rules('isi_page','Isi page','required');
 
 			$button = $this->input->post('simpan_page');
-			var_dump($data);
+
 			if($button == 'simpan')
 			{
 				if ($this->form_validation->run() == FALSE) 
 				{
-					echo '<script>alert("gagal");</script>';
-					redirect(site_url('admin_post#menu1', 'refresh'));
+					redirect(site_url('admin_post#menu1'));;
 				}
 				else
 				{
-
 					$this->page_model->insert($data);
-					echo $this->session->set_flashdata('page_pesan','Page berhasil ditambahkan');
-					redirect(site_url('admin_post#menu1'));		
+					echo $this->session->set_flashdata('pesan','Page berhasil ditambahkan');
+					redirect(site_url('admin_post#menu1'));
 				}
 			}
 			else
 			{
 				if ($this->form_validation->run() == FALSE) 
 				{
-					echo('gagal');
 					redirect(site_url('admin_post#menu1'));
 				}
 				else
