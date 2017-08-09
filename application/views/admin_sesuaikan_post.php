@@ -10,8 +10,11 @@
 		    		<br>
 		    		<H3>POST</H3>
 		    		<div style="padding: 5px; border-radius: 5px;background-color: #f9eece;">
-		    			
-		    			<?php $this->load->view('admin_post_list');?>
+						<?php echo $this->pagination->create_links();?>
+		    			<?php foreach ($post as $p) {
+							$var['data']=$p;
+							$var['post_id']=$post_id;
+							$this->load->view('admin_post_list',$var);}?>
 		    		</div>
 		    	</div>
 		    	

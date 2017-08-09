@@ -15,10 +15,15 @@
 			$this->load->helper('html');
 			$this->load->library('form_validation');
 			$this->load->helper('form');
+
 			$this->load->model(array('post_model','user_model'));
 			$this->load->library('pagination');
 			
 			
+
+			$this->load->model('post_model');
+			$this->load->model('page_model');
+
 
 			if ($this->session->userdata('logged_in') == FALSE) 
 			{
@@ -88,8 +93,6 @@
 
 			$this->form_validation->set_rules('judul_post','Judul Artikel','required');
 			$this->form_validation->set_rules('isi_post','Isi Artikel','required');
-			$this->form_validation->set_rules('tag_post','tag','required');
-			$this->form_validation->set_rules('kategori_post','kategori','required');
 
 			$simpan = $this->input->post('simpan_post');
 
@@ -108,13 +111,66 @@
 			}
 			else
 			{
-				echo('sss');
+				if ($this->form_validation->run() == FALSE) 
+				{
+					redirect(site_url('admin_post'));
+				}
+				else
+				{
+					$data['post_published'] = 1;
+					$this->post_model->insert($data);
+					echo $this->session->set_flashdata('pesan','Post berhasil ditambahkan');
+					redirect(site_url('admin_post'));		
+				}
 			}		
 
 		}
 		
 		function edit_post(){
 			
+		}
+
+		function add_page()
+		{
+			$data['page_name'] = $this->input->post('nama_page');
+			$data['page_judul'] = $this->input->post('judul_page');
+			$data['page_isi'] = $this->input->post('isi_page');
+			
+			$this->form_validation->set_rules('nama_page','Nama page','required');
+			$this->form_validation->set_rules('judul_page','Judul page','required');
+			$this->form_validation->set_rules('isi_page','Isi page','required');
+
+			$button = $this->input->post('simpan_page');
+			var_dump($data);
+			if($button == 'simpan')
+			{
+				if ($this->form_validation->run() == FALSE) 
+				{
+					echo '<script>alert("gagal");</script>';
+					redirect(site_url('admin_post#menu1', 'refresh'));
+				}
+				else
+				{
+
+					$this->page_model->insert($data);
+					echo $this->session->set_flashdata('page_pesan','Page berhasil ditambahkan');
+					redirect(site_url('admin_post#menu1'));		
+				}
+			}
+			else
+			{
+				if ($this->form_validation->run() == FALSE) 
+				{
+					echo('gagal');
+					redirect(site_url('admin_post#menu1'));
+				}
+				else
+				{
+					$this->page_model->insert($data);
+					echo $this->session->set_flashdata('page_pesan','Page berhasil ditambahkan');
+					redirect(site_url('admin_post#menu1'));		
+				}
+			}
 		}
 
 	}
