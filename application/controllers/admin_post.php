@@ -126,8 +126,18 @@
 
 		}
 		
-		function edit_post(){
-			
+		function form_edit_post($id)
+		{
+			$data['id_post'] = $this->post_model->selectId($id)->row();
+			$data['content'] = $this->load->view('admin_edit_post', $data, true);
+
+			$data['content'] =$this->load->view('admin_body', $data, true);
+			$this->load->view('admin_pane', $data);
+		}
+
+		function edit_post()
+		{
+			$
 		}
 
 		function add_page()
