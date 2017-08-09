@@ -44,7 +44,7 @@
         {
             $this->db->select('*');
             $this->db->from('portal_post');
-            $this->db->order_by('id','asc');
+            $this->db->order_by('post_waktu','desc');
             if($limit !=NULL)
             {
                 $this->db->limit($limit['perpage'],$limit['offset']);

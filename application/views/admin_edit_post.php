@@ -6,7 +6,7 @@
 				<h3>Edit Artikel</h3>
 
 				<!-- form open here Post here -->
-				<?php echo form_open('admin_post/add_post', 'id="post-article"'); ?>
+				<?php echo form_open('admin_post/edit_post', 'id="post-article"'); ?>
 			
 					<div class="form-group">
 						<label for="judul_post" >Judul Artikel</label>
@@ -40,8 +40,8 @@
 					</div>
 
 					<div class="form-group">
-						
-						<input class="form-control"  type="submit" name="simpan_post" value="Update post">
+						<input type="hidden" name="id" value="<?php echo $id_post->id; ?>">
+						<input class="form-control"  type="submit" name="update_post" value="update post">
 					</div>
 					<div class="form-group">
 						<?php if ($id_post->post_published == 0) 

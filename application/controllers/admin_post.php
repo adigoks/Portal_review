@@ -58,7 +58,7 @@
 			$perpage =10;
 			
 			$config = array(
-							'base_url'=>site_url('admin_sesuaikan_post'),
+							'base_url'=>site_url('admin_post/sesuaikan_post'),
 							'total_rows'=>count($this->post_model->showAll()->result()),
 							'per_page'=>$perpage);
 			$this->pagination->initialize($config);
@@ -137,6 +137,35 @@
 
 		function edit_post()
 		{
+			$data['post_judul'] = $this->input->post('judul_post');
+			$data['post_isi'] = $this->input->post('isi_post');
+			$data['post_tag'] = $this->input->post('tag_post');
+			$data['post_kategori'] = $this->input->post('kategori_post');
+
+			$koment = $this->input->post('enable_comment');
+			if (isset($koment)) 
+			{
+				$data['post_enable_comment'] = 1;
+			}
+			else
+			{
+				$data['post_enable_comment'] = 0;
+			}
+
+			$id = $this->input->post('id');
+
+			$update = $this->input->post('update_post');
+			if ($update == 'update_post') 
+			{
+				$this->post_model->update($data, $id);
+				$this->sesuaikan_post();
+			}
+			else
+			{
+				$data['post_published'] = 1;
+				$this->post_model->update($data, $id);
+				$this->sesuaikan_post();
+			}
 
 		}
 
