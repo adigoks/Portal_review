@@ -14,6 +14,7 @@
 			$this->load->helper('html');
 			$this->load->helper('url');
 			$this->load->library('session');
+			$this->load->library('form_validation');
 
 		}
 
@@ -27,8 +28,24 @@
 		
 		function index()
 		{
-			# code...
-			$this->load->view('form_tambah_menu');
+			$this->tambah();
+			
+
+		}
+
+		function tambah()
+		{
+			$this->cek_login();
+			$this->load->model('menu_model');
+
+			$menu['list'] = $this->menu_model->selectSort();
+
+			
+
+			$data['content'] = $this->load->view('form_tambah_menu', $menu, true);
+
+			$data['content'] =$this->load->view('admin_body', $data,true);
+			$this->load->view('admin_pane', $data);
 
 		}
 		public function menu_edit()
