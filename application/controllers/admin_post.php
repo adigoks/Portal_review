@@ -16,7 +16,7 @@
 			$this->load->library('form_validation');
 			$this->load->helper('form');
 
-			$this->load->model(array('post_model','user_model'));
+			$this->load->model(array('post_model','user_model','page_model'));
 			$this->load->library('pagination');
 			
 			
@@ -50,6 +50,7 @@
 		{
 			
 			$data['post']=$this->post_model->showAll()->result();
+			$data['post_page']=$this->page_model->showAll()->result();
 			$a=$this->session->userdata('id_author');
 			$b=intval($a);
 			$data['post_id']=$this->user_model->selectId($b)->result();
@@ -58,14 +59,18 @@
 			$perpage =10;
 			
 			$config = array(
-							'base_url'=>site_url('admin_sesuaikan_post'),
+							'base_url'=>site_url('admin_post/sesuaikan_post'),
 							'total_rows'=>count($this->post_model->showAll()->result()),
 							'per_page'=>$perpage);
-			$this->pagination->initialize($config);
+			$config2 = array(
+							'base_url'=>site_url('admin_post/sesuaikan_post'),
+							'total_rows'=>count($this->page_model->showAll()->result()),
+							'per_page'=>$perpage);
+			$this->pagination->initialize($config,$config2);
 			$limit['perpage']=$perpage;
 			$limit['offset']=$offset;
 			$data['post']=$this->post_model->paging($limit)->result();
-			
+			$data['post_page']=$this->page_model->pagination($limit)->result();
 			$data['content'] = $this->load->view('admin_sesuaikan_post', $data, true);
 			
 			$data['content'] =$this->load->view('admin_body', $data,true);
