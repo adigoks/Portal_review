@@ -19,7 +19,6 @@
             
             return $this->db->get();
         }
-        
         function selectId($id)
         {
             $this->db->select('*');
@@ -28,6 +27,8 @@
                 
             return $this->db->get();
         }
+		
+		
         function update($data,$id)
         {
             $this->db->where('id',$id);
@@ -39,11 +40,11 @@
             $this->db->where('id',$id);
             $this->db->delete('portal_post');
         }
-        function pagination($limit=array())
+        function paging($limit=array())
         {
             $this->db->select('*');
             $this->db->from('portal_post');
-            $this->db->order_by('id','asc');
+            $this->db->order_by('post_waktu','desc');
             if($limit !=NULL)
             {
                 $this->db->limit($limit['perpage'],$limit['offset']);

@@ -15,8 +15,15 @@
 			$this->load->helper('html');
 			$this->load->library('form_validation');
 			$this->load->helper('form');
+
+			$this->load->model(array('post_model','user_model','page_model'));
+			$this->load->library('pagination');
+			
+			
+
 			$this->load->model('post_model');
 			$this->load->model('page_model');
+
 
 			if ($this->session->userdata('logged_in') == FALSE) 
 			{
@@ -39,13 +46,38 @@
 		}
 
 
-		function sesuaikan_post()
+		function sesuaikan_post($offset=0)
 		{
-			$data['content'] = $this->load->view('admin_sesuaikan_post', '', true);
-
+			
+			$data['post']=$this->post_model->showAll()->result();
+			$data['post_page']=$this->page_model->showAll()->result();
+			$a=$this->session->userdata('id_author');
+			$b=intval($a);
+			$data['post_id']=$this->user_model->selectId($b)->result();
+			
+						#paginasi
+			$perpage =10;
+			
+			$config = array(
+							'base_url'=>site_url('admin_post/sesuaikan_post'),
+							'total_rows'=>count($this->post_model->showAll()->result()),
+							'per_page'=>$perpage);
+			$config2 = array(
+							'base_url'=>site_url('admin_post/sesuaikan_post'),
+							'total_rows'=>count($this->page_model->showAll()->result()),
+							'per_page'=>$perpage);
+			$this->pagination->initialize($config,$config2);
+			$limit['perpage']=$perpage;
+			$limit['offset']=$offset;
+			$data['post']=$this->post_model->paging($limit)->result();
+			$data['post_page']=$this->page_model->pagination($limit)->result();
+			$data['content'] = $this->load->view('admin_sesuaikan_post', $data, true);
+			
 			$data['content'] =$this->load->view('admin_body', $data,true);
 			$this->load->view('admin_pane', $data);
 		}
+		
+		
 
 		function add_post()
 		{
@@ -98,6 +130,49 @@
 			}		
 
 		}
+		
+		function form_edit_post($id)
+		{
+			$data['id_post'] = $this->post_model->selectId($id)->row();
+			$data['content'] = $this->load->view('admin_edit_post', $data, true);
+
+			$data['content'] =$this->load->view('admin_body', $data, true);
+			$this->load->view('admin_pane', $data);
+		}
+
+		function edit_post()
+		{
+			$data['post_judul'] = $this->input->post('judul_post');
+			$data['post_isi'] = $this->input->post('isi_post');
+			$data['post_tag'] = $this->input->post('tag_post');
+			$data['post_kategori'] = $this->input->post('kategori_post');
+
+			$koment = $this->input->post('enable_comment');
+			if (isset($koment)) 
+			{
+				$data['post_enable_comment'] = 1;
+			}
+			else
+			{
+				$data['post_enable_comment'] = 0;
+			}
+
+			$id = $this->input->post('id');
+
+			$update = $this->input->post('update_post');
+			if ($update == 'update_post') 
+			{
+				$this->post_model->update($data, $id);
+				$this->sesuaikan_post();
+			}
+			else
+			{
+				$data['post_published'] = 1;
+				$this->post_model->update($data, $id);
+				$this->sesuaikan_post();
+			}
+
+		}
 
 		function add_page()
 		{
@@ -110,27 +185,24 @@
 			$this->form_validation->set_rules('isi_page','Isi page','required');
 
 			$button = $this->input->post('simpan_page');
-			var_dump($data);
+
 			if($button == 'simpan')
 			{
 				if ($this->form_validation->run() == FALSE) 
 				{
-					echo '<script>alert("gagal");</script>';
-					redirect(site_url('admin_post#menu1', 'refresh'));
+					redirect(site_url('admin_post#menu1'));;
 				}
 				else
 				{
-
 					$this->page_model->insert($data);
-					echo $this->session->set_flashdata('page_pesan','Page berhasil ditambahkan');
-					redirect(site_url('admin_post#menu1'));		
+					echo $this->session->set_flashdata('pesan','Page berhasil ditambahkan');
+					redirect(site_url('admin_post#menu1'));
 				}
 			}
 			else
 			{
 				if ($this->form_validation->run() == FALSE) 
 				{
-					echo('gagal');
 					redirect(site_url('admin_post#menu1'));
 				}
 				else

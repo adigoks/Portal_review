@@ -10,7 +10,9 @@
 </head>
 <body>
 <div id="topbar">
-	
+	<form action="" method="POST">
+		<input type="submit" name="logout" value="Logout" />
+	</form>
 </div>
 <div id='main' class="row">
 	<div id="sidebar" class="col-md-2" >

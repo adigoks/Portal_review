@@ -10,7 +10,7 @@
 				</a>
 			
 		</span> -->
-		<span style='width:90%;background-color: white ;font-size: 16px;border-bottom-right-radius: 0;' class=' input-group-addon'><?php echo $data->post_judul; ?></span>
+		<span style='width:90%;background-color: white ;font-size: 16px;border-bottom-right-radius: 0;' class=' input-group-addon'><?php echo $data->page_judul; ?></span>
 		<!-- <span style='width:8%;font-size: 16px;' class=' input-group-btn '>
 			<a href='#'  class='btn btn-primary input-group-btn'>
 				
@@ -39,9 +39,9 @@
 					
 				</a> -->
 				
-				<?php $date=$data->post_waktu; echo date("d/m/y",strtotime($date));?>
+				<?php echo $data->page_name; ?>
 		</span>
-		<span style='width:22%;font-size: 16px;' class=' input-group-addon'><?php foreach($post_id as $id){echo $id->user_name;} ?></span>
+		<span style='width:22%;font-size: 16px;' class=' input-group-addon'>TIPE</span>
 		<span style='font-size: 16px;' class=' input-group-btn '>
 			<a href='#'  class='btn btn-default input-group-btn'>
 				
@@ -60,7 +60,5 @@
 				<span style ='font-size: 16px;' class='glyphicon glyphicon-new-window'></span>						
 			</a>	
 		</span>
-	</div>
 </div>
-
-
+</div>
