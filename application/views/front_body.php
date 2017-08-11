@@ -1,4 +1,3 @@
-<div id="body">
-	ini body
+<div id="body" class="row">
 	<?php echo $content; ?>
 </div>

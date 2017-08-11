@@ -38,8 +38,24 @@ class Welcome extends CI_Controller {
 
     public function compose()
     {
-        $data['content'] = 'oi';
+        $data['content'] = $this->load->view('front_hot_news','',true);
+        
+        // $data['popular_widget'] = $this->load->view('front_popular_widget',$result,true);
+        // $data['widget'] =$this->load->view('front_widget',$data,true);
+
+        // 		 
+        $data['latest_main'] =$this->load->view('post_list','',true);
+
+        $data['content'] .= $this->load->view('front_main', $data,true);
+
+        // $data['content'] .=  $this->load->view('front_content',$data,true);
         $this->load->view('front_body', $data);
+    }
+
+    public function load_list($page)
+    {
+    	//query dengan limit dan offset
+    	//load view dengan data load post
     }
 
 
