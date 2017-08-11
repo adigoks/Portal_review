@@ -60,5 +60,7 @@
 				<span style ='font-size: 16px;' class='glyphicon glyphicon-new-window'></span>						
 			</a>	
 		</span>
+	</div>
 </div>
-</div>
+
+
