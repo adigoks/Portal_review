@@ -67,8 +67,7 @@
 
 			if ($this->form_validation->run()==FALSE) 
 			{
-				# code...
-				$this->load->view('form_tambah_menu');
+				redirect(site_url('admin_menu'));
 			}
 			else
 			{

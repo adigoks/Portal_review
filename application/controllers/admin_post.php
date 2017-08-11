@@ -232,6 +232,12 @@
 			}
 		}
 
+		function delete_post($id)
+		{
+			$this->post_model->delete($id);
+			redirect(site_url('admin_post/sesuaikan_post'));
+		}
+
 	}
 
 ?>
