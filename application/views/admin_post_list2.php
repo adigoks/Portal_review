@@ -47,11 +47,11 @@
 				
 				<span style ='font-size: 16px;' class='glyphicon glyphicon-comment'></span>						
 			</a>
-			<a href='<?php echo site_url('admin_post/form_edit_post/'.$data->id); ?>'  class='btn btn-default input-group-btn'>
+			<a href='<?php echo site_url('admin_post/form_edit_page/'.$data->id); ?>'  class='btn btn-default input-group-btn'>
 				
 				<span style ='font-size: 16px;' class='glyphicon glyphicon-edit'></span>						
 			</a>
-			<a href='#'  class='btn btn-default input-group-btn'>
+			<a href='<?php echo site_url('admin_post/delete_page/'.$data->id)?>'  class='btn btn-default input-group-btn'>
 				
 				<span style ='font-size: 16px;' class='glyphicon glyphicon-remove'></span>						
 			</a>	
