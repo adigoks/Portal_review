@@ -9,12 +9,8 @@
 		    	<div class="col-md-12">
 		    		<br>
 		    		<H3>POST</H3>
-		    		<div style="padding: 5px; border-radius: 5px;background-color: #f9eece;">
-						<?php echo $this->pagination->create_links();?>
-		    			<?php foreach ($post as $p) {
-							$var['data']=$p;
-							$var['post_id']=$post_id;
-							$this->load->view('admin_post_list',$var);}?>
+		    		<div id = "post_sesuaikan"style="padding: 5px; border-radius: 5px;background-color: #f9eece;">
+					
 		    		</div>
 		    	</div>
 		    	
@@ -23,12 +19,8 @@
 		    	<div class="col-md-12">
 		    		<br>
 		    		<H3>PAGE</H3>
-		    		<div style="padding: 5px; border-radius: 5px;background-color: #f9eece;">
-		    			<?php echo $this->pagination->create_links();?>
-		    			<?php foreach ($post_page as $p) {
-							$vari['data']=$p;
-							$vari['post_id']=$post_id;
-							$this->load->view('admin_post_list2',$vari);}?>
+		    		<div id = "page_sesuaikan" style="padding: 5px; border-radius: 5px;background-color: #f9eece;">
+		    			
 		    		</div>
 		    		
 		    	</div>
@@ -38,3 +30,19 @@
 		
 	</div>
 </div>
+<script>
+$(document).ready(function() {
+    $("#post_sesuaikan" ).load( "<?php echo base_url()."admin_post/paginasi_post"; ?>"); //load initial records
+     $("#page_sesuaikan" ).load( "<?php echo base_url()."admin_post/paginasi_page"; ?>"); //load initial records
+    //executes code below when user click on pagination links
+    $("#results").on( "click", ".pagination a", function (e){
+        e.preventDefault();
+        $(".loading-div").show(); //show loading element
+        var page = $(this).attr("data-page"); //get page number from link
+        $("#results").load("paginasi_post.php",{"page":page}, function(){ //get content from PHP page
+            $(".loading-div").hide(); //once done, hide loading element
+        });
+        
+    });
+});	
+</script>
