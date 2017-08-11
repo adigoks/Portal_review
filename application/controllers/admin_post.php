@@ -76,8 +76,6 @@
 			$data['content'] =$this->load->view('admin_body', $data,true);
 			$this->load->view('admin_pane', $data);
 		}
-		
-		
 
 		function add_post()
 		{
@@ -139,6 +137,14 @@
 			$data['content'] =$this->load->view('admin_body', $data, true);
 			$this->load->view('admin_pane', $data);
 		}
+		
+		function form_edit_page($id)
+		{
+			$data['id_page'] = $this->page_model->selectId($id)->row();
+			$data['content'] = $this->load->view('admin_edit_page', $data, true);
+			$data['content'] = $this->load->view('admin_body',$data,true);
+			$this->load->view('admin_pane',$data);
+		}
 
 		function edit_post()
 		{
@@ -172,6 +178,18 @@
 				$this->sesuaikan_post();
 			}
 
+		}
+		function edit_page(){
+			$data['page_name']=$this->input->post('nama_page');
+			$data['page_judul']=$this->input->post('judul_page');
+			$data['page_isi']=$this->input->post('isi_page');
+			$id = $this->input->post('id');
+			$simpan = $this->input->post('simpan_page');
+			if($simpan == 'simpan'){
+				$this->page_model->update($data,$id);
+				$this->sesuaikan_post();
+			}
+			
 		}
 
 		function add_page()
@@ -212,6 +230,12 @@
 					redirect(site_url('admin_post#menu1'));		
 				}
 			}
+		}
+
+		function delete_post($id)
+		{
+			$this->post_model->delete($id);
+			redirect(site_url('admin_post/sesuaikan_post'));
 		}
 
 	}
