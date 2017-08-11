@@ -66,6 +66,7 @@
 							'base_url'=>site_url('admin_post/sesuaikan_post#page'),
 							'total_rows'=>count($this->page_model->showAll()->result()),
 							'per_page'=>$perpage);
+			
 			$this->pagination->initialize($config,$config2);
 			$limit['perpage']=$perpage;
 			$limit['offset']=$offset;
@@ -74,10 +75,8 @@
 			$data['content'] = $this->load->view('admin_sesuaikan_post', $data, true);
 			
 			$data['content'] =$this->load->view('admin_body', $data,true);
-			$this->load->view('admin_pane', $data);
+			$this->load->view('admin_pane', $data);			
 		}
-		
-		
 
 		function add_post()
 		{
@@ -88,7 +87,6 @@
 			$id = $this->session->userdata('id_author');
 			$data['post_author'] = $id;
 
-			echo('post_author');
 			$koment = $this->input->post('enable_comment');
 
 			if (isset($koment)) 
@@ -105,7 +103,10 @@
 			{
 				if ($this->form_validation->run() == FALSE) 
 				{
-					redirect(site_url('admin_post'));
+					$data['content'] = redirect(site_url('admin_post#home'));
+					$data['content'] =$this->load->view('', $data,true);
+					$data['content'] =$this->load->view('admin_body', $data,true);
+					$this->load->view('admin_pane', $data);
 				}
 				else
 				{

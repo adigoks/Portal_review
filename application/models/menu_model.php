@@ -19,6 +19,15 @@
             
             return $this->db->get();
         }
+        function select_by()
+        {
+            $this->db->select('*');
+            $this->db->from('portal_menu');
+            
+            $this->db->where('menu_parent', 0);
+            return $this->db->get();
+        }
+
         function selectSort()
         {
             $this->db->select('*');
