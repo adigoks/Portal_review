@@ -63,7 +63,7 @@
 							'total_rows'=>count($this->post_model->showAll()->result()),
 							'per_page'=>$perpage);
 			$config2 = array(
-							'base_url'=>site_url('admin_post/sesuaikan_post'),
+							'base_url'=>site_url('admin_post/sesuaikan_post#page'),
 							'total_rows'=>count($this->page_model->showAll()->result()),
 							'per_page'=>$perpage);
 			$this->pagination->initialize($config,$config2);
