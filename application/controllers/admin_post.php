@@ -46,36 +46,59 @@
 		}
 
 
-		function sesuaikan_post($offset=0)
+		function sesuaikan_post()
+		{
+			
+			$data['content'] = $this->load->view('admin_sesuaikan_post',"",true);
+			
+			$data['content'] =$this->load->view('admin_body', $data,true);
+			
+			$this->load->view('admin_pane', $data);
+		}
+		
+		function paginasi_post($offset=0)
 		{
 			
 			$data['post']=$this->post_model->showAll()->result();
-			$data['post_page']=$this->page_model->showAll()->result();
+			
 			$a=$this->session->userdata('id_author');
 			$b=intval($a);
 			$data['post_id']=$this->user_model->selectId($b)->result();
 			
 						#paginasi
-			$perpage =10;
+			$data['perpage'] =10;
+			
 			
 			$config = array(
 							'base_url'=>site_url('admin_post/sesuaikan_post'),
 							'total_rows'=>count($this->post_model->showAll()->result()),
-							'per_page'=>$perpage);
-			$config2 = array(
-							'base_url'=>site_url('admin_post/sesuaikan_post#page'),
-							'total_rows'=>count($this->page_model->showAll()->result()),
-							'per_page'=>$perpage);
+							'per_page'=>$data['perpage']);
 			
-			$this->pagination->initialize($config,$config2);
-			$limit['perpage']=$perpage;
+			$limit['perpage']=$data['perpage'];
 			$limit['offset']=$offset;
-			$data['post']=$this->post_model->paging($limit)->result();
-			$data['post_page']=$this->page_model->pagination($limit)->result();
-			$data['content'] = $this->load->view('admin_sesuaikan_post', $data, true);
+			$data['offset']=$offset;
+			$data['total']=$config['total_rows'];
 			
-			$data['content'] =$this->load->view('admin_body', $data,true);
-			$this->load->view('admin_pane', $data);			
+			$data['post']=$this->post_model->paging($limit)->result();
+			echo $this->load->view('paginasi_post',$data,true);
+		
+		}
+		
+		function paginasi_page($offset2=0){
+			$data['post_page']=$this->page_model->showAll()->result();
+			$a=$this->session->userdata('id_author');
+			$b=intval($a);
+			$data['post_id']=$this->user_model->selectId($b)->result();
+			$perpage2 =10;
+			$config2 = array(
+							'base_url'=>site_url('admin_post/paginasi_page'),
+							'total_rows'=>count($this->page_model->showAll()->result()),
+							'per_page'=>$perpage2);
+			$this->pagination->initialize($config2);
+			$limit2['perpage']=$perpage2;
+			$limit2['offset']=$offset2;
+			$data['post_page']=$this->page_model->pagination($limit2)->result();
+			echo $this->load->view('paginasi_page',$data,true);
 		}
 
 		function add_post()
@@ -140,6 +163,14 @@
 			$data['content'] =$this->load->view('admin_body', $data, true);
 			$this->load->view('admin_pane', $data);
 		}
+		
+		function form_edit_page($id)
+		{
+			$data['id_page'] = $this->page_model->selectId($id)->row();
+			$data['content'] = $this->load->view('admin_edit_page', $data, true);
+			$data['content'] = $this->load->view('admin_body',$data,true);
+			$this->load->view('admin_pane',$data);
+		}
 
 		function edit_post()
 		{
@@ -173,6 +204,18 @@
 				$this->sesuaikan_post();
 			}
 
+		}
+		function edit_page(){
+			$data['page_name']=$this->input->post('nama_page');
+			$data['page_judul']=$this->input->post('judul_page');
+			$data['page_isi']=$this->input->post('isi_page');
+			$id = $this->input->post('id');
+			$simpan = $this->input->post('simpan_page');
+			if($simpan == 'simpan'){
+				$this->page_model->update($data,$id);
+				$this->sesuaikan_post();
+			}
+			
 		}
 
 		function add_page()
@@ -219,6 +262,11 @@
 		{
 			$this->post_model->delete($id);
 			redirect(site_url('admin_post/sesuaikan_post'));
+		}
+		function delete_page($id)
+		{
+			$this->page_model->delete($id);
+			redirect(site_url('admin_post/sesuaikan_post#menu1'));
 		}
 
 	}
