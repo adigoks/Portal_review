@@ -50,6 +50,7 @@
 		}
 		public function menu_edit()
 		{
+			
 			$this->cek_login();
 
 			$this->load->model('menu_model');
@@ -84,7 +85,10 @@
 					$data['menu_name'] = $this->input->post('menu_name');
 					$data['menu_url_type'] = $this->input->post('menu_tipe');
 
-					$this->load->view('next_tambah_menu', $data);
+					$data['content'] = $this->load->view('next_tambah_menu', $data, true);
+					$data['content'] =$this->load->view('admin_body', $data,true);
+					$this->load->view('admin_pane', $data);
+					
 				}
 				
 			}

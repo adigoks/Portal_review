@@ -12,7 +12,6 @@
 						$key[menu_name];
 						</div>";
 				foreach ($list as $key1) {
-
 					if($key['menu_parent'] == $id)
 					{
 						echo "	<div>
@@ -25,9 +24,7 @@
 				
 			}
 		}else{
-			$TEXT ='oied ';
-			echo 'QWQ12Drarqws/1234'.$TEXT." ";
-			echo md5('QWQ12Drarqws/1234'.$TEXT);
+			
 
 		}
 		
