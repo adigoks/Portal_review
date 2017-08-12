@@ -5,15 +5,16 @@
 			<li><a data-toggle="tab" href="#menu1">Halaman Statis</a></li>
 		</ul>
 
-		<?php echo validation_errors(); ?>
-
+		
+		<?php echo validation_errors(); ?>	
 		<div class="tab-content">
 		    <div id="home" class="tab-pane fade in active">
 		    	<?php echo $this->session->flashdata('pesan'); ?>
 				<h3>Tambah Artikel</h3>
 
 				<!-- form open here Post here -->
-				<?php echo form_open('admin_post/add_post', 'id="post-article"'); ?>			
+				<?php echo form_open('admin_post/add_post', 'id="post-article"'); ?>
+		
 					<div class="form-group">
 						<label for="judul_post" >Judul Artikel</label>
 						<input class="form-control" type="text" id="judul_post" name="judul_post" placeholder="judul artikel">
@@ -61,7 +62,6 @@
 			    <?php echo form_open('admin_post/add_page', 'id="post-page"'); ?>
 
 			    	<div class="form-group">
-			    	<?php echo validation_errors(); ?>
 			    	 
 			    		<label for="nama_page" >nama Page</label>
 						<input class="form-control" type="text" id="nama_page" name="nama_page" placeholder="judul page">

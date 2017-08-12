@@ -56,7 +56,8 @@
 			$this->load->view('admin_pane', $data);
 		}
 		
-		function paginasi_post($offset=0){
+		function paginasi_post($offset=0)
+		{
 			
 			$data['post']=$this->post_model->showAll()->result();
 			
@@ -73,7 +74,6 @@
 							'total_rows'=>count($this->post_model->showAll()->result()),
 							'per_page'=>$data['perpage']);
 			
-			
 			$limit['perpage']=$data['perpage'];
 			$limit['offset']=$offset;
 			$data['offset']=$offset;
@@ -81,7 +81,7 @@
 			
 			$data['post']=$this->post_model->paging($limit)->result();
 			echo $this->load->view('paginasi_post',$data,true);
-			
+		
 		}
 		
 		function paginasi_page($offset2=0){
@@ -110,7 +110,6 @@
 			$id = $this->session->userdata('id_author');
 			$data['post_author'] = $id;
 
-			echo('post_author');
 			$koment = $this->input->post('enable_comment');
 
 			if (isset($koment)) 
@@ -127,7 +126,10 @@
 			{
 				if ($this->form_validation->run() == FALSE) 
 				{
-					redirect(site_url('admin_post'));
+					$data['content'] = redirect(site_url('admin_post#home'));
+					$data['content'] =$this->load->view('', $data,true);
+					$data['content'] =$this->load->view('admin_body', $data,true);
+					$this->load->view('admin_pane', $data);
 				}
 				else
 				{
