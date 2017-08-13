@@ -52,6 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['admin-dashboard/post/sesuaikan'] = 'admin_post/sesuaikan_post';
 $route['admin-dashboard/post/tambah'] = 'admin_post/tambah_post';
 $route['admin-dashboard/post'] = 'admin_post/tambah_post';
+$route['admin-dashboard/menu/update_menu'] = 'admin_menu/update_menu';
 $route['admin-dashboard/menu/sesuaikan'] = 'admin_menu/menu_sesuaikan';
 $route['admin-dashboard/menu'] = 'admin_menu';
 $route['admin-login'] = 'admin_login';

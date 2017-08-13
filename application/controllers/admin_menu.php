@@ -136,6 +136,7 @@
 			$data['menu_url_type'] = $this->input->post('menu_tipe');
 			$data['menu_url'] = $this->input->post('link');
 			$data['menu_parent'] = $this->input->post('parent');
+			$data['menu_order'] = $this->menu_model->select_by($data['menu_parent'])->num_rows() + 1;
 
 			$this->form_validation->set_rules('link','External Link','required');
 
@@ -150,7 +151,7 @@
 			else
 			{
 				$this->menu_model->insert($data);
-				redirect(site_url('admin_menu'));
+				redirect(site_url('admin-dashboard/menu/sesuaikan'));
 			}
 
 		}
@@ -161,6 +162,7 @@
 			$data['menu_url_type'] = $this->input->post('menu_tipe');
 			$data['menu_parent'] = $this->input->post('parent');
 			$data['menu_url'] = $this->input->post('post');
+			$data['menu_order'] = $this->menu_model->select_by($data['menu_parent'])->num_rows() + 1;
 
 			$this->form_validation->set_rules('post','Judul Post','required');
 
@@ -175,7 +177,7 @@
 			else
 			{
 				$this->menu_model->insert($data);
-				redirect(site_url('admin_menu'));
+				redirect(site_url('admin-dashboard/menu/sesuaikan'));
 			}
 
 		}
@@ -186,6 +188,7 @@
 			$data['menu_url_type'] = $this->input->post('menu_tipe');
 			$data['menu_parent'] = $this->input->post('parent');
 			$data['menu_url'] = $this->input->post('tag');
+			$data['menu_order'] = $this->menu_model->select_by($data['menu_parent'])->num_rows() + 1;
 
 			$this->form_validation->set_rules('tag','Nama Tag','required');
 
@@ -200,7 +203,7 @@
 			else
 			{
 				$this->menu_model->insert($data);
-				redirect(site_url('admin_menu'));
+				redirect(site_url('admin-dashboard/menu/sesuaikan'));
 			}
 
 		}
@@ -211,6 +214,7 @@
 			$data['menu_url_type'] = $this->input->post('menu_tipe');
 			$data['menu_parent'] = $this->input->post('parent');
 			$data['menu_url'] = $this->input->post('page');
+			$data['menu_order'] = $this->menu_model->select_by($data['menu_parent'])->num_rows() + 1;
 
 			$this->form_validation->set_rules('page','Page Judul','required');
 
@@ -225,7 +229,7 @@
 			else
 			{
 				$this->menu_model->insert($data);
-				redirect(site_url('admin_menu'));
+				redirect(site_url('admin-dashboard/menu/sesuaikan'));
 			}
 
 		}
@@ -233,17 +237,75 @@
 		public function menu_sesuaikan()
 		{
 			$this->cek_login();
-			$this->load->model('menu_model');
 
 			$menu['list'] = $this->menu_model->selectSort();
-
-			
 
 			$data['content'] = $this->load->view('menu_config', $menu, true);
 
 			$data['content'] =$this->load->view('admin_body', $data,true);
 			$this->load->view('admin_pane', $data);
 
+		}
+
+		public function update_menu()
+		{
+
+			$data['id_hapus'] = $this->input->post('hapus');
+			$data['menu'] = $this->input->post('menu');
+			$data['submenu'] = $this->input->post('submenu');
+			$data['simpan'] = $this->input->post('simpan');
+			//var_dump($data['menu']);
+			if(isset($data['id_hapus'])){
+				$data['menu_list'] = $this->menu_model->selectId($data['id_hapus'])->row();
+				$order = $data['menu_list']->menu_order;
+
+				$parent = $data['menu_list']->menu_parent;
+				$this->menu_model->delete($data['id_hapus']);
+				$menu['parent'] = $this->menu_model->select_by($parent)->result();
+				foreach ($menu['parent'] as $key ) {
+					if($key->menu_order > $order)
+					{
+						$iter = $key->menu_order;	
+						$iter--;
+						echo $iter;
+						$value = array(
+							'menu_order' => $iter
+							);
+						$id = $key->id;
+						$this->menu_model->update($value,$id);
+					}
+				}
+				redirect(site_url('admin-dashboard/menu/sesuaikan'));
+			}else if (isset($data['simpan'])){
+				$data['menu_list'] = $this->menu_model->showAll()->result();
+				foreach ($data['menu'] as $key) {
+					foreach ($data['menu_list'] as $key1) {
+						if(($key['id'] == $key1->id) && ($key['order']!= $key1->menu_order))
+						{
+
+							$value = array(
+								'menu_order' => $key['order']
+								);
+							$id = $key1->id;
+							$this->menu_model->update($value,$id);
+						}
+					}
+				}
+				foreach ($data['submenu'] as $key) {
+					foreach ($data['menu_list'] as $key1) {
+						if(($key['id'] == $key1->id) && ($key['order']!= $key1->menu_order))
+						{
+
+							$value = array(
+								'menu_order' => $key['order']
+								);
+							$id = $key1->id;
+							$this->menu_model->update($value,$id);
+						}
+					}
+				}
+				redirect(site_url('admin-dashboard/menu/sesuaikan'));
+			}
 		}
 
 	}

@@ -16,14 +16,15 @@
 			Tipe Menu : 
 			<input type="text" name="menu_tipe" value="<?php echo $menu_url_type ?>" readonly="readonly" /><br/><br/>
 			Status : 
-			<input type="text" name="menu_status" value="<?php echo $menu->menu_name ?>" readonly="readonly" /><br/><br/>
+			<input type="text" name="menu_status" value="<?php if(isset($menu)){echo "submenu dari ".$menu->menu_name;}else{echo "menu utama";} ?>" readonly="readonly" /><br/><br/>
+			<input type="number" name="parent" value="<?php if(isset($menu)){echo $menu->id;}else{echo 0;}?>" hidden>
 			Nama Tag :
 			<select name="tag">
 				<option></option>
 				<?php foreach ($tag_list as $tag) 
 				{ ?>
 					
-					<option value="<?php echo $tag->post_judul; ?>"><?php echo $tag->post_tag; ?></option>
+					<option value="<?php echo "tag/".$tag->post_judul; ?>"><?php echo $tag->post_tag; ?></option>
 
 				<?php } ?>
 				
