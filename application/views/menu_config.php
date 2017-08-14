@@ -65,7 +65,7 @@
 			$(this).css('display','none');
 		});
 		$(this).css("display","none");
-		$(".view-parent[target="+$target+"]").css("display","inline");
+		$(".view-parent[target='"+$target+"']").css("display","inline");
 		
 		
 		$("#parent-menu li").each(function(){
@@ -102,7 +102,7 @@
 		});
 
 		$(this).css("display","none");
-		$(".view-sub[target="+$target+"]").css("display","inline");
+		$(".view-sub[target='"+$target+"'']").css("display","inline");
 		
 		
 

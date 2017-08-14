@@ -56,7 +56,7 @@
 			$this->load->view('admin_pane', $data);
 		}
 		
-		function paginasi_post($offset=0)
+		function paginasi_post($page=1)
 		{
 			
 			$data['post']=$this->post_model->showAll()->result();
@@ -67,37 +67,44 @@
 			
 						#paginasi
 			$data['perpage'] =10;
+			$offset = ($page - 1) * $data['perpage'];
 			
-			
-			$config = array(
-							'base_url'=>site_url('admin_post/sesuaikan_post'),
+			$data['config'] = array(
+							'base_url'=>site_url('admin_post/paginasi_post'),
 							'total_rows'=>count($this->post_model->showAll()->result()),
 							'per_page'=>$data['perpage']);
-			
-			$limit['perpage']=$data['perpage'];
-			$limit['offset']=$offset;
+			$limit['offset'] = $offset;
+			$limit['perpage'] =$data['perpage'];
+
 			$data['offset']=$offset;
-			$data['total']=$config['total_rows'];
-			
-			$data['post']=$this->post_model->paging($limit)->result();
+			$data['total']=$data['config']['total_rows'];
+			$data['page']=$page;
+			$data['post'] = $this->post_model->paging($limit)->result();
 			echo $this->load->view('paginasi_post',$data,true);
 		
 		}
 		
-		function paginasi_page($offset2=0){
+		function paginasi_page($page=1){
+
 			$data['post_page']=$this->page_model->showAll()->result();
+
 			$a=$this->session->userdata('id_author');
 			$b=intval($a);
 			$data['post_id']=$this->user_model->selectId($b)->result();
-			$perpage2 =10;
-			$config2 = array(
+
+			$data['perpage'] =10;
+			$offset = ($page - 1) * $data['perpage'];
+			$data['config'] = array(
 							'base_url'=>site_url('admin_post/paginasi_page'),
 							'total_rows'=>count($this->page_model->showAll()->result()),
-							'per_page'=>$perpage2);
-			$this->pagination->initialize($config2);
-			$limit2['perpage']=$perpage2;
-			$limit2['offset']=$offset2;
-			$data['post_page']=$this->page_model->pagination($limit2)->result();
+							'per_page'=>$data['perpage']);
+			$limit['offset'] = $offset;
+			$limit['perpage'] =$data['perpage'];
+
+			$data['offset']=$offset;
+			$data['total']=$data['config']['total_rows'];
+			$data['page'] =$page;
+			$data['post_page'] = $this->page_model->pagination($limit)->result();
 			echo $this->load->view('paginasi_page',$data,true);
 		}
 
