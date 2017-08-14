@@ -1,26 +1,34 @@
 <div class="row">
 	<div class="col-md-12">
 		<ul class="nav nav-tabs">
-			<li class="active"><a data-toggle="tab" href="#home">Artikel</a></li>
-			<li><a data-toggle="tab" href="#menu1">Halaman Statis</a></li>
+			<li <?php if($b == 'simpan'){echo '';}
+			else{echo 'class ="active"';}?> ><a data-toggle="tab" href="#home">Artikel</a></li>
+			<li <?php if($b == 'simpan'){echo 'class = "active"';}
+			else{echo '';}?> ><a data-toggle="tab" href="#menu1">Halaman Statis</a></li>
 		</ul>
 
-		<?php echo validation_errors(); ?>
-
 		<div class="tab-content">
-		    <div id="home" class="tab-pane fade in active">
+		    <div id="home" <?php if($b == 'simpan'){echo 'class="tab-pane fade"'; }
+			else{echo 'class="tab-pane fade in active"';}?>>
 		    	<?php echo $this->session->flashdata('pesan'); ?>
 				<h3>Tambah Artikel</h3>
-
+				
 				<!-- form open here Post here -->
-				<?php echo form_open('admin_post/add_post', 'id="post-article"'); ?>			
+					<fieldset>
+						<?php echo form_open('admin_post/add_post', 'id="post-article"'); ?>
 					<div class="form-group">
-						<label for="judul_post" >Judul Artikel</label>
-						<input class="form-control" type="text" id="judul_post" name="judul_post" placeholder="judul artikel">
+						<div>
+							<?php echo form_error('judul_post','<div style="color:red">','<div>');?>
+							<label for="judul_post" >Judul Artikel</label>
+							<input class="form-control" type="text" id="judul_post" name="judul_post" placeholder="judul artikel">
+						</div>
 					</div>
 					<div class="form-group">
-						<label for="isi_post" >Isi Artikel</label>
-						<textarea class="form-control" id="isi_post" form="post-article" name="isi_post" cols="150" rows="10"></textarea>
+						<div>
+							<?php echo form_error('isi_post','<div style="color:red">','<div>');?>
+							<label for="isi_post" >Isi Artikel</label>
+							<textarea class="form-control" id="isi_post" form="post-article" name="isi_post" cols="150" rows="10"></textarea>
+						</div>
 					</div>
 					<div class="form-group">
 						<label for="tag_post" >tag</label>
@@ -52,27 +60,38 @@
 						
 						<input class="form-control"  type="submit" name="terbitkan_post" value="terbitkan post">
 					</div>
-				</form>
+			<?php echo form_close();?>
+				</fieldset>
+				
 			</div>
-			<div id="menu1" class="tab-pane fade">
+			<div id="menu1" <?php if($b == 'simpan'){echo 'class="tab-pane fade in active"'; }
+			else{echo 'class="tab-pane fade"';}?>>
 			<?php echo $this->session->flashdata('page_pesan'); ?>
 				<h3>Tambah Artikel</h3>
 			    <!-- form open here Post here -->
-			    <?php echo form_open('admin_post/add_page', 'id="post-page"'); ?>
+					<fieldset>
+					<?php echo form_open('admin_post/add_page', 'id="post-page"'); ?>
 
 			    	<div class="form-group">
-			    	<?php echo validation_errors(); ?>
-			    	 
-			    		<label for="nama_page" >nama Page</label>
-						<input class="form-control" type="text" id="nama_page" name="nama_page" placeholder="judul page">
+						<div>
+							<?php echo form_error('nama_page','<div style="color:red">','<div>');?>
+							<label for="nama_page" >nama Page</label>
+							<input class="form-control" type="text" id="nama_page" name="nama_page" placeholder="judul page">
+						</div>
 					</div>
 			    	<div class="form-group">
-			    		<label for="judul_page" >Judul Page</label>
-						<input class="form-control" type="text" id="judul_page" name="judul_page" placeholder="judul page">
+						<div>
+							<?php echo form_error('judul_page','<div style="color:red">','<div>');?>
+							<label for="judul_page" >Judul Page</label>
+							<input class="form-control" type="text" id="judul_page" name="judul_page" placeholder="judul page">
+						</div>
 					</div>
 					<div class="form-group">
-						<label for="isi_page" >Isi Page</label>
-						<textarea class="form-control" id="isi_post" form="post-page" name="isi_page" cols="150" rows="10"></textarea>
+						<div>
+							<?php echo form_error('isi_page','<div style="color:red">','<div>');?>
+							<label for="isi_page" >Isi Page</label>
+							<textarea class="form-control" id="isi_post" form="post-page" name="isi_page" cols="150" rows="10"></textarea>
+						</div>
 					</div>
 					
 					<div class="form-group">
@@ -85,7 +104,9 @@
 					</div>
 					
 					
-				</form>
+				<?php echo form_close();?>
+				</fieldset>
+			    
 			</div>
 		</div> 
 		

@@ -38,8 +38,9 @@
 
 		function tambah_post()
 		{
-			
-			$data['content'] = $this->load->view('admin_tambah_post', '', true);
+			$button ='';
+			$data['b'] = $button;
+			$data['content'] = $this->load->view('admin_tambah_post',$data, true);
 
 			$data['content'] =$this->load->view('admin_body', $data,true);
 			$this->load->view('admin_pane', $data);
@@ -110,7 +111,6 @@
 			$id = $this->session->userdata('id_author');
 			$data['post_author'] = $id;
 
-			echo('post_author');
 			$koment = $this->input->post('enable_comment');
 
 			if (isset($koment)) 
@@ -120,20 +120,24 @@
 
 			$this->form_validation->set_rules('judul_post','Judul Artikel','required');
 			$this->form_validation->set_rules('isi_post','Isi Artikel','required');
-
 			$simpan = $this->input->post('simpan_post');
 
 			if($simpan == 'simpan post')
 			{
 				if ($this->form_validation->run() == FALSE) 
 				{
-					redirect(site_url('admin_post'));
+					$button = '';
+					$data['b'] = $button;
+					$data['content'] = $this->load->view('admin_tambah_post',$data,true);
+					$data['content'] =$this->load->view('admin_body', $data, true);
+					$this->load->view('admin_pane', $data);
 				}
 				else
 				{
 					$this->post_model->insert($data);
 					echo $this->session->set_flashdata('pesan','Post berhasil ditambahkan');
-					redirect(site_url('admin_post'));		
+					redirect(site_url('admin_post'));
+						
 				}
 			}
 			else
@@ -232,7 +236,11 @@
 			{
 				if ($this->form_validation->run() == FALSE) 
 				{
-					redirect(site_url('admin_post#menu1'));;
+					
+					$data['b'] = $button;
+					$data['content'] = $this->load->view('admin_tambah_post',$data, true);
+					$data['content'] =$this->load->view('admin_body', $data,true);
+					$this->load->view('admin_pane', $data);
 				}
 				else
 				{
@@ -264,7 +272,7 @@
 		function delete_page($id)
 		{
 			$this->page_model->delete($id);
-			redirect(site_url('admin_post/sesuaikan_post#menu1'));
+			redirect(site_url('admin_post/sesuaikan_pos#page'));
 		}
 
 	}
