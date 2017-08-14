@@ -51,7 +51,7 @@
 				
 				<span style ='font-size: 16px;' class='glyphicon glyphicon-edit'></span>						
 			</a>
-			<a href='<?php echo site_url('admin_post/delete_post/'.$data->id); ?>'  class='btn btn-default input-group-btn'>
+			<a onclick="return popups();" href='<?php echo site_url('admin_post/delete_post/'.$data->id); ?>'  class='btn btn-default input-group-btn'>
 				
 				<span style ='font-size: 16px;' class='glyphicon glyphicon-remove'></span>						
 			</a>	
@@ -62,5 +62,13 @@
 		</span>
 	</div>
 </div>
-
+<script>
+	function popups(){
+		q=confirm("Apakah anda yakin ingin menghapus Post ini?");
+		if( q!= true)
+		{
+				return false;
+		}
+	}
+</script>
 

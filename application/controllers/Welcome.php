@@ -19,44 +19,45 @@ class Welcome extends CI_Controller {
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
 
-		public function __construct()
-		{
-			parent::__construct();
-			$this->load->helper('url');
-			$this->load->library('session');
-			$this->load->helper('html');
-		}
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load->model('post_model');
+		$this->load->helper('url');
+		$this->load->library('session');
+		$this->load->helper('html');
+	}
 
-	    public function index()
-    {
-       
-        $this->load->view('front_head');
-        $this->load->view('front_header');
-        $this->compose();
-        $this->load->view('front_footer');
-    }
+	public function index()
+	{
+		$this->load->view('front_head');
+		$this->load->view('front_header');
+		$this->compose();
+		$this->load->view('front_footer');
+	}
 
-    public function compose()
-    {
-        $data['content'] = $this->load->view('front_hot_news','',true);
+	public function compose()
+	{
+		$data['news'] = $this->post_model->showPublish()->result();
+		$data['content'] = $this->load->view('front_hot_news',$data,true);
         
-        // $data['popular_widget'] = $this->load->view('front_popular_widget',$result,true);
-        // $data['widget'] =$this->load->view('front_widget',$data,true);
+		// $data['popular_widget'] = $this->load->view('front_popular_widget',$result,true);
+		// $data['widget'] =$this->load->view('front_widget',$data,true);
 
-        // 		 
-        $data['latest_main'] =$this->load->view('post_list','',true);
+		// 		 
+		$data['latest_main'] =$this->load->view('post_list','',true);
 
-        $data['content'] .= $this->load->view('front_main', $data,true);
+		$data['content'] .= $this->load->view('front_main', $data,true);
 
-        // $data['content'] .=  $this->load->view('front_content',$data,true);
-        $this->load->view('front_body', $data);
-    }
+		// $data['content'] .=  $this->load->view('front_content',$data,true);
+		$this->load->view('front_body', $data);
+	}
 
-    public function load_list($page)
-    {
-    	//query dengan limit dan offset
-    	//load view dengan data load post
-    }
+	public function load_list($page)
+	{	
+		//query dengan limit dan offset
+		//load view dengan data load post
+	}
 
 
 
