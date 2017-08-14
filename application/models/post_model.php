@@ -19,6 +19,15 @@
             
             return $this->db->get();
         }
+		function showPublish()
+		{
+			$this->db->select('*');
+			$this->db->from('portal_post');
+			$this->db->where('post_published',1);
+			$this->db->order_by('post_waktu','desc');
+			
+			return $this->db->get();
+		}
         function selectId($id)
         {
             $this->db->select('*');

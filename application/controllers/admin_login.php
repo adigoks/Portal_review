@@ -37,7 +37,7 @@
 			$password = "pnvs#%12".$password."41;1*";
 			$temp = $this->user_model->select_us($username, md5($password))->row();
 			$num = count($temp);
-
+			
 			$this->form_validation->set_rules('user_name','User Name','required');
 			$this->form_validation->set_rules('password','Password','required');
 

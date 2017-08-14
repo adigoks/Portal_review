@@ -9,7 +9,7 @@
 		    	<div class="col-md-12">
 		    		<br>
 		    		<H3>POST</H3>
-		    		<div id = "post_sesuaikan"style="padding: 5px; border-radius: 5px;background-color: #f9eece;">
+		    		<div id = "post_sesuaikan" style="padding: 5px; border-radius: 5px;background-color: #f9eece;">
 					
 		    		</div>
 		    	</div>
@@ -32,17 +32,38 @@
 </div>
 <script>
 $(document).ready(function() {
-    $("#post_sesuaikan" ).load( "<?php echo base_url()."admin_post/paginasi_post"; ?>"); //load initial records
-     $("#page_sesuaikan" ).load( "<?php echo base_url()."admin_post/paginasi_page"; ?>"); //load initial records
+     //load initial records
     //executes code below when user click on pagination links
-    $("#results").on( "click", ".pagination a", function (e){
-        e.preventDefault();
-        $(".loading-div").show(); //show loading element
-        var page = $(this).attr("data-page"); //get page number from link
-        $("#results").load("paginasi_post.php",{"page":page}, function(){ //get content from PHP page
-            $(".loading-div").hide(); //once done, hide loading element
-        });
+    // $("#results").on( "click", ".pagination a", function (e){
+    //     e.preventDefault();
+    //     $(".loading-div").show(); //show loading element
+    //     var page = $(this).attr("data-page"); //get page number from link
+    //     $("#results").load("paginasi_post.php",{"page":page}, function(){ //get content from PHP page
+    //         $(".loading-div").hide(); //once done, hide loading element
+    //     });
         
-    });
-});	
+    // });
+    var $page_paging = function (){
+	    $('.page-paging').click(function (){
+		var $val =$(this).val();
+		
+		$("#page_sesuaikan *" ).remove();
+		var $target = '<?php echo base_url().'admin_post/paginasi_page/';?>'+$val;
+		$("#page_sesuaikan" ).load($target,$page_paging);
+	});
+	}
+	var $post_paging = function (){
+		$('.post-paging').click(function (){
+		var $val =$(this).val();
+		
+		$("#post_sesuaikan *" ).remove();
+		var $target = '<?php echo base_url().'admin_post/paginasi_post/';?>'+$val;
+		$("#post_sesuaikan" ).load($target, $post_paging);
+	});	
+	}
+	$("#post_sesuaikan" ).load( "<?php echo base_url()."admin_post/paginasi_post"; ?>",$post_paging); //load initial records
+     $("#page_sesuaikan" ).load( "<?php echo base_url()."admin_post/paginasi_page"; ?>",$page_paging);
+});
+
+
 </script>

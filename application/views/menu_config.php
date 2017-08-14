@@ -105,6 +105,7 @@
 		});
 
 		$(this).css("display","none");
+
 		$(".view-sub[target='"+$target+"']").css("display","inline");
 		
 		
