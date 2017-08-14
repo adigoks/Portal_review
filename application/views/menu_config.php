@@ -23,7 +23,9 @@
 							<input type='number' class='order-menu' name='menu[$i][order]' value='$key[menu_order]' hidden>
 							$key[menu_name]
 							<button form='form-menu-config' type='submit' name='hapus' value='$key[id]'> hapus </button>
-							<ul id='sub-menu-$key[menu_name]'>"; 
+							<button form='form-menu-config' type='submit' name='edit' value='$key[id]'> edit </button>
+							<ul id='sub-menu-$key[menu_name]'>";
+
 					$parent = $key['menu_name'];
 					foreach ($list as $key1) {
 						if($key1['menu_parent'] == $id)
@@ -34,6 +36,7 @@
 							<input type='number' class='order-submenu' name='submenu[$j][order]' value='$key1[menu_order]' hidden>
 							$key1[menu_name];
 							<button form='form-menu-config' type='submit' name='hapus' value='$key1[id]'> hapus </button>
+							<button form='form-menu-config' type='submit' name='edit' value='$key1[id]'> edit </button>
 							</li>
 
 							";
@@ -65,7 +68,7 @@
 			$(this).css('display','none');
 		});
 		$(this).css("display","none");
-		$(".view-parent[target="+$target+"]").css("display","inline");
+		$(".view-parent[target='"+$target+"']").css("display","inline");
 		
 		
 		$("#parent-menu li").each(function(){
@@ -102,7 +105,7 @@
 		});
 
 		$(this).css("display","none");
-		$(".view-sub[target="+$target+"]").css("display","inline");
+		$(".view-sub[target='"+$target+"']").css("display","inline");
 		
 		
 

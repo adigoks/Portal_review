@@ -8,7 +8,6 @@
 	<h2>Tambahkan Menu</h2>
 
 	<fieldset>
-		<?php echo validation_errors(); ?>
 		<form action="<?php echo site_url('admin_menu/menu_tambah_post'); ?>" method="POST">
 			
 			Nama Menu : 
@@ -23,7 +22,6 @@
 				<option></option>
 				<?php 
 				if (!is_null ($post_list)) {
-					echo 'test';
 					foreach ($post_list as $post) 
 				{ ?>
 					

@@ -86,7 +86,6 @@
 
 				if ($a == 'none') 
 				{
-
 					$this->menu_model->insert($data);
 					redirect(site_url('admin_menu'));
 				}
@@ -254,6 +253,7 @@
 			$data['menu'] = $this->input->post('menu');
 			$data['submenu'] = $this->input->post('submenu');
 			$data['simpan'] = $this->input->post('simpan');
+			$data['id_edit'] = $this->input->post('edit');
 			//var_dump($data['menu']);
 			if(isset($data['id_hapus'])){
 				$data['menu_list'] = $this->menu_model->selectId($data['id_hapus'])->row();
@@ -306,6 +306,54 @@
 				}
 				redirect(site_url('admin-dashboard/menu/sesuaikan'));
 			}
+			elseif (isset($data['id_edit'])) {
+				$data['list'] = $this->menu_model->showAll()->result();
+				$data['id'] = $this->menu_model->selectId($data['id_edit'])->row();
+				$data['content'] = $this->load->view('edit_menu', $data, true);
+
+				$data['content'] =$this->load->view('admin_body', $data,true);
+				$this->load->view('admin_pane', $data);
+			}
+		}
+
+		function edit_next_menu()
+		{
+			$data['menu_name'] = $this->input->post('menu_name');
+			$data['menu_url_type'] = $this->input->post('menu_tipe');
+
+			$id = $this->input->post('id');
+			$tipe = $this->input->post('menu_tipe');
+
+			if ($tipe == 'none') {
+				$url = '';
+				$data['menu_url'] = $url;
+				$this->menu_model->update($data, $id);
+				$this->menu_sesuaikan();
+			} else {
+				$data['name'] = $this->input->post('menu_name');
+				$data['tipe'] = $this->input->post('menu_tipe');
+				$data['page_list'] = $this->page_model->showAll()->result();
+				$data['post_list'] = $this->post_model->showAll()->result();
+				$data['url_name'] = $this->menu_model->selectId($id)->row();
+				$data['content'] = $this->load->view('edit_menu_next', $data, true);
+
+				$data['content'] =$this->load->view('admin_body', $data,true);
+				$this->load->view('admin_pane', $data);
+
+			}
+			
+		}
+
+		function edit_menu()
+		{
+			$data['menu_name'] = $this->input->post('menu_name');
+			$data['menu_url_type'] = $this->input->post('menu_tipe');
+			$data['menu_url'] = $this->input->post('url');
+			$id = $this->input->post('id');
+
+			$this->menu_model->update($data, $id);
+			$this->menu_sesuaikan();
+			
 		}
 
 	}
