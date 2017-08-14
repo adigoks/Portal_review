@@ -6,7 +6,7 @@
 			<li <?php if($b == 'simpan'){echo 'class = "active"';}
 			else{echo '';}?> ><a data-toggle="tab" href="#menu1">Halaman Statis</a></li>
 		</ul>
-
+		
 		<div class="tab-content">
 		    <div id="home" <?php if($b == 'simpan'){echo 'class="tab-pane fade"'; }
 			else{echo 'class="tab-pane fade in active"';}?>>
@@ -14,8 +14,8 @@
 				<h3>Tambah Artikel</h3>
 				
 				<!-- form open here Post here -->
-					<fieldset>
-						<?php echo form_open('admin_post/add_post', 'id="post-article"'); ?>
+				<fieldset>
+					<?php echo form_open('admin_post/add_post', 'id="post-article"'); ?>
 					<div class="form-group">
 						<div>
 							<?php echo form_error('judul_post','<div style="color:red">','<div>');?>
