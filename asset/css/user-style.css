@@ -66,40 +66,43 @@
 	padding-left: 10px;
 	padding-right: 10px;
 }
-.menu li {
+.menu > li {
 	width: 100%;
 	display: flex;
 	align-items: center;
+	justify-content : center;
+	position: relative;
 }
-.menu li:hover {
+.menu > li:hover {
 	background-color: #1b1d4c;
 	color: white;
 }
-.menu li .glyphicon{
+
+.menu > li .glyphicon{
 	width: initial;
 }
-.menu li a{
+.menu > li a{
 	width: 100%;
 	text-align: center;
 	text-decoration: none;
 
 }
-.menu li:hover a{
+.menu > li:hover a{
 	color: white;
 	
 
 }
-.menu li a:visited{
+.menu > li a:visited{
 	
 	text-decoration: none;
 	
 }
-.menu li a:hover{
+.menu > li a:hover{
 	color: white;
 	text-decoration: none;
-	
+
 }
-.menu li a:active{
+.menu > li a:active{
 	
 	text-decoration: none;
 	
@@ -142,12 +145,27 @@
 	overflow: hidden;
 }
 
+.dropdown_list{
+	display: none;
+	min-width: 100%;
+	position: absolute;
+	list-style-type: none;
+}
 
+.dropdown_list > li{
+	text-align: center;
+}
+
+.menu_utama{
+	text-align: center;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
 
 @media only screen and (min-width: 10cm) {
 	
 
-	.menu li {
+	.menu > li {
 	
 	display: flex;
 	align-items: center;
@@ -160,12 +178,11 @@
 	width: 45%;
 	}
 	
-	.menu li {
+	.menu > li {
 	width: 30%;
 	display: flex;
 	align-items: center;
-	text-overflow: ellipsis;
-	overflow: hidden;
+
 	}
 
 	.menu{
@@ -176,6 +193,14 @@
 	align-items: stretch;
 	list-style-type: none;
 	}
+
+	.menu > li:hover .dropdown_list{
+	background: #1b1d4c;
+	position: absolute;
+	top: 100%;
+	display: block;
+	z-index: 100;
+	}	
 
 	.logo-menu{
 	
@@ -219,12 +244,10 @@
 	h4{
 		font-size: 16px;
 	}
-	.menu li {
+	.menu > li {
 	width: 15%;
 	display: flex;
 	align-items: center;
-	text-overflow: ellipsis;
-	overflow: hidden;
 	}
 	.menu{
 	height: inherit;
@@ -244,5 +267,4 @@
 		margin-left: 41.667%;
 		width: 58.3333%
 	}
-	
 }
