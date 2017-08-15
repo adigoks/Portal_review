@@ -10,11 +10,20 @@
 		<div id="menu-bar" class="col-md-7 med-7">
 			<div id="menu">
 				<ul class="menu">
-					<li><a href="#"><h4>GAMING</h4></a></li>
-					<li><a href="#"><h4>PC</h4></a></li>
-					<li><a href="#"><h4>CONSOLE</h4></a></li>
-					<li><a href="#"><h4>MOBILE</h4></a></li>
+					<?php foreach ($menu as $list) { if ($list['menu_parent']== 0) { ?>
+						<li><div class="menu_utama"><a href="#"><h4><?php echo $list['menu_name']; ?></h4></a></div>
+					<?php } ?>
+						<ul class="dropdown_list">
+							<?php foreach ($menu as $list1) { if ($list['id'] == $list1['menu_parent']) { ?>
+								<li><a href="#"><h4><?php echo $list1['menu_name']; ?></h4></a></li>								
+							<?php } ?>
+							<?php } ?>						
+						</ul>
+						</li>
+					<?php } ?>
+
 					<li class="more"><center><a data-toggle="collapse" href="#top-expand"><span class="glyphicon glyphicon-triangle-bottom"></span></a></center></li>
+					
 				</ul>
 			</div>
 		</div>

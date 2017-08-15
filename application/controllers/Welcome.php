@@ -26,12 +26,13 @@ class Welcome extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->library('session');
 		$this->load->helper('html');
+		$this->load->model('menu_model');
 	}
 
 	public function index()
 	{
 		$this->load->view('front_head');
-		$this->load->view('front_header');
+		$this->menu_list();
 		$this->compose();
 		$this->load->view('front_footer');
 	}
@@ -39,7 +40,9 @@ class Welcome extends CI_Controller {
 	public function compose()
 	{
 		$data['news'] = $this->post_model->showPublish()->result();
+		$data['news2'] = $this->post_model->showPublish()->result();
 		$data['content'] = $this->load->view('front_hot_news',$data,true);
+
         
 		// $data['popular_widget'] = $this->load->view('front_popular_widget',$result,true);
 		// $data['widget'] =$this->load->view('front_widget',$data,true);
@@ -57,6 +60,12 @@ class Welcome extends CI_Controller {
 	{	
 		//query dengan limit dan offset
 		//load view dengan data load post
+	}
+
+	public function menu_list()
+	{
+		$data['menu'] = $this->menu_model->selectSort();
+		$this->load->view('front_header', $data);
 	}
 
 

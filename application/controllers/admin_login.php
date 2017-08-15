@@ -81,7 +81,6 @@
 				redirect(site_url('admin_login'));
 			}
 		}
-
 	}
 
 ?>

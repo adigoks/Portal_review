@@ -12,9 +12,7 @@
 </head>
 <body>
 <div id="topbar">
-	<form action="" method="POST">
-		<input type="submit" name="logout" value="Logout" />
-	</form>
+	<a href="<?php echo site_url('admin_logout/logout');?>">Logout</a></li>
 </div>
 <div id='main' class="row">
 	<div id="sidebar" class="col-md-2" >
