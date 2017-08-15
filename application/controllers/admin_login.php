@@ -17,7 +17,7 @@
 			$this->load->model('user_model');
 			$this->load->library('session');
 
-			if ($this->session->userdata('logged_in') == TRUE) 
+			if (isset($_SESSION['logged_in']) && $this->session->userdata('logged_in') === 'true') 
 			{
 				redirect(site_url('admin-dashboard'));
 			}
@@ -53,7 +53,7 @@
 						'id_author' => $temp->id,
 						'username' => $temp->user_name,
 						'level'=> $temp->user_level,
-						'logged_in' => true );
+						'logged_in' => 'true' );
 
 					$this->session->set_userdata($array_item);
 
@@ -71,14 +71,14 @@
 		public function success_page()
 		{
 			$logged_in = $this->session->userdata('logged_in');
-			if (!$logged_in) 
+			if ($logged_in) 
 			{
-
-				redirect(site_url('admin_login'));
+				redirect(site_url('admin-dashboard/menu'));
+				
 			}
 			else
 			{
-				redirect(site_url('admin-dashboard/menu'));
+				redirect(site_url('admin_login'));
 			}
 		}
 

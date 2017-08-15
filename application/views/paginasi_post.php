@@ -42,18 +42,32 @@ if($page == 1 )
 if($page_count>=5)
 {
 	for ($i=0; $i < 5; $i++) { 
-
-	?>
-	<button class='post-paging' value='<?php echo $start; ?>'><?php echo $start; ?></button> 
-	<?php
+	if($page!=$start)	
+	{
+		?>
+		<button class='post-paging' value='<?php echo $start; ?>'><?php echo $start; ?></button> 
+		<?php	
+	}else{
+		?>
+		<button class='post-paging' value='<?php echo $start; ?>' disabled><?php echo $start; ?></button> 
+		<?php	
+	}
+	
  		
 	$start++;
 	}
 }else{
 	for ($i=0; $i < $page_count; $i++) { 
-	?>
-	<button class='post-paging' value='<?php echo $start; ?>'><?php echo $start; ?></button> 
- 	<?php
+	if($page!=$start)	
+	{
+		?>
+		<button class='post-paging' value='<?php echo $start; ?>'><?php echo $start; ?></button> 
+		<?php	
+	}else{
+		?>
+		<button class='post-paging' value='<?php echo $start; ?>' disabled><?php echo $start; ?></button> 
+		<?php	
+	}
 
 	$start++;
 	}
