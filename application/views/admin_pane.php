@@ -68,7 +68,7 @@
 				    <div class="panel panel-default">
 				      	<div class="panel-heading">
 				        	<h4 class="panel-title">
-				          		<a href="#">MEDIA</a>
+				          		<a href="<?=site_url('admin-dashboard/media');?>">MEDIA</a>
 				        	</h4>
 				      	</div>
 				    	
