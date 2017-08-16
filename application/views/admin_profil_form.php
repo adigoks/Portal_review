@@ -7,7 +7,10 @@
 				<?php echo form_open('admin_profil/update_profil', 'id="post-article"'); ?>
 					
 					<div class="form-group">
-						<img style="border-radius:100%" height="150" width="150" src="<?php echo base_url();?>image/3dbldr.png" >	
+						<img class="profile-pic" src="<?php echo base_url();?>image/3dbldr.png" >
+						<a class="c btn-md">
+							<span class="btn2 glyphicon">&#xe046;</span>
+						</a>
 					</div>
 					<div class="form-group">
 						<label for="username" >User name</label>

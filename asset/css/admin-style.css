@@ -1,3 +1,27 @@
+
+.profile-pic{
+	border-radius:50%;
+	height:125px;
+	width:125px;
+	position: relative;
+}
+.btn2{
+	
+	float: right;
+	position: absolute;
+	margin-right: 400px;
+}
+.glyphicon{
+	font-size:21px;
+}
+.c{
+	margin-right: 10px;
+	color: black;
+	width: 20px;
+}
+.c:hover{
+	color: orange;
+}
 .media-manager-container
 {
 	border-radius: 5px;
