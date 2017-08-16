@@ -49,8 +49,7 @@
 
 		function sesuaikan_post()
 		{
-			
-			$data['content'] = $this->load->view('admin_sesuaikan_post',"",true);
+			$data['content'] = $this->load->view('admin_sesuaikan_post','',true);
 			
 			$data['content'] =$this->load->view('admin_body', $data,true);
 			
@@ -221,6 +220,7 @@
 			$id = $this->input->post('id');
 			$simpan = $this->input->post('simpan_page');
 			if($simpan == 'simpan'){
+
 				$this->page_model->update($data,$id);
 				$this->sesuaikan_post();
 			}
@@ -279,7 +279,7 @@
 		function delete_page($id)
 		{
 			$this->page_model->delete($id);
-			redirect(site_url('admin_post/sesuaikan_pos#page'));
+			redirect(site_url('admin_post/sesuaikan_post#page));
 		}
 
 	}
