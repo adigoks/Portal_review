@@ -39,7 +39,7 @@ class Welcome extends CI_Controller {
 	public function compose()
 	{
 		$data['news'] = $this->post_model->showPublish()->result();
-		$data['news2'] = $this->post_model->showPublish()->result();
+		$data['news2'] = $this->post_model->showPublish2()->result();
 		$data['content'] = $this->load->view('front_hot_news',$data,true);
         
 		// $data['popular_widget'] = $this->load->view('front_popular_widget',$result,true);

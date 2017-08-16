@@ -1,3 +1,26 @@
+.profile-pic{
+	border-radius:50%;
+	height:125px;
+	width:125px;
+	position: relative;
+}
+.btn2{
+	
+	float: right;
+	position: absolute;
+	margin-right: 400px;
+}
+.glyphicon{
+	font-size:21px;
+}
+.c{
+	margin-right: 10px;
+	color: black;
+	width: 20px;
+}
+.c:hover{
+	color: orange;
+}
 #container{
 	height: 100%;
 	width: 100%;
