@@ -1,11 +1,13 @@
 <div class="row">
 	<div class="col-md-12">
 		<ul class="nav nav-tabs">
-			<li class="active"><a data-toggle="tab" href="#post">Artikel</a></li>
-			<li><a data-toggle="tab" href="#page">Halaman Statis</a></li>
+
+			<li <?php if($page=='post'){echo "class='active'";}?> ><a data-toggle="tab" href="#post">Artikel</a></li>
+			<li <?php if($page=='page'){echo "class='active'";}?> ><a data-toggle="tab" href="#page">Halaman Statis</a></li>
+
 		</ul>
 		<div class="tab-content">
-		    <div id="post" class="tab-pane fade in active">
+		    <div id="post" class="tab-pane fade in <?php if($page=='post'){echo "active";}?>">
 		    	<div class="col-md-12">
 		    		<br>
 		    		<H3>POST</H3>
@@ -15,7 +17,7 @@
 		    	</div>
 		    	
 		    </div>
-		    <div id="page" class="tab-pane fade in">
+		    <div id="page" class="tab-pane fade in <?php if($page=='page'){echo "active";}?>">
 		    	<div class="col-md-12">
 		    		<br>
 		    		<H3>PAGE</H3>

@@ -47,7 +47,7 @@
 					</div>
 					<div class="col-md-3 med-3" >
 						<div class="log-req">
-							<a href="#">Masuk</a> atau <a href="#">daftar...</a> 
+							<a href="#">Masuk</a> atau <a href="<?php echo site_url('page/form_daftar'); ?>">daftar...</a> 
 						</div>
 						<div>
 							<a class="log-btn" href="#"><span class="glyphicon glyphicon-log-in"></span></a>
@@ -57,6 +57,7 @@
 			</div>
 		
 	</div>
+
 	
 	
 </div>
@@ -76,3 +77,4 @@
 			});
 	});
 </script>
+
