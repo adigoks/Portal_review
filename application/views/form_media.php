@@ -83,7 +83,7 @@
 			{
 				deleteFile(array);
 			}
-			event.stopPropagation();
+			
 			event.preventDefault();
 		});
 
