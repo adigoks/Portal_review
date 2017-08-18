@@ -37,6 +37,7 @@
 
 		function update_profil()
 		{
+			$data['user_profile_img'] = $this->input->post('image-path');
 			$data['user_name'] = $this->input->post('username');
 			$data['user_email'] = $this->input->post('email');
 			$data['user_deskripsi'] = $this->input->post('deskripsi');

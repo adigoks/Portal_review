@@ -47,10 +47,10 @@
 		}
 
 
-		function sesuaikan_post()
+		function sesuaikan_post($page='post')
 		{
-			
-			$data['content'] = $this->load->view('admin_sesuaikan_post',"",true);
+			$data['page'] = $page;
+			$data['content'] = $this->load->view('admin_sesuaikan_post',$data,true);
 			
 			$data['content'] =$this->load->view('admin_body', $data,true);
 			
@@ -220,8 +220,14 @@
 			$data['page_isi']=$this->input->post('isi_page');
 			$id = $this->input->post('id');
 			$simpan = $this->input->post('simpan_page');
+			$terbit = $this->input->post('terbitkan_page');
 			if($simpan == 'simpan'){
 				$this->page_model->update($data,$id);
+				$this->sesuaikan_post();
+			}
+
+			if(isset($terbit))
+			{
 				$this->sesuaikan_post();
 			}
 			
@@ -279,7 +285,7 @@
 		function delete_page($id)
 		{
 			$this->page_model->delete($id);
-			redirect(site_url('admin_post/sesuaikan_pos#page'));
+			$this->sesuaikan_post('page');
 		}
 
 	}

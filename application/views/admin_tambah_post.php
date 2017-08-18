@@ -27,7 +27,7 @@
 						<div>
 							<?php echo form_error('isi_post','<div style="color:red">','<div>');?>
 							<label for="isi_post" >Isi Artikel</label>
-							<textarea class="form-control" id="isi_post" form="post-article" name="isi_post" cols="150" rows="10"></textarea>
+							<textarea class="form-control wysiwyg" id="isi_post" form="post-article" name="isi_post" cols="150" rows="10"></textarea>
 						</div>
 					</div>
 					<div class="form-group">
@@ -90,7 +90,7 @@
 						<div>
 							<?php echo form_error('isi_page','<div style="color:red">','<div>');?>
 							<label for="isi_page" >Isi Page</label>
-							<textarea class="form-control" id="isi_post" form="post-page" name="isi_page" cols="150" rows="10"></textarea>
+							<textarea class="form-control wysiwyg" id="isi_post" form="post-page" name="isi_page" cols="150" rows="10"></textarea>
 						</div>
 					</div>
 					
@@ -113,3 +113,14 @@
 	</div>
 	
 </div>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('.wysiwyg').summernote({
+		  	height: 300,                 // set editor height
+			minHeight: null,             // set minimum height of editor
+			maxHeight: null,             // set maximum height of editor
+			focus: true     
+		});
+
+	});
+</script>
