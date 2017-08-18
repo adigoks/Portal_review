@@ -213,7 +213,8 @@
 						$("#media-list" ).load( "<?php echo base_url().'admin_media/media_list'; ?>", $upload);
 					} else {
 						console.log(res.error_message);
-					oOutput.innerHTML = "Error " + res.error_message + " occurred when trying to upload your file.<br \/>";
+						alert('file gagal di upload! pastikan ukuran file kurang dari 2,5 MB dan merupakan file image.');
+						$("#media-list" ).load( "<?php echo base_url().'admin_media/media_list'; ?>", $upload);
 					}
 				},	
 				error : function (response)

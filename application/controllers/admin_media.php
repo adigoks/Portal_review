@@ -111,7 +111,7 @@
 						}
 					}
 					else{
-						echo json_encode(array('status'=> 'error', 'error_message' => 'error' ));
+						echo json_encode(array('status'=> 'error', 'error_message' => 3 ));
 						return 0;
 					}
 				}
