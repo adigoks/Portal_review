@@ -70,7 +70,7 @@
 		console.log('duh2');
 
 		$('#del-file').click(function(){
-
+			
 			var array = new Array();
 			$('.media-checkbox > input').each(function(){
 				
@@ -83,6 +83,7 @@
 			{
 				deleteFile(array);
 			}
+			event.stopPropagation();
 			event.preventDefault();
 		});
 
@@ -288,7 +289,14 @@
 				timeout: 120000,
 				success : function (response){
 					console.log(response);
+					$('#open-file').prop('disabled',true);
+					$('#rename-file').prop('disabled',true);
+					$('#del-file').prop('disabled',true);
+					$('#filename-info').text('...');
+					$('#filetype-info').text('...');
+					$('#filesize-info').text('...');
 					$("#media-list" ).load( "<?php echo base_url().'admin_media/media_list'; ?>", $upload);
+
 				},	
 				error : function (response)
 				{
@@ -315,6 +323,12 @@
 				timeout: 120000,
 				success : function (response){
 					console.log(response);
+					$('#open-file').prop('disabled',true);
+					$('#rename-file').prop('disabled',true);
+					$('#del-file').prop('disabled',true);
+					$('#filename-info').text('...');
+					$('#filetype-info').text('...');
+					$('#filesize-info').text('...');
 					$("#media-list" ).load( "<?php echo base_url().'admin_media/media_list'; ?>", $upload);
 				},	
 				error : function (response)
