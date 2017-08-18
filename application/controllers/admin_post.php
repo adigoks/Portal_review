@@ -51,6 +51,7 @@
 		{
 			$data['page'] = $page;
 			$data['content'] = $this->load->view('admin_sesuaikan_post',$data,true);
+
 			
 			$data['content'] =$this->load->view('admin_body', $data,true);
 			
@@ -222,6 +223,7 @@
 			$simpan = $this->input->post('simpan_page');
 			$terbit = $this->input->post('terbitkan_page');
 			if($simpan == 'simpan'){
+
 				$this->page_model->update($data,$id);
 				$this->sesuaikan_post();
 			}
@@ -285,7 +287,9 @@
 		function delete_page($id)
 		{
 			$this->page_model->delete($id);
+
 			$this->sesuaikan_post('page');
+
 		}
 
 	}

@@ -1,8 +1,10 @@
 <div class="row">
 	<div class="col-md-12">
 		<ul class="nav nav-tabs">
+
 			<li <?php if($page=='post'){echo "class='active'";}?> ><a data-toggle="tab" href="#post">Artikel</a></li>
 			<li <?php if($page=='page'){echo "class='active'";}?> ><a data-toggle="tab" href="#page">Halaman Statis</a></li>
+
 		</ul>
 		<div class="tab-content">
 		    <div id="post" class="tab-pane fade in <?php if($page=='post'){echo "active";}?>">
