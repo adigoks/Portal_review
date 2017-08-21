@@ -3,8 +3,14 @@
 
 		<div class="tab-content">
 		    <div id="home" class="tab-pane fade in active">
-				<h3>Edit Artikel</h3>
+		    	<?php
 
+		    		$target = 'post/'.$id_post->post_uri;
+		    		$default = 'admin_post/form_edit_post/'.$id_post->id;
+		    	?>
+				<div >
+					<h3>Edit Artikel</h3> <span><a href="<?php echo base_url().'admin_preview/?default='.$default.'&target='.$target;?>">preview post</a></span>
+				</div>
 				<!-- form open here Post here -->
 				<?php echo form_open('admin_post/edit_post', 'id="post-article"'); ?>
 					<div class="form-group">
@@ -18,6 +24,14 @@
 								</a>
 							</div>
 							<input type="text" id="gambar_post" name="gambar_post" hidden>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="judul_post" >URL Artikel</label>
+						<div class="input-group">
+							<span id='url_post' class='input-group-addon'>post/</span>
+							<input class="form-control" type="text" name="url_post" value="<?php echo $id_post->post_uri;?>">
+							
 						</div>
 					</div>
 					<div class="form-group">
@@ -177,8 +191,8 @@
 
 		$('.wysiwyg').summernote({
 		  	height: 300,                 // set editor height
-			minHeight: null,             // set minimum height of editor
-			maxHeight: null,             // set maximum height of editor
+			minHeight: 300,             // set minimum height of editor
+			maxHeight: 600,             // set maximum height of editor
 			focus: true,
 			toolbar: [
 				['style', ['style']],

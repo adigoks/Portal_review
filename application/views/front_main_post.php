@@ -1,7 +1,7 @@
 <div id="main" class="col-md-12 as ">
 	<div class="user-post ">
 		<div id="post" class="col-md-8 bord2  h">
-			<?php $this->load->view('front_post'); ?>
+			<?php echo $content; ?>
 		<!-- akan mengecho post list/ latest main php -->
 		</div>
 		<div class="col-md-4 widget hw bord2" >

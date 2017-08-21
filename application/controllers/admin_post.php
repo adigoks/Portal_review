@@ -114,6 +114,9 @@
 		{
 			$data['post_img'] = $this->input->post('gambar_post');
 			$data['post_judul'] = $this->input->post('judul_post');
+			$data['post_uri'] = str_replace(' ', '-', $data['post_judul']); 
+
+			$data['post_uri'] = preg_replace('/[^A-Za-z0-9\-]/', '', $data['post_uri']);
 			$data['post_isi'] = $this->input->post('isi_post');
 			$data['post_tag'] = $this->input->post('tag_post');
 			$data['post_kategori'] = $this->input->post('kategori_post');
@@ -187,6 +190,9 @@
 		{
 			$data['post_img'] = $this->input->post('gambar_post');
 			$data['post_judul'] = $this->input->post('judul_post');
+			$data['post_uri'] = str_replace(' ', '-', $this->input->post('url_post')); 
+
+			$data['post_uri'] = preg_replace('/[^A-Za-z0-9\-]/', '', $data['post_uri']);
 			$data['post_isi'] = $this->input->post('isi_post');
 			$data['post_tag'] = $this->input->post('tag_post');
 			$data['post_kategori'] = $this->input->post('kategori_post');

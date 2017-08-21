@@ -229,8 +229,8 @@
 
 		$('.wysiwyg').summernote({
 		  	height: 300,                 // set editor height
-			minHeight: null,             // set minimum height of editor
-			maxHeight: null,             // set maximum height of editor
+			minHeight: 300,             // set minimum height of editor
+			maxHeight: 600,             // set maximum height of editor
 			focus: true,
 			toolbar: [
 				['style', ['style']],
