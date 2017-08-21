@@ -83,8 +83,6 @@
 			{
 				deleteFile(array);
 			}
-			
-			event.preventDefault();
 		});
 
 		$('#rename-file').click(function(){

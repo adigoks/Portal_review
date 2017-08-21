@@ -1,6 +1,18 @@
 #top-bar{
 	padding: 5px;
 }
+.footer-1{
+	padding-left: 80px;
+}
+.footer-2{
+	padding-left: 40px;
+}
+.footer-3{
+	padding-left: 40px;
+}
+.footer-5{
+	text-align: center;
+}
 .user-post{
 	
 	margin-left: 50px;
@@ -334,6 +346,10 @@
 	margin-left: 0px;
 	
 	}
+	.th{
+		text-align: center;
+	}
+
 	.post-list-image{
 		display: none;
 	}
