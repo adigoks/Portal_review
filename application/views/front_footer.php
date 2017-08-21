@@ -1,55 +1,55 @@
-<div id="footer col-md-12">
+<div id="footer" class="col-md-12">
 	<div id="f1" class="footer-1 col-md-3">
 		<h3>Section</h3>
 		<ul >
-			<li>Review</li>
-			<li>Interview</li>
-			<li>Deals</li>
-			<li>Exclusive</li>
-			<li>Video</li>
-			<li>Entertaiment</li>
+			<li><a>Review</a></li>
+			<li><a>Interview</a></li>
+			<li><a>Deals</a></li>
+			<li><a>Exclusive</a></li>
+			<li><a>Video</a></li>
+			<li><a>Entertaiment</a></li>
 		</ul>
 	</div>
 	<div id="f2" class="footer-2 col-md-3">
 		<h3>Topics</h3>
 		<ul >
-			<li>Hardware</li>
-			<li>Gaming</li>
-			<li>Mobile</li>
-			<li>Software</li>
-			<li>Web</li>
+			<li><a>Hardware</a></li>
+			<li><a>Gaming</a></li>
+			<li><a>Mobile</a></li>
+			<li><a>Software</a></li>
+			<li><a>Web</a></li>
 		</ul>
 	</div>
 	<div id="f3" class="footer-3 col-md-3">
 		<h3>About Us</h3>
 		<ul >
-			<li>About</li>
-			<li>Advertise</li>
-			<li>Contact</li>
-			<li>Tip Us</li>
-			<li>Careers</li>
-			<li>Terms of Use</li>
-			<li>Privacy & Cookie Policy</li>
+			<li><a>About</a></li>
+			<li><a>Advertise</a></li>
+			<li><a>Contact</a></li>
+			<li><a>Tip Us</a></li>
+			<li><a>Careers</a></li>
+			<li><a>Terms of Use</a></li>
+			<li><a>Privacy & Cookie Policy</a></li>
 		</ul>
 	</div>
 	<div id="f4" class="footer-4 col-md-3">
 		<h3>Follow Us</h3>
 		<ul >
-			<li>Facebook</li>
-			<li>Twitter</li>
-			<li>Youtube</li>
+			<li><a>Facebook</a></li>
+			<li><a>Twitter</a></li>
+			<li><a>Youtube</a></li>
 		</ul>
 	</div>
 	<div id="f5" class="footer-5">
 			<p>
 				<a>About</a> &bull;
-				<a>Advertise</a>
-				<a>Contact</a>
-				<a>Tip Us</a>
-			</p>
-			<p>
+				<a>Advertise</a> &bull;
+				<a>Contact</a> &bull;
+				<a>Tip Us</a>&bull;
 				<a>Careers</a>
-				<a>Terms of Use</a>
+			</p>
+			<p>	
+				<a>Terms of Use</a>&bull;
 				<a>Privacy & Cookie Policy</a>	
 			</p>
 			
