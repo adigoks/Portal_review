@@ -21,8 +21,17 @@
 		{
 			$this->load->view('front_head');
 			$this->menu_list();
+			
+			if($this->uri->segment(1)=='post' && $this->uri->segment(2) == true)
+			{
+				$this->post_detail($this->uri->segment(2));
+			}else{
+
 			$this->tag();
-			$this->load->view('front_footer');
+			
+			}
+			$this->load->view('front_footer');	
+			
 		}
 		public function menu_list()
 		{
@@ -30,10 +39,23 @@
 			$this->load->view('front_header', $data);
 		}
 
+		public function post_detail($uri){
+			$data['post']= $this->post_model->showUri($uri)->row();
+			echo $uri;
+
+			$data['content'] =$this->load->view('front_post',$data,true);
+
+			$data['content'] = $this->load->view('front_main_post', $data,true);
+
+			// $data['content'] .=  $this->load->view('front_content',$data,true);
+			$this->load->view('front_body', $data);
+		}
+
 		public function tag()
 		{
+
 			
-			$data['latest_main'] =$this->load->view('front_post','',true);
+			$data['content'] =$this->load->view('tag_list','',true);
 
 			$data['content'] = $this->load->view('front_main_post', $data,true);
 
@@ -42,6 +64,7 @@
 			
 			# code...
 		}
+
 
 		public function kategori()
 		{

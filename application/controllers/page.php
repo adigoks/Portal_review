@@ -15,14 +15,31 @@
 			$this->load->helper('form');
 			$this->load->helper('date');
 			$this->load->library('email');
+			$this->load->helper('html');
 			$this->load->library('form_validation');
 			$this->load->model('page_model');
 			$this->load->model('user_model');
+			$this->load->model('menu_model');
+		}
+		public function index()
+		{
+			$this->load->view('front_head');
+			$this->menu_list();
+			$this->load_static();
+			$this->load->view('front_footer');
+		}
+		public function menu_list()
+		{
+			$data['menu'] = $this->menu_model->selectSort();
+			$this->load->view('front_header', $data);
 		}
 
 		public function load_static()
 		{
 			# code...
+			
+			$data['content'] = $this->load->view('front_page','',true);
+			$this->load->view('front_body',$data);
 		}
 
 		public function saran()
