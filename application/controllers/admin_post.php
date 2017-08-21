@@ -112,6 +112,7 @@
 
 		function add_post()
 		{
+			$data['post_img'] = $this->input->post('gambar_post');
 			$data['post_judul'] = $this->input->post('judul_post');
 			$data['post_isi'] = $this->input->post('isi_post');
 			$data['post_tag'] = $this->input->post('tag_post');
@@ -184,6 +185,7 @@
 
 		function edit_post()
 		{
+			$data['post_img'] = $this->input->post('gambar_post');
 			$data['post_judul'] = $this->input->post('judul_post');
 			$data['post_isi'] = $this->input->post('isi_post');
 			$data['post_tag'] = $this->input->post('tag_post');
@@ -287,9 +289,7 @@
 		function delete_page($id)
 		{
 			$this->page_model->delete($id);
-
 			$this->sesuaikan_post('page');
-
 		}
 
 	}
