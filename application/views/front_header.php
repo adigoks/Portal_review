@@ -23,8 +23,10 @@
 					<?php } ?>
 
 					<li class="more"><center><a data-toggle="collapse" href="#top-expand"><span class="glyphicon glyphicon-triangle-bottom"></span></a></center></li>
-					
 				</ul>
+			</div>
+			<div id="mh" class="mhc">
+				<a><h3>MENU</h3></a>
 			</div>
 		</div>
 	</div>
@@ -37,7 +39,7 @@
 							
 							<input type="text" class='form-control' name="search" placeholder="cari..." style="box-shadow: none;">
 							<span class="input-group-btn">
-								<buton type="submit" name="" class="btn btn-default" style="border-left-style: none;box-shadow: none; " >
+								<button type="submit" name="" class="btn btn-default" style="border-left-style: none;box-shadow: none; " >
 									<span class="glyphicon glyphicon-search"></span>
 								</button>
 							</span>
@@ -55,4 +57,24 @@
 			</div>
 		
 	</div>
+
+	
+	
 </div>
+<script type="text/javascript">
+	$(document).ready(function(){
+		if(window.innerWidth < 500){
+			$('#menu').hide();
+			$('#mh').show();
+		}
+		else{
+			$('#menu').show();
+			$('#mh').hide();
+		}
+		$('#mh').click(function() {
+			$('#menu').slideToggle();
+			
+			});
+	});
+</script>
+

@@ -1,12 +1,77 @@
 #top-bar{
 	padding: 5px;
 }
+.user-post{
+	
+	margin-left: 50px;
+	margin-right: 50px;
+	border-color: red;
+}
+.mhc{
+	text-align: center;
+	
+}
+.pb{
+	border-bottom: groove;
+	border-bottom-width: 2px;
+}
+.bord2{
+	background-color: #dcdfe5;
+}
+.ini-tag{
+	
+	margin-left: 29px;
+	margin-bottom: 10px;
+	text-align: center;
+	display: inline-block;
+}
+.tag-wid{
+	
+	margin-left: 24px;
+	margin-bottom: 10px;
+	text-align: center;
+	display: inline-block;
+}
+.bord{
+	border-bottom:solid;
+	border-width:2px;
+	border-color:black;
+}
+.ini-tag-judul{
+	background-color: black;
+	padding-left: 30px;
+	padding-right: 30px;
+	padding-top:10px;
+	padding-bottom: 10px;
+	font-size: 14px;
+	font-weight: 100;
+	color: #ededed;
+}
+.as{
+	background-color:  black;
+	padding-top: 50px;
+}
+.h{
+	background-color: white;
+	
+}
+.hw{
+	background-color: white;
+	
+}
 
 .post-list-img{
 	display:flex;
 	align-items:initial;
 	float: left;
 	margin-left: 29px;
+}
+.number{
+	float: left;
+	padding-right: 15px;
+}
+.top-d{
+	margin: 20px;
 }
 
 .post-list-title{
@@ -18,14 +83,26 @@
 .post-list-title h6{
 	padding-bottom: 100px;
 }
+.post-list-title2{
+	line-height: 120%;
+	margin-bottom: 0px;
+	margin-top: 0px;
+}
+.pop-list-title{
+	padding-top: 20px;
+	padding-bottom: 15px;
+	line-height: 20%;
+	
+}
+.post-list-title2 h6{
+	padding-bottom: 1px;
+}
 
 
 .top-news-title{
 	padding-left: 5px;
 	padding-right: 5px;
 	white-space: normal;
-	
-
 }
 
 .top-news-title h5{
@@ -175,7 +252,6 @@
 	align-items: center;
 	}
 	
-	
 }
 @media only screen and (min-width: 16cm) {
 	.top-news .top-content{
@@ -250,6 +326,32 @@
 	.post-list-title{
 		padding-left:1%;
 	}
+	
+}
+@media only screen and (max-width: 420px){
+	.ini-tag{
+	
+	margin-left: 0px;
+	
+	}
+	.post-list-image{
+		display: none;
+	}
+	.h{
+		left:0px;
+	}
+	.user-post{
+		margin-top: 0px;
+		margin-left: 10px;
+		margin-right: 10px;
+	}
+	.post-list-title h6{
+	padding-bottom: 20px;
+}
+	.as{
+	background-color:  black;
+	padding-top: 10px;
+}
 	
 }
 @media only screen and (min-width: 20cm) {

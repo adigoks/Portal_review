@@ -1,5 +1,5 @@
 <div id="main" class="col-md-12" >
-	<div class="col-md-8 latest post">
+	<div class="col-md-8">
 		
 		<?php $this->load->view('front_post_list'); ?>
 		<!-- akan mengecho post list/ latest main php -->

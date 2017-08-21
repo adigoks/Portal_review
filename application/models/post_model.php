@@ -38,6 +38,15 @@
 			
 			return $this->db->get();
 		}
+		function showTag($tag)
+		{
+			$this->db->select('*');
+			$this->db->from('portal_post');
+			$this->db->where('post_tag',$tag);
+			$this->db->order_by('post_waktu','desc');
+			
+			return $this->db->get();
+		}
         function selectId($id)
         {
             $this->db->select('*');
