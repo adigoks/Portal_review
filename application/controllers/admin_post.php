@@ -289,9 +289,7 @@
 		function delete_page($id)
 		{
 			$this->page_model->delete($id);
-
 			$this->sesuaikan_post('page');
-
 		}
 
 	}

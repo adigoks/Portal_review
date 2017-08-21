@@ -29,6 +29,15 @@
             return $this->db->get();
         }
 
+        function select_username($username)
+        {
+            $this->db->select('*');
+            $this->db->from('portal_user');
+            $this->db->where('user_name',$username);
+                
+            return $this->db->get(); 
+        }
+
         function select_us($username, $password)
         {
             $this->db->select('*');
@@ -36,6 +45,17 @@
             $this->db->where('user_name', $username);
             $this->db->where('user_password', $password);
             $this->db->where('user_level < 2');
+
+            return $this->db->get();
+        }
+
+        function select_us1($username, $password)
+        {
+            $this->db->select('*');
+            $this->db->from('portal_user');
+            $this->db->where('user_name', $username);
+            $this->db->where('user_password', $password);
+            $this->db->where('user_level = 2');
 
             return $this->db->get();
         }
