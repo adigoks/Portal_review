@@ -47,7 +47,11 @@
 					</div>
 					<div class="col-md-3 med-3" >
 						<div class="log-req">
+						<?php if ($this->session->userdata('logged') == FALSE) { ?>
 							<a href="<?php echo site_url('page/form_login'); ?>">Masuk</a> atau <a href="<?php echo site_url('page/form_daftar'); ?>">daftar...</a> 
+						<?php } else { ?>
+							<a href="<?php echo site_url('page/form_daftar'); ?>"><?php echo $this->session->userdata('username'); ?></a>   <a href="<?php echo site_url('page/logout'); ?>">Logout</a>
+							<?php } ?>		
 						</div>
 						<div>
 							<a class="log-btn" href="#"><span class="glyphicon glyphicon-log-in"></span></a>

@@ -37,6 +37,14 @@ class Welcome extends CI_Controller {
 		$this->load->view('front_footer');
 	}
 
+	public function loadinit()
+	{
+		$this->load->view('front_head');
+		$this->menu_list();
+		$this->compose();
+		$this->load->view('front_footer');	
+	}
+
 	public function compose()
 	{
 		$data['news'] = $this->post_model->showPublish()->result();
