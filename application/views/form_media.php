@@ -69,7 +69,7 @@
 
 		console.log('duh2');
 
-		$('#del-file').click(function(){
+		$('#del-file').off().click(function(){
 			
 			var array = new Array();
 			$('.media-checkbox > input').each(function(){
