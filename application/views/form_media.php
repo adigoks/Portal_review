@@ -84,7 +84,7 @@
 				deleteFile(array);
 			}
 			event.stopPropagation();
-			event.preventDefault();
+			
 		});
 
 		$('#rename-file').click(function(){

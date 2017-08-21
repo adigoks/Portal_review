@@ -1,7 +1,7 @@
 <body >
 <div id="header" class="row" style="margin: 0">
 	<div class="logo-menu">
-		<div class="col-md-5 med-5">
+		<div class="col-md-5 med-5 th">
 			<!-- ++++++++++++++++++++++++++++++++++++++++++++++ -->
 			<!-- title ini bisa di ubah di bagian tema/tampilan -->
 			<h2>PORTAL REVIEW</h2>
