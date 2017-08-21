@@ -11,8 +11,9 @@
 
 		<div class="">
 			<fieldset>
-
-				<?php echo form_open('page/daftar');?>
+				<?php echo validation_errors(); ?>
+				<p style="color:red;"><?php echo $this->session->flashdata('notification')?></p>
+				<?php echo form_open_multipart('page/daftar');?>
 					Username :
 					<input type="text" id="username" name="username" placeholder="Username" /><br/><br/>
 					Password :
@@ -25,7 +26,7 @@
 						<h5>*Email akan digunakan sebagai validasi akun</h5><br/>
 					</div>
 					<img style="border:100%" height="120" width="120" src="<?php echo base_url();?>image/3dbldr.png"><br/>
-					<input type="file" name="foto" size="20" /><br/><br/>
+					<input type="file" name="foto" size="100" /><br/><br/>
 					<input type="submit" name="daftar" value="Daftar" />
 
 				<?php echo form_close();?>

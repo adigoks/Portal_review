@@ -279,7 +279,7 @@
 		function delete_page($id)
 		{
 			$this->page_model->delete($id);
-			redirect(site_url('admin_post/sesuaikan_post#page));
+			redirect(site_url('admin_post/sesuaikan_post#page'));
 		}
 
 	}
