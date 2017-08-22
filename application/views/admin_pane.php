@@ -13,8 +13,36 @@
 	
 </head>
 <body>
-<div id="topbar">
-	<a href="<?php echo site_url('admin_logout/logout');?>">Logout</a></li>
+<div id="topbar" class="row">
+
+	 <div id='preview-site' class="col-md-1 topbar topbar-text-center">
+	<?php if($usr->user_profile_img != ''){$image = base_url().$usr->user_profile_img;}else{$image = base_url().'image/default/empty_image.png';}?>
+			<!-- <div >
+				<div class="topbar-pic-frame">
+					<img src="<?php echo $image;?>" class='topbar-pic'>
+				</div>
+			</div> -->
+			<a href="<?php echo base_url().'admin-dashboard';?>">
+				<span class="glyphicon glyphicon-home" style="font-size: 30px;"></span>
+			</a>
+			Hello, <?php echo $this->session->userdata('username');?>
+	 </div>
+	 
+	<a href="<?php echo base_url().'admin_preview/?default=admin-dashboard';?>" target='_blank'>
+		<div class="col-md-1 topbar topbar-text-center">
+			<span class="glyphicon glyphicon-new-window" style="font-size: 30px;"></span>
+			
+			tinjau situs	
+		</div>
+	</a>
+	
+	<div class="col-md-9 topbar">
+		
+	</div>
+	<div class="col-md-1 topbar">
+		<a href="<?php echo site_url('admin_logout/logout');?>">Logout</a>
+	</div>
+	
 </div>
 <div id='main' class="row">
 	<div id="sidebar" class="col-md-2" >

@@ -63,7 +63,7 @@
         {
             $this->db->select('*');
             $this->db->from('portal_post');
-            $this->db->where('post_uri',$uri);
+            $this->db->where('post_uri', $uri);
             $this->db->order_by('post_waktu','desc');
             
             return $this->db->get();

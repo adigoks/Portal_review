@@ -18,6 +18,7 @@
 			$this->load->model('menu_model');
 			$this->load->model('post_model');
 			$this->load->model('page_model');
+			$this->load->model('user_model');
 
 		}
 
@@ -41,7 +42,8 @@
 			$this->cek_login();
 
 			$menu['parent'] = $this->menu_model->select_by()->result();
-
+			$id = $this->session->userdata('id_author');
+			$data['usr']=$this->user_model->selectId($id)->row();
 			$data['content'] = $this->load->view('form_tambah_menu', $menu, true);
 
 			$data['content'] =$this->load->view('admin_body', $data,true);
@@ -65,6 +67,8 @@
 		{
 			# code...
 			$a = $this->input->post('menu_tipe');
+			$id = $this->session->userdata('id_author');
+			$data['usr']=$this->user_model->selectId($id)->row();
 
 			$this->form_validation->set_rules('menu_name','Nama Menu','required');
 
@@ -131,6 +135,8 @@
 
 		function menu_tambah_link()
 		{
+			$id = $this->session->userdata('id_author');
+			$data['usr']=$this->user_model->selectId($id)->row();
 			$data['menu_name'] = $this->input->post('menu_name');
 			$data['menu_url_type'] = $this->input->post('menu_tipe');
 			$data['menu_url'] = $this->input->post('link');
@@ -157,6 +163,8 @@
 
 		function menu_tambah_post()
 		{
+			$id = $this->session->userdata('id_author');
+			$data['usr']=$this->user_model->selectId($id)->row();
 			$data['menu_name'] = $this->input->post('menu_name');
 			$data['menu_url_type'] = $this->input->post('menu_tipe');
 			$data['menu_parent'] = $this->input->post('parent');
@@ -183,6 +191,8 @@
 
 		function menu_tambah_tag()
 		{
+			$id = $this->session->userdata('id_author');
+			$data['usr']=$this->user_model->selectId($id)->row();
 			$data['menu_name'] = $this->input->post('menu_name');
 			$data['menu_url_type'] = $this->input->post('menu_tipe');
 			$data['menu_parent'] = $this->input->post('parent');
@@ -209,6 +219,8 @@
 
 		function menu_tambah_page()
 		{
+			$id = $this->session->userdata('id_author');
+			$data['usr']=$this->user_model->selectId($id)->row();
 			$data['menu_name'] = $this->input->post('menu_name');
 			$data['menu_url_type'] = $this->input->post('menu_tipe');
 			$data['menu_parent'] = $this->input->post('parent');
@@ -236,7 +248,8 @@
 		public function menu_sesuaikan()
 		{
 			$this->cek_login();
-
+			$id = $this->session->userdata('id_author');
+			$data['usr']=$this->user_model->selectId($id)->row();
 			$menu['list'] = $this->menu_model->selectSort();
 
 			$data['content'] = $this->load->view('menu_config', $menu, true);
@@ -248,7 +261,8 @@
 
 		public function update_menu()
 		{
-
+			$id = $this->session->userdata('id_author');
+			$data['usr']=$this->user_model->selectId($id)->row();
 			$data['id_hapus'] = $this->input->post('hapus');
 			$data['menu'] = $this->input->post('menu');
 			$data['submenu'] = $this->input->post('submenu');
@@ -320,7 +334,8 @@
 		{
 			$data['menu_name'] = $this->input->post('menu_name');
 			$data['menu_url_type'] = $this->input->post('menu_tipe');
-
+			$id = $this->session->userdata('id_author');
+			$data['usr']=$this->user_model->selectId($id)->row();
 			$id = $this->input->post('id');
 			$tipe = $this->input->post('menu_tipe');
 
