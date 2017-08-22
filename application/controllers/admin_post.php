@@ -38,6 +38,8 @@
 
 		function tambah_post()
 		{
+			$id_author = $this->session->userdata('id_author');
+			$data['usr']=$this->user_model->selectId($id_author)->row();
 			$button ='';
 			$data['b'] = $button;
 			$data['content'] = $this->load->view('admin_tambah_post',$data, true);
@@ -49,6 +51,8 @@
 
 		function sesuaikan_post($page='post')
 		{
+			$id_author = $this->session->userdata('id_author');
+			$data['usr']=$this->user_model->selectId($id_author)->row();
 			$data['page'] = $page;
 			$data['content'] = $this->load->view('admin_sesuaikan_post',$data,true);
 
@@ -60,6 +64,7 @@
 		
 		function paginasi_post($page=1)
 		{
+
 			
 			$data['post']=$this->post_model->showAll()->result();
 			
@@ -112,6 +117,7 @@
 
 		function add_post()
 		{
+			
 			$data['post_img'] = $this->input->post('gambar_post');
 			$data['post_judul'] = $this->input->post('judul_post');
 			$data['post_uri'] = str_replace(' ', '-', $data['post_judul']); 
@@ -140,6 +146,8 @@
 				{
 					$button = '';
 					$data['b'] = $button;
+					$id_author = $this->session->userdata('id_author');
+					$data['usr']=$this->user_model->selectId($id_author)->row();
 					$data['content'] = $this->load->view('admin_tambah_post',$data,true);
 					$data['content'] =$this->load->view('admin_body', $data, true);
 					$this->load->view('admin_pane', $data);
@@ -171,6 +179,8 @@
 		
 		function form_edit_post($id)
 		{
+			$id_author = $this->session->userdata('id_author');
+			$data['usr']=$this->user_model->selectId($id_author)->row();
 			$data['id_post'] = $this->post_model->selectId($id)->row();
 			$data['content'] = $this->load->view('admin_edit_post', $data, true);
 
@@ -180,6 +190,9 @@
 		
 		function form_edit_page($id)
 		{
+
+			$id_author = $this->session->userdata('id_author');
+			$data['usr']=$this->user_model->selectId($id_author)->row();
 			$data['id_page'] = $this->page_model->selectId($id)->row();
 			$data['content'] = $this->load->view('admin_edit_page', $data, true);
 			$data['content'] = $this->load->view('admin_body',$data,true);
@@ -245,6 +258,8 @@
 
 		function add_page()
 		{
+			$id_author = $this->session->userdata('id_author');
+			$data['usr']=$this->user_model->selectId($id_author)->row();
 			$data['page_name'] = $this->input->post('nama_page');
 			$data['page_judul'] = $this->input->post('judul_page');
 			$data['page_isi'] = $this->input->post('isi_page');
