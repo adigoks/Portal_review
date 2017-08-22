@@ -1,28 +1,101 @@
+.f-img{
+	height: 52px;
+	width: 52px;
+	border-radius: 50%;
+}
+.featured-img{
+		height: 500px;
+		width: 790px;
+		padding-top: 30px;
+		padding-bottom: 30px; 
+	}
+.img-r{
+		height: 500px;
+		width: 790px;
+}
+
+.f-head h4{
+	padding-left: 100px;
+}
+
+.f-head-bord{
+	border-bottom:solid;
+	border-width: 2px;
+}
+.f-head h5{
+	padding-left: 100px;
+}
+.f-head{
+	padding-top: 10px;
+	padding-bottom: 20px;
+}
 #top-bar{
 	padding: 5px;
 }
 .footer-1{
 	padding-left: 80px;
 }
+.footer-1 h3{
+	border-bottom: thick;
+	border-size:2px;
+	text-decoration:underline;
+}
+.footer-2 h3{
+	border-bottom: thick;
+	border-size:2px;
+	text-decoration:underline;
+}
+.footer-3 h3{
+	border-bottom: thick;
+	border-size:2px;
+	text-decoration:underline;
+}
+.footer-4 h3{
+	border-bottom: thick;
+	border-size:2px;
+	text-decoration:underline;
+}
+
 .footer-1  ul{
 	list-style: none;
 	padding: 0px;
 	margin: 0px;
+	font-weight: bold;	
 }
+.footer-1 a:hover{
+	text-decoration: none;
+	cursor: pointer;
+}
+.footer-2 a:hover{
+	text-decoration: none;
+	cursor: pointer;
+}
+.footer-3 a:hover{
+	text-decoration: none;
+	cursor: pointer;
+}
+.footer-4 a:hover{
+	text-decoration: none;
+	cursor: pointer;
+}
+
 .footer-2  ul{
 	list-style: none;
 	padding: 0px;
 	margin: 0px;
+	font-weight: bold;
 }
 .footer-3  ul{
 	list-style: none;
 	padding: 0px;
 	margin: 0px;
+	font-weight: bold;
 }
 .footer-4  ul{
 	list-style: none;
 	padding: 0px;
 	margin: 0px;
+	font-weight: bold;
 }
 .footer-2{
 	padding-left: 40px;
@@ -283,7 +356,6 @@
 	text-overflow: ellipsis;
 	overflow: hidden;
 }
-
 @media only screen and (min-width: 10cm) {
 	
 
@@ -369,11 +441,42 @@
 	}
 	
 }
+@media only screen and (min-width: 320px){
+ 	.img-r img{
+		height:200px;
+		max-width: 270px;
+	}
+	.featured-img{
+		max-height: 200px;
+		max-width: 270px;
+	}
+}
+@media only screen and (min-width: 400px){
+ 	.img-r img{
+		height:200px;
+		max-width: 350px;
+	}
+	.featured-img{
+		max-height: 200px;
+		max-width: 350px;
+	}
+}
+
+@media only screen and (min-width: 768px){
+	.thor{
+		float: left;
+	}
+	
+
+}
 @media only screen and (max-width: 420px){
 	body{
 		margin: 0;
 	}
-
+	
+	.thor{
+		float: left;
+	}
 	.ini-tag{
 	margin-left: 0px;
 	}
