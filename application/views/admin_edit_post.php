@@ -19,11 +19,11 @@
 							<label for="gambar_post" >Gambar Artikel</label>
 							<div style="position: relative;">
 								<img id='article-pic' src="<?php if($id_post->post_img!=''){echo base_url().$id_post->post_img;}else{echo base_url().'image/default/empty_image.png';}?>" >
-								<a id='change-image-btn' class="c change-image-btn" data-toggle='modal' data-target='#add-image'>
+								<a id='change-image-btn' class="c change-image-btn" data-toggle='modal' data-target='#add-image' style="display:none">
 									<span class="glyphicon">&#xe046;</span>
 								</a>
 							</div>
-							<input type="text" id="gambar_post" name="gambar_post" hidden>
+							<input type="text" id="gambar_post" name="gambar_post" value='<?php if($id_post->post_img!=''){echo $id_post->post_img;}?>'hidden>
 						</div>
 					</div>
 					<div class="form-group">
@@ -465,7 +465,7 @@
 			
 		}
 
-		
+		$('#change-image-btn').css('display','block');
 	}
 	
 	$("#media-list" ).load( "<?php echo base_url()."admin_media/media_list"; ?>", $upload);

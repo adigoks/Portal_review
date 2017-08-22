@@ -185,7 +185,7 @@
 
 	$(document).ready(function() {
 		
-		$('#change-image-btn').css('display','block');		
+				
 
 		var InsImg = function (context) {
 			var ui = $.summernote.ui;
@@ -504,7 +504,7 @@
 			
 		}
 
-		
+		$('#change-image-btn').css('display','block');
 	}
 	
 	$("#media-list" ).load( "<?php echo base_url()."admin_media/media_list"; ?>", $upload);
