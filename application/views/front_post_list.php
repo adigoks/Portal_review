@@ -8,10 +8,8 @@
 					<img height="135" src="<?php echo base_url().$n2->post_img;?>" >
 					<?php }?>	
 			</div>
-			<div class="post-list-title"><a><h4><b><?php echo $n2->post_judul;?></b></h5></a></div>
-			<?php foreach ($news2_id as $id) {?>
-				<div class="post-list-title"><a><h5><b><?php echo $id->id;?></b></h6></a></div>
-			<?} ?>
+			<div class="post-list-title"><a href="<?php echo base_url().'post/'.$n2->post_uri; ?>"><h4><b><?php echo $n2->post_judul;?></b></h5></a></div>
+			<div class="post-list-title"><a><h5><b><?php echo $n2->user_name; ?></b></h6></a></div>
 			<div class="post-list-title"><h6><b><?php $w=$n2->post_waktu; echo date("d/m/y",strtotime($w));?></b></h6></div>
 		</div>
 	<?php }?>	

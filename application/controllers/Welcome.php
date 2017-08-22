@@ -50,7 +50,6 @@ class Welcome extends CI_Controller {
 	{
 		$data['news'] = $this->post_model->showPublish()->result();
 		$data['news2'] = $this->post_model->showPublish2()->result();
-		$data['news2_id'] = $this->user_model->selectId($id)->row();
 		$data['content'] = $this->load->view('front_hot_news',$data,true);
 
         

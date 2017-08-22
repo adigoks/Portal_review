@@ -4,7 +4,7 @@
 		<div class="col-md-5 med-5 th">
 			<!-- ++++++++++++++++++++++++++++++++++++++++++++++ -->
 			<!-- title ini bisa di ubah di bagian tema/tampilan -->
-			<h2>PORTAL REVIEW</h2>
+			<h2><a href="<?php echo base_url();?>">PORTAL REVIEW</a></h2>
 			<!-- ++++++++++++++++++++++++++++++++++++++++++++++ -->
 		</div>
 		<div id="menu-bar" class="col-md-7 med-7">
@@ -37,7 +37,7 @@
 					<div class="col-md-9 med-9">
 						<div class="input-group ">
 							
-							<input type="text" class='form-control' name="search" placeholder="cari..." style="box-shadow: none;">
+							<input type="text" class='form-control' id="search" name="search" placeholder="cari..." style="box-shadow: none;">
 							<span class="input-group-btn">
 								<button type="submit" name="" class="btn btn-default" style="border-left-style: none;box-shadow: none; " >
 									<span class="glyphicon glyphicon-search"></span>

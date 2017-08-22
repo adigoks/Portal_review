@@ -31,9 +31,10 @@
 
 		function showPublish()
 		{
-			$this->db->select('*');
-			$this->db->from('portal_post');
-			$this->db->where('post_published',1);
+			$this->db->select('*, portal_user.id as id_user');
+            $this->db->from('portal_post');
+            $this->db->join('portal_user', 'portal_post.post_author = portal_user.id' );
+            $this->db->where('post_published',1);
 			$this->db->order_by('post_waktu','desc');
 			$this->db->limit('6');
 			
@@ -41,8 +42,9 @@
 		}
 		function showPublish2()
 		{
-			$this->db->select('*');
+			$this->db->select('*, portal_user.id as id_user');
 			$this->db->from('portal_post');
+            $this->db->join('portal_user', 'portal_post.post_author = portal_user.id' );
 			$this->db->where('post_published',1);
 			$this->db->order_by('post_waktu','desc');
 			

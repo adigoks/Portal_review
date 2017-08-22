@@ -82,5 +82,15 @@
             }
             return $this->db->get();
         }
+
+        function search($cari)
+        {
+            $this->db->select('user_name');
+            $this->db->from('portal_user');
+            $whereCondition= array('user_name'=>$cari);
+            $this->db->where('$whereCondition');
+
+            return $this->db->get();
+        }
     }
 ?>
