@@ -8,7 +8,7 @@
 					<?php 
 						if($user->user_profile_img == '')
 						{
-							$img = 'image/3dbldr.png'; //image default kalo nggak ada fotonya
+							$img = 'image/default/empty_image.png'; //image default kalo nggak ada fotonya
 						}else{
 							$img = $user->user_profile_img;
 						}

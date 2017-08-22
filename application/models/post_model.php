@@ -19,6 +19,16 @@
             
             return $this->db->get();
         }
+
+        function showAll_post($id)
+        {
+            $this->db->select('*');
+            $this->db->from('portal_post');
+            $this->db->where('post_author',$id);
+            
+            return $this->db->get();
+        }
+
 		function showPublish()
 		{
 			$this->db->select('*');
@@ -78,10 +88,25 @@
             $this->db->where('id',$id);
             $this->db->delete('portal_post');
         }
-        function paging($limit=array())
+        function paging($limit=array(), $id)
         {
             $this->db->select('*');
-            $this->db->from('portal_post');
+            $this->db->from('portal_user');
+            $this->db->join('portal_post', 'portal_post.post_author = portal_user.id' );
+            $this->db->where('post_author', $id);
+            $this->db->order_by('post_waktu','desc');
+            if($limit !=NULL)
+            {
+                $this->db->limit($limit['perpage'],$limit['offset']);
+            }
+            return $this->db->get();
+        }
+
+        function paging_super($limit=array())
+        {
+            $this->db->select('*');
+            $this->db->from('portal_user');
+            $this->db->join('portal_post', 'portal_post.post_author = portal_user.id' );
             $this->db->order_by('post_waktu','desc');
             if($limit !=NULL)
             {
