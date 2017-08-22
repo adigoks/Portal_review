@@ -19,6 +19,16 @@
 			}
 		}
 
+		function index()
+		{
+			$id = $this->session->userdata('id_author');
+			$data['usr']=$this->user_model->selectId($id)->row();
+			$data['content'] = $this->load->view('admin_tampilan', '', true);
+
+			$data['content'] =$this->load->view('admin_body', $data,true);
+			$this->load->view('admin_pane', $data);
+		}
+
 	}
 
 ?>

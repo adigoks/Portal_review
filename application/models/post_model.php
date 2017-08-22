@@ -19,11 +19,22 @@
             
             return $this->db->get();
         }
+
+        function showAll_post($id)
+        {
+            $this->db->select('*');
+            $this->db->from('portal_post');
+            $this->db->where('post_author',$id);
+            
+            return $this->db->get();
+        }
+
 		function showPublish()
 		{
-			$this->db->select('*');
-			$this->db->from('portal_post');
-			$this->db->where('post_published',1);
+			$this->db->select('*, portal_user.id as id_user');
+            $this->db->from('portal_post');
+            $this->db->join('portal_user', 'portal_post.post_author = portal_user.id' );
+            $this->db->where('post_published',1);
 			$this->db->order_by('post_waktu','desc');
 			$this->db->limit('6');
 			
@@ -31,8 +42,9 @@
 		}
 		function showPublish2()
 		{
-			$this->db->select('*');
+			$this->db->select('*, portal_user.id as id_user');
 			$this->db->from('portal_post');
+            $this->db->join('portal_user', 'portal_post.post_author = portal_user.id' );
 			$this->db->where('post_published',1);
 			$this->db->order_by('post_waktu','desc');
 			
@@ -51,7 +63,7 @@
         {
             $this->db->select('*');
             $this->db->from('portal_post');
-            $this->db->where('post_uri',$uri);
+            $this->db->where('post_uri', $uri);
             $this->db->order_by('post_waktu','desc');
             
             return $this->db->get();
@@ -78,10 +90,25 @@
             $this->db->where('id',$id);
             $this->db->delete('portal_post');
         }
-        function paging($limit=array())
+        function paging($limit=array(), $id)
         {
             $this->db->select('*');
-            $this->db->from('portal_post');
+            $this->db->from('portal_user');
+            $this->db->join('portal_post', 'portal_post.post_author = portal_user.id' );
+            $this->db->where('post_author', $id);
+            $this->db->order_by('post_waktu','desc');
+            if($limit !=NULL)
+            {
+                $this->db->limit($limit['perpage'],$limit['offset']);
+            }
+            return $this->db->get();
+        }
+
+        function paging_super($limit=array())
+        {
+            $this->db->select('*');
+            $this->db->from('portal_user');
+            $this->db->join('portal_post', 'portal_post.post_author = portal_user.id' );
             $this->db->order_by('post_waktu','desc');
             if($limit !=NULL)
             {

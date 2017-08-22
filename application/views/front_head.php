@@ -11,6 +11,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<?php echo link_tag('asset/css/bootstrap.css'); ?>
 	<?php echo link_tag('asset/css/user-style.css'); ?>
 
-	<title> Portal Review</title>
+	<title>Portal Review</title>
 	 <!-- bagian ini bisa diubah di backend nantinya -->
 </head>

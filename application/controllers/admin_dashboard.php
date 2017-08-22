@@ -13,6 +13,7 @@
 			$this->load->helper('url');
 			$this->load->helper('html');
 			$this->load->library('session');
+			$this->load->model('user_model');
 			if ($this->session->userdata('logged_in') == FALSE) 
 			{
 				redirect(site_url('admin_login'));
@@ -21,13 +22,10 @@
 
 		public function index()
 		{
-			// if(cek session e sudah loginkah?)
-			// {
-				$this->load->view('admin_pane');	
-			// }else
-			// {
-			// 	mbalik ning admin login
-			// }
+			$id = $this->session->userdata('id_author');
+			$data['usr']=$this->user_model->selectId($id)->row();
+			$this->load->view('admin_pane',$data);	
+			
 			
 		}
 	}

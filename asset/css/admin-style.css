@@ -7,7 +7,45 @@
 	left: 0px;
 	border-radius: 5px;
 }
-
+#preview-site{
+	background-color: #a96930;
+	
+	padding-right: 10px;
+	padding-left: 10px;
+	
+	
+}
+.topbar{
+	height: 100%;
+	display: flex;
+	justify-content: left;
+	align-items: center;
+	color: white;
+}
+.topbar:hover{
+	text-decoration: none;
+	color: white;
+	background-color: #a96930;
+}
+#topbar a{
+	text-decoration: none;
+	color: white;
+}
+.topbar-pic-frame{
+	border-radius: 100%;
+	height: 40px;
+	width: 40px;
+	overflow: hidden;
+}
+.topbar-pic{
+	
+	max-height: 50px;
+	max-width: 50px;
+}
+.topbar-text-center{
+	vertical-align: middle;
+	text-align: center;
+}
 .loader > div{
 	position: absolute;
 	border: 12px solid #f3f3f3; /* Light grey */
@@ -199,6 +237,7 @@
 	height: 100%;
 }
 #topbar{
+	margin: 0px;
 	height: 50px;
 	width: 100%;
 	background-color: #efa660;

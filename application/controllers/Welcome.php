@@ -27,6 +27,7 @@ class Welcome extends CI_Controller {
 		$this->load->library('session');
 		$this->load->helper('html');
 		$this->load->model('menu_model');
+		$this->load->model('user_model');
 	}
 
 	public function index()
@@ -35,6 +36,14 @@ class Welcome extends CI_Controller {
 		$this->menu_list();
 		$this->compose();
 		$this->load->view('front_footer');
+	}
+
+	public function loadinit()
+	{
+		$this->load->view('front_head');
+		$this->menu_list();
+		$this->compose();
+		$this->load->view('front_footer');	
 	}
 
 	public function compose()

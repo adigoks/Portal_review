@@ -22,7 +22,7 @@
 							<label for="gambar_post" >Gambar Artikel</label>
 							<div style="position: relative;">
 								<img id='article-pic' src="<?php echo base_url().'image/default/empty_image.png';?>" >
-								<a id='change-image-btn' class="c change-image-btn" data-toggle='modal' data-target='#add-image'>
+								<a id='change-image-btn' class="c change-image-btn" data-toggle='modal' data-target='#add-image' style="display: none">
 									<span class="glyphicon">&#xe046;</span>
 								</a>
 							</div>
@@ -180,9 +180,12 @@
 	</div>
 </div>
 <script type="text/javascript">
+
+
+
 	$(document).ready(function() {
 		
-		
+		$('#change-image-btn').css('display','block');		
 
 		var InsImg = function (context) {
 			var ui = $.summernote.ui;
@@ -506,4 +509,8 @@
 	
 	$("#media-list" ).load( "<?php echo base_url()."admin_media/media_list"; ?>", $upload);
 	});
+
+
+
+
 </script>

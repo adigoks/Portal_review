@@ -41,7 +41,6 @@
 
 		public function post_detail($uri){
 			$data['post']= $this->post_model->showUri($uri)->row();
-			
 
 			$data['content'] =$this->load->view('front_post',$data,true);
 
