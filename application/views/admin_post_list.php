@@ -41,7 +41,7 @@
 				
 				<?php $date=$data->post_waktu; echo date("d/m/y",strtotime($date));?>
 		</span>
-		<span style='width:22%;font-size: 16px;' class=' input-group-addon'><?php foreach($post_id as $id){echo $id->user_name;} ?></span>
+		<span style='width:22%;font-size: 16px;' class=' input-group-addon'><?php echo $data->user_name; ?></span>
 		<span style='font-size: 16px;' class=' input-group-btn '>
 			<a href='#'  class='btn btn-default input-group-btn'>
 				

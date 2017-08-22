@@ -27,6 +27,7 @@ class Welcome extends CI_Controller {
 		$this->load->library('session');
 		$this->load->helper('html');
 		$this->load->model('menu_model');
+		$this->load->model('user_model');
 	}
 
 	public function index()
@@ -37,10 +38,19 @@ class Welcome extends CI_Controller {
 		$this->load->view('front_footer');
 	}
 
+	public function loadinit()
+	{
+		$this->load->view('front_head');
+		$this->menu_list();
+		$this->compose();
+		$this->load->view('front_footer');	
+	}
+
 	public function compose()
 	{
 		$data['news'] = $this->post_model->showPublish()->result();
 		$data['news2'] = $this->post_model->showPublish2()->result();
+		$data['news2_id'] = $this->user_model->selectId($id)->row();
 		$data['content'] = $this->load->view('front_hot_news',$data,true);
 
         

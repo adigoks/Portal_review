@@ -66,29 +66,45 @@
 		{
 
 			
-			$data['post']=$this->post_model->showAll()->result();
-			
 			$a=$this->session->userdata('id_author');
-			$b=intval($a);
-			$data['post_id']=$this->user_model->selectId($b)->result();
+			$level=$this->session->userdata('level');
+			$id=intval($a);
+			$data['post_id']=$this->post_model->selectId($id)->result();
+			$data['user_id']=$this->user_model->selectId($id)->result();
+			$data['user'] = $this->user_model->showAll()->result();
 			
 						#paginasi
 			$data['perpage'] =10;
 			$offset = ($page - 1) * $data['perpage'];
 			
-			$data['config'] = array(
+			if ($level == 0) {
+				$data['config'] = array(
 							'base_url'=>site_url('admin_post/paginasi_post'),
-							'total_rows'=>count($this->post_model->showAll()->result()),
+							'total_rows'=>count($this->post_model->showAll($id)->result()),
 							'per_page'=>$data['perpage']);
-			$limit['offset'] = $offset;
-			$limit['perpage'] =$data['perpage'];
+				$limit['offset'] = $offset;
+				$limit['perpage'] =$data['perpage'];
 
-			$data['offset']=$offset;
-			$data['total']=$data['config']['total_rows'];
-			$data['page']=$page;
-			$data['post'] = $this->post_model->paging($limit)->result();
-			echo $this->load->view('paginasi_post',$data,true);
-		
+				$data['offset']=$offset;
+				$data['total']=$data['config']['total_rows'];
+				$data['page']=$page;
+				$data['post'] = $this->post_model->paging_super($limit)->result();
+				echo $this->load->view('paginasi_post',$data,true);
+			}
+			else{
+				$data['config'] = array(
+							'base_url'=>site_url('admin_post/paginasi_post'),
+							'total_rows'=>count($this->post_model->showAll_post($id)->result()),
+							'per_page'=>$data['perpage']);
+				$limit['offset'] = $offset;
+				$limit['perpage'] =$data['perpage'];
+
+				$data['offset']=$offset;
+				$data['total']=$data['config']['total_rows'];
+				$data['page']=$page;
+				$data['post'] = $this->post_model->paging($limit, $id)->result();
+				echo $this->load->view('paginasi_post',$data,true);
+			}
 		}
 		
 		function paginasi_page($page=1){

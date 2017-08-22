@@ -3,26 +3,43 @@
 	/**
 	* 
 	*/
-	class Page extends CI_Controller
+	include (dirname(__FILE__)."/welcome.php");
+
+	class Page extends Welcome
 	{
 		
 		function __construct()
 		{
 			# code...
 			parent::__construct();
-			$this->load->helper('url');
 			$this->load->helper('form');
 			$this->load->helper('date');
 			$this->load->library('email');
+			$this->load->helper('html');
 			$this->load->library('form_validation');
-			$this->load->library('session');
 			$this->load->model('page_model');
 			$this->load->model('user_model');
+			$this->load->model('menu_model');
+		}
+		public function index()
+		{
+			$this->load->view('front_head');
+			$this->menu_list();
+			$this->load_static();
+			$this->load->view('front_footer');
+		}
+		public function menu_list()
+		{
+			$data['menu'] = $this->menu_model->selectSort();
+			$this->load->view('front_header', $data);
 		}
 
 		public function load_static()
 		{
 			# code...
+			
+			$data['content'] = $this->load->view('front_page','',true);
+			$this->load->view('front_body',$data);
 		}
 
 		public function saran()
@@ -32,7 +49,11 @@
 
 		public function form_login()
 		{		
-			$this->load->view('user_login');			
+			$this->load->view('front_head');
+			$this->menu_list();
+			$data['content'] = $this->load->view('user_login', '', true);
+			$this->load->view('front_body', $data);
+			$this->load->view('front_footer');		
 		}
 
 		public function login()
@@ -48,7 +69,11 @@
 
 			if ($this->form_validation->run()==FALSE) 
 			{
-				$this->load->view('form_login');
+				$this->load->view('front_head');
+				$this->menu_list();
+				$data['content'] = $this->load->view('user_login', '', true);
+				$this->load->view('front_body', $data);
+				$this->load->view('front_footer');	
 			}
 			else
 			{
@@ -58,11 +83,11 @@
 						'id_author' => $temp->id,
 						'username' => $temp->user_name,
 						'level'=> $temp->user_level,
-						'logged_in' => 'true' );
+						'logged' => 'true' );
 
 					$this->session->set_userdata($array_item);
 
-					$this->load->view('user_profil');
+					$this->loadinit();
 				}
 				else
 				{
@@ -73,9 +98,21 @@
 			}
 		}
 
+		public function logout()
+		{
+			unset($_SESSION['logged']); 
+			$this->session->sess_destroy();
+			$this->loadinit();
+		}
+
 		public function form_daftar()
 		{
-			$this->load->view('user_daftar', array('error'=>''));
+			$this->load->view('front_head');
+			$this->menu_list();
+			$data['content'] = $this->load->view('user_daftar', '', true);
+			$this->load->view('front_body', $data);
+			$this->load->view('front_footer');
+			
 		}
 
 		public function daftar()
@@ -87,19 +124,14 @@
 			$repass = $this->input->post('re_password');
 			$pass = $this->input->post('password');
 			$email = $this->input->post('email');
-			$foto = $this->input->post('foto');
+			$img = $_FILES['foto'];
+   
+        	$file_name = $img['name'];
+			$file_type = $img['type'];
+			$file_size = $img['size'];
 
 			$akun = $this->user_model->select_username($username)->row();
-			$num = count($akun);
-
-
-			/*$config['upload_path'] = './image/';
-			$config['allowed_types'] = 'gif|jpg|png';
-			$config['max_size'] = '1000';        
-			$config['max_width'] = '1024';        
-			$config['max_height'] = '768'; 
-
-			$this->load->library('upload', $config);*/
+			$num = count($akun); 
 
 			$data['user_name'] = $this->input->post('username');
 			$data['user_email'] = $this->input->post('email');
@@ -112,46 +144,53 @@
 			$this->form_validation->set_rules('password', 'Password', 'required');
 			$this->form_validation->set_rules('re_password', 'Re-Password', 'required');
 			$this->form_validation->set_rules('email', 'Email', 'required');
-			//$error = array('error' => $this->upload->display_errors());
 
 			if ($this->form_validation->run() == FALSE) {
-				$this->load->view('user_daftar'/*, $error*/);
+				$this->load->view('front_head');
+				$this->menu_list();
+				$data['content'] = $this->load->view('user_daftar', '', true);
+				$this->load->view('front_body', $data);
+				$this->load->view('front_footer');
 			}
 			else{
 				if ($num == 1) {
 					$this->session->set_flashdata('notification', 'Peringatan : username sudah tersedia');
-					$this->load->view('user_daftar'/*, $error*/);
+					redirect(site_url('page/form_daftar'));
 				}
 				else{
 					if ($pass == $repass) {
-					/*$this->email->from('estragar333@gmail.com', 'Meveriz');
+					$this->email->from('fichasa7@gmail.com', 'Meveriz');
 					$this->email->to($email);
 					$this->email->subject('Validasi Register');
 					$this->email->message('Please go to this link to verify your register'.$hash_valid);
+					$a = $this->email->send();
 
-					if ($this->email->send() == FALSE) {
-						$this->load->view('user_daftar');*/
-					/*}
-					else{*/
-						//if (!$this->upload->do_upload()) {
-							
-							//$this->load->view('user_daftar', $error);
-						//}
-						//else{
-							//$upload_data = $this->upload->data();
-							$data['user_profile_img'] = $foto;
-							//$data = array('upload_data' => $upload_data );
-							$data['user_password'] = md5("pnvs#%12".$pass."41;1*");
-							$this->user_model->insert($data);
-							$this->load->view('user_profil');
-						//}
-						
-					//}
-					
+						if ($a) {
+							$this->session->set_flashdata('notification', 'Peringatan : Email tidak valid');
+							redirect(site_url('page/form_daftar'));
+						}
+						else{
+							if (($file_size <= 2560000) && ($file_type == 'image/jpeg' || $file_type == 'image/png' || $file_type == 'image/gif')) {
+								$name = str_replace(" ", "-", $file_name);
+								$file_tmp_name = $img['tmp_name'];
+								if($file_name)
+								{	
+									move_uploaded_file($file_tmp_name, "./image/user_profil/$name");
+									$data['user_profile_img'] = $name;
+									$data['user_password'] = md5("pnvs#%12".$pass."41;1*");
+									$this->user_model->insert($data);
+									redirect(site_url('page/form_login'));	
+								}
+							}
+							else{
+								$this->session->set_flashdata('notification', 'Peringatan : Format file salah');					
+								redirect(site_url('page/form_daftar'));
+							}
+						}
 					}
 					else{
 						$this->session->set_flashdata('notification', 'Peringatan : Password dan Re-Password tidak cocok');
-						$this->load->view('user_daftar'/*, $error*/);
+						redirect(site_url('page/form_daftar'));
 					}
 				}
 			}

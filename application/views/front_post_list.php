@@ -2,10 +2,16 @@
 	<?php foreach($news2 as $n2) {?>
 		<div class="top-news2">
 			<div id="img" class="post-list-img">
-				<img height="135" src="<?php echo base_url();?>image/3dbldr.png" >	
+				<?php if ($n2->post_img == NULL) { ?>
+					<img height="135" src="<?php echo base_url();?>image/default/empty_image.png" >
+				<?php } else{?>
+					<img height="135" src="<?php echo base_url().$n2->post_img;?>" >
+					<?php }?>	
 			</div>
 			<div class="post-list-title"><a><h4><b><?php echo $n2->post_judul;?></b></h5></a></div>
-			<div class="post-list-title"><a><h5><b><?php echo $n2->post_judul;?></b></h6></a></div>
+			<?php foreach ($news2_id as $id) {?>
+				<div class="post-list-title"><a><h5><b><?php echo $id->id;?></b></h6></a></div>
+			<?} ?>
 			<div class="post-list-title"><h6><b><?php $w=$n2->post_waktu; echo date("d/m/y",strtotime($w));?></b></h6></div>
 		</div>
 	<?php }?>	
