@@ -8,9 +8,11 @@
 					<?php 
 						if($user->user_profile_img == '')
 						{
-							$img = 'image/default/empty_image.png'; //image default kalo nggak ada fotonya
+							$img = 'image/default/empty_image.png';
+							$val = ''; //image default kalo nggak ada fotonya
 						}else{
 							$img = $user->user_profile_img;
+							$val = $img;
 						}
 					?>
 					<div class="form-group">
@@ -18,7 +20,7 @@
 						<a class="c btn-md" data-toggle='modal' data-target='#ganti-image'>
 							<span class="btn2 glyphicon">&#xe046;</span>
 						</a>
-						<input id='image-path' type="text" name="image-path" value='' hidden>
+						<input id='image-path' type="text" name="image-path" value='<?php echo $val;?>' hidden>
 					</div>
 					<div class="form-group">
 						<label for="username" >User name</label>
