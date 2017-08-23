@@ -11,10 +11,15 @@
 			<h5>dd//mm/yy</h5>
 		</div>
 	</div>
-	<div>
-		<img class="featured-img" src="<?php echo base_url();?>image/bk.jpg">
+	<div id="f-post">
+		<div class="f-f-pad">
+			<div class="featured-con">
+				<img class="featured-img" src="<?php echo base_url();?>image/naga.png">
+			</div>
+		</div>	
+		<div class="img-r par">
+			<?php echo $post->post_isi;?>	
+		</div>	
 	</div>
-	<div class="img-r">
-		<?php echo $post->post_isi;?>	
-	</div>
+	
 </div>
