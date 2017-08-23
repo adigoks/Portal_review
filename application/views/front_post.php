@@ -14,14 +14,20 @@
 			<h5><?php $date=$post->post_waktu; echo date("d/m/y",strtotime($date));?></h5>
 		</div>
 	</div>
-	<div>
-		<?php if ($post->post_img == NULL) { ?>
-			<img class="featured-img" src="<?php echo base_url();?>image/default/empty_image.png" >
-		<?php } else{?>
-			<img class="featured-img" src="<?php echo base_url().$post->post_img;?>" >
-		<?php }?>
+
+	<div id="f-post">
+		<div class="f-f-pad">
+			<div class="featured-con">
+				<?php if ($post->post_img == NULL) { ?>
+					<img class="featured-img" src="<?php echo base_url();?>image/default/empty_image.png" >
+				<?php } else{?>
+					<img class="featured-img" src="<?php echo base_url().$post->post_img;?>" >
+				<?php }?>
+			</div>
+		</div>
 	</div>
-	<div class="img-r">
+	<div class="img-r par">
 		<?php echo $post->post_isi;?>	
 	</div>
+	
 </div>

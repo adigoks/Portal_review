@@ -64,6 +64,13 @@
 			$('#f4').hide();
 			$('#f5').show();
 		}
+		else if(window.innerWidth < 769){
+			$('#f1').hide();
+			$('#f2').hide();
+			$('#f3').hide();
+			$('#f4').hide();
+			$('#f5').show();
+		}
 		else{
 			$('#f5').hide();
 		}
