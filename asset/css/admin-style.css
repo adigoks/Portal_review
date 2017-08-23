@@ -75,7 +75,8 @@
 	width:125px;
 	position: relative;
 }
-#article-pic{
+
+.change-pic{
 	border-radius:10px;
 	max-height:125px;
 	max-width:125px;
