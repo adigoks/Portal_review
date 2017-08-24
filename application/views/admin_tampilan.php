@@ -1,12 +1,25 @@
 <?php 
-	// if($user->user_profile_img == '')
-	// {
+	if($identitas == null)
+	{
 		$img = 'image/default/empty_image.png';
-		$val = ''; //image default kalo nggak ada fotonya
-	// }else{
-	// 	$img = $user->user_profile_img;
-	// 	$val = $img;
-	// }
+		$val = '';
+		$judul = 'example';
+		$title = 'example' ;//image default kalo nggak ada fotonya
+	}else{
+		$identitas_value = json_decode($identitas->attribute_values);
+		
+		if($identitas_value->logo != null){
+			$img = $identitas_value->logo;
+			$val = $img;
+		}else{
+			$img = 'image/default/empty_image.png';
+			$val = '';
+		}
+		$judul = $identitas_value->judul;
+		$title = $identitas_value->nama ; 	
+		$cek = $identitas_value->show;
+		
+	}
 		$target = '';
 		$default = 'admin-dashboard/tampilan';
 ?>
@@ -35,7 +48,7 @@
 				<div class="panel-body">
 					<?php echo form_open('admin_layout/set_identity', 'id="form_identity"'); ?>
 						<div class="form-group">
-							<label for="image-path" >Logo Situs</label>
+							<label for="image_path" >Logo Situs</label>
 							<div style="position: relative;">
 								<img id='logo-pic' class="change-pic" src="<?php echo base_url().$img;?>" >
 								<a id='change-image-btn' class="c change-image-btn" data-toggle='modal' data-target='#ganti-image' style="display: none">
@@ -43,21 +56,21 @@
 								</a>
 							</div>
 							resolusi yang disarankan : 50 x 50 pixel 
-							<input id='image-path' type="text" name="image-path" value='<?php echo $val;?>' hidden>
+							<input id='image_path' type="text" name="image_path" value='<?php echo $val;?>' hidden>
 						</div>
 						<div class="form-group">
 							<label for="judul_post" >Judul Situs</label>
-							<input class="form-control" type="text" id="judul_situs" name="judul situs" placeholder="judul Situs">
+							<input class="form-control" type="text" id="judul_situs" name="judul_situs" placeholder="judul Situs" value="<?php echo $judul;?>">
 							Judul situs akan tampil bagian atas di samping kiri logo
 						</div>
 						<div class="form-group">
 							<label for="judul_post" >Nama Situs</label>
-							<input class="form-control" type="text" id="nama_situs" name="nama_situs" placeholder="Nama Situs">
+							<input class="form-control" type="text" id="nama_situs" name="nama_situs" placeholder="Nama Situs" value="<?php echo $title;?>">
 							Nama situs akan tampil bagian title
 						</div>
 						<div class="checkbox">
 							<label>
-								<input type="checkbox" name='tampilkan_post_title'> tampilkan judul post/ page setelah nama situs pada bagian title.
+								<input type="checkbox" name='tampilkan_post_title' value='tampil' <?php if($cek == 'tampil'){echo 'checked';}?>> tampilkan judul post/ page setelah nama situs pada bagian title.
 							</label>
 						</div>
 						<input style='float: right;' type="submit" class="btn btn-primary" name='simpan_identitas' value="simpan">
@@ -248,7 +261,7 @@
 				}
 			});
 			filepath = 'image/'+filepath;
-			$("[name='image-path']").val(filepath);
+			$("[name='image_path']").val(filepath);
 			$('#logo-pic').attr('src', '<?php echo base_url();?>'+filepath);
 
 		});
