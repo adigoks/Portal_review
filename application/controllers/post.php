@@ -21,7 +21,7 @@
 		}
 		public function index()
 		{
-			$this->load->view('front_head');
+			$this->initHead();
 			$this->menu_list();
 			
 			if($this->uri->segment(1)=='post' && $this->uri->segment(2) == true)
@@ -51,7 +51,7 @@
 		public function tag($tag, $page=1)
 		{
 
-			$this->load->view('front_head');
+			$this->initHead();
 			$this->menu_list();
 
 			$data['widget'] = $this->post_model->showPopuler()->result();
@@ -85,7 +85,7 @@
 
 		public function author($id, $page=1)
 		{
-			$this->load->view('front_head');
+			$this->initHead();
 			$this->menu_list();
 
 			$data['widget'] = $this->post_model->showPopuler()->result();

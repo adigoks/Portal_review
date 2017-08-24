@@ -1,4 +1,4 @@
-<div id="main" class="col-md-12 as ">
+<div id="main" class="col-md-12 as act">
 	<div class="user-post ">
 		<div id="post" class="col-md-8 bord2  h">
 			<?php echo $content; ?>

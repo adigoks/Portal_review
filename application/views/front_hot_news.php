@@ -1,7 +1,7 @@
 <div id="top-news" class="md-col-12 act">
 	<div class="top-news">
 		<?php foreach ($news as $n){?>
-		<div class="top-content" order='<?php echo $n->post_waktu?>' >
+		<div class="top-content bg" order='<?php echo $n->post_waktu?>' >
 			<div class="top-news-img">
 				<?php if ($n->post_img == NULL) { ?>
 					<img src="<?php echo base_url();?>image/default/empty_image.png" >
