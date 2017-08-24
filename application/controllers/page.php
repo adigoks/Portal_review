@@ -23,7 +23,7 @@
 		}
 		public function index()
 		{
-			$this->load->view('front_head');
+			$this->initHead();
 			$this->menu_list();
 			$this->load_static();
 			$this->load->view('front_footer');
@@ -44,7 +44,7 @@
 
 		public function form_login()
 		{		
-			$this->load->view('front_head');
+			$this->initHead();
 			$this->menu_list();
 			$data['content'] = $this->load->view('user_login', '', true);
 			$this->load->view('front_body', $data);
@@ -102,7 +102,7 @@
 
 		public function form_daftar()
 		{
-			$this->load->view('front_head');
+			$this->initHead();
 			$this->menu_list();
 			$data['content'] = $this->load->view('user_daftar', '', true);
 			$this->load->view('front_body', $data);
@@ -110,7 +110,7 @@
 		}
 		public function form_profile()
 		{
-			$this->load->view('front_head');
+			$this->initHead();
 			$this->menu_list();
 			$data['content'] = $this->load->view('front_profile', '', true);
 			$this->load->view('front_body', $data);

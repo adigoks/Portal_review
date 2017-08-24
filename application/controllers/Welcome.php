@@ -42,7 +42,13 @@ class Welcome extends CI_Controller {
 		$this->compose($data);
 		$this->load->view('front_footer');
 	}
+	public function initHead()
+	{
+		$data['identitas'] = $this->attribute_model->selectName('identitas_situs')->row();
+		$data['warna'] = $this->attribute_model->selectName('tampilan_warna')->row();
 
+		$this->load->view('front_head',$data);
+	}
 	public function page($page = 1)
 	{
 		$data['identitas'] = $this->attribute_model->selectName('identitas_situs')->row();
