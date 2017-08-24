@@ -111,8 +111,15 @@
 			$this->menu_list();
 			$data['content'] = $this->load->view('user_daftar', '', true);
 			$this->load->view('front_body', $data);
-			$this->load->view('front_footer');
-			
+			$this->load->view('front_footer');			
+		}
+		public function form_profile()
+		{
+			$this->load->view('front_head');
+			$this->menu_list();
+			$data['content'] = $this->load->view('front_profile', '', true);
+			$this->load->view('front_body', $data);
+			$this->load->view('front_footer');			
 		}
 
 		public function daftar()

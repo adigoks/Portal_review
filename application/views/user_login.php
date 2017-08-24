@@ -1,9 +1,9 @@
-<div class="form-log-u ">
-<div id="" class="font-log ">
+<div class="form-log-u">
+<div id="" class="font-log container-fluid ">
 	<div class="t-log">
 		<h2>Login</h2>	
 	</div>
-	<div class="form-log col-md-4 col-md-offset-1">
+	<div class="form-log form-bord col-md-4 col-md-offset-1">
 		<fieldset>
 			<?php echo validation_errors(); ?>
 			<p style="color:red;"><?php echo $this->session->flashdata('notification')?></p>
@@ -16,7 +16,9 @@
 				<label for ="password">Password :</label>
 				<input class="form-control" type="password" id="password" name="password" placeholder="Password" /><br/><br/>
 				</div>
-				<input type="submit" name="login" value="Login" />
+				<div>
+				<input class="btn btn-default" type="submit" name="login" value="Login" />
+				</div>
 			<?php echo form_close();?>
 		</fieldset>
 	</div>
