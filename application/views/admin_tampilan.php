@@ -4,7 +4,8 @@
 		$img = 'image/default/empty_image.png';
 		$val = '';
 		$judul = 'example';
-		$title = 'example' ;//image default kalo nggak ada fotonya
+		$title = 'example' ;
+		$cek = ''//image default kalo nggak ada fotonya
 	}else{
 		$identitas_value = json_decode($identitas->attribute_values);
 		
