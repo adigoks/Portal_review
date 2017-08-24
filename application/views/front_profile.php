@@ -1,9 +1,19 @@
 <div class="form-log-u">
 	<div class="font-log container-fluid">
 		<div class="t-log">
-			<h2>Daftar</h2>	
+			<h2>PROFILE</h2>	
+		</div class="prof-pad">
+		<div>
+		<div class="col-md-2 pic-prof">
+				<div class="preview-img">
+					<img class="img-responsive"  id="preview" src="<?php echo base_url();?>image/default/empty_image.png"><br/>
+				</div>
+				<label class="btn btn-default">
+					pilih gambar profile	<input type="file" name="foto" id="foto" size="100" style="display: none;" /><br/>
+				</label><br/><br/>
 		</div>
-		<div class="form-log form-bord col-md-4 col-md-offset-1">
+		</div>
+		<div class="form-prof col-md-4 col-md-offset-1">
 			<fieldset>
 				<?php echo $this->session->flashdata('notification')?>
 				<div class="form-horizontal">
@@ -25,14 +35,8 @@
 						<input type="email" class="form-control" id="email" name="email" placeholder="Email" />
 						<h5>*Email akan digunakan sebagai validasi akun</h5><br/>
 				</div>
-				<div class="preview-img">
-					<img  style="border:100%" class="img-responsive" height="200" width="200" id="preview" src="<?php echo base_url();?>image/default/empty_image.png"><br/>
-				</div>
-				<label class="btn btn-default">
-					pilih gambar profile	<input type="file" name="foto" id="foto" size="100" style="display: none;" /><br/>
-				</label><br/><br/>
 				<div>
-					<input class="btn btn-default" type="submit" name="daftar" value="Daftar" />
+					<input class="btn btn-default" type="submit" name="daftar" value="Update" />
 				</div>
 				<?php echo form_close();?>
 				</div>
@@ -40,7 +44,6 @@
 		</div>
 	</div>
 </div>
-	
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#foto").change(function() {

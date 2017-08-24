@@ -50,7 +50,7 @@
 						<?php if ($this->session->userdata('logged') == FALSE) { ?>
 							<a href="<?php echo site_url('page/form_login'); ?>">Masuk</a> atau <a href="<?php echo site_url('page/form_daftar'); ?>">daftar...</a> 
 						<?php } else { ?>
-							<a href="<?php echo site_url('page/form_daftar'); ?>"><?php echo $this->session->userdata('username'); ?></a>   <a href="<?php echo site_url('page/logout'); ?>">Logout</a>
+							<a href="<?php echo site_url('page/form_profile'); ?>"><?php echo $this->session->userdata('username'); ?></a>   <a href="<?php echo site_url('page/logout'); ?>">Logout</a>
 							<?php } ?>		
 						</div>
 						<div>
@@ -73,7 +73,6 @@
 		}
 		else{
 			$('#menu').show();
-			$('#mh').hide();
 		}
 		$('#mh').click(function() {
 			$('#menu').slideToggle();
