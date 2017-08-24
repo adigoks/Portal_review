@@ -88,8 +88,8 @@
 				      	</div>
 				    	<div id="collapse3" class="panel-collapse collapse">
 				        	<ul class="list-group">
-				          		<li class="list-group-item">Tampilan</li>
-				          		<li class="list-group-item">Layout</li>
+				          		<li class="list-group-item"><a href="<?=site_url('admin-dashboard/tampilan');?>">Tampilan</a></li>
+				          		<li class="list-group-item"><a href="<?=site_url('admin-dashboard/layout');?>"> Layout</a></li>
 				          		
 				        	</ul>
 				        

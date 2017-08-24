@@ -11,6 +11,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<?php echo link_tag('asset/css/bootstrap.css'); ?>
 	<?php echo link_tag('asset/css/user-style.css'); ?>
 
-	<title>Portal Review</title>
+	<title><?php $attr = json_decode($identitas->attribute_values); echo $attr->nama;?></title>
 	 <!-- bagian ini bisa diubah di backend nantinya -->
 </head>

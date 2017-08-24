@@ -1,5 +1,5 @@
 <?php
-	class Layout_model extends CI_Model
+	class Attribute_model extends CI_Model
     {
         function __construct()
         {
@@ -8,13 +8,13 @@
         
         function insert($data)
         {
-            $this->db->insert('portal_layout',$data);
+            $this->db->insert('portal_attribute',$data);
         }
         
         function showAll()
         {
             $this->db->select('*');
-            $this->db->from('portal_layout');
+            $this->db->from('portal_attribute');
             
             return $this->db->get();
         }
@@ -22,26 +22,34 @@
         function selectId($id)
         {
             $this->db->select('*');
-            $this->db->from('portal_layout');
+            $this->db->from('portal_attribute');
             $this->db->where('id',$id);
+                
+            return $this->db->get();
+        }
+        function selectName($name)
+        {
+            $this->db->select('*');
+            $this->db->from('portal_attribute');
+            $this->db->where('attribute_name',$name);
                 
             return $this->db->get();
         }
         function update($data,$id)
         {
             $this->db->where('id',$id);
-            $this->db->update('portal_layout',$data);
+            $this->db->update('portal_attribute',$data);
         }
         
         function delete($id)
         {
             $this->db->where('id',$id);
-            $this->db->delete('portal_layout');
+            $this->db->delete('portal_attribute');
         }
         function pagination($limit=array())
         {
             $this->db->select('*');
-            $this->db->from('portal_layout');
+            $this->db->from('portal_attribute');
             $this->db->order_by('id','asc');
             if($limit !=NULL)
             {
