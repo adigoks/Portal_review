@@ -31,9 +31,20 @@ if($page == 1 )
 	$start = 1;
 }else if($page == $page_count)
 {
-	$start = $page - 4;
+	if($page_count<5)
+	{
+		$start = 1;
+	}else{
+		$start = $page - 4;
+	}
+	
 }else if ($page == $page_count - 1) {
-	$start = $page - 4;
+	if($page_count <5)
+	{
+		$start = 1;
+	}else{
+		$start = $page - 3;
+	}
 }else{
 	$start = $page - 2;
 }

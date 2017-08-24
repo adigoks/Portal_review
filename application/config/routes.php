@@ -50,6 +50,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 
+$route['admin-dashboard/tampilan'] = 'admin_layout';
+$route['admin-dashboard/layout'] = 'admin_layout/layout';
 $route['user-page'] = 'page';
 $route['post/:any'] = 'post/index/';
 $route['user-post-tags'] = 'post';

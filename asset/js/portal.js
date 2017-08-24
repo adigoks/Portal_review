@@ -125,7 +125,6 @@ $(window).on('resize', function(){
     }else
     {
 
-
         if(($container.width() * 0.6) < $img.prop('naturalHeight'))
         {
             

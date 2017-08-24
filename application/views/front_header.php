@@ -1,10 +1,18 @@
 <body >
+<?php if(!is_null($identitas)){
+			$attr = json_decode($identitas->attribute_values); 
+			$judul = $attr->judul;
+		}else
+		{
+			$judul = 'example';
+		}
+?>
 <div id="header" class="row" style="margin: 0">
 	<div class="logo-menu">
 		<div class="col-md-5 med-5 th">
 			<!-- ++++++++++++++++++++++++++++++++++++++++++++++ -->
 			<!-- title ini bisa di ubah di bagian tema/tampilan -->
-			<h2><a href="<?php echo base_url();?>">PORTAL REVIEW</a></h2>
+			<h2><a href="<?php echo base_url();?>"><?php echo $judul;?></a></h2>
 			<!-- ++++++++++++++++++++++++++++++++++++++++++++++ -->
 		</div>
 		<div id="menu-bar" class="col-md-7 med-7">

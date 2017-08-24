@@ -28,18 +28,23 @@ class Welcome extends CI_Controller {
 		$this->load->helper('html');
 		$this->load->model('menu_model');
 		$this->load->model('user_model');
+		$this->load->model('attribute_model');
 	}
 
 	public function index()
 	{
-		$this->load->view('front_head');
-		$this->menu_list();
+		$data['identitas'] = $this->attribute_model->selectName('identitas_situs')->row();
+
+		$this->load->view('front_head',$data);
+		
+		$this->menu_list($data);
 		$this->compose();
 		$this->load->view('front_footer');
 	}
 
 	public function loadinit()
 	{
+
 		$this->load->view('front_head');
 		$this->menu_list();
 		$this->compose();
@@ -71,7 +76,7 @@ class Welcome extends CI_Controller {
 		//load view dengan data load post
 	}
 
-	public function menu_list()
+	public function menu_list($data=null)
 	{
 		$data['menu'] = $this->menu_model->selectSort();
 		$this->load->view('front_header', $data);

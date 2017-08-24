@@ -16,6 +16,7 @@
 						}
 					?>
 					<div class="form-group">
+						
 						<img id='profile-pic' class="profile-pic" src="<?php echo base_url().$img;?>" >
 						<a class="c btn-md" data-toggle='modal' data-target='#ganti-image'>
 							<span class="btn2 glyphicon">&#xe046;</span>

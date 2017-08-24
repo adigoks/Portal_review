@@ -1,25 +1,33 @@
 <div>
 	<div class="f-head f-head-bord">
-		<h6>Tags <a>INI TAGS</a> | <a>INI TAGS</a></h6>
-		<h1>INI JUDUL ARTIKEL DARI PAGE INI SANGAT PANJANG
-		INI JUDUL ARTIKEL DARI PAGE INI SANGAT PANJANG</h1>
+		<h6>Tags <a href="<?php echo base_url().'post/tag/'.$post->post_tag; ?>"><?php echo $post->post_tag; ?></a></h6>
+		<h1><?php echo $post->post_judul; ?></h1>
 		<div class=" thor col-md-1">
-			<a><img class="f-img" src="<?php echo base_url();?>image/bk.jpg"></a>
+			<?php if ($post->post_img == NULL) { ?>
+				<a><img class="f-img" src="<?php echo base_url();?>image/default/empty_image.png" ></a>
+			<?php } else{?>
+				<a><img class="f-img" src="<?php echo base_url().$post->post_img;?>" ></a>
+			<?php }?>
 		</div>
 		<div class="thor2">
-			<h4>By <a>Her</a></h4>
-			<h5>dd//mm/yy</h5>
+			<h4>By <a href="<?php echo base_url().'post/author/'.$post->user_name; ?>"><?php echo $post->user_name; ?></a></h4>
+			<h5><?php $date=$post->post_waktu; echo date("d/m/y",strtotime($date));?></h5>
 		</div>
 	</div>
+
 	<div id="f-post">
 		<div class="f-f-pad">
 			<div class="featured-con">
-				<img class="featured-img" src="<?php echo base_url();?>image/naga.png">
+				<?php if ($post->post_img == NULL) { ?>
+					<img class="featured-img" src="<?php echo base_url();?>image/default/empty_image.png" >
+				<?php } else{?>
+					<img class="featured-img" src="<?php echo base_url().$post->post_img;?>" >
+				<?php }?>
 			</div>
-		</div>	
-		<div class="img-r par">
-			<?php echo $post->post_isi;?>	
-		</div>	
+		</div>
+	</div>
+	<div class="img-r par">
+		<?php echo $post->post_isi;?>	
 	</div>
 	
 </div>

@@ -1,5 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+		if(!is_null($identitas)){
+			$attr = json_decode($identitas->attribute_values); 
+			$nama = $attr->judul;
+		}else
+		{
+			$nama = 'example';
+		}
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +18,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<?php echo link_tag('asset/css/bootstrap.css'); ?>
 	<?php echo link_tag('asset/css/user-style.css'); ?>
 
-	<title>Portal Review</title>
+	<title><?php echo $nama;?></title>
 	 <!-- bagian ini bisa diubah di backend nantinya -->
 </head>
