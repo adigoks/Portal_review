@@ -1,3 +1,4 @@
+
 .f-img{
 	height: 52px;
 	width: 52px;
@@ -20,7 +21,7 @@
 	max-height: 300px; 
 }
 .font-log{
-	background-color: white;
+	/*background-color: white;*/
 	padding-left: 30px;
 	padding-right: 30px;
 	padding-top: 10px;
@@ -28,7 +29,7 @@
 	
 }
 .form-log-u{
-	background-color: black;
+	/*background-color: black;*/
 	padding-top: 30px;
 	padding-bottom: 30px;
 }
@@ -40,7 +41,7 @@
 .featured-img{
 	
 	
-	}
+}
 
 .par{
 	word-wrap: normal;
@@ -260,6 +261,9 @@
 	padding-bottom: 1px;
 }
 
+#top-news{
+	
+}
 
 .top-news-title{
 	padding-left: 5px;

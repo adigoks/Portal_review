@@ -1,4 +1,4 @@
-<div id="top-news" class="md-col-12" style="background-color: black">
+<div id="top-news" class="md-col-12 act">
 	<div class="top-news">
 		<?php foreach ($news as $n){?>
 		<div class="top-content" order='<?php echo $n->post_waktu?>' >

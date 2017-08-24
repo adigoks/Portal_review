@@ -21,6 +21,17 @@
 		$cek = $identitas_value->show;
 		
 	}
+	if(is_null($warna))
+	{
+		$warna_aksen = '#ffffff';
+		$warna_dasar = '#ffffff';
+	}else{
+		$warna_value = json_decode($warna->attribute_values);
+		$warna_aksen = $warna_value->aksen;
+		$warna_dasar = $warna_value->dasar;
+	}
+
+
 		$target = '';
 		$default = 'admin-dashboard/tampilan';
 ?>
@@ -87,16 +98,16 @@
 			</div>
 			<div id="tampilan2" class="panel-collapse collapse">
 				<div class="panel-body">
-					<form>
+					<?php echo form_open('admin_layout/set_warna', 'id="form_warna"'); ?>
 						<div class="form-group">
 							<label for='warna_aksen'>Aksen</label>
 							<div class="input-group">
 								<span class="input-group-btn">
 									<span class="btn btn-default" style="padding-top: 5px;padding-bottom: 4px;">
-									<input class='btn btn-default' id="warna_aksen" type="color" name="warna_aksen" style="padding: 0px;">	
+									<input class='btn btn-default' id="warna_aksen" type="color" name="warna_aksen" style="padding: 0px;" value="<?php echo $warna_aksen;?>">	
 									</span>
 								</span>
-								<input class='form-control' type="text" name="warna_aksen_hex" readonly="">
+								<input class='form-control' type="text" name="warna_aksen_hex" readonly="" value="<?php echo $warna_aksen;?>">
 							</div>
 						</div>
 						<div class="form-group">
@@ -104,10 +115,10 @@
 							<div class="input-group">
 								<span class="input-group-btn">
 									<span class="btn btn-default" style="padding-top: 5px;padding-bottom: 4px;">
-									<input class='btn btn-default' id="warna_dasar" type="color" name="warna_dasar" style="padding: 0px;">	
+									<input class='btn btn-default' id="warna_dasar" type="color" name="warna_dasar" style="padding: 0px;" value="<?php echo $warna_dasar;?>">	
 									</span>
 								</span>
-								<input class='form-control' type="text" name="warna_dasar_hex" readonly="">
+								<input class='form-control' type="text" name="warna_dasar_hex" readonly="" value="<?php echo $warna_dasar;?>">
 							</div>
 						</div>
 						<input style='float: right;' type="submit" class="btn btn-primary" name='simpan_warna' value="simpan">
@@ -220,6 +231,15 @@
 		$('.loader').css('display','none');
 
 		console.log('duh2');
+		$("[name='warna_dasar']").change(function(){
+			$("[name='warna_dasar_hex']").val($(this).val());
+		});
+		$("[name='warna_aksen']").change(function(){
+			$("[name='warna_aksen_hex']").val($(this).val());
+		});
+		$("[name='warna_font']").change(function(){
+			$("[name='warna_font_hex']").val($(this).val());
+		});
 
 		$('#del-file').click(function(){
 
