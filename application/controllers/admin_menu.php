@@ -1,5 +1,4 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
-
 	/**
 	* 
 	*/
@@ -135,8 +134,7 @@
 
 		function menu_tambah_link()
 		{
-			$id = $this->session->userdata('id_author');
-			$data['usr']=$this->user_model->selectId($id)->row();
+			
 			$data['menu_name'] = $this->input->post('menu_name');
 			$data['menu_url_type'] = $this->input->post('menu_tipe');
 			$data['menu_url'] = $this->input->post('link');
@@ -147,7 +145,8 @@
 
 			if ($this->form_validation->run()==FALSE) 
 			{
-				# code...
+				$id = $this->session->userdata('id_author');
+				$data['usr']=$this->user_model->selectId($id)->row();	
 				$data['content'] = $this->load->view('tambah_menu_link', $data, true);
 
 				$data['content'] =$this->load->view('admin_body', $data,true);
@@ -163,8 +162,7 @@
 
 		function menu_tambah_post()
 		{
-			$id = $this->session->userdata('id_author');
-			$data['usr']=$this->user_model->selectId($id)->row();
+			
 			$data['menu_name'] = $this->input->post('menu_name');
 			$data['menu_url_type'] = $this->input->post('menu_tipe');
 			$data['menu_parent'] = $this->input->post('parent');
@@ -175,6 +173,8 @@
 
 			if ($this->form_validation->run()==FALSE) 
 			{
+				$id = $this->session->userdata('id_author');
+				$data['usr']=$this->user_model->selectId($id)->row();
 				$data['post_list'] = $this->post_model->showAll()->result();
 				$data['content'] = $this->load->view('tambah_menu_post', $data, true);
 
@@ -191,8 +191,7 @@
 
 		function menu_tambah_tag()
 		{
-			$id = $this->session->userdata('id_author');
-			$data['usr']=$this->user_model->selectId($id)->row();
+			
 			$data['menu_name'] = $this->input->post('menu_name');
 			$data['menu_url_type'] = $this->input->post('menu_tipe');
 			$data['menu_parent'] = $this->input->post('parent');
@@ -203,6 +202,8 @@
 
 			if ($this->form_validation->run()==FALSE) 
 			{
+				$id = $this->session->userdata('id_author');
+				$data['usr']=$this->user_model->selectId($id)->row();
 				$data['tag_list'] = $this->post_model->showAll()->result();
 				$data['content'] = $this->load->view('tambah_menu_tag', $data, true);
 
@@ -288,6 +289,13 @@
 						$id = $key->id;
 						$this->menu_model->update($value,$id);
 					}
+				}
+				$menu['parent'] = $this->menu_model->select_by($data['id_hapus'])->result();
+				foreach ($menu['parent'] as $key ) {
+					
+					$id = $key->id;
+					$this->menu_model->delete($id);
+					
 				}
 				redirect(site_url('admin-dashboard/menu/sesuaikan'));
 			}else if (isset($data['simpan'])){

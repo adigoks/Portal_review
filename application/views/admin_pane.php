@@ -9,6 +9,7 @@
 	<?php echo link_tag('asset/css/bootstrap.css'); ?>
 	<?php echo link_tag('asset/css/admin-style.css'); ?>
 	<?php echo link_tag('asset/summernote/summernote.css');?>
+	
 	<title>the title!!</title>
 	
 </head>

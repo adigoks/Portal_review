@@ -18,7 +18,7 @@
 							
 							<label for="gambar_post" >Gambar Artikel</label>
 							<div style="position: relative;">
-								<img id='article-pic' src="<?php if($id_post->post_img!=''){echo base_url().$id_post->post_img;}else{echo base_url().'image/default/empty_image.png';}?>" >
+								<img id='article-pic' class='change-pic' src="<?php if($id_post->post_img!=''){echo base_url().$id_post->post_img;}else{echo base_url().'image/default/empty_image.png';}?>" >
 								<a id='change-image-btn' class="c change-image-btn" data-toggle='modal' data-target='#add-image' style="display:none">
 									<span class="glyphicon">&#xe046;</span>
 								</a>

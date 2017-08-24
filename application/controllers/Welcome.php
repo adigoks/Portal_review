@@ -34,6 +34,7 @@ class Welcome extends CI_Controller {
 	public function index()
 	{
 		$data['identitas'] = $this->attribute_model->selectName('identitas_situs')->row();
+		$data['warna'] = $this->attribute_model->selectName('tampilan_warna')->row();
 
 		$this->load->view('front_head',$data);
 		

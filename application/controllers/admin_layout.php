@@ -73,7 +73,27 @@
 
 		function set_warna()
 		{
+			$data['attribute_name'] = 'tampilan_warna';
+			$aksen = $this->input->post('warna_aksen');
 
+			$dasar = $this->input->post('warna_dasar');
+			$value = array(	'aksen' => $aksen,
+							'dasar' => $dasar
+					);
+
+			$data['attribute_values'] = json_encode($value);
+			
+			$warna = $this->attribute_model->selectName('tampilan_warna')->row();
+			
+			if($warna == null)
+			{
+				$this->attribute_model->insert($data);
+				redirect(site_url('admin-dashboard/tampilan'));
+			}else{
+				$id = $warna->id;
+				$this->attribute_model->update($data, $id);
+				redirect(site_url('admin-dashboard/tampilan'));
+			}
 		}
 
 		function set_font(){
