@@ -1,4 +1,4 @@
-<div id="footer" class="col-md-12">
+<div id="footer" class="col-md-12 container-fluid ">
 	<div id="f1" class="footer-1 col-md-3">
 		<h3>Section</h3>
 		<ul>
