@@ -171,5 +171,19 @@
             }
             return $this->db->get();
         }
+
+        function paging_main($limit=array())
+        {
+            $this->db->select('*, portal_user.id as id_user');
+            $this->db->from('portal_post');
+            $this->db->join('portal_user', 'portal_post.post_author = portal_user.id' );
+            $this->db->where('post_published', 1);
+            $this->db->order_by('post_waktu','desc');
+            if($limit !=NULL)
+            {
+                $this->db->limit($limit['perpage'],$limit['offset']);
+            }
+            return $this->db->get();
+        }
     }
 ?>

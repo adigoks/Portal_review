@@ -36,11 +36,22 @@ class Welcome extends CI_Controller {
 		$data['identitas'] = $this->attribute_model->selectName('identitas_situs')->row();
 
 		$this->load->view('front_head',$data);
-		
+		$data['req_page'] = 1;
 		$this->menu_list($data);
-		$this->compose();
+		$this->compose($data);
 		$this->load->view('front_footer');
 	}
+
+	public function page($page = 1)
+	{
+		$data['identitas'] = $this->attribute_model->selectName('identitas_situs')->row();
+
+		$this->load->view('front_head',$data);
+		$data['req_page'] = $page;
+		$this->menu_list($data);
+		$this->compose($data);
+		$this->load->view('front_footer');
+	}	
 
 	public function loadinit()
 	{
@@ -51,18 +62,20 @@ class Welcome extends CI_Controller {
 		$this->load->view('front_footer');	
 	}
 
-	public function compose()
+	public function compose($data=null)
 	{
 		$data['news'] = $this->post_model->showPublish()->result();
-		$data['news2'] = $this->post_model->showPublish2()->result();
+		$data['widget'] = $this->post_model->showPopuler()->result();
 		$data['content'] = $this->load->view('front_hot_news',$data,true);
 
         
 		// $data['popular_widget'] = $this->load->view('front_popular_widget',$result,true);
 		// $data['widget'] =$this->load->view('front_widget',$data,true);
 
-		// 		 
+		//
+
 		$data['latest_main'] =$this->load->view('post_list','',true);
+		$data['post_main'] = $this->paginasi_main($data['req_page']); 
 
 		$data['content'] .= $this->load->view('front_main', $data,true);
 
@@ -80,6 +93,28 @@ class Welcome extends CI_Controller {
 	{
 		$data['menu'] = $this->menu_model->selectSort();
 		$this->load->view('front_header', $data);
+	}
+
+	public function paginasi_main($page=1)
+	{
+		$data['news2'] = $this->post_model->showPublish2()->result();
+
+		$data['perpage'] = 3;
+		$offset = ($page - 1) * $data['perpage'];
+		
+		$data['config'] =array(
+			'base_url' =>site_url('Welcome/paginasi_main'),
+			'total_rows' =>count($this->post_model->showPublish2()->result()),
+			'per_page' =>$data['perpage']);
+		$limit['offset'] = $offset;
+		$limit['perpage'] = $data['perpage'];
+		
+		$data['offset'] = $offset;
+		$data['total'] = $data['config']['total_rows'];
+		$data['page'] = $page;
+		$data['paging_post'] = $this->post_model->paging_main($limit)->result();
+
+		return $this->load->view('paginasi_main',$data,true);
 	}
 
 
