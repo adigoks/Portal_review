@@ -3,20 +3,16 @@
 		<span class="bord ini-tag-judul">POPULER</span>
 	</h2>
 	<div class="top-d pb">
-	<div class="number"><h2>1.</h2></div>
-	<div class="pop-list-title"><a><h4><b>BANDAI MERILIS GAME WIBU ADALAH HIDUP</b></h5></a></div>
-	</div>
-	<div class="top-d pb">
-	<div class="number"><h2>1.</h2></div>
-	<div class="pop-list-title"><a><h4><b>BANDAI MERILIS GAME WIBU ADALAH HIDUP</b></h5></a></div>
-	</div>
-	<div class="top-d pb">
-	<div class="number"><h2>1.</h2></div>
-	<div class="pop-list-title"><a><h4><b>BANDAI MERILIS GAME WIBU ADALAH HIDUP</b></h5></a></div>
-	</div>
-	<div class="top-d pb">
-	<div class="number"><h2>1.</h2></div>
-	<div class="pop-list-title"><a><h4><b>BANDAI MERILIS GAME WIBU ADALAH HIDUP</b></h5></a></div>
+	<?php $i=0; foreach ($widget as $w) { 
+
+		if ($i < 5) { 
+			$i++; ?>
+
+			<div class="number"><h2><?php echo $i; ?>.</h2></div>
+			<div class="pop-list-title"><a href="<?php echo base_url().'post/'.$w->post_uri; ?>"><h4><b><?php echo $w->post_judul; ?></b></h5></a></div>
+
+		<?php } 
+		} ?>
 	</div>
 </div>	
 
