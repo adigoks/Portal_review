@@ -28,11 +28,6 @@
 			$this->load_static();
 			$this->load->view('front_footer');
 		}
-		public function menu_list()
-		{
-			$data['menu'] = $this->menu_model->selectSort();
-			$this->load->view('front_header', $data);
-		}
 
 		public function load_static()
 		{
