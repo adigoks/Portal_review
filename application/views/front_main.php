@@ -1,11 +1,11 @@
 <div id="main" class="col-md-12" >
 	<div class="col-md-8">
 		
-		<?php $this->load->view('front_post_list'); ?>
+		<?php echo $post_main; ?>
 		<!-- akan mengecho post list/ latest main php -->
 	</div>
 	<div class="col-md-4 widget" >
-		ini widget 
 		<!-- akan mengecho widget php -->
+		<?php $this->load->view('front_popular'); ?>
 	</div>
 </div>

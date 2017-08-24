@@ -82,7 +82,7 @@
 
 					$this->session->set_userdata($array_item);
 
-					$this->loadinit();
+					$this->page();
 				}
 				else
 				{
@@ -97,7 +97,7 @@
 		{
 			unset($_SESSION['logged']); 
 			$this->session->sess_destroy();
-			$this->loadinit();
+			$this->page();
 		}
 
 		public function form_daftar()
@@ -196,6 +196,11 @@
 					}
 				}
 			}
+		}
+
+		public function Update()
+		{
+			
 		}
 	}
 

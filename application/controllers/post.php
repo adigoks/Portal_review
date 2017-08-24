@@ -3,7 +3,9 @@
 	/**
 	* 
 	*/
-	class Post extends CI_Controller
+	include (dirname(__FILE__)."/welcome.php");
+
+	class Post extends Welcome
 	{
 		
 		function __construct()
@@ -32,11 +34,6 @@
 			}
 			$this->load->view('front_footer');	
 			
-		}
-		public function menu_list()
-		{
-			$data['menu'] = $this->menu_model->selectSort();
-			$this->load->view('front_header', $data);
 		}
 
 		public function post_detail($uri){

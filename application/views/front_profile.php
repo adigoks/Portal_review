@@ -27,13 +27,8 @@
 					<input type="password" class="form-control" id="password" name="password" placeholder="Password" /><br/><br/>
 				</div>
 				<div class="form-group">
-					<label class="repas">Re-enter Password :</label>
-					<input type="password" class="form-control" id="re-password" name="re_password" placeholder="Re-enter Password" /><br/><br/>
-				</div>
-				<div class="form-group">
 						<label class="email1">Valid Email :</label>
 						<input type="email" class="form-control" id="email" name="email" placeholder="Email" />
-						<h5>*Email akan digunakan sebagai validasi akun</h5><br/>
 				</div>
 				<div>
 					<input class="btn btn-default" type="submit" name="daftar" value="Update" />
