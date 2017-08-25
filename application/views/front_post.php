@@ -6,7 +6,7 @@
 			<?php if ($post->post_img == NULL) { ?>
 				<a><img class="f-img" src="<?php echo base_url();?>image/default/empty_image.png" ></a>
 			<?php } else{?>
-				<a><img class="f-img" src="<?php echo base_url().$post->post_img;?>" ></a>
+				<a><img class="f-img" src="<?php echo base_url().$post->user_profile_img;?>" ></a>
 			<?php }?>
 		</div>
 		<div class="thor2">
@@ -17,11 +17,11 @@
 
 	<div id="f-post">
 		<div class="f-f-pad">
-			<div class="featured-con">
+			<div id="f-con" class="featured-con">
 				<?php if ($post->post_img == NULL) { ?>
-					<img class="featured-img" src="<?php echo base_url();?>image/default/empty_image.png" >
+					<img  src="<?php echo base_url();?>image/default/empty_image.png" >
 				<?php } else{?>
-					<img class="featured-img" src="<?php echo base_url().$post->post_img;?>" >
+					<img  src="<?php echo base_url().$post->post_img;?>" >
 				<?php }?>
 			</div>
 		</div>

@@ -39,13 +39,13 @@ $(window).on('load',function() {
     }
     });
 
-    $("#f-post .featured-con img").each(function() {
+    $("#f-post #f-con img").each(function() {
         var $img = $(this);
         var $container = $("#f-post");
-        var $container2 = $(".featured-con");
+        var $container2 = $("#f-con");
 
-        var $img_height = $img.height();
-        var $img_width = $img.width();
+        var $img_height = $img.prop('naturalHeight');
+        var $img_width = $img.prop('naturalWidth');
         var $con_width = $container.width();
         var $con_width2 = $container2.width();
         var $con_height = $container.height();
@@ -54,10 +54,18 @@ $(window).on('load',function() {
         if( $con_height2 < $img_height){
             $img.prop('naturalHeight');
             $img.width($container.width());
+            console.log('yol'); 
+            if ($img_height < $img_width){
+                console.log('hai')
+               $("#f-con").removeClass("featured-con");
+               $("#f-con").addClass("featured-img");
+               $img.width($container2.width());
+               $img.height($container2.height());
+            }               
         }
         else {
-               
-            }        
+
+        }  
 
     });
 
@@ -65,13 +73,11 @@ $(window).on('load',function() {
         var $img = $(this);
         var $con = $(".img-r");
 
-        var $img_height = $img.prop('naturalHeight');
-        
-
-        var $img_width = $img.prop('naturalWidth');
+        var img_height = $img.prop('naturalHeight');
+        var img_width = $img.prop('naturalWidth');
         var $con_width = $con.width();
         var $con_height = $con.height();
-        if($con_width < $img_width){
+        if($con_width < img_width){
           
             $img.width($con.width());  
         } 

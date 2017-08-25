@@ -3,7 +3,7 @@
 		<span class="bord ini-tag-judul">TRENDING</span>
 	</h2>
 	<div class="top-d pb">
-			<div class="number"><h2></h2></div>
+			<div class="number"><h2>5</h2></div>
 			<div class="pop-list-title"><a href=""><h4><b>blablabla</b></h5></a></div>
 	</div>
 </div>	
