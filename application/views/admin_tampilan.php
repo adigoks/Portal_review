@@ -23,7 +23,7 @@
 	}
 	if(is_null($warna))
 	{
-		$warna_aksen = '#ffffff';
+		$warna_aksen = '#000000';
 		$warna_dasar = '#ffffff';
 	}else{
 		$warna_value = json_decode($warna->attribute_values);

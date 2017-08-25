@@ -1,5 +1,5 @@
 <h2 class=" ini-tag">
-	<span class="bord ini-tag-judul"><?php echo $post->post_tag; ?></span>
+	<span class="bord ini-tag-judul act"><?php echo $post->post_tag; ?></span>
 </h2>
 
 <?php foreach ($paging_tag as $tag) {

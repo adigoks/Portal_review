@@ -1,5 +1,5 @@
-<div class="form-log-u">
-	<div class="font-log container-fluid">
+<div class="form-log-u act">
+	<div class="font-log container-fluid bg">
 		<div class="t-log">
 			<h2>Daftar</h2>	
 		</div>
