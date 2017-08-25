@@ -74,6 +74,7 @@ class Welcome extends CI_Controller {
 	{
 		$data['news'] = $this->post_model->showPublish()->result();
 		$data['widget'] = $this->post_model->showPopuler()->result();
+		$data['trending'] = $this->post_model->showTrending()->result();
 		$data['content'] = $this->load->view('front_hot_news',$data,true);
 
         
@@ -100,6 +101,8 @@ class Welcome extends CI_Controller {
 	public function menu_list($data=null)
 	{
 		$data['menu'] = $this->menu_model->selectSort();
+		$id = $this->session->userdata('id_user');
+		$data['user'] = $this->user_model->selectId($id)->row();
 		$this->load->view('front_header', $data);
 	}
 
@@ -107,7 +110,7 @@ class Welcome extends CI_Controller {
 	{
 		$data['news2'] = $this->post_model->showPublish2()->result();
 
-		$data['perpage'] = 3;
+		$data['perpage'] = 7;
 		$offset = ($page - 1) * $data['perpage'];
 		
 		$data['config'] =array(

@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-</head>
-<body>
-
+<div>
 	<h2>Tambahkan Menu</h2>
 
 	<fieldset>
@@ -33,6 +27,4 @@
 		</form>
 
 	</fieldset>
-
-</body>
-</html>
+</div>

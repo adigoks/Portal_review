@@ -7,5 +7,6 @@
 	<div class="col-md-4 widget" >
 		<!-- akan mengecho widget php -->
 		<?php $this->load->view('front_popular'); ?>
+		<?php $this->load->view('front_trending'); ?>
 	</div>
 </div>

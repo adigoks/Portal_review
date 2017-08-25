@@ -40,6 +40,17 @@
             return $this->db->get();
         }
 
+        function showTrending()
+        {
+            $this->db->select('*');
+            $this->db->from('portal_post');
+            $this->db->where('post_published', 1);
+            $this->db->order_by('rand()');
+            $this->db->limit('5');
+
+            return $this->db->get();
+        }
+
 		function showPublish()
 		{
 			$this->db->select('*, portal_user.id as id_user');
