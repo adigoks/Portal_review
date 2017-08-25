@@ -38,7 +38,8 @@
 
 		public function post_detail($uri){
 			$data['post']= $this->post_model->showUri($uri)->row();
-			$data['widget'] = $this->post_model->showPopuler()->result(); 
+			$data['widget'] = $this->post_model->showPopuler()->result();
+			$data['trending'] = $this->post_model->showTrending()->result(); 
 
 			$data['content'] =$this->load->view('front_post',$data,true);
 
@@ -55,6 +56,7 @@
 			$this->menu_list();
 
 			$data['widget'] = $this->post_model->showPopuler()->result();
+			$data['trending'] = $this->post_model->showTrending()->result();
 			$data['post']= $this->post_model->showTag($tag)->row();
 			$data['post1']= $this->post_model->showTag($tag)->result();
 
@@ -89,6 +91,7 @@
 			$this->menu_list();
 
 			$data['widget'] = $this->post_model->showPopuler()->result();
+			$data['trending'] = $this->post_model->showTrending()->result();
 			$data['id_list']= $this->post_model->showAuthor($id)->row();
 			$data['id_list1']= $this->post_model->showAuthor($id)->result();
 

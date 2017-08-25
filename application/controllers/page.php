@@ -75,13 +75,12 @@
 				if ($num > 0) 
 				{
 					$array_item = array(
-						'id_author' => $temp->id,
-						'username' => $temp->user_name,
-						'level'=> $temp->user_level,
+						'id_user' => $temp->id,
+						'username_user' => $temp->user_name,
+						'level_user'=> $temp->user_level,
 						'logged' => 'true' );
 
 					$this->session->set_userdata($array_item);
-
 					$this->page();
 				}
 				else
@@ -112,9 +111,97 @@
 		{
 			$this->initHead();
 			$this->menu_list();
-			$data['content'] = $this->load->view('front_profile', '', true);
+			$id = $this->session->userdata('user_author');
+			$data['detail_id'] = $this->user_model->selectId($id)->row();
+			$data['content'] = $this->load->view('front_profile', $data, true);
 			$this->load->view('front_body', $data);
 			$this->load->view('front_footer');			
+		}
+
+		public function update()
+		{
+			$id = $this->session->userdata('user_author');
+			$pass = $this->input->post('new_password');
+			$pass2 = $this->input->post('re_new_password');
+			$foto = $_FILES['foto'];
+
+			if (isset($foto) != "" ) {
+				$file_name = $foto['name'];
+				$file_type = $foto['type'];
+				$file_size = $foto['size'];
+
+				if (($file_size <= 2560000) && ($file_type == 'image/jpeg' || $file_type == 'image/png' || $file_type == 'image/gif')) {
+					$name = str_replace(" ","-", $file_name);
+					$file_tmp_name = $foto['tmp_name'];
+					if ($pass != "") {
+						$this->form_validation->set_rules('password_lama', 'Password Lama', 'required');
+						$this->form_validation->set_rules('re_new_password', 'Re-type Password', 'required');
+
+						if ($this->form_validation->run() == FALSE) {
+							redirect(site_url('page/form_profile'));
+						}
+						elseif ($pass != $pass2) {
+							$this->session->set_flashdata('notification', 'Peringatan : Password baru dan Re-Type Password tidak cocok');
+							redirect(site_url('page/form_profile'));
+						}
+						else{
+							if($file_name){
+							move_uploaded_file($file_tmp_name, "./image/user_profil/$name");
+							$data['user_profile_img'] = $name;
+							$data['user_password'] = md5("pnvs#%12".$pass."41;1*");
+							$data['user_name'] = $this->input->post('username');
+							$data['user_email'] = $this->input->post('email');
+							$this->user_model->update($data,$id);
+							redirect(site_url('page/form_profile'));
+							}
+						}
+					}
+					else{
+						if($file_name){
+						move_uploaded_file($file_tmp_name, "./image/user_profil/$name");
+						$data['user_profile_img'] = $name;
+						$data['user_name'] = $this->input->post('username');
+						$data['user_email'] = $this->input->post('email');
+						$this->user_model->update($data,$id);
+						redirect(site_url('page/form_profile'));
+						}
+					}
+				}
+				else{
+					$this->session->set_flashdata('notification', 'Peringatan : Format foto salah');
+					redirect(site_url('page/form_profile'));
+				}
+			}
+			else{
+				if ($pass != "") {
+					$this->form_validation->set_rules('password_lama', 'Password Lama', 'required');
+					$this->form_validation->set_rules('re_new_password', 'Re-type Password', 'required');
+
+
+					if ($this->form_validation->run() == FALSE) {
+						redirect(site_url('page/form_profile'));
+					}
+					elseif ($pass != $pass2) {
+						$this->session->set_flashdata('notification', 'Peringatan : Password baru dan Re-Type Password tidak cocok');
+						redirect(site_url('page/form_profile'));
+					}
+					else{
+						if($file_name){
+						$data['user_password'] = md5("pnvs#%12".$pass."41;1*");
+						$data['user_name'] = $this->input->post('username');
+						$data['user_email'] = $this->input->post('email');
+						$this->user_model->update($data,$id);
+						redirect(site_url('page/form_profile'));
+						}
+					}
+				}
+				else{
+					$data['user_name'] = $this->input->post('username');
+					$data['user_email'] = $this->input->post('email');
+					$this->user_model->update($data,$id);
+					redirect(site_url('page/form_profile'));
+				}
+			}
 		}
 
 		public function daftar()
@@ -196,11 +283,6 @@
 					}
 				}
 			}
-		}
-
-		public function Update()
-		{
-			
 		}
 	}
 
