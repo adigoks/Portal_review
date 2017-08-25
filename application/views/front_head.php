@@ -3,9 +3,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		if(!is_null($identitas)){
 			$attr = json_decode($identitas->attribute_values); 
 			$nama = $attr->judul;
+			if($attr->show == 'tampil')
+			{
+				if(isset($post))
+				{
+					$nama = $nama.' - '.$post->post_judul;	
+				}
+			}
 		}else
 		{
-
 			$nama = 'example';
 		}
 		if(is_null($warna))

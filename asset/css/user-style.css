@@ -1,4 +1,9 @@
-.label-am{
+
+.logo{
+	max-height: 50px;
+	max-width: 50px;
+
+.label-am {
 	float: left;
 	position: relative;
 }
