@@ -3,7 +3,7 @@
 		<h6>Tags <a href="<?php echo base_url().'post/tag/'.$post->post_tag; ?>"><?php echo $post->post_tag; ?></a></h6>
 		<h1><?php echo $post->post_judul; ?></h1>
 		<div class=" thor col-md-1">
-			<?php if ($post->post_img == NULL) { ?>
+			<?php if ($post->post_img == '') { ?>
 				<a><img class="f-img" src="<?php echo base_url();?>image/default/empty_image.png" ></a>
 			<?php } else{?>
 				<a><img class="f-img" src="<?php echo base_url().$post->user_profile_img;?>" ></a>
