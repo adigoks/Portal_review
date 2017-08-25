@@ -56,16 +56,20 @@ $(window).on('load',function() {
             $img.width($container.width());
             console.log('yol'); 
             if ($img_height < $img_width){
-                console.log('hai')
+                console.log('hai');
                $("#f-con").removeClass("featured-con");
                $("#f-con").addClass("featured-img");
                $img.width($container2.width());
                $img.height($container2.height());
             }               
         }
-        else {
-
-        }  
+        else if ($img_height < $img_width){
+                console.log('hai');
+               $("#f-con").removeClass("featured-con");
+               $("#f-con").addClass("featured-img");
+               $img.width($container2.width());
+               $img.height($container2.height());
+            }                
 
     });
 
