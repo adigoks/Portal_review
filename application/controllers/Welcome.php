@@ -52,7 +52,7 @@ class Welcome extends CI_Controller {
 	public function page($page = 1)
 	{
 		$data['identitas'] = $this->attribute_model->selectName('identitas_situs')->row();
-
+		$data['warna'] = $this->attribute_model->selectName('tampilan_warna')->row();
 		$this->load->view('front_head',$data);
 		$data['req_page'] = $page;
 		$this->menu_list($data);
