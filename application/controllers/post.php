@@ -21,15 +21,20 @@
 		}
 		public function index()
 		{
-			$this->initHead();
-			$this->menu_list();
+
 			
 			if($this->uri->segment(1)=='post' && $this->uri->segment(2) == true)
 			{
+				$data['post']= $this->post_model->showUri($this->uri->segment(2))->row();
+				$this->initHead($data);
+				$this->menu_list();
 				$this->post_detail($this->uri->segment(2));
+			}else if ($this->uri->segment(1)=='post' && $this->uri->segment(2) == false){
+				redirect(site_url());
 			}else{
-
-			$this->tag($tag);
+				$this->initHead();
+				$this->menu_list();
+				$this->tag($tag);
 			
 			}
 			$this->load->view('front_footer');	

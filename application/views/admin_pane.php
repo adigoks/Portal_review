@@ -16,7 +16,7 @@
 <body>
 <div id="topbar" class="row">
 
-	 <div id='preview-site' class="col-md-1 topbar topbar-text-center">
+	<div id='preview-site' class="col-md-1 topbar topbar-text-center">
 	<?php if($usr->user_profile_img != ''){$image = base_url().$usr->user_profile_img;}else{$image = base_url().'image/default/empty_image.png';}?>
 			<!-- <div >
 				<div class="topbar-pic-frame">
@@ -27,7 +27,7 @@
 				<span class="glyphicon glyphicon-home" style="font-size: 30px;"></span>
 			</a>
 			Hello, <?php echo $this->session->userdata('username');?>
-	 </div>
+	</div>
 	 
 	<a href="<?php echo base_url().'admin_preview/?default=admin-dashboard';?>" target='_blank'>
 		<div class="col-md-1 topbar topbar-text-center">

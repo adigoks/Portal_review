@@ -1,4 +1,12 @@
 
+.logo{
+	max-height: 50px;
+	max-width: 50px;
+}
+.label-am {
+	float: left;
+	position: relative;
+}
 .f-img{
 	height: 52px;
 	width: 52px;
@@ -36,12 +44,11 @@
 .preview-img{
 	max-width:200px;
 	max-height:200px;
-	padding: 50px;
+	overflow: hidden;
 }
 .featured-img{
 	height: 400px;
-	width: 780px;
-		
+			
 }
 
 .par{

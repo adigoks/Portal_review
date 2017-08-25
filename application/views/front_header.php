@@ -2,6 +2,7 @@
 <?php if(!is_null($identitas)){
 			$attr = json_decode($identitas->attribute_values); 
 			$judul = $attr->judul;
+			$img = base_url(). $attr->logo;
 		}else
 		{
 			$judul = 'example';
@@ -9,10 +10,28 @@
 ?>
 <div id="header" class="row" style="margin: 0">
 	<div class="logo-menu">
-		<div class="col-md-5 med-5 th">
+		<div class="col-md-5 med-5">
 			<!-- ++++++++++++++++++++++++++++++++++++++++++++++ -->
 			<!-- title ini bisa di ubah di bagian tema/tampilan -->
-			<h2><a href="<?php echo base_url();?>"><?php echo $judul;?></a></h2>
+			
+			<div style="display: flex;align-items: center;">
+				<a href="<?php echo base_url();?>">
+				<div style="display: flex;align-items: center;">
+				<?php if(isset($img))
+				{?>
+				<div style="height: 50px;width: 50px;border-radius:10px;overflow: hidden;">
+					<img class='logo' src="<?php echo $img;?>">
+				</div><?php
+				}
+				?>
+				<div style="margin-left: 5px;">
+					<h2>
+						<?php echo $judul;?>
+					</h2>
+				</div>
+				</div>
+				</a>
+			</div>
 			<!-- ++++++++++++++++++++++++++++++++++++++++++++++ -->
 		</div>
 		<div id="menu-bar" class="col-md-7 med-7">

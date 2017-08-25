@@ -26,6 +26,7 @@
 									<span class="glyphicon">&#xe046;</span>
 								</a>
 							</div>
+							resolusi yang disarankan : 700 x 300 pixel
 							<input type="text" id="gambar_post" name="gambar_post" hidden>
 						</div>
 					</div>

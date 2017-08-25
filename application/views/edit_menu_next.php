@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-</head>
-<body>
-
+<div>
 	<h2>Edit Menu</h2>
 
 	<fieldset>
@@ -85,6 +79,3 @@
 		</form>
 
 	</fieldset>
-
-</body>
-</html>
