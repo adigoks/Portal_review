@@ -9,7 +9,7 @@
 					<input class="col-sm-5 form-control" type="text" name="menu_name" />
 			</div>
 			<div class="form-group">
-					<label class="" for="menu_name">Tipe Menu :</label>
+					<label class="" for="menu_tipe">Tipe Menu :</label>
 					<Select class="col-sm-5 form-control"  name="menu_tipe">
 							<option value="none">None</option>
 							<option value="external_link">External Link</option>
@@ -20,7 +20,7 @@
 						</Select><br/><br/>
 			</div>
 			<div class="form-group">
-					<label class="" for="menu_name">Status :</label>
+					<label class="" for="parent">Status :</label>
 					<select class="col-sm-5 form-control" name="parent" >
 						<option>Menu Utama</option>
 						<?php foreach ($parent as $menu) 
