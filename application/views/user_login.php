@@ -1,5 +1,5 @@
-<div class="form-log-u">
-<div id="" class="font-log container-fluid ">
+<div class="form-log-u act">
+<div id="" class="font-log container-fluid bg">
 	<div class="t-log">
 		<h2>Login</h2>	
 	</div>

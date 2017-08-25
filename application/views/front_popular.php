@@ -1,6 +1,6 @@
 <div class="list-group">
 	<h2 class="tag-wid">
-		<span class="bord ini-tag-judul">POPULER</span>
+		<span class="bord ini-tag-judul act">POPULER</span>
 	</h2>
 	<div class="top-d pb">
 	<?php $i=0; foreach ($widget as $w) { 

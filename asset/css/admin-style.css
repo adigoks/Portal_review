@@ -1,3 +1,17 @@
+.layout{
+	background-color: white;
+	border:solid ;
+	border-radius: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-right: 10px;
+	padding-left: 10px;
+	margin-bottom: 5px; 
+
+}
+.layout-doc{
+	background-color: #efa660;
+}
 .loader{
 	position :absolute;
 	background-color: rgba(70,70,70, 0.7);
