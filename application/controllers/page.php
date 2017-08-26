@@ -301,6 +301,15 @@
 		{
 			
 		}
+
+		public function success(){
+			$this->initHead();
+			$this->menu_list();
+			$data['content'] = $this->load->view('front_success', '', true);
+			$this->load->view('front_body', $data);
+			$this->load->view('front_footer');	
+
+		}
 	}
 
 ?>
