@@ -14,12 +14,23 @@
 			parent::__construct();
 			$this->load->helper('form');
 			$this->load->helper('date');
-			$this->load->library('email');
 			$this->load->helper('html');
 			$this->load->library('form_validation');
 			$this->load->model('page_model');
 			$this->load->model('user_model');
 			$this->load->model('menu_model');
+
+			$config = Array(
+   				'protocol' => 'smtp',
+    			'smtp_host' => 'ssl://smtp.gmail.com',
+			    'smtp_port' => 465,
+			    'smtp_user' => 'wibumaster@gmail.com',
+			    'smtp_pass' => 'wibumaster12345',
+			    'mailtype'  => 'html', 
+			    'charset'   => 'iso-8859-1'
+				);
+
+			$this->load->library('email', $config);
 		}
 		public function index()
 		{
@@ -111,7 +122,7 @@
 		{
 			$this->initHead();
 			$this->menu_list();
-			$id = $this->session->userdata('user_author');
+			$id = $this->session->userdata('id_user');
 			$data['detail_id'] = $this->user_model->selectId($id)->row();
 			$data['content'] = $this->load->view('front_profile', $data, true);
 			$this->load->view('front_body', $data);
@@ -248,15 +259,16 @@
 				}
 				else{
 					if ($pass == $repass) {
-					$this->email->from('fichasa7@gmail.com', 'Meveriz');
+					$this->email->set_newline("\r\n");
+					$this->email->from('wibumaster@gmail.com', 'wibu master');
 					$this->email->to($email);
 					$this->email->subject('Validasi Register');
-					$this->email->message('Please go to this link to verify your register'.$hash_valid);
+					$this->email->message('Please go to this link to verify your register <a href="'.base_url().'Validasi/'.$hash_valid.'">here</a>');
 					$a = $this->email->send();
-
-						if ($a) {
+						if ($a == FALSE) {
 							$this->session->set_flashdata('notification', 'Peringatan : Email tidak valid');
-							redirect(site_url('page/form_daftar'));
+							var_dump($a);
+							// redirect(site_url('page/form_daftar'));
 						}
 						else{
 							if (($file_size <= 2560000) && ($file_type == 'image/jpeg' || $file_type == 'image/png' || $file_type == 'image/gif')) {
@@ -283,6 +295,11 @@
 					}
 				}
 			}
+		}
+
+		public function validasi ()
+		{
+			
 		}
 	}
 
