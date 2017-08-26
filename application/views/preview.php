@@ -14,8 +14,14 @@
 </head>
 <body >
 	<div id="topbar" >
-		<a href="<?php echo site_url().$default;?>"><button>back</button></a>
-		<a href="<?php echo site_url('admin_logout/logout');?>">Logout</a></li>
+		<a href="<?php echo site_url().$default;?>" target='_blank'>
+			<div class="col-md-1 topbar topbar-text-center">
+				<span class="glyphicon glyphicon-chevron-left" style="font-size: 30px;"></span>
+				
+				Kembali	
+			</div>
+		</a>
+		
 
 	</div>
 	<div class="row">

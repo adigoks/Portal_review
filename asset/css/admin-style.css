@@ -1,5 +1,12 @@
-
-
+.panel-group li{
+	list-style-type: none;
+}
+.sub-menu{
+	border-bottom: 1px solid #ddd;
+	height: 50px; 
+	padding: 5px;
+	background-color: white;
+}
 
 .layout a{
 	color:#333;
