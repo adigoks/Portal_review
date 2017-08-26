@@ -1,6 +1,6 @@
 <?php 
 if($page > 1 ){
-?><button class='page-paging' value='<?php echo $page - 1; ?>'>previous</button>
+?><button class='page-paging btn btn-default' value='<?php echo $page - 1; ?>'>previous</button>
 <?php
 }
 if($config['total_rows']% $perpage == 0)
@@ -57,11 +57,11 @@ if($page_count>=5)
 	if($page!=$start)	
 	{
 		?>
-		<button class='page-paging' value='<?php echo $start; ?>'><?php echo $start; ?></button> 
+		<button class='page-paging btn btn-default' value='<?php echo $start; ?>'><?php echo $start; ?></button> 
 		<?php	
 	}else{
 		?>
-		<button class='page-paging' value='<?php echo $start; ?>' disabled><?php echo $start; ?></button> 
+		<button class='page-paging btn btn-default' value='<?php echo $start; ?>' disabled><?php echo $start; ?></button> 
 		<?php	
 	}
  		
@@ -72,11 +72,11 @@ if($page_count>=5)
 	if($page!=$start)	
 	{
 		?>
-		<button class='page-paging' value='<?php echo $start; ?>'><?php echo $start; ?></button> 
+		<button class='page-paging btn btn-default' value='<?php echo $start; ?>'><?php echo $start; ?></button> 
 		<?php	
 	}else{
 		?>
-		<button class='page-paging' value='<?php echo $start; ?>' disabled><?php echo $start; ?></button> 
+		<button class='page-paging btn btn-default' value='<?php echo $start; ?>' disabled><?php echo $start; ?></button> 
 		<?php	
 	}
 	$start++;
@@ -85,7 +85,7 @@ if($page_count>=5)
 
 if($page < $page_count){
 ?>
-<button class='page-paging' value='<?php echo $page + 1; ?>'>next</button> 
+<button class='page-paging btn btn-default' value='<?php echo $page + 1; ?>'>next</button> 
 <?php 
 }
 		    			 foreach ($post_page as $p) {

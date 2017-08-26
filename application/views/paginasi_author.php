@@ -13,7 +13,7 @@
 <?php 
 if($page > 1 ){
 	$prev_page = $page-1;
-?><button class='author-paging' value='<?php echo $page - 1; ?>' onclick="location.href='<?php echo base_url().'post/author/'.$id_list->user_name.'/'.$prev_page;?>'">previous</button>
+?><button class='author-paging btn btn-default' value='<?php echo $page - 1; ?>' onclick="location.href='<?php echo base_url().'post/author/'.$id_list->user_name.'/'.$prev_page;?>'">previous</button>
 <?php
 }
 if($config['total_rows']% $perpage == 0)
@@ -69,11 +69,11 @@ if($page_count>=5)
 	if($page!=$start)	
 	{
 		?>
-		<button class='author-paging' value='<?php echo $start;?>' onclick="location.href='<?php echo base_url().'post/author/'.$id_list->user_name.'/'.$start;?>'"><?php echo $start; ?></button> 
+		<button class='author-paging btn btn-default' value='<?php echo $start;?>' onclick="location.href='<?php echo base_url().'post/author/'.$id_list->user_name.'/'.$start;?>'"><?php echo $start; ?></button> 
 		<?php	
 	}else{
 		?>
-		<button class='author-paging' value='<?php echo $start; ?>' onclick="location.href='<?php echo base_url().'post/author/'.$id_list->user_name.'/'.$start;?>'" disabled><?php echo $start; ?></button> 
+		<button class='author-paging btn btn-default' value='<?php echo $start; ?>' onclick="location.href='<?php echo base_url().'post/author/'.$id_list->user_name.'/'.$start;?>'" disabled><?php echo $start; ?></button> 
 		<?php	
 	}
 	
@@ -85,11 +85,11 @@ if($page_count>=5)
 	if($page!=$start)	
 	{
 		?>
-		<button class='author-paging' value='<?php echo $start; ?>' onclick="location.href='<?php echo base_url().'post/author/'.$id_list->user_name.'/'.$start;?>'"><?php echo $start; ?></button> 
+		<button class='author-paging btn btn-default' value='<?php echo $start; ?>' onclick="location.href='<?php echo base_url().'post/author/'.$id_list->user_name.'/'.$start;?>'"><?php echo $start; ?></button> 
 		<?php	
 	}else{
 		?>
-		<button class='author-paging' value='<?php echo $start; ?>' onclick="location.href='<?php echo base_url().'post/author/'.$id_list->user_name.'/'.$start;?>'" disabled><?php echo $start; ?></button> 
+		<button class='author-paging btn btn-default' value='<?php echo $start; ?>' onclick="location.href='<?php echo base_url().'post/author/'.$id_list->user_name.'/'.$start;?>'" disabled><?php echo $start; ?></button> 
 		<?php	
 	}
 
