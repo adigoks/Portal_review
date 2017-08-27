@@ -57,12 +57,14 @@
 		public function tag($tag, $page=1)
 		{
 
+			
 			$this->initHead();
 			$this->menu_list();
 
 			$data['widget'] = $this->post_model->showPopuler()->result();
 			$data['trending'] = $this->post_model->showTrending()->result();
-			$data['post']= $this->post_model->showTag($tag)->row();
+			$data['post']= $tag;
+			$tag = str_replace('-', ' ', $tag);
 			$data['post1']= $this->post_model->showTag($tag)->result();
 
 			$data['perpage'] = 3;
@@ -131,6 +133,53 @@
 		public function kategori()
 		{
 			# code...
+		}
+
+		public function search($keyword=null, $page=1)
+		{
+			if($keyword==null)
+			{
+				$keyword = $this->input->post('search');	
+			}else{
+				$keyword = str_replace('+', ' ', $keyword);
+			}
+			
+			if($keyword!='')
+			{
+				
+				$this->initHead();
+				$this->menu_list();
+
+				$data['widget'] = $this->post_model->showPopuler()->result();
+				$data['trending'] = $this->post_model->showTrending()->result();
+				$data['post']= $keyword;
+				$data['post1']= $this->post_model->search($keyword)->result();
+
+				$data['perpage'] = 3;
+				$offset = ($page - 1) * $data['perpage'];
+				$data['config'] =array(
+					'base_url' =>site_url('post/search'),
+					'total_rows' =>count($this->post_model->search($keyword)->result()),
+					'per_page' =>$data['perpage']);
+				$limit['offset'] = $offset;
+				$limit['perpage'] = $data['perpage'];
+
+				$data['offset'] = $offset;
+				$data['total'] = $data['config']['total_rows'];
+				$data['page'] = $page;
+				$data['paging_search'] = $this->post_model->paging_search($keyword, $limit)->result();
+
+				$data['content'] =$this->load->view('paginasi_search',$data,true);
+
+				$data['content'] = $this->load->view('front_main_post', $data,true);
+
+				// $data['content'] .=  $this->load->view('front_content',$data,true);
+				$this->load->view('front_body', $data);
+				$this->load->view('front_footer');	
+
+			}else{
+				redirect(site_url());
+			}
 		}
 	}
 

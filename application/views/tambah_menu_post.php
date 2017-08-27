@@ -25,7 +25,7 @@
 						foreach ($post_list as $post) 
 						{ ?>
 					
-						<option value="<?php echo "post/".$post->post_judul; ?>"><?php echo $post->post_judul; ?></option>
+						<option value="<?php echo "post/".$post->post_uri; ?>"><?php echo $post->post_judul; ?></option>
 
 						<?php 
 						}} ?>

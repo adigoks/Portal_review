@@ -45,10 +45,20 @@
 							<input type="text"  id="isi_post" name="isi_post" cols="150" rows="10" hidden>
 						</div>
 					</div>
+					
+					<label for="tag_post" >tag</label>
 					<div class="form-group">
-						<label for="tag_post" >tag</label>
-						<input class="form-control" id="tag_post" type="text" name="tag_post" placeholder="tambahkan tag">
+						<div class="form-inline">
+							<div id="tag-col">
+								
+							</div>
+							<input class="form-control" form='' id="tag_post" type="text" name="tag_post[]" placeholder="tambahkan tag" style="width:200px">
+							<button id='add-tag' class="btn btn-default"><span class="glyphicon glyphicon-plus-sign"></span></button>
+							
+						</div>
+						tekan tombol + untuk menambahkan tag
 					</div>
+					
 					<div class="form-group">
 						<label for="kategori_post" >kategori</label>
 						<select id="kategori" form="post-article" name="kategori_post" class="form-control">

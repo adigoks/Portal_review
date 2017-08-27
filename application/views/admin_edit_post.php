@@ -43,9 +43,33 @@
 						<div class="wysiwyg"></div>
 							<input type="text"  id="isi_post" form="post-article" name="isi_post" cols="150" rows="10" hidden>
 					</div>
+					<label for="tag_post" >tag</label>
 					<div class="form-group">
-						<label for="tag_post" >tag</label>
-						<input class="form-control" id="tag_post" type="text" name="tag_post" value="<?php echo $id_post->post_tag;?>" placeholder="tambahkan tag">
+						<div class="form-inline">
+							<div id="tag-col">
+								<?php
+									// var_dump($id_post->post_tag);
+									if($id_post->post_tag != ''){
+										$arr = json_decode($id_post->post_tag);
+										for($i=0;$i<count($arr);$i++)
+										{
+								?>
+								<div class='tag-item' id='tag-item-<?php echo $i;?>'>
+									<input  class='tag-value' type='text' name='tag_post[]' value='<?php echo $arr[$i];?>' readonly>
+									<a class='remove-tag' href='' target='tag-item-<?php echo $i;?>' >
+										<span class='glyphicon glyphicon-remove-circle'></span>
+									</a>
+								</div>
+								<?php
+										}
+									}
+								?>
+							</div>
+							<input class="form-control" form='' id="tag_post" type="text" name="tag_post[]" placeholder="tambahkan tag" style="width:200px">
+							<button id='add-tag' class="btn btn-default"><span class="glyphicon glyphicon-plus-sign"></span></button>
+							
+						</div>
+						tekan tombol + untuk menambahkan tag
 					</div>
 					<div class="form-group">
 						<label for="kategori_post" >kategori</label>

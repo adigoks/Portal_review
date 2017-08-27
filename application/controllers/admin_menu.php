@@ -66,13 +66,14 @@
 		{
 			# code...
 			$a = $this->input->post('menu_tipe');
-			$id = $this->session->userdata('id_author');
-			$data['usr']=$this->user_model->selectId($id)->row();
+			
 
 			$this->form_validation->set_rules('menu_name','Nama Menu','required');
 
 			if ($this->form_validation->run()==FALSE) 
 			{
+				$id = $this->session->userdata('id_author');
+				$data['usr']=$this->user_model->selectId($id)->row();
 				$menu['parent'] = $this->menu_model->select_by()->result();
 
 				$data['content'] = $this->load->view('form_tambah_menu', $menu, true);
@@ -89,11 +90,14 @@
 
 				if ($a == 'none') 
 				{
+					$data['menu_order'] = $this->menu_model->select_by($data['menu_parent'])->num_rows() + 1;
 					$this->menu_model->insert($data);
 					redirect(site_url('admin_menu'));
 				}
 				else if ($a == 'external_link') 
 				{
+					$id = $this->session->userdata('id_author');
+				$data['usr']=$this->user_model->selectId($id)->row();
 					$data['menu'] = $this->menu_model->selectId($id)->row();
 					$data['content'] = $this->load->view('tambah_menu_link', $data, true);
 
@@ -102,6 +106,8 @@
 				}
 				else if ($a == 'post') 
 				{
+					$id = $this->session->userdata('id_author');
+					$data['usr']=$this->user_model->selectId($id)->row();
 					$data['post_list'] = $this->post_model->showAll()->result();
 					$data['menu'] = $this->menu_model->selectId($id)->row();
 					$data['content'] = $this->load->view('tambah_menu_post', $data, true);
@@ -111,6 +117,8 @@
 				}
 				else if ($a == 'tag') 
 				{
+					$id = $this->session->userdata('id_author');
+					$data['usr']=$this->user_model->selectId($id)->row();
 					$data['tag_list'] = $this->post_model->showAll()->result();
 					$data['menu'] = $this->menu_model->selectId($id)->row();
 					$data['content'] = $this->load->view('tambah_menu_tag', $data, true);
@@ -120,6 +128,8 @@
 				}
 				else if ($a == 'page') 
 				{
+					$id = $this->session->userdata('id_author');
+					$data['usr']=$this->user_model->selectId($id)->row();
 					$data['page_list'] = $this->page_model->showAll()->result();
 					$data['menu'] = $this->menu_model->selectId($id)->row();
 					$data['content'] = $this->load->view('tambah_menu_page', $data, true);
@@ -168,7 +178,7 @@
 			$data['menu_parent'] = $this->input->post('parent');
 			$data['menu_url'] = $this->input->post('post');
 			$data['menu_order'] = $this->menu_model->select_by($data['menu_parent'])->num_rows() + 1;
-
+			$data['menu_url'] = base_url().$data['menu_url'];
 			$this->form_validation->set_rules('post','Judul Post','required');
 
 			if ($this->form_validation->run()==FALSE) 

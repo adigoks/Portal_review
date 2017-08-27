@@ -20,13 +20,28 @@
 					<label class="" for="tag">Nama Tag :</label>
 					<select class="col-sm-5 form-control" name="tag">
 						<option></option>
-						<?php foreach ($tag_list as $tag) 
-						{ ?>
-					
-						<option value="<?php echo "tag/".$tag->post_judul; ?>"><?php echo $tag->post_tag; ?></option>
+						<?php 
+						$arr =array();
 
-						<?php } ?>
-				
+						foreach ($tag_list as $tag) 
+						{ 
+							$jsonarr = json_decode($tag->post_tag);
+							for($i=0;$i<count($jsonarr);$i++)
+							{
+								if(!in_array($jsonarr[$i], $arr))
+								{
+									array_push($arr, $jsonarr[$i]);
+								}
+							}
+						}
+						for($i=0;$i<count($arr);$i++)
+						{
+							$tag_uri = str_replace(' ', '-', $arr[$i]);
+							?>
+							<option value="<?php echo "tag/".$tag_uri; ?>"><?php echo $arr[$i]; ?></option>
+							<?php  
+						}
+						?>
 						</select>
 					
 			</div> 

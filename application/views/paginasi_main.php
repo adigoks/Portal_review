@@ -5,7 +5,7 @@
 
 if($page > 1 ){
 	$prev_page = $page-1;
-?><button class='main-paging' value='<?php echo $page - 1; ?>' onclick="location.href='<?php echo base_url().'Welcome/page/'.$prev_page;?>'">previous</button>
+?><button class='main-paging btn btn-default' value='<?php echo $page - 1; ?>' onclick="location.href='<?php echo base_url().'Welcome/page/'.$prev_page;?>'">previous</button>
 <?php
 }
 if($config['total_rows']% $perpage == 0)
@@ -61,11 +61,11 @@ if($page_count>=5)
 	if($page!=$start)	
 	{
 		?>
-		<button class='main-paging' value='<?php echo $start; ?>' onclick="location.href='<?php echo base_url().'Welcome/page/'.$start;?>'"><?php echo $start; ?></button> 
+		<button class='main-paging btn btn-default' value='<?php echo $start; ?>' onclick="location.href='<?php echo base_url().'Welcome/page/'.$start;?>'"><?php echo $start; ?></button> 
 		<?php	
 	}else{
 		?>
-		<button class='main-paging' value='<?php echo $start; ?>' onclick="location.href='<?php echo base_url().'Welcome/page/'.$start;?>'" disabled><?php echo $start; ?></button> 
+		<button class='main-paging btn btn-default' value='<?php echo $start; ?>' onclick="location.href='<?php echo base_url().'Welcome/page/'.$start;?>'" disabled><?php echo $start; ?></button> 
 		<?php	
 	}
 	
@@ -77,11 +77,11 @@ if($page_count>=5)
 	if($page!=$start)	
 	{
 		?>
-		<button class='main-paging' value='<?php echo $start; ?>' onclick="location.href='<?php echo base_url().'Welcome/page/'.$start;?>'"><?php echo $start; ?></button> 
+		<button class='main-paging btn btn-default' value='<?php echo $start; ?>' onclick="location.href='<?php echo base_url().'Welcome/page/'.$start;?>'"><?php echo $start; ?></button> 
 		<?php	
 	}else{
 		?>
-		<button class='main-paging' value='<?php echo $start; ?>' onclick="location.href='<?php echo base_url().'Welcome/page/'.$start;?>'" disabled><?php echo $start; ?></button> 
+		<button class='main-paging btn btn-default' value='<?php echo $start; ?>' onclick="location.href='<?php echo base_url().'Welcome/page/'.$start;?>'" disabled><?php echo $start; ?></button> 
 		<?php	
 	}
 
@@ -92,6 +92,6 @@ if($page_count>=5)
 if($page < $page_count){
 	$next_page=$page+1;
 ?>
-<button class='main-paging' value='<?php echo $page + 1; ?>' onclick="location.href='<?php echo base_url().'Welcome/page/'.$next_page;?>'">next</button> 
+<button class='main-paging btn btn-default' value='<?php echo $page + 1; ?>' onclick="location.href='<?php echo base_url().'Welcome/page/'.$next_page;?>'">next</button> 
 <?php 
 } ?>

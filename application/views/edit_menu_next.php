@@ -42,7 +42,8 @@
 			<?php if ($tipe == 'post'): ?>
 				Judul Post :
 			<select name="url">
-				<option value="<?php echo $url_name->menu_url; ?>"><?php if ($url_name->menu_url_type == 'post') {
+				<option value="<?php echo $url_name->menu_url; ?>">
+				<?php if ($url_name->menu_url_type == 'post') {
 					echo $url_name->menu_url;
 				} else {
 					echo "" ;
@@ -51,7 +52,8 @@
 				<option></option>
 				<?php foreach ($post_list as $post) 
 				{ ?>
-					<option value="<?php echo $post->post_judul; ?>"><?php echo $post->post_judul; ?></option>
+					<option value="<?php echo $post->post_judul; ?>">
+					<?php echo $post->post_judul; ?></option>
 				<?php } ?>
 			</select><br/><br/>
 			<?php endif ?>
@@ -60,17 +62,38 @@
 			<?php if ($tipe == 'tag'): ?>
 				Nama Tag :
 			<select name="url">
-				<option value="<?php echo $url_name->menu_url; ?>"><?php if ($url_name->menu_url_type == 'tag') {
+				<option value="<?php echo $url_name->menu_url; ?>">
+				<?php if ($url_name->menu_url_type == 'tag') {
 					echo $url_name->menu_url;
 				} else {
 					echo "" ;
 				}
 				 ?></option>
 				<option></option>
-				<?php foreach ($post_list as $post) 
-				{ ?>
-					<option value="<?php echo $post->post_tag; ?>"><?php echo $post->post_tag; ?></option>
-				<?php } ?>
+				<?php 
+				$arr =array();
+
+				foreach ($post_list as $tag) 
+				{ 
+					$jsonarr = json_decode($tag->post_tag);
+					for($i=0;$i<count($jsonarr);$i++)
+					{
+						if(!in_array($jsonarr[$i], $arr))
+						{
+							array_push($arr, $jsonarr[$i]);
+						}
+					}
+				}
+				for($i=0;$i<count($arr);$i++)
+				{
+					$tag_uri = str_replace(' ', '-', $arr[$i]);
+					?>
+					<option value="<?php echo "tag/".$tag_uri; ?>"><?php echo $arr[$i]; ?></option>
+					<?php  
+				}
+
+				?>
+					
 			</select><br/><br/>
 			<?php endif ?>
 
