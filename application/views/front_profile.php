@@ -5,11 +5,13 @@
 		</div class="prof-pad">
 		<fieldset>
 		<?php if ($detail_id->user_confirm == 1) { ?>
-			<p class="notif-profil"><?php echo $this->session->flashdata('notification'); ?></p><br/>
+			<p class="alert alert-success" style="text-align: center"><?php echo $this->session->flashdata('notification'); ?></p><br/>
 		<?php }else{ ?>
-			<p class="notif-profil">mohon buka email anda untuk verifikasi akun anda</p>
-			<p class="notif-profil" style="color:red;"><?php echo $this->session->flashdata('notification'); ?></p><br/>
+			<div class="">
+				<h5 class="alert alert-warning" style="text-align: center">mohon buka email anda untuk verifikasi akun anda</h5>
+			</div>
 		<?php } ?>
+		<h5 id="sukses" class="" style="text-align:center;"><?php echo $this->session->flashdata('notification'); ?></h5><br/>
 		
 		<?php echo validation_errors(); ?>
 		<?php echo form_open_multipart('page/update');?>

@@ -373,6 +373,15 @@
 			$this->load->view('front_footer');	
 
 		}
+
+		public function lupa_password(){
+			$this->initHead();
+			$this->menu_list();
+			$data['content'] = $this->load->view('front_lupa_pass','',true);
+			$this->load->view('front_body', $data);
+			$this->load->view('front_footer');	
+
+		}
 	}
 
 ?>

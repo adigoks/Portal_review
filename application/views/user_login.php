@@ -10,15 +10,14 @@
 			<?php echo form_open('page/login');?>
 				<div class="form-group">
 				<label for="username">Username :</label> 
-				<input class="form-control " type="text" id="username" name="username" placeholder="Username" /><br/><br/>
-				</div>
+				<input class="form-control " type="text" id="username" name="username" placeholder="Username" />
+				</div><br/>
 				<div class="form-group">
 				<label for ="password">Password :</label>
-				<input class="form-control" type="password" id="password" name="password" placeholder="Password" /><br/><br/>
-				</div>
-				<div>
+				<input class="form-control" type="password" id="password" name="password" placeholder="Password" />
+				</div><br/>
 				<input class="btn btn-default" type="submit" name="login" value="Login" />
-				</div>
+				<h5><a>Lupa Password ?</a></h5>
 			<?php echo form_close();?>
 		</fieldset>
 	</div>
