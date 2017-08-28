@@ -140,7 +140,8 @@
 
 			$data['post_uri'] = preg_replace('/[^A-Za-z0-9\-]/', '', $data['post_uri']);
 			$data['post_isi'] = $this->input->post('isi_post');
-			$data['post_tag'] = $this->input->post('tag_post');
+			$data['post_tag'] = json_encode($this->input->post('tag_post'));
+			var_dump($data['post_tag']);
 			$data['post_kategori'] = $this->input->post('kategori_post');
 			$id = $this->session->userdata('id_author');
 			$data['post_author'] = $id;
@@ -223,7 +224,7 @@
 
 			$data['post_uri'] = preg_replace('/[^A-Za-z0-9\-]/', '', $data['post_uri']);
 			$data['post_isi'] = $this->input->post('isi_post');
-			$data['post_tag'] = $this->input->post('tag_post');
+			$data['post_tag'] = json_encode($this->input->post('tag_post'));
 			$data['post_kategori'] = $this->input->post('kategori_post');
 
 			$koment = $this->input->post('enable_comment');

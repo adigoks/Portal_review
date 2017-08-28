@@ -14,7 +14,7 @@
 </head>
 <body >
 	<div id="topbar" >
-		<a href="<?php echo site_url().$default;?>" target='_blank'>
+		<a href="<?php echo site_url().$default;?>" >
 			<div class="col-md-1 topbar topbar-text-center">
 				<span class="glyphicon glyphicon-chevron-left" style="font-size: 30px;"></span>
 				

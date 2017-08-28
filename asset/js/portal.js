@@ -1,3 +1,43 @@
+$(document).ready(function(){
+
+    var tag_counter =1;
+    $('#add-tag').click(function(e){
+        
+        // e.stopImmediatePropagation();
+        if($('#tag_post').val()!=''){
+            console.log('oh');
+
+            var val = $('#tag_post').val();
+            val = val.replace(/[^a-zA-Z0-9 ]/g, "");
+            $('#tag-col').append("<div class='tag-item' id='tag-item-"+tag_counter+"'><input  class='tag-value' type='text' name='tag_post[]' value='"+val+"' readonly><a class='remove-tag' href='' target='tag-item-"+tag_counter+"' ><span class='glyphicon glyphicon-remove-circle'></span></a></div>");
+            $('#tag_post').val('');
+            tag_counter++;
+        }
+        return false;
+    });
+
+    $('.tag-item a').click(function(e){
+        // e.preventDefault();
+        
+        var selector = $(this).attr('target');
+        console.log(selector);
+        $('#'+selector).remove();
+        return false;
+    });
+})
+
+$(document).bind('DOMSubtreeModified', function () {
+   $('.tag-item a').click(function(e){
+        // e.preventDefault();
+        
+        var selector = $(this).attr('target');
+        console.log(selector);
+        $('#'+selector).remove();
+        return false;
+    });
+});
+
+
 $(window).on('load',function() {
     
     var url = document.location.toString();

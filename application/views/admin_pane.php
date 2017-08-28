@@ -29,7 +29,7 @@
 			Hello, <?php echo $this->session->userdata('username');?>
 	</div>
 	 
-	<a href="<?php echo base_url().'admin_preview/?default=admin-dashboard';?>" target='_blank'>
+	<a href="<?php echo base_url().'admin_preview/?default=admin-dashboard';?>" >
 		<div class="col-md-1 topbar topbar-text-center">
 			<span class="glyphicon glyphicon-new-window" style="font-size: 30px;"></span>
 			

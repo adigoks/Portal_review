@@ -1,5 +1,6 @@
 <h2 class=" ini-tag">
-	<span class="bord ini-tag-judul act"><?php echo $post->post_tag; ?></span>
+	aaaaa
+	<span class="bord ini-tag-judul act"><?php echo str_replace('-', ' ', $post); ?></span>
 </h2>
 
 <?php foreach ($paging_tag as $tag) {
@@ -11,7 +12,7 @@
 <?php 
 if($page > 1 ){
 	$prev_page = $page-1;
-?><button class='tag-paging' value='<?php echo $page - 1; ?>' onclick="location.href='<?php echo base_url().'post/tag/'.$post->post_tag.'/'.$prev_page;?>'">previous</button>
+?><button class='tag-paging btn btn-default' value='<?php echo $page - 1; ?>' onclick="location.href='<?php echo base_url().'post/tag/'.$post.'/'.$prev_page;?>'">previous</button>
 <?php
 }
 if($config['total_rows']% $perpage == 0)
@@ -42,9 +43,19 @@ if($page == 1 )
 	$start = 1;
 }else if($page == $page_count)
 {
-	$start = $page - 4;
+	if($page_count<5)
+	{
+		$start = 1;
+	}else{
+		$start = $page - 4;
+	}
 }else if ($page == $page_count - 1) {
-	$start = $page - 4;
+	if($page_count <5)
+	{
+		$start = 1;
+	}else{
+		$start = $page - 3;
+	}
 }else{
 	$start = $page - 2;
 }
@@ -56,11 +67,11 @@ if($page_count>=5)
 	if($page!=$start)	
 	{
 		?>
-		<button class='tag-paging' value='<?php echo $start;?>' onclick="location.href='<?php echo base_url().'post/tag/'.$post->post_tag.'/'.$start;?>'"><?php echo $start; ?></button> 
+		<button class='tag-paging btn btn-default' value='<?php echo $start;?>' onclick="location.href='<?php echo base_url().'post/tag/'.$post.'/'.$start;?>'"><?php echo $start; ?></button> 
 		<?php	
 	}else{
 		?>
-		<button class='tag-paging' value='<?php echo $start; ?>' onclick="location.href='<?php echo base_url().'post/tag/'.$post->post_tag.'/'.$start;?>'" disabled><?php echo $start; ?></button> 
+		<button class='tag-paging btn btn-default' value='<?php echo $start; ?>' onclick="location.href='<?php echo base_url().'post/tag/'.$post.'/'.$start;?>'" disabled><?php echo $start; ?></button> 
 		<?php	
 	}
 	
@@ -72,11 +83,11 @@ if($page_count>=5)
 	if($page!=$start)	
 	{
 		?>
-		<button class='tag-paging' value='<?php echo $start; ?>' onclick="location.href='<?php echo base_url().'post/tag/'.$post->post_tag.'/'.$start;?>'"><?php echo $start; ?></button> 
+		<button class='tag-paging btn btn-default' value='<?php echo $start; ?>' onclick="location.href='<?php echo base_url().'post/tag/'.$post.'/'.$start;?>'"><?php echo $start; ?></button> 
 		<?php	
 	}else{
 		?>
-		<button class='tag-paging' value='<?php echo $start; ?>' onclick="location.href='<?php echo base_url().'post/tag/'.$post->post_tag.'/'.$start;?>'" disabled><?php echo $start; ?></button> 
+		<button class='tag-paging btn btn-default' value='<?php echo $start; ?>' onclick="location.href='<?php echo base_url().'post/tag/'.$post.'/'.$start;?>'" disabled><?php echo $start; ?></button> 
 		<?php	
 	}
 
@@ -87,6 +98,6 @@ if($page_count>=5)
 if($page < $page_count){
 	$next_page = $page +1;
 ?>
-<button class='tag-paging' value='<?php echo $page + 1; ?>' onclick="location.href='<?php echo base_url().'post/tag/'.$post->post_tag.'/'.$next_page;?>'">next</button> 
+<button class='tag-paging btn btn-default' value='<?php echo $page + 1; ?>' onclick="location.href='<?php echo base_url().'post/tag/'.$post.'/'.$next_page;?>'">next</button> 
 <?php 
 }?>

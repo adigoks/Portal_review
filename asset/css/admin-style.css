@@ -1,3 +1,18 @@
+#tag-col{
+	display: inline;
+}
+.tag-item input{
+	background-color: transparent;
+	border: none;
+}
+.tag-item {
+	background-color: #eeeae3;
+	border-radius: 5px;
+	padding:5px;
+	display: inline-block; 
+	margin-left: 5px;
+	margin-right: 5px;
+}
 .panel-group li{
 	list-style-type: none;
 }
@@ -310,7 +325,7 @@
 .panel-default > .panel-heading
 {
 	background-image: -webkit-linear-gradient(top, #ffecdc 0%, #f5d0b2 100%);
-	background-image: linear-gradient(top, #ffecdc 0%, #f5d0b2 100%);
+	
 }
 
 #form-up-img > label {

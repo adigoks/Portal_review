@@ -1,6 +1,19 @@
 <div>
 	<div class="f-head f-head-bord">
-		<h6>Tags <a href="<?php echo base_url().'post/tag/'.$post->post_tag; ?>"><?php echo $post->post_tag; ?></a></h6>
+		<h6>Tags 
+		<?php
+			if($post->post_tag != ''){
+				$arr = json_decode($post->post_tag);
+				for($i=0;$i<count($arr);$i++)
+				{
+					$tag_uri = str_replace(' ', '-', $arr[$i]);
+		?>
+		<a href="<?php echo base_url().'tag/'.$tag_uri; ?>"><?php echo $arr[$i]; ?></a>
+		<?php
+				}
+			}
+		?>
+		</h6>
 		<h1><?php echo $post->post_judul; ?></h1>
 		<div class=" thor col-md-1">
 			<?php if ($post->post_img == '') { ?>

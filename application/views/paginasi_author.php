@@ -1,6 +1,6 @@
 <div class="list-group">
 	<h2 class=" ini-tag">
-		<span class="bord ini-tag-judul"><?php echo $id_list->user_name; ?></span>
+		<span class="bord ini-tag-judul act"><?php echo $id_list->user_name; ?></span>
 	</h2>
 </div>
 

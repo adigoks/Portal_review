@@ -1,3 +1,4 @@
+
 <?php 
 if($page > 1 ){
 ?><button class='post-paging btn btn-default' value='<?php echo $page - 1; ?>'>previous</button>

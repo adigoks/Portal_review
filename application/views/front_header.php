@@ -37,14 +37,54 @@
 		<div id="menu-bar" class="col-md-7 med-7">
 			<div id="menu">
 				<ul class="menu">
-					<?php foreach ($menu as $list) { if ($list['menu_parent']== 0) { ?>
-						<li><div class="menu_utama"><a href="#"><h4><?php echo $list['menu_name']; ?></h4></a></div>
-					<?php } ?>
+					<?php 
+					foreach ($menu as $list)
+					{ 
+						if ($list['menu_parent']== 0) 
+						{ 
+							
+							if($list['menu_url_type'] == 'external_link')
+							{
+								$link = 'http://'.$list['menu_url'];
+							}else if ($list['menu_url_type'] == 'none'){
+								$link = '#';
+							}else{
+								$link = base_url().$list['menu_url'];
+							}
+
+							?>
+						<li>
+						<div class="menu_utama"><a href="<?php echo $link;?>"><h4>
+						<?php 
+							echo $list['menu_name']; 
+						?>
+						</h4></a></div>
+						<?php
+					 	} 
+					 	?>
 						<ul class="dropdown_list">
-							<?php foreach ($menu as $list1) { if ($list['id'] == $list1['menu_parent']) { ?>
-								<li><a href="#"><h4><?php echo $list1['menu_name']; ?></h4></a></li>								
-							<?php } ?>
-							<?php } ?>						
+							<?php foreach ($menu as $list1) 
+							{ 
+
+								if ($list['id'] == $list1['menu_parent']) 
+								{ 
+									if($list1['menu_url_type'] == 'external_link')
+									{
+										$link1 = 'http://'.$list1['menu_url'];
+									}else if ($list1['menu_url_type'] == 'none'){
+										$link1 = '#';
+									}else{
+										$link1 = base_url().$list1['menu_url'];
+									}
+								?>
+								<li>
+								<a href="<?php echo $link1;?>"><h4>
+								<?php echo $list1['menu_name']; ?>
+								</h4></a>
+								</li>								
+							<?php 
+								} 
+							} ?>						
 						</ul>
 						</li>
 					<?php } ?>
@@ -62,6 +102,7 @@
 			<div id="top-bar" style="font-size: 14px;">
 				<div style="display: flex;width: 100%;">
 					<div class="col-md-9 med-9">
+						<form action="<?php echo base_url();?>search" id="search-form" method='post'>
 						<div class="input-group ">
 							
 							<input type="text" class='form-control' id="search" name="search" placeholder="cari..." style="box-shadow: none;">
@@ -70,7 +111,8 @@
 									<span class="glyphicon glyphicon-search"></span>
 								</button>
 							</span>
-						</div>	
+						</div>
+						</form>	
 					</div>
 					<div class="col-md-3 med-3" >
 						<div class="log-req">
