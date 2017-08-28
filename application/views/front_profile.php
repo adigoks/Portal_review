@@ -4,7 +4,14 @@
 			<h2>PROFILE</h2>	
 		</div class="prof-pad">
 		<fieldset>
-		<?php echo $this->session->flashdata('notification')?>
+		<?php if ($detail_id->user_confirm == 1) { ?>
+			<p class="notif-profil"><?php echo $this->session->flashdata('notification'); ?></p><br/>
+		<?php }else{ ?>
+			<p class="notif-profil">mohon buka email anda untuk verifikasi akun anda</p>
+			<p class="notif-profil" style="color:red;"><?php echo $this->session->flashdata('notification'); ?></p><br/>
+		<?php } ?>
+		
+		<?php echo validation_errors(); ?>
 		<?php echo form_open_multipart('page/update');?>
 			<div>
 				<div class="col-md-2 pic-prof">
