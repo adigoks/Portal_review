@@ -38,6 +38,7 @@
 			
 			}
 			$this->load->view('front_footer');	
+			$this->add_log($this->uri->uri_string());
 			
 		}
 
@@ -88,6 +89,7 @@
 			// $data['content'] .=  $this->load->view('front_content',$data,true);
 			$this->load->view('front_body', $data);
 			$this->load->view('front_footer');	
+			$this->add_log($this->uri->uri_string());
 			
 			# code...
 		}
@@ -123,6 +125,7 @@
 			// $data['content'] .=  $this->load->view('front_content',$data,true);
 			$this->load->view('front_body', $data);
 			$this->load->view('front_footer');
+			$this->add_log($this->uri->uri_string());
 		}
 
 		public function post_populer()
@@ -176,7 +179,7 @@
 				// $data['content'] .=  $this->load->view('front_content',$data,true);
 				$this->load->view('front_body', $data);
 				$this->load->view('front_footer');	
-
+				$this->add_log($this->uri->uri_string());
 			}else{
 				redirect(site_url());
 			}
