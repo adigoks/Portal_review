@@ -13,7 +13,7 @@
 			</div>
 			<div class="form-group">
 					<label class="" for="menu_status">Status :</label>
-					<input class="col-sm-5 form-control" type="text" name="menu_name" value="<?php if(isset($menu)){echo "submenu dari ".$menu->menu_name;}else{echo "menu utama";} ?>" readonly="readonly" />
+					<input class="col-sm-5 form-control" type="text" name="status" value="<?php if(isset($menu)){echo "submenu dari ".$menu->menu_name;}else{echo "menu utama";} ?>" readonly="readonly" />
 			</div>
 			<input type="number" name="parent" value="<?php if(isset($menu)){echo $menu->id;}else{echo 0;}?>" hidden>
 			<div class="form-group">

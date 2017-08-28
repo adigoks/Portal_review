@@ -15,14 +15,11 @@
 </div>
 <div id='document' class="col-md-12 layout layout-doc">
 	<b>Document</b> 
-	<a href="">
-		<span class="glyphicon glyphicon-edit" style="float: right;"></span>
-	</a>
+	
 	<div id='header-layout' class="col-md-12 layout layout-def">
 		<div><b>HEADER</b> 
-			<a href="">
-				<span class="glyphicon glyphicon-edit" style="float: right;"></span></div> 
-			</a>
+			
+		</div> 
 		<div id='header-title' class="col-md-6 layout layout-def">
 			<b>TITLE</b> 
 			<a href="">
@@ -38,9 +35,8 @@
 	</div>
 	<div id='content-layout' class="col-md-12 layout layout-def">
 		<div><b>KONTEN</b> 
-			<a href="">
-				<span class="glyphicon glyphicon-edit" style="float: right;"></span></div>
-			</a>
+			
+		</div>
 		<div id='content-featured' class="col-md-12 layout layout-def">
 			<a href="">
 				<b>FEATURED VIEW</b> <span class="glyphicon glyphicon-edit" style="float: right;"></span>
