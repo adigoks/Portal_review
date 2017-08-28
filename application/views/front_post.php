@@ -42,5 +42,8 @@
 	<div class="img-r par">
 		<?php echo $post->post_isi;?>	
 	</div>
-	
+	<div>
+		<?php $this->load->view('front_comment');?>
+		<?php $this->load->view('front_comment_post');?>
+	</div>
 </div>

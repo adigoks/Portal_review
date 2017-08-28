@@ -7,6 +7,13 @@
 	float: left;
 	position: relative;
 }
+.user-com{
+	display: inline-block;
+	float: left;
+}
+.comment-isi{
+	text-decoration:none;
+}
 .f-img{
 	height: 52px;
 	width: 52px;
