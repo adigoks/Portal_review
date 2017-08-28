@@ -57,10 +57,11 @@
 	</div>
 	<div id='footer-layout' class="col-md-12 layout layout-def">
 	<b>FOOTER</b> 
-	<a href=""> 
+	<a href="layout/footer"> 
 		<span class="glyphicon glyphicon-edit" style="float: right;"></span>
 	</a>
 		
 	</div>
 
 </div>
+

@@ -1,3 +1,16 @@
+.add-items{
+	float: right;
+	background-color: transparent;
+	border: none;
+	border-left: 1px solid #333;
+}
+.remove-item{
+	float: right;
+	background-color: transparent;
+	border: none;
+	border-left: 1px solid #333;
+}
+
 #tag-col{
 	display: inline;
 }
