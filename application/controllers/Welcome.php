@@ -28,6 +28,7 @@ class Welcome extends CI_Controller {
 		$this->load->helper('html');
 		$this->load->model('menu_model');
 		$this->load->model('user_model');
+		$this->load->model('logf_model');
 		$this->load->model('attribute_model');
 	}
 
@@ -41,6 +42,7 @@ class Welcome extends CI_Controller {
 		$this->menu_list($data);
 		$this->compose($data);
 		$this->load->view('front_footer');
+		$this->add_log($this->uri->uri_string());
 	}
 	public function initHead($data = null)
 	{
@@ -59,6 +61,7 @@ class Welcome extends CI_Controller {
 		$this->menu_list($data);
 		$this->compose($data);
 		$this->load->view('front_footer');
+		$this->add_log($this->uri->uri_string());
 	}	
 
 	public function loadinit()
@@ -128,6 +131,21 @@ class Welcome extends CI_Controller {
 		return $this->load->view('paginasi_main',$data,true);
 	}
 
+	public function add_log($uri=null)
+	{
+
+		$data['logf_browser'] = $this->input->user_agent();
+		$data['logf_ip'] = $_SERVER['REMOTE_ADDR'];
+		$data['logf_url'] = $uri;
+		if($this->session->userdata('id_user')!= null)
+		{
+			$data['logf_user'] = $this->session->userdata('id_user');
+		}else{
+			$data['logf_user'] = 0;
+		}
+		$data['logf_session'] = md5($data['logf_ip'].$data['logf_browser'].$data['logf_user'].date('Y-m-d'));
+		$this->logf_model->insert($data);
+	}
 
 
 }

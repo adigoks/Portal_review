@@ -37,9 +37,16 @@
 		</div>
 	</a>
 	
-	<div class="col-md-9 topbar">
+	<div class="col-md-8 topbar">
 		
 	</div>
+	<a href="#" >
+		<div class="col-md-1 topbar topbar-text-center">
+			<span class="glyphicon glyphicon-envelope" style="font-size: 30px;"></span>
+			
+				
+		</div>
+	</a>
 	<div class="col-md-1 topbar">
 		<a href="<?php echo site_url('admin_logout/logout');?>">Logout</a>
 	</div>

@@ -178,7 +178,7 @@
 			$data['menu_parent'] = $this->input->post('parent');
 			$data['menu_url'] = $this->input->post('post');
 			$data['menu_order'] = $this->menu_model->select_by($data['menu_parent'])->num_rows() + 1;
-			$data['menu_url'] = base_url().$data['menu_url'];
+			
 			$this->form_validation->set_rules('post','Judul Post','required');
 
 			if ($this->form_validation->run()==FALSE) 

@@ -3,9 +3,31 @@
 	max-height: 50px;
 	max-width: 50px;
 }
+.c-textarea{
+	resize: none;
+}
+.comment-r{
+	display: none;
+}
 .label-am {
 	float: left;
 	position: relative;
+}
+.rp-comment a{
+	text-decoration:none;
+	font-weight: bold;
+	font-size: 13px;
+	cursor: pointer;
+}
+.rp-comment{
+	padding-bottom: 10px;
+}
+.user-com{
+	display: inline-block;
+	float: left;
+}
+.comment-isi{
+	text-decoration:none;
 }
 .f-img{
 	height: 52px;
