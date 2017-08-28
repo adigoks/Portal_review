@@ -48,7 +48,7 @@
 			$data['trending'] = $this->post_model->showTrending()->result(); 
 
 			$data['content'] =$this->load->view('front_post',$data,true);
-
+		
 			$data['content'] = $this->load->view('front_main_post', $data,true);
 
 			// $data['content'] .=  $this->load->view('front_content',$data,true);

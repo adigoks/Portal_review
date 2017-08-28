@@ -3,9 +3,38 @@
 	max-height: 50px;
 	max-width: 50px;
 }
+.lp-alert{
+	margin-left: 40px;
+	padding: 20px;
+}
+.coba-alert{
+	display: none;
+}
+.c-textarea{
+	resize: none;
+}
+.comment-r{
+	display: none;
+}
 .label-am {
 	float: left;
 	position: relative;
+}
+.rp-comment a{
+	text-decoration:none;
+	font-weight: bold;
+	font-size: 13px;
+	cursor: pointer;
+}
+.rp-comment{
+	padding-bottom: 10px;
+}
+.user-com{
+	display: inline-block;
+	float: left;
+}
+.comment-isi{
+	text-decoration:none;
 }
 .f-img{
 	height: 52px;
@@ -37,6 +66,14 @@
 	padding-right: 30px;
 	padding-top: 10px;
 	padding-bottom: 10px;
+	
+}
+.font-log{
+	
+	padding-left: 30px;
+	padding-right: 30px;
+	padding-top: 10px;
+	padding-bottom: 30px;
 	
 }
 .form-log-u{

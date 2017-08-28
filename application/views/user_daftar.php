@@ -8,18 +8,22 @@
 				<?php echo $this->session->flashdata('notification')?>
 				<div class="form-horizontal">
 				<?php echo form_open_multipart('page/daftar');?>
+				<?php echo form_error('username','<div style="color:red">','</div>');?>
 				<div class="form-group">
 					<label for="username1">Username :</label>
 					<input type="text" class="form-control" id="username" name="username" placeholder="Username" /><br/><br/>
 				</div>
+				<?php echo form_error('password','<div style="color:red">','</div>');?>
 				<div class="form-group">
 					<label for="password1">Password :</label>
 					<input type="password" class="form-control" id="password" name="password" placeholder="Password" /><br/><br/>
 				</div>
+				<?php echo form_error('re_password','<div style="color:red">','</div>');?>
 				<div class="form-group">
 					<label class="repas">Re-enter Password :</label>
 					<input type="password" class="form-control" id="re-password" name="re_password" placeholder="Re-enter Password" /><br/><br/>
 				</div>
+				<?php echo form_error('email','<div style="color:red">','</div>');?>
 				<div class="form-group">
 						<label class="email1">Valid Email :</label>
 						<input type="email" class="form-control" id="email" name="email" placeholder="Email" />

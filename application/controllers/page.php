@@ -263,7 +263,7 @@
 			$this->form_validation->set_rules('email', 'Email', 'required');
 
 			if ($this->form_validation->run() == FALSE) {
-				$this->load->view('front_head');
+				$this->initHead();
 				$this->menu_list();
 				$data['content'] = $this->load->view('user_daftar', '', true);
 				$this->load->view('front_body', $data);
@@ -369,6 +369,15 @@
 			$id = $this->session->userdata('id_user');
 			$data['user'] = $this->user_model->selectId($id)->row();
 			$data['content'] = $this->load->view('front_success', $data, true);
+			$this->load->view('front_body', $data);
+			$this->load->view('front_footer');	
+
+		}
+
+		public function lupa_password(){
+			$this->initHead();
+			$this->menu_list();
+			$data['content'] = $this->load->view('front_lupa_pass','',true);
 			$this->load->view('front_body', $data);
 			$this->load->view('front_footer');	
 

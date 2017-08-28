@@ -143,6 +143,9 @@ $(window).on('load',function() {
            
     }
     
+    $("#reply").click(function(){
+        $("#comment-r").slideToggle();
+    });
    
 
 });

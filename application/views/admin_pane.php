@@ -115,8 +115,7 @@
 				
 				</br>
 				<ul class="list-group">
-				  	<li class="list-group-item">Pengaturan
-				    </li>
+				  	<li class="list-group-item"><a href="<?=site_url('admin-dashboard/pengaturan'); ?>">Pengaturan</a></li>
 				    <li class="list-group-item"><a href="<?=site_url('admin-dashboard/profil');?>">Profil</a></li>
 				</ul>
 
