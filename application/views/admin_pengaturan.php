@@ -18,16 +18,26 @@
 			<div class="panel-body">
 				<?php echo form_open('admin_layout/set_identity', 'id="form_identity"'); ?>
 					<div class="form-group">
-						<label for="daftar-kategori" >Daftar Kategori</label>
-							<div class="col-md-3">
-								<span style='width:22%;font-size: 16px;' class=' input-group-addon'>Nama Kategori</span>
-							</div>
-						<span style='font-size: 16px;' class=' input-group-btn '>
-							<a class='btn btn-default input-group-btn'>
+						<label for="daftar-kategori">Daftar Kategori</label>
+							<div  style="padding-bottom: 10px;" class="col-md-12">
+								<span style='width:90%;font-size: 16px;' class='col-md-1 input-group-addon'>Nama Kategori</span>
+								<a class='btn btn-default col-md-1'>
 								<span style ='font-size: 16px;' class='glyphicon glyphicon-remove'></span>						
-							</a>
-						</span>
-					</div>
+								</a>
+							</div>
+							<div  style="padding-bottom: 10px;" class="col-md-12">
+								<span style='width:90%;font-size: 16px;' class='col-md-1 input-group-addon'>Nama Kategori</span>
+								<a class='btn btn-default col-md-1'>
+								<span style ='font-size: 16px;' class='glyphicon glyphicon-remove'></span>						
+								</a>
+							</div>
+							<div  style="padding-bottom: 10px;" class="col-md-12">
+								<span style='width:90%;font-size: 16px;' class='col-md-1 input-group-addon'>Nama Kategori</span>
+								<a class='btn btn-default col-md-1'>
+								<span style ='font-size: 16px;' class='glyphicon glyphicon-remove'></span>						
+								</a>
+							</div>
+					</div><br>
 					<div class="form-group">
 						<label for="tambah-kategori" >Tambah Kategori</label>
 						<input class="form-control" type="text" id="tambah-kategori" name="tambah_kategori" placeholder="Nama Kategori" >
@@ -50,9 +60,36 @@
 				<?php echo form_open('admin_layout/set_identity', 'id="form_identity"'); ?>
 					<div class="form-group">
 						<label for="daftar-admin" >Daftar Admin</label>
+						<div  style="padding-bottom: 10px;" class="col-md-12">
+								<span style='width:85%;font-size: 19px;' class='col-md-10 input-group-addon'>Nama admin</span>
+								<select style="width: 15%;" class="form-control col-md-1">
+									<option>user</option>
+									<option>admin</option>
+								</select>
+						</div>
+						<div  style="padding-bottom: 10px;" class="col-md-12">
+								<span style='width:85%;font-size: 19px;' class='col-md-10 input-group-addon'>Nama admin</span>
+								<select style="width: 15%;" class="form-control col-md-1">
+									<option>user</option>
+									<option>admin</option>
+								</select>
+						</div>
 					</div>
 					<div class="form-group">
 						<label for="tambah-User" >Daftar User</label>
+						<div  style="padding-bottom: 10px;" class="col-md-12">
+								<span style='width:85%;font-size: 19px;' class='col-md-10 input-group-addon'>Nama User</span>
+								<select style="width: 15%;" class="form-control col-md-1">
+									<option>user</option>
+									<option>admin</option>
+								</select>
+						</div><div  style="padding-bottom: 10px;" class="col-md-12">
+								<span style='width:85%;font-size: 19px;' class='col-md-10 input-group-addon'>Nama User</span>
+								<select style="width: 15%;" class="form-control col-md-1">
+									<option>user</option>
+									<option>admin</option>
+								</select>
+						</div>
 					</div>
 					<input style='float: right;' type="submit" class="btn btn-primary" name='update' value="Update">
 				<?php echo form_close();?>
@@ -72,6 +109,24 @@
 				<?php echo form_open('admin_layout/set_identity', 'id="form_identity"'); ?>
 					<div class="form-group">
 						<label for="daftar-akun" >Daftar Akun</label>
+						<div  style="padding-bottom: 10px;" class="col-md-12">
+								<span style='width:90%;font-size: 16px;' class='col-md-1 input-group-addon'>Nama User</span>
+								<a class='btn btn-default col-md-1'>
+								<span style ='font-size: 16px;' class='glyphicon glyphicon-edit'></span>						
+								</a>
+						</div>
+						<div  style="padding-bottom: 10px;" class="col-md-12">
+								<span style='width:90%;font-size: 16px;' class='col-md-1 input-group-addon'>Nama User</span>
+								<a class='btn btn-default col-md-1'>
+								<span style ='font-size: 16px;' class='glyphicon glyphicon-edit'></span>						
+								</a>
+						</div>
+						<div  style="padding-bottom: 10px;" class="col-md-12">
+								<span style='width:90%;font-size: 16px;' class='col-md-1 input-group-addon'>Nama User</span>
+								<a class='btn btn-default col-md-1'>
+								<span style ='font-size: 16px;' class='glyphicon glyphicon-edit'></span>						
+								</a>
+						</div>
 					</div>
 				<?php echo form_close();?>
 			</div>
@@ -89,10 +144,56 @@
 			<div class="panel-body">
 				<?php echo form_open('admin_layout/set_identity', 'id="form_identity"'); ?>
 					<div class="form-group">
-						<label for="pesan-masuk" >Pesan Masuk</label>
+						<label for="pesan-masuk">Pesan Belum Terbaca </label>
+						<div  style="padding-bottom: 10px;" class="col-md-12">
+								<span style='width:82%;font-size: 16px;' class='col-md-1 input-group-addon'>Nama User</span>
+								<a class='btn btn-default col-md-1'>
+								<span style ='font-size: 16px;' class='glyphicon glyphicon-remove'></span>						
+								</a>
+								<a class='btn btn-default col-md-1'>
+								<span style ='font-size: 16px;' class='glyphicon glyphicon-eye-open'></span>	
+								</a>
+						</div>
+						<div  style="padding-bottom: 10px;" class="col-md-12">
+								<span style='width:82%;font-size: 16px;' class='col-md-1 input-group-addon'>Nama User</span>
+								<a class='btn btn-default col-md-1'>
+								<span style ='font-size: 16px;' class='glyphicon glyphicon-remove'></span>						
+								</a>
+								<a class='btn btn-default col-md-1'>
+								<span style ='font-size: 16px;' class='glyphicon glyphicon-eye-open'></span>	
+								</a>
+						</div>
+						<div  style="padding-bottom: 10px;" class="col-md-12">
+								<span style='width:82%;font-size: 16px;' class='col-md-1 input-group-addon'>Nama User</span>
+								<a class='btn btn-default col-md-1'>
+								<span style ='font-size: 16px;' class='glyphicon glyphicon-remove'></span>						
+								</a>
+								<a class='btn btn-default col-md-1'>
+								<span style ='font-size: 16px;' class='glyphicon glyphicon-eye-open'></span>	
+								</a>
+						</div>
 					</div>
 					<div class="form-group">
-						<label for="pesan-keluar" >Pesan Keluar</label>
+						<label for="pesan-keluar">Pesan Terbaca</label>
+
+						<div  style="padding-bottom: 10px;" class="col-md-12">
+								<span style='width:82%;font-size: 16px;' class='col-md-1 input-group-addon'>Nama User</span>
+								<a class='btn btn-default col-md-1'>
+								<span style ='font-size: 16px;' class='glyphicon glyphicon-remove'></span>						
+								</a>
+								<a class='btn btn-default col-md-1'>
+								<span style ='font-size: 16px;' class='glyphicon glyphicon-eye-open'></span>	
+								</a>
+						</div>
+						<div  style="padding-bottom: 10px;" class="col-md-12">
+								<span style='width:82%;font-size: 16px;' class='col-md-1 input-group-addon'>Nama User</span>
+								<a class='btn btn-default col-md-1'>
+								<span style ='font-size: 16px;' class='glyphicon glyphicon-remove'></span>						
+								</a>
+								<a class='btn btn-default col-md-1'>
+								<span style ='font-size: 16px;' class='glyphicon glyphicon-eye-open'></span>	
+								</a>
+						</div>
 					</div>
 				<?php echo form_close();?>
 			</div>

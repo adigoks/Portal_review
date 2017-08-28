@@ -16,8 +16,8 @@
 				<label for ="password">Password :</label>
 				<input class="form-control" type="password" id="password" name="password" placeholder="Password" />
 				</div><br/>
-				<input class="btn btn-default" type="submit" name="login" value="Login" />
-				<h5><a>Lupa Password ?</a></h5>
+				<input class="btn btn-default" type="submit" name="login" value="Login" /><br><br>
+					<span><a>Lupa Password ?</a>&nbsp;&nbsp; <a>Atau daftar baru !</a></span>
 			<?php echo form_close();?>
 		</fieldset>
 	</div>

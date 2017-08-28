@@ -51,6 +51,11 @@
 		public function saran()
 		{
 			# code...
+			$this->initHead();
+			$this->menu_list();
+			$data['content'] = $this->load->view('form_saran','',true);
+			$this->load->view('front_body',$data);
+			$this->load->view('front_footer');
 		}
 
 		public function form_login()
