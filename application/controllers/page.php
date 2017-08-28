@@ -134,9 +134,10 @@
 			$id = $this->session->userdata('user_author');
 			$pass = $this->input->post('new_password');
 			$pass2 = $this->input->post('re_new_password');
+			$pass3 = $this->input->post('password_lama');
 			$foto = $_FILES['foto'];
 
-			if (isset($foto) != "" ) {
+			if (isset($foto) == "" ) {
 				$file_name = $foto['name'];
 				$file_type = $foto['type'];
 				$file_size = $foto['size'];
@@ -149,7 +150,13 @@
 						$this->form_validation->set_rules('re_new_password', 'Re-type Password', 'required');
 
 						if ($this->form_validation->run() == FALSE) {
-							redirect(site_url('page/form_profile'));
+							$this->initHead();
+							$this->menu_list();
+							$id = $this->session->userdata('id_user');
+							$data['detail_id'] = $this->user_model->selectId($id)->row();
+							$data['content'] = $this->load->view('front_profile', $data, true);
+							$this->load->view('front_body', $data);
+							$this->load->view('front_footer');	
 						}
 						elseif ($pass != $pass2) {
 							$this->session->set_flashdata('notification', 'Peringatan : Password baru dan Re-Type Password tidak cocok');
@@ -163,6 +170,7 @@
 							$data['user_name'] = $this->input->post('username');
 							$data['user_email'] = $this->input->post('email');
 							$this->user_model->update($data,$id);
+							$this->session->set_flashdata('notification', 'Data telah diupdate');
 							redirect(site_url('page/form_profile'));
 							}
 						}
@@ -174,6 +182,7 @@
 						$data['user_name'] = $this->input->post('username');
 						$data['user_email'] = $this->input->post('email');
 						$this->user_model->update($data,$id);
+						$this->session->set_flashdata('notification', 'Data telah diupdate');
 						redirect(site_url('page/form_profile'));
 						}
 					}
@@ -184,32 +193,40 @@
 				}
 			}
 			else{
-				if ($pass != "") {
+				if ($pass != NULL || $pass2 != NULL || $pass3 != NULL) {
 					$this->form_validation->set_rules('password_lama', 'Password Lama', 'required');
 					$this->form_validation->set_rules('re_new_password', 'Re-type Password', 'required');
 
 
 					if ($this->form_validation->run() == FALSE) {
-						redirect(site_url('page/form_profile'));
+						$this->initHead();
+						$this->menu_list();
+						$id = $this->session->userdata('id_user');
+						$data['detail_id'] = $this->user_model->selectId($id)->row();
+						$data['content'] = $this->load->view('front_profile', $data, true);
+						$this->load->view('front_body', $data);
+						$this->load->view('front_footer');	
 					}
 					elseif ($pass != $pass2) {
 						$this->session->set_flashdata('notification', 'Peringatan : Password baru dan Re-Type Password tidak cocok');
 						redirect(site_url('page/form_profile'));
 					}
 					else{
-						if($file_name){
+					
 						$data['user_password'] = md5("pnvs#%12".$pass."41;1*");
 						$data['user_name'] = $this->input->post('username');
 						$data['user_email'] = $this->input->post('email');
 						$this->user_model->update($data,$id);
+						$this->session->set_flashdata('notification', 'Data telah diupdate');
 						redirect(site_url('page/form_profile'));
-						}
+						
 					}
 				}
 				else{
 					$data['user_name'] = $this->input->post('username');
 					$data['user_email'] = $this->input->post('email');
 					$this->user_model->update($data,$id);
+					$this->session->set_flashdata('notification', 'Data telah diupdate');
 					redirect(site_url('page/form_profile'));
 				}
 			}
@@ -263,7 +280,7 @@
 					$this->email->from('wibumaster@gmail.com', 'wibu master');
 					$this->email->to($email);
 					$this->email->subject('Validasi Register');
-					$this->email->message('Please go to this link to verify your register <a href="'.base_url().'Validasi/'.$hash_valid.'">here</a>');
+					$this->email->message('Please go to this link to verify your register <a href="'.base_url().'page/validasi/'.$hash_valid.'">here</a>');
 					$a = $this->email->send();
 						if ($a == FALSE) {
 							$this->session->set_flashdata('notification', 'Peringatan : Email tidak valid');
@@ -280,7 +297,16 @@
 									$data['user_profile_img'] = $name;
 									$data['user_password'] = md5("pnvs#%12".$pass."41;1*");
 									$this->user_model->insert($data);
-									redirect(site_url('page/form_login'));	
+
+									$array_item = array(
+										'id_user' => $akun->id,
+										'username_user' => $akun->user_name,
+										'level_user'=> $akun->user_level,
+										'logged' => 'true' );
+
+									$this->session->set_userdata($array_item);
+
+									redirect(site_url('page/success'));	
 								}
 							}
 							else{
@@ -299,13 +325,50 @@
 
 		public function validasi ()
 		{
-			
+			if ($this->uri->segment(1) == 'page' && $this->uri->segment(2) == 'validasi' && $this->uri->segment(3) == true) {
+				$key = $this->uri->segment(3);
+				$akun = $this->user_model->selectValidasi($key)->row();
+				$num = count($akun);
+
+				if ($num == 1) {
+					if ($akun->user_confirm == 0) {
+						$id = $akun->id;
+						$data['user_confirm'] = 1;
+						$this->user_model->update($data, $id);
+
+						$array_item = array(
+							'id_user' => $akun->id ,
+							'username_user' => $akun->user_name ,
+							'level_user' => $akun->user_level ,
+							'logged' => 'true' );	
+						$this->session->set_userdata($array_item);
+
+						$this->session->set_flashdata('notification', 'Selamat, Akun anda telah berhasil divalidasi');
+						redirect(site_url('page/form_profile'));		
+					}
+					else{
+						unset($_SESSION['logged']); 
+						$this->session->set_flashdata('notification', 'Maaf akun anda telah divalidasi<br/>silahkan login terlebih dahulu');
+						redirect(site_url('page/form_login'));		
+					}	
+				}
+				else{
+					unset($_SESSION['logged']); 
+					$this->session->set_flashdata('notification', 'Tidak dapat menemukan kode verifikasi yang cocok');
+					redirect(site_url('page'));	
+				}
+			}
+			else{
+				redirect(site_url('page'));
+			}
 		}
 
 		public function success(){
 			$this->initHead();
 			$this->menu_list();
-			$data['content'] = $this->load->view('front_success', '', true);
+			$id = $this->session->userdata('id_user');
+			$data['user'] = $this->user_model->selectId($id)->row();
+			$data['content'] = $this->load->view('front_success', $data, true);
 			$this->load->view('front_body', $data);
 			$this->load->view('front_footer');	
 

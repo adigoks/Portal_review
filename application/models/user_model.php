@@ -29,6 +29,15 @@
             return $this->db->get();
         }
 
+        function selectValidasi($validasi)
+        {
+            $this->db->select('*');
+            $this->db->from('portal_user');
+            $this->db->where('user_validation',$validasi);
+                
+            return $this->db->get();
+        }
+
         function select_username($username)
         {
             $this->db->select('*');
