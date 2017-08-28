@@ -1,5 +1,4 @@
 <h2 class=" ini-tag">
-	aaaaa
 	<span class="bord ini-tag-judul act"><?php echo str_replace('-', ' ', $post); ?></span>
 </h2>
 

@@ -263,7 +263,7 @@
 			$this->form_validation->set_rules('email', 'Email', 'required');
 
 			if ($this->form_validation->run() == FALSE) {
-				$this->load->view('front_head');
+				$this->initHead();
 				$this->menu_list();
 				$data['content'] = $this->load->view('user_daftar', '', true);
 				$this->load->view('front_body', $data);
