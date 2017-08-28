@@ -47,7 +47,7 @@
 		
 	</div>
 </div>	
-<div ">
+<div >
 	<div id='tampilan-accordion' class="panel-group">
 		<div class="panel panel-default">
 			<div class="panel-heading">
