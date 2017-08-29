@@ -14,15 +14,15 @@
 			parent::__construct();
 			$this->load->helper('url');
 			$this->load->model('post_model');
-			$this->load->helper('url');
 			$this->load->library('session');
 			$this->load->helper('html');
+			$this->load->helper('form');
 			$this->load->model('menu_model');
+			$this->load->model('komentar_model');
 		}
 		public function index()
 		{
 
-			
 			if($this->uri->segment(1)=='post' && $this->uri->segment(2) == true)
 			{
 				$data['post']= $this->post_model->showUri($this->uri->segment(2))->row();
@@ -45,7 +45,13 @@
 		public function post_detail($uri){
 			$data['post']= $this->post_model->showUri($uri)->row();
 			$data['widget'] = $this->post_model->showPopuler()->result();
-			$data['trending'] = $this->post_model->showTrending()->result(); 
+			$data['trending'] = $this->post_model->showTrending()->result();
+
+			$id_user = $this->session->userdata('id_user');
+			$data['name_user'] = $this->user_model->selectId($id_user)->row();
+
+			$koment = $data['post']->id_user;
+			$data['komentar'] = $this->komentar_model->select_komentar_post($koment)->row();
 
 			$data['content'] =$this->load->view('front_post',$data,true);
 		
@@ -183,6 +189,20 @@
 			}else{
 				redirect(site_url());
 			}
+		}
+
+		public function komentar()
+		{
+			$user_id = $user->id;
+
+			$data['komen_isi'] = $this->input->post('komen_box');
+			$data['komen_post'] = $this->input->post('post_id');
+			$data['komen_user_id'] = $user_id;
+			$data['komen_parent'] = 0;
+			
+			$this->komentar_model->insert($data);
+
+			redirect(site_url('post'));
 		}
 	}
 
