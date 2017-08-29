@@ -123,7 +123,7 @@
 							<?php } ?>		
 						</div>
 						<div>
-							<a class="log-btn" href="#"><span class="glyphicon glyphicon-log-in"></span></a>
+							<a class="log-btn" href="<?php echo site_url('page/form_login'); ?>"><span class="glyphicon glyphicon-log-in"></span></a>
 						</div>
 					</div>
 				</div>	
