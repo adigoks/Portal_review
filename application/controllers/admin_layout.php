@@ -23,6 +23,7 @@
 			{
 				redirect(site_url('admin_login'));
 			}
+			$this->init_def_layout();
 
 		}
 
@@ -101,6 +102,7 @@
 		}
 
 		function layout(){
+
 			$id = $this->session->userdata('id_author');
 			$data['usr'] = $this->user_model->selectId($id)->row();
 			
@@ -111,13 +113,77 @@
 		}
 
 		function footer(){
+			$data['footer_data'] = $this->layout_model->showAll()->result();
+			$data['footer_parent'] = $this->layout_model->selectName('footer_layout')->row();
 			$id = $this->session->userdata('id_author');
 			$data['usr'] = $this->user_model->selectId($id)->row();
+			$data['footer_data'] = $this->genfooterData($data['footer_data'], $data['footer_parent']->id);
 			
-			$data['content'] = $this->load->view('layout_footer', '', true);
+			$data['content'] = $this->load->view('layout_footer', $data, true);
 
 			$data['content'] =$this->load->view('admin_body', $data,true);
 			$this->load->view('admin_pane', $data);
+		}
+
+		function add_footer(){
+			$data['layout_name'] = $this->input->post('layout_name');
+			$data['layout_order'] = $this->input->post('layout_order');
+			$data['layout_span'] = $this->input->post('layout_span');
+			$data['layout_parent'] = $this->input->post('layout_parent');
+			$data['layout_content'] = $this->input->post('layout_content');
+			if($data['layout_order'] == 'undefined')
+			{
+				$data['layout_order'] = '';
+			}
+			if($data['layout_content'] == 'undefined')
+			{
+				$data['layout_content'] = '';
+			}
+			$id = $this->layout_model->insert($data);
+			//var_dump($data);
+			echo json_encode(array('id_layout' => $id));
+		}
+
+		function init_def_layout(){
+			if($this->layout_model->selectName('footer_layout')->row() == null)
+			{
+
+				$data['layout_name'] = 'footer_layout';
+				$data['layout_parent'] = 0;
+				$data['layout_span'] = 12;
+				$this->layout_model->insert($data);
+			}
+
+			if($this->layout_model->selectName('header_layout')->row() == null)
+			{
+
+				$data['layout_name'] = 'header_layout';
+				$data['layout_parent'] = 0;
+				$data['layout_span'] = 12;
+				$this->layout_model->insert($data);
+			}
+		}
+
+		function genfooterData($data=array(),$id)
+		{
+			$array = array();
+			
+			foreach ($data as $row) {
+
+				if ($row->layout_parent == $id)
+				{
+					array_push($array,$row);
+					foreach ($data as $column ) 
+					{
+						if($column->layout_parent == $row->id)
+						{
+							array_push($array, $column);
+						}
+					}
+				}
+				
+			}
+			return $array;
 		}
 	}
 
