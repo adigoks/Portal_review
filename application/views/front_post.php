@@ -22,9 +22,15 @@
 				<a><img class="f-img" src="<?php echo base_url().$post->user_profile_img;?>" ></a>
 			<?php }?>
 		</div>
+
 		<div class="thor2">
-			<h4>By <a href="<?php echo base_url().'post/author/'.$post->user_name; ?>"><?php echo $post->user_name; ?></a></h4>
-			<h5><?php $date=$post->post_waktu; echo date("d/m/y",strtotime($date));?></h5>
+			<div style="display: inline-block;">
+				<h4>By <a href="<?php echo base_url().'post/author/'.$post->user_name; ?>"><?php echo $post->user_name; ?></a></h4>
+				<h5><?php $date=$post->post_waktu; echo date("d/m/y",strtotime($date));?></h5>	
+			</div>
+			<div style="float: right">
+				<h4><a href="<?php echo base_url().'kategori/'.str_replace(' ', '-', $post->post_kategori); ?>"><?php echo $post->post_kategori; ?></a></h4>
+			</div>
 		</div>
 	</div>
 
@@ -46,19 +52,18 @@
 	<?php if($post->post_enable_comment == 1){
 		if (!isset($_SESSION['logged'])) {
 
-			if ($komentar != NULL) { 
-				$this->load->view('front_comment_post');
+			if (!isset($komentar) || $komentar->komen_post != NULL) { 
+				$this->load->view('paginasi_komen');
 			}
 		}
 		else{	
 			$this->load->view('front_comment');
-			if ($komentar == NULL) { ?>
-
+			if (!isset($komentar) || $komentar->komen_post == NULL ) {?>
 				<p>Jadilah yang pertama berkomentar di Artikel ini</p>
 
 			<?php }else{
 
-				$this->load->view('front_comment_post');
+				$this->load->view('paginasi_komen');
 			}	
 		}
 	} ?>
