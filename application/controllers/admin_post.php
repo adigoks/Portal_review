@@ -15,7 +15,7 @@
 			$this->load->helper('html');
 			$this->load->library('form_validation');
 			$this->load->helper('form');
-
+			$this->load->model('attribute_model');
 			$this->load->model(array('post_model','user_model','page_model'));
 			$this->load->library('pagination');
 			
@@ -42,6 +42,7 @@
 			$data['usr']=$this->user_model->selectId($id_author)->row();
 			$button ='';
 			$data['b'] = $button;
+			$data['kategori'] = $this->attribute_model->selectName('kategori')->row();
 			$data['content'] = $this->load->view('admin_tambah_post',$data, true);
 
 			$data['content'] =$this->load->view('admin_body', $data,true);
@@ -199,6 +200,7 @@
 			$id_author = $this->session->userdata('id_author');
 			$data['usr']=$this->user_model->selectId($id_author)->row();
 			$data['id_post'] = $this->post_model->selectId($id)->row();
+			$data['kategori'] = $this->attribute_model->selectName('kategori')->row();
 			$data['content'] = $this->load->view('admin_edit_post', $data, true);
 
 			$data['content'] =$this->load->view('admin_body', $data, true);

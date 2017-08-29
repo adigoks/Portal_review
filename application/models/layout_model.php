@@ -9,6 +9,8 @@
         function insert($data)
         {
             $this->db->insert('portal_layout',$data);
+            $insert_id = $this->db->insert_id();
+            return $insert_id;
         }
         
         function showAll()
@@ -47,6 +49,14 @@
             {
                 $this->db->limit($limit['perpage'],$limit['offset']);
             }
+            return $this->db->get();
+        }
+        function selectName($name)
+        {
+            $this->db->select('*');
+            $this->db->from('portal_layout');
+            $this->db->where('layout_name',$name);
+                
             return $this->db->get();
         }
     }
