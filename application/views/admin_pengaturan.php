@@ -3,7 +3,9 @@
 		<h4>Pengaturan</h4><br/>
 	</div>
 </div>	
-
+<div>
+	<?php echo $this->session->flashdata('pesan'); ?>
+</div>
 <div>
 	<div id='pengaturan-accordion' class="panel-group">
 		<div class="panel panel-default">
@@ -16,32 +18,45 @@
 
 		<div id="pengaturan1" class="panel-collapse collapse">
 			<div class="panel-body">
-				<?php echo form_open('admin_layout/set_identity', 'id="form_identity"'); ?>
-					<div class="form-group">
+				<?php echo form_open('admin_pengaturan/update_kategori', 'id="form_identity"'); ?>
+					<div class="form-group" id='kategori-list'>
+						<input type="number" name="id_kategori" value="<?php if($kategori != null)
+								{echo $kategori->id;}?>" hidden>
 						<label for="daftar-kategori">Daftar Kategori</label>
-							<div  style="padding-bottom: 10px;" class="col-md-12">
-								<span style='width:90%;font-size: 16px;' class='col-md-1 input-group-addon'>Nama Kategori</span>
-								<a class='btn btn-default col-md-1'>
+							<?php 
+								if($kategori != null)
+								{
+									$obj =json_decode($kategori->attribute_values);
+									$i=1;
+									foreach ($obj as $key => $value ) {
+									?>
+							
+							<div id='kategori-item-<?php echo $i;?>' style='padding-bottom: 10px;' class='col-md-12 kategori-item'>
+								<input type='text' name='kategori_value[]' value='<?php echo $value;?>' hidden>
+								<span style='width:90%;font-size: 16px;' class='col-md-1 input-group-addon kategori-value'><?php echo $value;?></span>
+								<button form='' class='btn btn-default col-md-1' target='#kategori-item-<?php echo $i;?>' value='simpan'>
 								<span style ='font-size: 16px;' class='glyphicon glyphicon-remove'></span>						
-								</a>
+								</button>
 							</div>
-							<div  style="padding-bottom: 10px;" class="col-md-12">
-								<span style='width:90%;font-size: 16px;' class='col-md-1 input-group-addon'>Nama Kategori</span>
-								<a class='btn btn-default col-md-1'>
-								<span style ='font-size: 16px;' class='glyphicon glyphicon-remove'></span>						
-								</a>
-							</div>
-							<div  style="padding-bottom: 10px;" class="col-md-12">
-								<span style='width:90%;font-size: 16px;' class='col-md-1 input-group-addon'>Nama Kategori</span>
-								<a class='btn btn-default col-md-1'>
-								<span style ='font-size: 16px;' class='glyphicon glyphicon-remove'></span>						
-								</a>
-							</div>
+									<?php	# code...
+									$i++;
+									}
+									
+								}
+
+							?>
+							
 					</div><br>
 					<div class="form-group">
-						<label for="tambah-kategori" >Tambah Kategori</label>
-						<input class="form-control" type="text" id="tambah-kategori" name="tambah_kategori" placeholder="Nama Kategori" >
+						<label for="new-kategori" >Tambah Kategori</label>
+						<div class="input-group">
+    						<input type="text" class="form-control" name='new-kategori' placeholder="Tambah Kategori...">
+    						<span class="input-group-btn">
+    							<button id='add-kategori' form="" class="btn btn-default" type="button">Tambah</button>
+    						</span>
+						</div>
 					</div>
+					
 					<input style='float: right;' type="submit" class="btn btn-primary" name='simpan-kategori' value="simpan">
 				<?php echo form_close();?>
 			</div>
@@ -60,20 +75,7 @@
 				<?php echo form_open('admin_layout/set_identity', 'id="form_identity"'); ?>
 					<div class="form-group">
 						<label for="daftar-admin" >Daftar Admin</label>
-						<div  style="padding-bottom: 10px;" class="col-md-12">
-								<span style='width:85%;font-size: 19px;' class='col-md-10 input-group-addon'>Nama admin</span>
-								<select style="width: 15%;" class="form-control col-md-1">
-									<option>user</option>
-									<option>admin</option>
-								</select>
-						</div>
-						<div  style="padding-bottom: 10px;" class="col-md-12">
-								<span style='width:85%;font-size: 19px;' class='col-md-10 input-group-addon'>Nama admin</span>
-								<select style="width: 15%;" class="form-control col-md-1">
-									<option>user</option>
-									<option>admin</option>
-								</select>
-						</div>
+						<?php $this->load->view('paginasi_admin'); ?>
 					</div>
 					<div class="form-group">
 						<label for="tambah-User" >Daftar User</label>
@@ -151,7 +153,7 @@
 								<span style ='font-size: 16px;' class='glyphicon glyphicon-remove'></span>						
 								</a>
 								<a class='btn btn-default col-md-1'>
-								<span style ='font-size: 16px;' class='glyphicon glyphicon-eye-open'></span>	
+								<span style ='font-size: 16px;' class='glyphicon glyphicon-eye-open' data-toggle="modal" data-target="#modalBaca"></span>	
 								</a>
 						</div>
 						<div  style="padding-bottom: 10px;" class="col-md-12">
@@ -160,7 +162,7 @@
 								<span style ='font-size: 16px;' class='glyphicon glyphicon-remove'></span>						
 								</a>
 								<a class='btn btn-default col-md-1'>
-								<span style ='font-size: 16px;' class='glyphicon glyphicon-eye-open'></span>	
+								<span style ='font-size: 16px;' class='glyphicon glyphicon-eye-open'  data-toggle="modal" data-target="#modalBaca"></span>	
 								</a>
 						</div>
 						<div  style="padding-bottom: 10px;" class="col-md-12">
@@ -169,7 +171,7 @@
 								<span style ='font-size: 16px;' class='glyphicon glyphicon-remove'></span>						
 								</a>
 								<a class='btn btn-default col-md-1'>
-								<span style ='font-size: 16px;' class='glyphicon glyphicon-eye-open'></span>	
+								<span style ='font-size: 16px;' class='glyphicon glyphicon-eye-open'  data-toggle="modal" data-target="#modalBaca"></span>	
 								</a>
 						</div>
 					</div>
@@ -182,7 +184,7 @@
 								<span style ='font-size: 16px;' class='glyphicon glyphicon-remove'></span>						
 								</a>
 								<a class='btn btn-default col-md-1'>
-								<span style ='font-size: 16px;' class='glyphicon glyphicon-eye-open'></span>	
+								<span style ='font-size: 16px;' class='glyphicon glyphicon-eye-open'  data-toggle="modal" data-target="#modalBaca"></span>	
 								</a>
 						</div>
 						<div  style="padding-bottom: 10px;" class="col-md-12">
@@ -191,11 +193,28 @@
 								<span style ='font-size: 16px;' class='glyphicon glyphicon-remove'></span>						
 								</a>
 								<a class='btn btn-default col-md-1'>
-								<span style ='font-size: 16px;' class='glyphicon glyphicon-eye-open'></span>	
+								<span style ='font-size: 16px;' class='glyphicon glyphicon-eye-open'  data-toggle="modal" data-target="#modalBaca"></span>	
 								</a>
 						</div>
 					</div>
 				<?php echo form_close();?>
+			</div>
+		</div>
+		<div id="modalBaca" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+				<div class="modal-header">
+						<h4>Nama user</h4>
+				</div>
+				<div class="modal-body">
+					<h6>Dari : eunha@gmail.com</h6>
+					<p>isi pesan dan saran isi pesan dan saran isi pesan dan saran isi pesan dan saran isi pesan dan saran
+					isi pesan dan saran isi pesan dan saranisi pesan dan saran</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+				</div>
 			</div>
 		</div>
 	</div>

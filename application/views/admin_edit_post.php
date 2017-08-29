@@ -74,12 +74,23 @@
 					<div class="form-group">
 						<label for="kategori_post" >kategori</label>
 						<select id="kategori" form="post-article" name="kategori_post" class="form-control">
-							<option value="<?php echo $a=$id_post->post_kategori;?>"><?php echo $a;?></option>
+							
 							<option>-</option>
-							<!-- list kategori sesuai database -->
-							<option >kategori 1</option>
-							<option >kategori 2</option>
-							<option >kategori 3</option>
+							<?php
+								if($kategori != null)
+								{
+									$obj =json_decode($kategori->attribute_values);
+									$i=1;
+									foreach ($obj as $key => $value ) {
+										?>
+										<option value="<?php echo $value;?>" <?php if($value == $id_post->post_kategori){ echo 'selected';}?> > 
+										<?php echo $value;?>
+											
+										</option>
+										<?php
+									}
+								}
+							?>
 							
 						</select>
 					

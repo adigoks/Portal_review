@@ -29,17 +29,22 @@
 			<div class="form-group">
 				<label for="url">Judul Page :</label>
 				<select class="form-control" name="url">
-				<option value="<?php echo $url_name->menu_url; ?>"><?php if ($url_name->menu_url_type == 'page') {
+				<option value="<?php echo $url_name->menu_url; ?>">
+				<?php if ($url_name->menu_url_type == 'page') {
 					echo $url_name->menu_url;
 				} else {
 					echo "" ;
 				}
 				 ?></option>
 				<option></option>
-				<?php foreach ($page_list as $page) 
-				{ ?>
+				<?php 
+					foreach ($page_list as $page) 
+					{ 
+				?>
 					<option value="<?php echo $page->page_judul; ?>"><?php echo $page->page_judul; ?></option>
-				<?php } ?>
+				<?php 
+					} 
+				?>
 			</select> 
 
 			</div>
@@ -103,6 +108,31 @@
 						<?php  
 					}
 
+					?>
+						
+				</select>
+			</div>
+			<?php endif ?>
+
+			<?php if ($tipe == 'kategori'): ?>
+			<div class="form-group">
+				<label for="url">Nama kategori :</label> 
+				<select class="form-control" name="url">
+
+					<option></option>
+					<?php
+						if($kategori != null)
+						{
+							$obj =json_decode($kategori->attribute_values);
+							$i=1;
+							foreach ($obj as $key => $value ) {
+								$kategori_uri = str_replace(' ', '-', $value);
+								$new_uri = 'kategori/'.$kategori_uri;
+								?>
+								<option value="<?php echo 'kategori/'.$kategori_uri;?>" <?php if($new_uri == $url_name->menu_url){ echo 'selected';}?> ><?php echo $value;?></option>
+								<?php
+							}
+						}
 					?>
 						
 				</select>
