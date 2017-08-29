@@ -72,10 +72,11 @@
 
 		<div id="pengaturan2" class="panel-collapse collapse">
 			<div class="panel-body">
+				<?php $this->load->view('paginasi_admin'); ?>
 				<?php echo form_open('admin_layout/set_identity', 'id="form_identity"'); ?>
 					<div class="form-group">
 						<label for="daftar-admin" >Daftar Admin</label>
-						<?php $this->load->view('paginasi_admin'); ?>
+						
 					</div>
 					<div class="form-group">
 						<label for="tambah-User" >Daftar User</label>

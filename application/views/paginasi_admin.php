@@ -5,7 +5,7 @@
 
 if($page > 1 ){
 	$prev_page = $page-1;
-?><button class='main-paging btn btn-default' value='<?php echo $page - 1; ?>' onclick="location.href='<?php echo base_url().'admin-dashboard/pengaturan#pengaturan2'.$prev_page;?>'">previous</button>
+?><button class='main-paging btn btn-default' value='<?php echo $page - 1; ?>' onclick="location.href='<?php echo base_url().'admin-dashboard/pengaturan/2'.$prev_page;?>'">previous</button>
 <?php
 }
 if($config['total_rows']% $perpage == 0)
@@ -61,11 +61,11 @@ if($page_count>=5)
 	if($page!=$start)	
 	{
 		?>
-		<button class='main-paging btn btn-default' value='<?php echo $start; ?>' onclick="location.href='<?php echo base_url().'admin-dashboard/pengaturan#pengaturan2/'.$start;?>'"><?php echo $start; ?></button> 
+		<button class='main-paging btn btn-default' value='<?php echo $start; ?>' onclick="location.href='<?php echo base_url().'admin-dashboard/pengaturan/'.$start;?>'"><?php echo $start; ?></button> 
 		<?php	
 	}else{
 		?>
-		<button class='main-paging btn btn-default' value='<?php echo $start; ?>' onclick="location.href='<?php echo base_url().'admin-dashboard/pengaturan#pengaturan2/'.$start;?>'" disabled><?php echo $start; ?></button> 
+		<button class='main-paging btn btn-default' value='<?php echo $start; ?>' onclick="location.href='<?php echo base_url().'admin-dashboard/pengaturan/'.$start;?>'" disabled><?php echo $start; ?></button> 
 		<?php	
 	}
 	
@@ -77,7 +77,7 @@ if($page_count>=5)
 	if($page!=$start)	
 	{
 		?>
-		<button class='main-paging btn btn-default' value='<?php echo $start; ?>' onclick="location.href='<?php echo base_url().'admin_dashboard/pengaturan#pengaturan2/'.$start;?>'"><?php echo $start; ?></button> 
+		<button class='main-paging btn btn-default' value='<?php echo $start; ?>' onclick="location.href='<?php echo base_url().'admin-dashboard/pengaturan#pengaturan2/'.$start;?>'"><?php echo $start; ?></button> 
 		<?php	
 	}else{
 		?>
