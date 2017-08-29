@@ -43,7 +43,25 @@
 		<?php echo $post->post_isi;?>	
 	</div>
 	<div>
-		<?php $this->load->view('front_comment');?>
-		<?php $this->load->view('front_comment_post');?>
+	<?php if($post->post_enable_comment == 1){
+		if (!isset($_SESSION['logged'])) {
+
+			if ($komentar != NULL) { 
+				$this->load->view('front_comment_post');
+			}
+		}
+		else{	
+			$this->load->view('front_comment');
+			if ($komentar == NULL) { ?>
+
+				<p>Jadilah yang pertama berkomentar di Artikel ini</p>
+
+			<?php }else{
+
+				$this->load->view('front_comment_post');
+			}	
+		}
+	} ?>
+		
 	</div>
 </div>

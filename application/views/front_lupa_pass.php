@@ -1,5 +1,5 @@
 <div class="form-log-u act">
-	<div class="font-log container-fluid bg">
+	<div class="font-log2 container-fluid bg">
 	<h1 class="t-log">LUPA PASSWORD</h1><br>
 	
 	<div class="form-log form-bord col-md-4 col-md-offset-1">

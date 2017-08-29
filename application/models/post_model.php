@@ -114,8 +114,8 @@
         function showUri($uri)
         {
             $this->db->select('*, portal_user.id as id_user');
-            $this->db->from('portal_post');
-            $this->db->join('portal_user', 'portal_post.post_author = portal_user.id' );
+            $this->db->from('portal_user');
+            $this->db->join('portal_post', 'portal_user.id = portal_post.post_author' );
             $this->db->where('post_uri', $uri);
             $this->db->order_by('post_waktu','desc');
             
