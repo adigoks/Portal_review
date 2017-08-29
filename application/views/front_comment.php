@@ -17,10 +17,9 @@
 						</div>
 						<div class="col-md-8" style="padding-bottom: 20px">
 							<textarea class=" c-textarea form-control" name="komen_box" form="komen-box" placeholder="join the discusion"></textarea>
-						</div>
-						<div>
 							<input class="" type="submit" name="komen" value="Enter"  />
 							<input type="hidden" name="post_id" value="<?php echo $post->id; ?>" />
+							<input type="hidden" name="post_url" value="<?php echo $post->post_uri; ?>" />
 						</div>
 					<?php echo form_close(); ?>
 					</div>

@@ -46,19 +46,18 @@
 	<?php if($post->post_enable_comment == 1){
 		if (!isset($_SESSION['logged'])) {
 
-			if ($komentar != NULL) { 
-				$this->load->view('front_comment_post');
+			if (!isset($komentar) || $komentar->komen_post != NULL) { 
+				$this->load->view('paginasi_komen');
 			}
 		}
 		else{	
 			$this->load->view('front_comment');
-			if ($komentar == NULL) { ?>
-
+			if (!isset($komentar) || $komentar->komen_post == NULL ) {?>
 				<p>Jadilah yang pertama berkomentar di Artikel ini</p>
 
 			<?php }else{
 
-				$this->load->view('front_comment_post');
+				$this->load->view('paginasi_komen');
 			}	
 		}
 	} ?>
