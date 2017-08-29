@@ -58,6 +58,15 @@
             return $this->db->get();
         }
 
+         function select_admin()
+        {
+            $this->db->select('*');
+            $this->db->from('portal_user');
+            $this->db->where('user_level < 2');
+
+            return $this->db->get();
+        }
+
         function select_us1($username, $password)
         {
             $this->db->select('*');
@@ -87,6 +96,17 @@
             $this->db->order_by('id','asc');
             if($limit !=NULL)
             {
+                $this->db->limit($limit['perpage'],$limit['offset']);
+            }
+            return $this->db->get();
+        }
+        function pagination_admin($limit=array())
+        {
+            $this->db->select('*');
+            $this->db->from('portal_user');
+            $this->db->where('user_level',1);
+            $this->db->order_by('id','asc');
+            if($limit !=NULL){
                 $this->db->limit($limit['perpage'],$limit['offset']);
             }
             return $this->db->get();
