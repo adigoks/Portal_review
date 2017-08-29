@@ -24,6 +24,41 @@ $(document).ready(function(){
         $('#'+selector).remove();
         return false;
     });
+
+    $('#add-kategori').off().click(function(e){
+        if($("[name='new-kategori']").val() != ''){
+            var i = 1;
+            $('.kategori-item').each(function(){
+                $(this).attr('id', 'kategori-item-'+i);
+                $(this).find('button').attr('target', '#kategori-item-'+i);
+                i++;
+            })
+            var value = $("[name='new-kategori']").val();
+            $('#kategori-list').append("<div id='kategori-item-"+i+"' style='padding-bottom: 10px;' class='col-md-12 kategori-item'>"+
+                                    "<input type='text' name='kategori_value[]' value='"+value+"' hidden>"+
+                                    "<span style='width:90%;font-size: 16px;' class='col-md-1 input-group-addon kategori-value'>"+value+"</span>"+
+                                    "<button form='' class='btn btn-default col-md-1'  target='#kategori-item-"+i+"' name='tambah-kategori' value='simpan'>"+
+                                    "<span style ='font-size: 16px;' class='glyphicon glyphicon-remove'></span>"+
+                                    "</button>"+
+                                "</div>");
+            
+        }
+        return false;
+        
+    })
+
+    $('.kategori-item > button').off().click(function(){
+        var target = $(this).attr('target');
+        $(target).remove();
+        
+        var i = 1;
+        $('.kategori-item').each(function(){
+            $(this).attr('id', 'kategori-item-'+i);
+            $(this).find('button').attr('target', '#kategori-item-'+i);
+            i++;
+        });
+        return false;
+    })
 })
 
 $(document).bind('DOMSubtreeModified', function () {
@@ -35,6 +70,20 @@ $(document).bind('DOMSubtreeModified', function () {
         $('#'+selector).remove();
         return false;
     });
+
+    $('.kategori-item > button').off().click(function(){
+        var target = $(this).attr('target');
+        $(target).remove();
+        
+        var i = 1;
+        $('.kategori-item').each(function(){
+            $(this).attr('id', 'kategori-item-'+i);
+            $(this).find('button').attr('target', '#kategori-item-'+i);
+            i++;
+        });
+        return false;
+    })
+
 });
 
 

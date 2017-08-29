@@ -18,6 +18,7 @@
 			$this->load->model('post_model');
 			$this->load->model('page_model');
 			$this->load->model('user_model');
+			$this->load->model('attribute_model');
 
 		}
 
@@ -72,8 +73,8 @@
 
 			if ($this->form_validation->run()==FALSE) 
 			{
-				$id = $this->session->userdata('id_author');
-				$data['usr']=$this->user_model->selectId($id)->row();
+				$id_author = $this->session->userdata('id_author');
+				$data['usr']=$this->user_model->selectId($id_author)->row();
 				$menu['parent'] = $this->menu_model->select_by()->result();
 
 				$data['content'] = $this->load->view('form_tambah_menu', $menu, true);
@@ -96,8 +97,8 @@
 				}
 				else if ($a == 'external_link') 
 				{
-					$id = $this->session->userdata('id_author');
-				$data['usr']=$this->user_model->selectId($id)->row();
+					$id_author = $this->session->userdata('id_author');
+					$data['usr']=$this->user_model->selectId($id_author)->row();
 					$data['menu'] = $this->menu_model->selectId($id)->row();
 					$data['content'] = $this->load->view('tambah_menu_link', $data, true);
 
@@ -106,8 +107,8 @@
 				}
 				else if ($a == 'post') 
 				{
-					$id = $this->session->userdata('id_author');
-					$data['usr']=$this->user_model->selectId($id)->row();
+					$id_author = $this->session->userdata('id_author');
+					$data['usr']=$this->user_model->selectId($id_author)->row();
 					$data['post_list'] = $this->post_model->showAll()->result();
 					$data['menu'] = $this->menu_model->selectId($id)->row();
 					$data['content'] = $this->load->view('tambah_menu_post', $data, true);
@@ -117,8 +118,8 @@
 				}
 				else if ($a == 'tag') 
 				{
-					$id = $this->session->userdata('id_author');
-					$data['usr']=$this->user_model->selectId($id)->row();
+					$id_author = $this->session->userdata('id_author');
+					$data['usr']=$this->user_model->selectId($id_author)->row();
 					$data['tag_list'] = $this->post_model->showAll()->result();
 					$data['menu'] = $this->menu_model->selectId($id)->row();
 					$data['content'] = $this->load->view('tambah_menu_tag', $data, true);
@@ -128,14 +129,23 @@
 				}
 				else if ($a == 'page') 
 				{
-					$id = $this->session->userdata('id_author');
-					$data['usr']=$this->user_model->selectId($id)->row();
+					$id_author = $this->session->userdata('id_author');
+					$data['usr']=$this->user_model->selectId($id_author)->row();
 					$data['page_list'] = $this->page_model->showAll()->result();
 					$data['menu'] = $this->menu_model->selectId($id)->row();
 					$data['content'] = $this->load->view('tambah_menu_page', $data, true);
 					$data['content'] =$this->load->view('admin_body', $data,true);
 					$this->load->view('admin_pane', $data);
 
+				}else if ($a = 'kategori')
+				{
+					$id_author = $this->session->userdata('id_author');
+					$data['usr']=$this->user_model->selectId($id_author)->row();
+					$data['kategori'] = $this->attribute_model->selectName('kategori')->row();
+					$data['menu'] = $this->menu_model->selectId($id)->row();
+					$data['content'] = $this->load->view('tambah_menu_kategori', $data, true);
+					$data['content'] =$this->load->view('admin_body', $data,true);
+					$this->load->view('admin_pane', $data);
 				}
 
 
@@ -156,7 +166,8 @@
 			if ($this->form_validation->run()==FALSE) 
 			{
 				$id = $this->session->userdata('id_author');
-				$data['usr']=$this->user_model->selectId($id)->row();	
+				$data['usr']=$this->user_model->selectId($id)->row();
+				$data['menu'] = $this->menu_model->selectId($data['menu_parent'])->row();	
 				$data['content'] = $this->load->view('tambah_menu_link', $data, true);
 
 				$data['content'] =$this->load->view('admin_body', $data,true);
@@ -186,6 +197,7 @@
 				$id = $this->session->userdata('id_author');
 				$data['usr']=$this->user_model->selectId($id)->row();
 				$data['post_list'] = $this->post_model->showAll()->result();
+				$data['menu'] = $this->menu_model->selectId($data['menu_parent'])->row();
 				$data['content'] = $this->load->view('tambah_menu_post', $data, true);
 
 				$data['content'] =$this->load->view('admin_body', $data,true);
@@ -215,6 +227,37 @@
 				$id = $this->session->userdata('id_author');
 				$data['usr']=$this->user_model->selectId($id)->row();
 				$data['tag_list'] = $this->post_model->showAll()->result();
+				$data['menu'] = $this->menu_model->selectId($data['menu_parent'])->row();
+				$data['content'] = $this->load->view('tambah_menu_tag', $data, true);
+
+				$data['content'] =$this->load->view('admin_body', $data,true);
+				$this->load->view('admin_pane', $data);
+			}
+			else
+			{
+				$this->menu_model->insert($data);
+				redirect(site_url('admin-dashboard/menu/sesuaikan'));
+			}
+
+		}
+
+		function menu_tambah_kategori()
+		{
+			
+			$data['menu_name'] = $this->input->post('menu_name');
+			$data['menu_url_type'] = $this->input->post('menu_tipe');
+			$data['menu_parent'] = $this->input->post('parent');
+			$data['menu_url'] = $this->input->post('kategori');
+			$data['menu_order'] = $this->menu_model->select_by($data['menu_parent'])->num_rows() + 1;
+
+			$this->form_validation->set_rules('kategori','Nama kategori','required');
+
+			if ($this->form_validation->run()==FALSE) 
+			{
+				$id = $this->session->userdata('id_author');
+				$data['usr']=$this->user_model->selectId($id)->row();
+				$data['kategori'] = $this->attribute_model->selectName('kategori')->row();
+				$data['menu'] = $this->menu_model->selectId($data['menu_parent'])->row();
 				$data['content'] = $this->load->view('tambah_menu_tag', $data, true);
 
 				$data['content'] =$this->load->view('admin_body', $data,true);
@@ -243,6 +286,7 @@
 			if ($this->form_validation->run()==FALSE) 
 			{
 				$data['page_list'] = $this->page_model->showAll()->result();
+				$data['menu'] = $this->menu_model->selectId($data['menu_parent'])->row();
 				$data['content'] = $this->load->view('tambah_menu_page', $data, true);
 
 				$data['content'] =$this->load->view('admin_body', $data,true);
@@ -368,6 +412,7 @@
 				$data['page_list'] = $this->page_model->showAll()->result();
 				$data['post_list'] = $this->post_model->showAll()->result();
 				$data['url_name'] = $this->menu_model->selectId($id)->row();
+				$data['kategori'] = $this->attribute_model->selectName('kategori')->row();
 				$data['content'] = $this->load->view('edit_menu_next', $data, true);
 
 				$data['content'] =$this->load->view('admin_body', $data,true);

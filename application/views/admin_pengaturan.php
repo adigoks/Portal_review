@@ -3,7 +3,9 @@
 		<h4>Pengaturan</h4><br/>
 	</div>
 </div>	
-
+<div>
+	<?php echo $this->session->flashdata('pesan'); ?>
+</div>
 <div>
 	<div id='pengaturan-accordion' class="panel-group">
 		<div class="panel panel-default">
@@ -16,32 +18,45 @@
 
 		<div id="pengaturan1" class="panel-collapse collapse">
 			<div class="panel-body">
-				<?php echo form_open('admin_layout/set_identity', 'id="form_identity"'); ?>
-					<div class="form-group">
+				<?php echo form_open('admin_pengaturan/update_kategori', 'id="form_identity"'); ?>
+					<div class="form-group" id='kategori-list'>
+						<input type="number" name="id_kategori" value="<?php if($kategori != null)
+								{echo $kategori->id;}?>" hidden>
 						<label for="daftar-kategori">Daftar Kategori</label>
-							<div  style="padding-bottom: 10px;" class="col-md-12">
-								<span style='width:90%;font-size: 16px;' class='col-md-1 input-group-addon'>Nama Kategori</span>
-								<a class='btn btn-default col-md-1'>
+							<?php 
+								if($kategori != null)
+								{
+									$obj =json_decode($kategori->attribute_values);
+									$i=1;
+									foreach ($obj as $key => $value ) {
+									?>
+							
+							<div id='kategori-item-<?php echo $i;?>' style='padding-bottom: 10px;' class='col-md-12 kategori-item'>
+								<input type='text' name='kategori_value[]' value='<?php echo $value;?>' hidden>
+								<span style='width:90%;font-size: 16px;' class='col-md-1 input-group-addon kategori-value'><?php echo $value;?></span>
+								<button form='' class='btn btn-default col-md-1' target='#kategori-item-<?php echo $i;?>' value='simpan'>
 								<span style ='font-size: 16px;' class='glyphicon glyphicon-remove'></span>						
-								</a>
+								</button>
 							</div>
-							<div  style="padding-bottom: 10px;" class="col-md-12">
-								<span style='width:90%;font-size: 16px;' class='col-md-1 input-group-addon'>Nama Kategori</span>
-								<a class='btn btn-default col-md-1'>
-								<span style ='font-size: 16px;' class='glyphicon glyphicon-remove'></span>						
-								</a>
-							</div>
-							<div  style="padding-bottom: 10px;" class="col-md-12">
-								<span style='width:90%;font-size: 16px;' class='col-md-1 input-group-addon'>Nama Kategori</span>
-								<a class='btn btn-default col-md-1'>
-								<span style ='font-size: 16px;' class='glyphicon glyphicon-remove'></span>						
-								</a>
-							</div>
+									<?php	# code...
+									$i++;
+									}
+									
+								}
+
+							?>
+							
 					</div><br>
 					<div class="form-group">
-						<label for="tambah-kategori" >Tambah Kategori</label>
-						<input class="form-control" type="text" id="tambah-kategori" name="tambah_kategori" placeholder="Nama Kategori" >
+						<label for="new-kategori" >Tambah Kategori</label>
+						<div class="input-group">
+    						<input type="text" class="form-control" name='new-kategori' placeholder="Tambah Kategori...">
+    						<span class="input-group-btn">
+    							<button id='add-kategori' form="" class="btn btn-default" type="button">Tambah</button>
+    						</span>
+						</div>
 					</div>
+					
 					<input style='float: right;' type="submit" class="btn btn-primary" name='simpan-kategori' value="simpan">
 				<?php echo form_close();?>
 			</div>
