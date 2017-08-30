@@ -52,20 +52,41 @@
 	<?php if($post->post_enable_comment == 1){
 		if (!isset($_SESSION['logged'])) {
 
-			if (!isset($komentar) || $komentar->komen_post != NULL) { 
-				$this->load->view('paginasi_komen');
-			}
+			if (!isset($komentar) || $komentar->komen_post != NULL) {?>
+				<div id="komen_paging">
+					
+				</div>
+				<!-- $this->load->view('paginasi_komen'); -->
+
+			<?php }
 		}
 		else{	
 			$this->load->view('front_comment');
 			if (!isset($komentar) || $komentar->komen_post == NULL ) {?>
 				<p>Jadilah yang pertama berkomentar di Artikel ini</p>
 
-			<?php }else{
-
-				$this->load->view('paginasi_komen');
-			}	
+			<?php }else{ ?>
+				<div id="komen_paging">
+					
+				</div>
+				<!-- $this->load->view('paginasi_komen'); -->
+			<?php }	
 		}
 	} ?>	
 	</div>
 </div>
+
+<script>
+$(document).ready(function() {
+	var $komen_paging = function (){
+	    $('.komen-paging').click(function (){
+		var $val =$(this).val();
+		
+		var $target = '<?php echo base_url().'post/paging/';?>'+$val+'/'+'<?php echo $post->id;?>';
+		$("#komen_paging" ).load($target,$komen_paging);
+	});
+	}
+	console.log('aaaa');
+	$("#komen_paging" ).load( "<?php echo base_url().'post/paging/1/'.$post->id;?>",$komen_paging);
+});
+</script>

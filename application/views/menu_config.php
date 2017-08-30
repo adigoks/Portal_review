@@ -33,7 +33,7 @@
 				if($key['menu_parent'] == 0){
 					$name = str_replace(" ", "-", $key['menu_name']);
 					echo "	
-							<li id='menu-$key[menu_name]' class='panel panel-default'>
+							<li id='menu-$name' class='panel panel-default'>
 								<input type='number' class='id-menu' name='menu[$i][id]' value='$key[id]' hidden>
 								<input type='number' class='order-menu' name='menu[$i][order]' value='$key[menu_order]' hidden>
 								<div class='panel-heading'>
@@ -162,7 +162,13 @@
 	    $( "#parent-menu" ).sortable({
 	      revert: true,
 	      items: "li:not(.config)",
-	      update : function(event, ui){var $array = $( "#parent-menu" ).sortable('toArray'); $.each($array, function(index,value){var order = index+1; $('#'+value+' > .order-menu').attr('value',order);})}
+	      update : function(event, ui){
+	      	var $array = $( "#parent-menu" ).sortable('toArray'); 
+	      	$.each($array, function(index,value){
+	      		var order = index+1; 
+	      		$('#'+value+' > .order-menu').attr('value',order);
+	      	})
+	      }
 	    });
     
 	});

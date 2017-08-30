@@ -86,6 +86,21 @@ $(document).bind('DOMSubtreeModified', function () {
         return false;
     })
 
+    $(".reply_button").off().click(function(){
+        var target = $(this).attr('target');
+
+        $(".comment-r").each(function(){
+            var id_comment = $(this).attr('id');
+            if(id_comment==target ){
+                $("#"+id_comment).toggle("slow");
+                console.log('yo');
+            }   
+
+        });
+         
+            
+    });
+
 });
 
 
@@ -194,7 +209,7 @@ $(window).on('load',function() {
            
     }
     
-     $(".reply_button").click(function(){
+     $(".reply_button").off().click(function(){
         var target = $(this).attr('target');
 
         $(".comment-r").each(function(){

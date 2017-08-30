@@ -143,6 +143,70 @@
 			//var_dump($data);
 			echo json_encode(array('id_layout' => $id));
 		}
+		function update_footer(){
+			if($this->input->post('id') != 'undefined')
+			{
+				$data['id'] = explode(',', $this->input->post('id'));
+				
+			}
+			if($this->input->post('layout_name') != 'undefined')
+			{
+				$data['layout_name'] = explode(',' ,$this->input->post('layout_name'));
+			}
+			if($this->input->post('layout_order') != 'undefined')
+			{
+				$data['layout_order'] = explode(',', $this->input->post('layout_order'));
+			}
+			if($this->input->post('layout_span') != 'undefined')
+			{
+				$data['layout_span'] = explode(',', $this->input->post('layout_span'));
+			}
+			if($this->input->post('layout_parent') != 'undefined')
+			{
+				$data['layout_parent'] = explode(',', $this->input->post('layout_parent'));
+			}
+			if($this->input->post('layout_content') != 'undefined')
+			{
+				$data['layout_content'] = explode(',', $this->input->post('layout_content'));
+			}
+			
+			var_dump($data);
+			for ($i=0; $i < count($data['id']); $i++) { 
+				if(isset($data['id']) && $data['id'][$i]!='')
+				{
+					$id = $data['id'][$i];	
+				}
+				if(isset($data['layout_name']) && $data['layout_name'][$i]!='')
+				{
+					$update['layout_name'] = $data['layout_name'][$i];	
+				}
+				if(isset($data['layout_order']) && $data['layout_order'][$i]!='')
+				{
+					$update['layout_order'] = $data['layout_order'][$i];	
+				}
+				if(isset($data['layout_parent']) && $data['layout_parent'][$i]!='')
+				{
+					$update['layout_parent'] = $data['layout_parent'][$i];	
+				}
+				if(isset($data['layout_span']) && $data['layout_span'][$i]!='')
+				{
+					$update['layout_span'] = $data['layout_span'][$i];	
+				}
+				if(isset($data['layout_content']) && $data['layout_content'][$i]!='')
+				{
+					$update['layout_content'] = $data['layout_content'][$i];	
+				}
+				
+				//var_dump($update);
+				if($update!=null)
+				{
+					$this->layout_model->update($update, $id);
+				}
+			}
+			
+			
+			// echo json_encode(array('id_layout' => $id));
+		}
 
 		function init_def_layout(){
 			if($this->layout_model->selectName('footer_layout')->row() == null)
