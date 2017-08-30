@@ -1,3 +1,4 @@
+
 <?php foreach ($paging_komentar as $k) {
 		$var['data']=$k;
 		$var['data_uri'] = $post;
@@ -8,8 +9,8 @@
 	}
 
 if($page > 1 ){
-	$prev_page = $page-1;
-?><button class='main-paging btn btn-default' value='<?php echo $page - 1; ?>' onclick="location.href='<?php echo base_url().'post/'.$post->post_uri.'/'.$prev_page;?>'">previous</button>
+
+?><button class='komen-paging btn btn-default' value='<?php echo $page - 1; ?>'>previous</button>
 <?php
 }
 if($config['total_rows']% $perpage == 0)
@@ -65,11 +66,11 @@ if($page_count>=5)
 	if($page!=$start)	
 	{
 		?>
-		<button class='main-paging btn btn-default' value='<?php echo $start; ?>' onclick="location.href='<?php echo base_url().'post/'.$post->post_uri.'/'.$start;?>'"><?php echo $start; ?></button> 
+		<button class='komen-paging btn btn-default' value='<?php echo $start; ?>'><?php echo $start; ?></button> 
 		<?php	
 	}else{
 		?>
-		<button class='main-paging btn btn-default' value='<?php echo $start; ?>' onclick="location.href='<?php echo base_url().'post/'.$post->post_uri.'/'.$start;?>'" disabled><?php echo $start; ?></button> 
+		<button class='komen-paging btn btn-default' value='<?php echo $start; ?>'></button> 
 		<?php	
 	}
 	
@@ -81,11 +82,11 @@ if($page_count>=5)
 	if($page!=$start)	
 	{
 		?>
-		<button class='main-paging btn btn-default' value='<?php echo $start; ?>' onclick="location.href='<?php echo base_url().'post/'.$post->post_uri.'/'.$start;?>'"><?php echo $start; ?></button> 
+		<button class='komen-paging btn btn-default' value='<?php echo $start; ?>'><?php echo $start; ?></button> 
 		<?php	
 	}else{
 		?>
-		<button class='main-paging btn btn-default' value='<?php echo $start; ?>' onclick="location.href='<?php echo base_url().'post/'.$post->post_uri.'/'.$start;?>'" disabled><?php echo $start; ?></button> 
+		<button class='komen-paging btn btn-default' value='<?php echo $start; ?>'></button> 
 		<?php	
 	}
 
@@ -94,8 +95,22 @@ if($page_count>=5)
 }
 
 if($page < $page_count){
-	$next_page=$page+1;
 ?>
-<button class='main-paging btn btn-default' value='<?php echo $page + 1; ?>' onclick="location.href='<?php echo base_url().'post/'.$post->post_uri.'/'.$next_page;?>'">next</button> 
+<button class='komen-paging btn btn-default' value='<?php echo $page + 1; ?>'>next</button> 
 <?php 
 } ?>
+
+<script>
+$(document).ready(function() {
+	var $komen_paging = function (){
+	    $('.komen-paging').click(function (){
+		var $val =$(this).val();
+		
+		$("#komen_paging *" ).remove();
+		var $target = '<?php echo base_url().'post/post_detail/';?>'+$val;
+		$("#komen_paging" ).load($target,$komen_paging);
+	});
+	}
+	$("#komen_paging" ).load( "<?php echo base_url().'post/post_detail/'; ?>",$komen_paging);
+});
+</script>

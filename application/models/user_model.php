@@ -105,7 +105,7 @@
             $this->db->select('*');
             $this->db->from('portal_user');
             $this->db->where('user_level',1);
-            $this->db->order_by('id','asc');
+            $this->db->order_by('user_name','asc');
             if($limit !=NULL){
                 $this->db->limit($limit['perpage'],$limit['offset']);
             }

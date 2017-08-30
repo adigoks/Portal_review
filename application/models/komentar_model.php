@@ -34,18 +34,19 @@
             $this->db->select('*, portal_komentar.id as komentar_id');
             $this->db->from('portal_komentar');
             $this->db->join('portal_user', 'portal_user.id = portal_komentar.komen_user_id');
+            $this->db->order_by('komen_waktu','desc');
             $this->db->where('komen_post', $id);
             $this->db->where('komen_parent', 0);
                 
             return $this->db->get();
         }
 
-        function select_komentar_balas($id_balas)
+        function select_komentar_balas()
         {
             $this->db->select('*, portal_komentar.id as komentar_id');
             $this->db->from('portal_komentar');
             $this->db->join('portal_user', 'portal_user.id = portal_komentar.komen_user_id');
-            $this->db->where('komen_parent', $id_balas);
+            $this->db->order_by('komen_waktu','desc');
                 
             return $this->db->get();
         }
