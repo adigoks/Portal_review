@@ -21,13 +21,11 @@
 				</div>
 
 				<?php if(isset($_SESSION['logged'])){ ?>
-
-				<div id="reply" class="rp-comment"><a>Reply</a></div>
-				<?php }  ?>
-				<div>	
-
-					<div id="comment-r" class="comment-r ">
-
+				<div  class="rp-comment reply_button" target="<?php echo $data->komentar_id; ?>"><a>Reply</a></div>
+				<?php } ?>
+				<div id="balas">	
+					<div id="<?php echo $data->komentar_id; ?>" class="comment-r">
+					
 						<div>
 							<div style="padding-top: 20px;">
 								<fieldset>
@@ -56,7 +54,7 @@
 					</div>
 					<?php }  ?>
 
-					<?php if (isset($balas)) {
+					<?php if (isset($balas) || $data->komentar_id == $balas->komen_parent) {
 					 foreach ($balas as $data2) {
 					 	if ($data2->komen_parent == $data->komentar_id) { ?>
 					 
@@ -73,7 +71,7 @@
 									<h5><b><?php echo $data2->user_name; ?> &#8226;&nbsp;</b></h5> 
 								</div>
 								<div>
-									<h5><?php $date=$data2->komen_waktu; echo date("d - F - Y, l H:i:s",strtotime($date)); ?></h5>
+									<h5><?php $date=$data->komen_waktu; echo date("d - F - Y, l H:i:s",strtotime($date)); ?></h5>
 								</div>
 									<div class="comment-isi">
 										<?php echo $data2->komen_isi; ?>
