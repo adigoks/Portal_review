@@ -48,7 +48,7 @@
 	<div class="img-r par">
 		<?php echo $post->post_isi;?>	
 	</div>
-	<div>
+	<div class="col-md-12 container-fluid">
 	<?php if($post->post_enable_comment == 1){
 		if (!isset($_SESSION['logged'])) {
 
@@ -66,7 +66,6 @@
 				$this->load->view('paginasi_komen');
 			}	
 		}
-	} ?>
-		
+	} ?>	
 	</div>
 </div>
