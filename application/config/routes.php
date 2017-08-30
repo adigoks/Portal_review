@@ -59,6 +59,7 @@ $route['validasi'] = 'page/validasi';
 $route['admin-dashboard/tampilan'] = 'admin_layout';
 $route['admin-dashboard/layout'] = 'admin_layout/layout';
 $route['admin-dashboard/pengaturan'] = 'admin_pengaturan';
+$route['admin-dashboard/pengaturan/ubah-pass'] = 'admin_pengaturan/ubah_pass';
 $route['user-page'] = 'page';
 $route['post/:any'] = 'post/index/';
 $route['search/(:any)/(:any)'] = 'post/search/$1/$2';

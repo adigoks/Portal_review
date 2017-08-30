@@ -21,6 +21,18 @@
 			{
 				redirect(site_url('admin_login'));
 			}
+
+			$config = Array(
+   				'protocol' => 'smtp',
+    			'smtp_host' => 'ssl://smtp.gmail.com',
+			    'smtp_port' => 465,
+			    'smtp_user' => 'wibumaster@gmail.com',
+			    'smtp_pass' => 'wibumaster12345',
+			    'mailtype'  => 'html', 
+			    'charset'   => 'iso-8859-1'
+				);
+
+			$this->load->library('email', $config);
 		}
 
 		public function index()
@@ -58,6 +70,23 @@
 			echo $this->load->view('paginasi_admin',$data, true);	
 
 		}
+		public function admin_ubah_password($page=1){
+			$data['perpage'] = 7;
+			$offset = ($page - 1) * $data['perpage'];
+
+			$data['config']=array(
+				'base_url'=>site_url('admin_pengaturan/admin_ubah_password'),
+				'total_rows'=>count($this->user_model->select_admin()->result()),
+				'per_page'=> $data['perpage']);
+			$limit['offset'] = $offset;
+			$limit['perpage'] = $data['perpage'];
+			$data['offset'] = $offset;
+			$data['total'] = $data['config']['total_rows'];
+			$data['page']=$page;
+			$data['paging_admin'] = $this->user_model->pagination_admin($limit)->result();
+
+			echo $this->load->view('paginasi_pass_reset',$data,true);
+		}
 
 		public function update_kategori()
 		{
@@ -92,6 +121,30 @@
 				$this->user_model->update_level($data, $user);
 
 				redirect(site_url('admin-dashboard/pengaturan'));
+		}
+
+		public function ubah_pass()
+		{
+				$alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+    			$password = array(); 
+    			$alpha_length = strlen($alphabet) - 1; 
+    			for ($i = 0; $i < 8; $i++) 
+    			{
+       	 		  $n = rand(0, $alpha_length);
+        		  $password[] = $alphabet[$n];
+    			}
+   
+				$email=$this->input->post('user_email');
+				$this->email->set_newline("\r\n");
+					$this->email->from('wibumaster@gmail.com', 'wibu master');
+					$this->email->to($email);
+					$this->email->subject('password baru');
+					$this->email->message(''.$password);
+					$a = $this->email->send();
+
+					$this->load->view('admin_pengaturan');
+
+
 		}
 
 	}
