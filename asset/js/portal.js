@@ -193,7 +193,7 @@ $(window).on('load',function() {
     }
     
     $("#reply").click(function(){
-        $("#comment-r").slideToggle();
+        $("#comment-r").toggle("slow");
     });
    
 
