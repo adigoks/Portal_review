@@ -49,6 +49,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
+$route['post/paging/(:any)/(:any)'] = 'post/paginasi_komen/$1/$2';
+$route['post/paging'] = 'post/paginasi_komen';
 $route['post/balas'] = 'post/balas_komen';
 $route['post/komentar'] = 'post/komentar';
 $route['kategori/(:any)/(:any)'] = 'post/kategori/$1/$2';

@@ -184,7 +184,6 @@
 							$this->email->to($email);
 							$this->email->subject('Validasi New Email ');
 							$this->email->message('Please go to this link to verify your new register email <a href="'.base_url().'page/validasi/'.$user->user_validation.'">here</a>');
-							$this->email->send();
 
 							$data['user_confirm'] = 0;
 							move_uploaded_file($file_tmp_name, "./image/user_profil/$name");
@@ -192,6 +191,7 @@
 							$data['user_password'] = md5("pnvs#%12".$pass."41;1*");
 							$data['user_name'] = $this->input->post('username');
 							$data['user_email'] = $this->input->post('email');
+							$this->email->send();
 							$this->user_model->update($data,$id);
 							$this->session->set_flashdata('notification', 'Data telah diupdate');
 							redirect(site_url('page/form_profile'));
@@ -211,14 +211,33 @@
 						}
 					}
 					else{
-						if($file_name){
-						move_uploaded_file($file_tmp_name, "./image/user_profil/$name");
-						$data['user_profile_img'] = $name;
-						$data['user_name'] = $this->input->post('username');
-						$data['user_email'] = $this->input->post('email');
-						$this->user_model->update($data,$id);
-						$this->session->set_flashdata('notification', 'Data telah diupdate');
-						redirect(site_url('page/form_profile'));
+						if($user->user_email != $email){
+							if($file_name){
+								$this->email->set_newline("\r\n");
+								$this->email->from('wibumaster@gmail.com', 'wibu master');
+								$this->email->to($email);
+								$this->email->subject('Validasi New Email ');
+								$this->email->message('Please go to this link to verify your new register email <a href="'.base_url().'page/validasi/'.$user->user_validation.'">here</a>');
+
+								$data['user_confirm'] = 0;
+								move_uploaded_file($file_tmp_name, "./image/user_profil/$name");
+								$data['user_profile_img'] = $name;
+								$data['user_name'] = $this->input->post('username');
+								$data['user_email'] = $this->input->post('email');
+								$this->email->send();
+								$this->user_model->update($data,$id);
+								$this->session->set_flashdata('notification', 'Data telah diupdate');
+								redirect(site_url('page/form_profile'));
+							}
+						}
+						elseif($file_name){
+							move_uploaded_file($file_tmp_name, "./image/user_profil/$name");
+							$data['user_profile_img'] = $name;
+							$data['user_name'] = $this->input->post('username');
+							$data['user_email'] = $this->input->post('email');
+							$this->user_model->update($data,$id);
+							$this->session->set_flashdata('notification', 'Data telah diupdate');
+							redirect(site_url('page/form_profile'));
 						}
 					}
 				}
@@ -280,11 +299,30 @@
 					}
 				}
 				else{
-					$data['user_name'] = $this->input->post('username');
-					$data['user_email'] = $this->input->post('email');
-					$this->user_model->update($data,$id);
-					$this->session->set_flashdata('notification', 'Data telah diupdate');
-					redirect(site_url('page/form_profile'));
+					if($user->user_email != $email){
+
+						$this->email->set_newline("\r\n");
+						$this->email->from('wibumaster@gmail.com', 'wibu master');
+						$this->email->to($email);
+						$this->email->subject('Validasi New Email ');
+						$this->email->message('Please go to this link to verify your new register email <a href="'.base_url().'page/validasi/'.$user->user_validation.'">here</a>');
+
+						$data['user_confirm'] = 0;
+						$data['user_name'] = $this->input->post('username');
+						$data['user_email'] = $this->input->post('email');
+						$this->email->send();
+						$this->user_model->update($data,$id);
+						$this->session->set_flashdata('notification', 'Data telah diupdate');
+						redirect(site_url('page/form_profile'));
+
+					}
+					else{
+						$data['user_name'] = $this->input->post('username');
+						$data['user_email'] = $this->input->post('email');
+						$this->user_model->update($data,$id);
+						$this->session->set_flashdata('notification', 'Data telah diupdate');
+						redirect(site_url('page/form_profile'));
+					}
 				}
 			}
 		}

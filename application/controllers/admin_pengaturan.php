@@ -14,6 +14,7 @@
 			$this->load->helper('html');
 			$this->load->helper('form');
 			$this->load->library('session');
+			$this->load->library('pagination');
 			$this->load->model('user_model');
 			$this->load->model('attribute_model');
 			if ($this->session->userdata('logged_in') == FALSE) 
@@ -27,8 +28,6 @@
 			$id = $this->session->userdata('id_author');
 			$data['usr'] = $this->user_model->selectId($id)->row();
 
-			$this->daftar_admin();
-
 			$data['kategori'] = $this->attribute_model->selectName('kategori')->row();
 
 			$data['content'] = $this->load->view('admin_pengaturan', $data, true);
@@ -38,26 +37,28 @@
 		}
 
 
-		public function daftar_admin($page=1){
-			$data['admin'] = $this->user_model->select_admin()->result(); 
+		public function permission_admin($page=1){
 
-			$data['perpage'] = 3;
+
+			$data['perpage'] = 7;
 			$offset = ($page - 1) * $data['perpage'];
 		
-			$data['config']=array('base_url'=>site_url('admin_dahsboard/pengaturan'),
+			$data['config']=array(
+						'base_url'=>site_url('admin_pengaturan/permission_admin'),
 					  	'total_rows'=>count($this->user_model->select_admin()->result()),
 					  	'per_page'=>$data['perpage']);
-
 			$limit['offset'] = $offset;
 			$limit['perpage'] = $data['perpage'];
 
 			$data['offset'] = $offset;
 			$data['total'] = $data['config']['total_rows'];
 			$data['page'] = $page;
-			$data['paging_post'] = $this->user_model->pagination_admin($limit)->result();
-			return $this->load->view('paginasi_admin',$data,true);	
+			$data['paging_admin'] = $this->user_model->pagination_admin($limit)->result();
 
-		}		
+			echo $this->load->view('paginasi_admin',$data, true);	
+
+		}
+
 		public function update_kategori()
 		{
 			
@@ -80,6 +81,17 @@
 			
 			redirect(site_url('admin-dashboard/pengaturan'));
 
+		}
+
+		public function update_level()
+		{
+				$user = $this->input->post('akun');
+			
+				$data['user_level'] = $this->input->post('level');
+
+				$this->user_model->update_level($data, $user);
+
+				redirect(site_url('admin-dashboard/pengaturan'));
 		}
 
 	}
