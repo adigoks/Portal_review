@@ -1,16 +1,9 @@
+<?php foreach ($paging_user as $user) {
+		$var['data']=$user;
+		$this->load->view('user_list',$var);}
 
-<?php foreach ($paging_komentar as $k) {
-		$var['data']=$k;
-		$var['data_uri'] = $post;
-		$var['name_user'] = $name_user;
-		$var['balas'] = $balas;
-		
-		$this->load->view('front_comment_post',$var);
-	}
-
-if($page > 1 ){
-
-?><button class='komen-paging btn btn-default' value='<?php echo $page - 1; ?>'>previous</button>
+if($page > 1 ){?>
+	<button class='user-paging btn btn-default' value='<?php echo $page - 1; ?>'>previous</button>
 <?php
 }
 if($config['total_rows']% $perpage == 0)
@@ -66,11 +59,11 @@ if($page_count>=5)
 	if($page!=$start)	
 	{
 		?>
-		<button class='komen-paging btn btn-default' value='<?php echo $start; ?>'><?php echo $start; ?></button> 
+		<button class='user-paging btn btn-default' value='<?php echo $start; ?>'><?php echo $start; ?></button> 
 		<?php	
 	}else{
 		?>
-		<button class='komen-paging btn btn-default' value='<?php echo $start; ?>'><?php echo $start; ?></button> 
+		<button class='user-paging btn btn-default' value='<?php echo $start; ?>' disabled><?php echo $start; ?></button> 
 		<?php	
 	}
 	
@@ -82,11 +75,11 @@ if($page_count>=5)
 	if($page!=$start)	
 	{
 		?>
-		<button class='komen-paging btn btn-default' value='<?php echo $start; ?>'><?php echo $start; ?></button> 
+		<button class='user-paging btn btn-default' value='<?php echo $start; ?>'><?php echo $start; ?></button> 
 		<?php	
 	}else{
 		?>
-		<button class='komen-paging btn btn-default' value='<?php echo $start; ?>'><?php echo $start; ?></button> 
+		<button class='user-paging btn btn-default' value='<?php echo $start; ?>' disabled><?php echo $start; ?></button> 
 		<?php	
 	}
 
@@ -96,6 +89,6 @@ if($page_count>=5)
 
 if($page < $page_count){
 ?>
-<button class='komen-paging btn btn-default' value='<?php echo $page + 1; ?>'>next</button> 
+<button class='user-paging btn btn-default' value='<?php echo $page + 1; ?>'>next</button> 
 <?php 
 } ?>

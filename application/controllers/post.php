@@ -42,37 +42,21 @@
 			
 		}
 
-		public function post_detail($uri, $page = 1){
+		public function post_detail($uri){
 			$data['post']= $this->post_model->showUri($uri)->row();
 			$data['widget'] = $this->post_model->showPopuler()->result();
-			$data['trending'] = $this->post_model->showTrending()->result();
+			$data['trending'] = $this->post_model->showTrending()->result();	
 
 			$id_user = $this->session->userdata('id_user');
 			$data['name_user'] = $this->user_model->selectId($id_user)->row();
 
 			$koment = $data['post']->id;
 			$total = count($this->komentar_model->select_komentar_post($koment)->row());
+
 			if ($total > 0) {
 				$data['komentar'] = $this->komentar_model->select_komentar_post($koment)->row();
 				$data['balas'] = $this->komentar_model->select_komentar_balas()->result();
 			}
-			
-			//Paginasi koment
-			$data['perpage'] = 3;
-			$offset = ($page - 1) * $data['perpage'];
-					
-			$data['config'] =array(
-				'base_url' =>site_url('post/'.$data['post']->post_uri),
-				'total_rows' =>count($this->komentar_model->select_komentar_post($koment)->result()),
-				'per_page' =>$data['perpage']);
-			$limit['offset'] = $offset;
-			$limit['perpage'] = $data['perpage'];
-					
-			$data['offset'] = $offset;
-			$data['total'] = $data['config']['total_rows'];
-			$data['page'] = $page;
-			$data['paging_komentar'] = $this->komentar_model->paging_komen($limit, $koment)->result();
-			//end paginasi
 
 			$data['content'] =$this->load->view('front_post',$data,true);
 		
@@ -242,6 +226,38 @@
 			}
 		}
 
+		public function paginasi_komen($page = 1, $id)
+		{
+			$data['post']= $this->post_model->selectId($id)->row();
+
+			$id_user = $this->session->userdata('id_user');
+			$data['name_user'] = $this->user_model->selectId($id_user)->row();
+
+			$koment = $data['post']->id;
+			$total = count($this->komentar_model->select_komentar_post($koment)->row());
+
+			if ($total > 0) {
+				$data['komentar'] = $this->komentar_model->select_komentar_post($koment)->row();
+				$data['balas'] = $this->komentar_model->select_komentar_balas()->result();
+			}
+
+			$data['perpage'] = 3;
+			$offset = ($page - 1) * $data['perpage'];
+					
+			$data['config'] =array(
+				'base_url' =>site_url('post/paginasi_komen'),
+				'total_rows' =>count($this->komentar_model->select_komentar_post($koment)->result()),
+				'per_page' =>$data['perpage']);
+			$limit['offset'] = $offset;
+			$limit['perpage'] = $data['perpage'];
+					
+			$data['offset'] = $offset;
+			$data['total'] = $data['config']['total_rows'];
+			$data['page'] = $page;
+			$data['paging_komentar'] = $this->komentar_model->paging_komen($limit, $koment)->result();
+			echo $this->load->view('paginasi_komen',$data, true);
+
+		}
 		public function komentar()
 		{
 			$id = $this->session->userdata('id_user');
