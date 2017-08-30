@@ -38,13 +38,13 @@
 
 
 		public function permission_admin($page=1){
-			$data['admin'] = $this->user_model->select_admin()->result(); 
 
-			$data['perpage'] = 2;
+
+			$data['perpage'] = 7;
 			$offset = ($page - 1) * $data['perpage'];
 		
 			$data['config']=array(
-						'base_url'=>site_url('admin-dashboard/pengaturan/admin'),
+						'base_url'=>site_url('admin_pengaturan/permission_admin'),
 					  	'total_rows'=>count($this->user_model->select_admin()->result()),
 					  	'per_page'=>$data['perpage']);
 			$limit['offset'] = $offset;
@@ -57,7 +57,8 @@
 
 			echo $this->load->view('paginasi_admin',$data, true);	
 
-		}		
+		}
+
 		public function update_kategori()
 		{
 			
@@ -80,6 +81,17 @@
 			
 			redirect(site_url('admin-dashboard/pengaturan'));
 
+		}
+
+		public function update_level()
+		{
+				$user = $this->input->post('akun');
+			
+				$data['user_level'] = $this->input->post('level');
+
+				$this->user_model->update_level($data, $user);
+
+				redirect(site_url('admin-dashboard/pengaturan'));
 		}
 
 	}
