@@ -2,7 +2,8 @@
 	<div  style="margin-right: 10px">
 		<h4>Pengaturan</h4><br/>
 	</div>
-</div>	
+</div>
+
 <div>
 	<?php echo $this->session->flashdata('pesan'); ?>
 </div>
@@ -72,12 +73,15 @@
 
 		<div id="pengaturan2" class="panel-collapse collapse">
 			<div class="panel-body">
-				<?php $this->load->view('paginasi_admin'); ?>
-				<?php echo form_open('admin_layout/set_identity', 'id="form_identity"'); ?>
+				
+				<?php echo form_open('admin_pengaturan', 'id="form_identity"'); ?>
 					<div class="form-group">
 						<label for="daftar-admin" >Daftar Admin</label>
-						
+							<div id = "admin_paging">
+		    			
+		    				</div>
 					</div>
+
 					<div class="form-group">
 						<label for="tambah-User" >Daftar User</label>
 						<div  style="padding-bottom: 10px;" class="col-md-12">
@@ -220,3 +224,18 @@
 		</div>
 	</div>
 </div>
+
+<script>
+$(document).ready(function() {
+	var $admin_paging = function (){
+	    $('.admin-paging').click(function (){
+		var $val =$(this).val();
+		
+		$("#admin_paging *" ).remove();
+		var $target = '<?php echo base_url().'admin_pengaturan/permission_admin/';?>'+$val;
+		$("#admin_paging" ).load($target,$admin_paging);
+	});
+	}
+	$("#admin_paging" ).load( "<?php echo base_url().'admin_pengaturan/permission_admin'; ?>",$admin_paging);
+});
+</script>
