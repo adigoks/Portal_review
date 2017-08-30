@@ -193,7 +193,8 @@ $(window).on('load',function() {
     }
     
     $("#reply").click(function(){
-        $("#comment-r").toggle("slow");
+        var id_comment = document.;
+        $("id_comment").toggle("slow");
     });
    
 

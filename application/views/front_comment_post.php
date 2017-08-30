@@ -24,9 +24,11 @@
 				<div id="reply" class="rp-comment"><a>Reply</a></div>
 				<?php }  ?>
 				<div>	
-
-					<div id="comment-r" class="comment-r ">
-
+					<?php $i=0; {
+						if($i < 3){
+							$i++; ?>
+					<div id="<?php echo $i ?>" class="comment-r ">
+					<?php }?>
 						<div>
 							<div style="padding-top: 20px;">
 								<fieldset>
