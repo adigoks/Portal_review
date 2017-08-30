@@ -54,8 +54,7 @@
 			$total = count($this->komentar_model->select_komentar_post($koment)->row());
 			if ($total > 0) {
 				$data['komentar'] = $this->komentar_model->select_komentar_post($koment)->row();
-				$id_balas = $data['komentar']->komentar_id;
-				$data['balas'] = $this->komentar_model->select_komentar_balas($id_balas)->result();
+				$data['balas'] = $this->komentar_model->select_komentar_balas()->result();
 			}
 			
 			//Paginasi koment
