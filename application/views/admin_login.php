@@ -7,15 +7,15 @@
 	<?php echo link_tag('asset/css/admin-style.css'); ?>
 	
 </head>
-<body >
-	
+<body >		
 		<div id="container" class="row">
 			<div id="login-box" class="col-md-offset-4 col-md-4 ">
 				<center><h1>Admin-Page</h1></center>
 				<br>
+				<div style="text-align: center"><?php echo $this->session->flashdata('notification'); ?></div><br/>
+				<div style="text-align: center"><?php echo validation_errors(); ?></div><br/>
 				<div class="col-md-10 col-md-offset-1">
 					<!-- form disini  -->
-					<?php echo validation_errors(); ?>
 					<?php echo form_open('admin_login/login'); ?>
 					<div class="form-group">
 	    				<label for="user_name" >User Name</label>
@@ -25,7 +25,7 @@
 	    				<label for="user_name" >Password</label>
 					<input type="password" class="form-control" id="password" name="password" placeholder="Password">
 					</div>
-					<div class="col-md-8">lupa password?</div>
+					<div class="col-md-8"><a href="<?php echo site_url('admin_login/lupa_password'); ?>">lupa password?</a></div>
 					<div class="col-md-4">
 					<input type="submit" value="Masuk" name="login" class="btn btn-default col-md-12">
 					</form>

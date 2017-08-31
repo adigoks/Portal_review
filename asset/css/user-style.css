@@ -1,6 +1,12 @@
-#main{
+
+#main{ 
 	padding-bottom: 15px;
 }
+
+.comment-line{
+	margin-right: 1px;
+}
+
 .logo{
 	max-height: 50px;
 	max-width: 50px;
@@ -14,6 +20,9 @@
 }
 .c-textarea{
 	resize: none;
+}
+.c-textarea2{
+	resize: none;	
 }
 .comment-r{
 	display: none;
@@ -510,7 +519,24 @@
 	body{
 		margin: 0;
 	}
-
+	.c-reply{
+		padding-left:1px;
+	}
+	.c-textarea{
+		width: 198px;
+	}
+	.rp-comment{
+		padding-left: 69px;
+	}
+	.c-textarea2{
+		width: 170px;
+	}
+	.c-submit{
+		padding-left: 68px;
+	}
+	.c-submit2{
+		padding-left: 58px;
+	}
 	.font-log{
 		padding-bottom: 33px;
 	}

@@ -47,6 +47,25 @@
             return $this->db->get(); 
         }
 
+        function select_username_user($username)
+        {
+            $this->db->select('*');
+            $this->db->from('portal_user');
+            $this->db->where('user_name',$username);
+            $this->db->where('user_level', 2);
+             
+            return $this->db->get(); 
+        }
+         function select_username_admin($username)
+        {
+            $this->db->select('*');
+            $this->db->from('portal_user');
+            $this->db->where('user_name',$username);
+            $this->db->where('user_level', 1);
+             
+            return $this->db->get(); 
+        }
+
         function select_us($username, $password)
         {
             $this->db->select('*');
@@ -74,6 +93,16 @@
             $this->db->select('*');
             $this->db->from('portal_user');
             $this->db->where('user_level > 0');
+                
+            return $this->db->get();
+        }
+
+        function select_admin_forgot()
+        {
+            $this->db->select('*');
+            $this->db->from('portal_user');
+            $this->db->where('user_level > 0');
+            $this->db->where('user_forgot', 1);
                 
             return $this->db->get();
         }
@@ -111,6 +140,20 @@
             $this->db->select('*');
             $this->db->from('portal_user');
             $this->db->where('user_level > 0');
+            $this->db->order_by('user_level','asc');
+            $this->db->order_by('user_name','asc');
+            if($limit !=NULL){
+                $this->db->limit($limit['perpage'],$limit['offset']);
+            }
+            return $this->db->get();
+        }
+
+        function pagination_admin_forgot($limit=array())
+        {
+            $this->db->select('*');
+            $this->db->from('portal_user');
+            $this->db->where('user_level > 0');
+            $this->db->where('user_forgot', 1);
             $this->db->order_by('user_level','asc');
             $this->db->order_by('user_name','asc');
             if($limit !=NULL){

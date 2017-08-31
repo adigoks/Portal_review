@@ -1,4 +1,15 @@
 <div class="row">
+
+<?php if ($user->user_confirm == 1) { ?>
+	<p class="alert alert-success" style="text-align: center"><?php echo $this->session->flashdata('notification'); ?></p><br/>
+		<?php }else{ ?>
+		<div class="">
+			<h5 class="alert alert-warning" style="text-align: center">mohon buka email anda untuk verifikasi akun anda</h5>
+		</div>
+	<h5 id="sukses" class="" style="text-align:center;"><?php echo $this->session->flashdata('notification'); ?></h5><br/>
+	<h5 id="sukses" class="" style="text-align:center;"><?php echo validation_errors(); ?></h5><br/>
+<?php } ?>
+
 	<div class="col-md-12">
 		
 		<div class="tab-content">

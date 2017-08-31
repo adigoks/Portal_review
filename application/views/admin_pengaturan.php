@@ -94,29 +94,13 @@
 
 		<div id="pengaturan3" class="panel-collapse collapse">
 			<div class="panel-body">
-				<?php echo form_open('admin_layout/set_identity', 'id="form_identity"'); ?>
+	
 					<div class="form-group">
 						<label for="daftar-akun" >Daftar Akun</label>
-						<div  style="padding-bottom: 10px;" class="col-md-12">
-								<span style='width:90%;font-size: 16px;' class='col-md-1 input-group-addon'>Nama User</span>
-								<a class='btn btn-default col-md-1'>
-								<span style ='font-size: 16px;' class='glyphicon glyphicon-edit'></span>						
-								</a>
-						</div>
-						<div  style="padding-bottom: 10px;" class="col-md-12">
-								<span style='width:90%;font-size: 16px;' class='col-md-1 input-group-addon'>Nama User</span>
-								<a class='btn btn-default col-md-1'>
-								<span style ='font-size: 16px;' class='glyphicon glyphicon-edit'></span>						
-								</a>
-						</div>
-						<div  style="padding-bottom: 10px;" class="col-md-12">
-								<span style='width:90%;font-size: 16px;' class='col-md-1 input-group-addon'>Nama User</span>
-								<a class='btn btn-default col-md-1'>
-								<span style ='font-size: 16px;' class='glyphicon glyphicon-edit'></span>						
-								</a>
+						<div id = "pass_reset">
+							
 						</div>
 					</div>
-				<?php echo form_close();?>
 			</div>
 		</div>
 
@@ -215,8 +199,19 @@ $(document).ready(function() {
 		$("#admin_paging *" ).remove();
 		var $target = '<?php echo base_url().'admin_pengaturan/permission_admin/';?>'+$val;
 		$("#admin_paging" ).load($target,$admin_paging);
-	});
+	});  
 	}
+	var $pass_reset = function (){
+	    $('.pass-reset').click(function (){
+		var $val =$(this).val();
+		
+		$("#pass_reset *" ).remove();
+		var $target = '<?php echo base_url().'admin_pengaturan/permission_admin/';?>'+$val;
+		$("#pass_reset" ).load($target,$admin_paging);
+	});  
+	}
+
 	$("#admin_paging" ).load( "<?php echo base_url().'admin_pengaturan/permission_admin'; ?>",$admin_paging);
+	$("#pass_reset" ).load( "<?php echo base_url().'admin_pengaturan/admin_ubah_password'; ?>",$admin_paging);
 });
 </script>

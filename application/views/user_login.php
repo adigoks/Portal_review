@@ -17,7 +17,7 @@
 				<input class="form-control" type="password" id="password" name="password" placeholder="Password" />
 				</div><br/>
 				<input class="btn btn-default" type="submit" name="login" value="Login" /><br><br>
-					<span><a href="<?php echo site_url(''); ?>">Lupa Password ?</a>&nbsp;&nbsp; <a href="<?php echo site_url('page/form_daftar'); ?>">Atau daftar baru !</a></span>
+					<span><a href="<?php echo site_url('page/lupa_password'); ?>">Lupa Password ?</a>&nbsp;&nbsp; <a href="<?php echo site_url('page/form_daftar'); ?>">Atau daftar baru !</a></span>
 			<?php echo form_close();?>
 		</fieldset>
 	</div>
