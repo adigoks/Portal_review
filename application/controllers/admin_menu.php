@@ -273,8 +273,7 @@
 
 		function menu_tambah_page()
 		{
-			$id = $this->session->userdata('id_author');
-			$data['usr']=$this->user_model->selectId($id)->row();
+			
 			$data['menu_name'] = $this->input->post('menu_name');
 			$data['menu_url_type'] = $this->input->post('menu_tipe');
 			$data['menu_parent'] = $this->input->post('parent');
@@ -285,6 +284,8 @@
 
 			if ($this->form_validation->run()==FALSE) 
 			{
+				$id = $this->session->userdata('id_author');
+				$data['usr']=$this->user_model->selectId($id)->row();
 				$data['page_list'] = $this->page_model->showAll()->result();
 				$data['menu'] = $this->menu_model->selectId($data['menu_parent'])->row();
 				$data['content'] = $this->load->view('tambah_menu_page', $data, true);

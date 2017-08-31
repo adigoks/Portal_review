@@ -1,3 +1,13 @@
+.thin-bottom-gap{
+	margin-bottom: 5px;
+}
+
+#option-box{
+	border-radius: 5px;
+	padding : 5px;
+	background-color: #ffecdc ;
+}
+
 .add-items{
 	float: right;
 	background-color: transparent;

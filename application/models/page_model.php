@@ -28,6 +28,15 @@
                 
             return $this->db->get();
         }
+        function select_judul($judul)
+        {
+            $this->db->select('*');
+            $this->db->from('portal_page');
+            $this->db->where('page_judul',$judul);
+                
+            return $this->db->get();
+        }
+
         function update($data,$id)
         {
             $this->db->where('id',$id);

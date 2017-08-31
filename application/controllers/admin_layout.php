@@ -15,6 +15,8 @@
 			$this->load->helper('html');
 			$this->load->model('layout_model');
 			$this->load->model('user_model');
+			$this->load->model('post_model');
+			$this->load->model('page_model');
 			$this->load->library('session');
 			$this->load->model('attribute_model');
 			$this->load->library('form_validation');
@@ -144,68 +146,49 @@
 			echo json_encode(array('id_layout' => $id));
 		}
 		function update_footer(){
-			if($this->input->post('id') != 'undefined')
-			{
-				$data['id'] = explode(',', $this->input->post('id'));
+				$data['id'] = $this->input->post('id');
+				$data['layout_name'] = $this->input->post('layout_name');
+				$data['layout_order'] = $this->input->post('layout_order');
+				$data['layout_span'] = $this->input->post('layout_span');
+				$data['layout_parent'] = $this->input->post('layout_parent');
+				$data['layout_content'] = $this->input->post('layout_content');
 				
-			}
-			if($this->input->post('layout_name') != 'undefined')
-			{
-				$data['layout_name'] = explode(',' ,$this->input->post('layout_name'));
-			}
-			if($this->input->post('layout_order') != 'undefined')
-			{
-				$data['layout_order'] = explode(',', $this->input->post('layout_order'));
-			}
-			if($this->input->post('layout_span') != 'undefined')
-			{
-				$data['layout_span'] = explode(',', $this->input->post('layout_span'));
-			}
-			if($this->input->post('layout_parent') != 'undefined')
-			{
-				$data['layout_parent'] = explode(',', $this->input->post('layout_parent'));
-			}
-			if($this->input->post('layout_content') != 'undefined')
-			{
-				$data['layout_content'] = explode(',', $this->input->post('layout_content'));
-			}
 			
-			var_dump($data);
 			for ($i=0; $i < count($data['id']); $i++) { 
-				if(isset($data['id']) && $data['id'][$i]!='')
+				if(isset($data['id']) && $data['id'][$i]!='' && $data['id'][$i]!='undefined')
 				{
 					$id = $data['id'][$i];	
 				}
-				if(isset($data['layout_name']) && $data['layout_name'][$i]!='')
+				if(isset($data['layout_name']) && $data['layout_name'][$i]!='' && $data['layout_name'][$i]!='undefined')
 				{
 					$update['layout_name'] = $data['layout_name'][$i];	
 				}
-				if(isset($data['layout_order']) && $data['layout_order'][$i]!='')
+				if(isset($data['layout_order']) && $data['layout_order'][$i]!='' && $data['layout_order'][$i]!='undefined')
 				{
 					$update['layout_order'] = $data['layout_order'][$i];	
 				}
-				if(isset($data['layout_parent']) && $data['layout_parent'][$i]!='')
+				if(isset($data['layout_parent']) && $data['layout_parent'][$i]!='' && $data['layout_parent'][$i]!='undefined')
 				{
 					$update['layout_parent'] = $data['layout_parent'][$i];	
 				}
-				if(isset($data['layout_span']) && $data['layout_span'][$i]!='')
+				if(isset($data['layout_span']) && $data['layout_span'][$i]!='' && $data['layout_span'][$i]!='undefined')
 				{
 					$update['layout_span'] = $data['layout_span'][$i];	
 				}
-				if(isset($data['layout_content']) && $data['layout_content'][$i]!='')
+				if(isset($data['layout_content']) && $data['layout_content'][$i]!='' && $data['layout_content'][$i]!='undefined')
 				{
 					$update['layout_content'] = $data['layout_content'][$i];	
 				}
 				
-				//var_dump($update);
-				if($update!=null)
+				
+				if(isset($update) && $update!=null)
 				{
 					$this->layout_model->update($update, $id);
 				}
 			}
 			
 			
-			// echo json_encode(array('id_layout' => $id));
+			echo json_encode(array('id_layout' => $id));
 		}
 
 		function init_def_layout(){
@@ -220,7 +203,6 @@
 
 			if($this->layout_model->selectName('header_layout')->row() == null)
 			{
-
 				$data['layout_name'] = 'header_layout';
 				$data['layout_parent'] = 0;
 				$data['layout_span'] = 12;
@@ -248,6 +230,34 @@
 				
 			}
 			return $array;
+		}
+
+		function option_list($tipe)
+		{
+			switch ($tipe) {
+				case 'post':
+					$data['post_list'] = $this->post_model->showAll()->result();
+					echo $this->load->view('input_select_post',$data,true);
+					break;
+				case 'tag':
+					$data['tag_list'] = $this->post_model->showAll()->result();
+					echo $this->load->view('input_select_tag',$data,true);
+					break;
+				case 'page':
+					$data['page_list'] = $this->page_model->showAll()->result();
+					echo $this->load->view('input_select_page',$data,true);
+					break;
+				case 'external_link':
+					echo $this->load->view('input_select_ext','',true);
+					break;
+				case 'kategori':
+					$data['kategori'] = $this->attribute_model->selectName('kategori')->row();
+					echo $this->load->view('input_select_kat',$data,true);
+					break;
+				default:
+					echo '';
+					break;
+			}
 		}
 	}
 

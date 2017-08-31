@@ -21,17 +21,17 @@
 			</div>
 			<div class="form-group">
 					<label class="" for="menu_status">Status :</label>
-					<input class="col-sm-5 form-control" type="text" name="menu_name" value="<?php if(isset($menu)){echo "submenu dari ".$menu->menu_name;}else{echo "menu utama";} ?>" readonly="readonly" />
+					<input class="col-sm-5 form-control" type="text"  value="<?php if(isset($menu)){echo "submenu dari ".$menu->menu_name;}else{echo "menu utama";} ?>" readonly="readonly" />
 			</div>
 			<input type="number" name="parent" value="<?php if(isset($menu)){echo $menu->id;}else{echo 0;}?>" hidden>
 			<div class="form-group">
 					<label class="" for="post">Judul Page :</label>
-					<select name="page">
+					<select name="page" class="form-control">
 					<option></option>
 					<?php foreach ($page_list as $page) 
 					{ ?>
 					
-						<option value="<?php echo $page->page_judul; ?>"><?php echo $page->page_judul; ?></option>
+						<option value="<?php echo str_replace(' ', '-',$page->page_judul); ?>"><?php echo $page->page_judul; ?></option>
 
 					<?php } ?>
 				

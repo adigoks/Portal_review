@@ -1,4 +1,6 @@
-
+#main{
+	padding-bottom: 15px;
+}
 .logo{
 	max-height: 50px;
 	max-width: 50px;
@@ -126,82 +128,31 @@
 #top-bar{
 	padding: 5px;
 }
-.footer-1{
-	padding-left: 80px;
+.footer-row{
+	padding:10px;
+	border-top: 1px solid #bcbcbc;
 }
-.footer-1 h3{
-	border-bottom: thick;
-	border-size:2px;
-	text-decoration:underline;
+.footer-column{
+
 }
-.footer-2 h3{
-	border-bottom: thick;
-	border-size:2px;
-	text-decoration:underline;
-}
-.footer-3 h3{
-	border-bottom: thick;
-	border-size:2px;
-	text-decoration:underline;
-}
-.footer-4 h3{
+.footer-column h3{
 	border-bottom: thick;
 	border-size:2px;
 	text-decoration:underline;
 }
 
-.footer-1  ul{
+
+.footer-row  ul{
 	list-style: none;
-	padding: 0px;
+	padding-left: 15px;
 	margin: 0px;
 	font-weight: bold;	
 }
-.footer-1 a:hover{
-	text-decoration: none;
-	cursor: pointer;
-}
-.footer-2 a:hover{
-	text-decoration: none;
-	cursor: pointer;
-}
-.footer-3 a:hover{
-	text-decoration: none;
-	cursor: pointer;
-}
-.footer-4 a:hover{
+.footer-row a:hover{
 	text-decoration: none;
 	cursor: pointer;
 }
 
-.footer-2  ul{
-	list-style: none;
-	padding: 0px;
-	margin: 0px;
-	font-weight: bold;
-}
-.footer-3  ul{
-	list-style: none;
-	padding: 0px;
-	margin: 0px;
-	font-weight: bold;
-}
-.footer-4  ul{
-	list-style: none;
-	padding: 0px;
-	margin: 0px;
-	font-weight: bold;
-}
-.footer-2{
-	padding-left: 40px;
-}
-.footer-3{
-	padding-left: 40px;
-}
-.footer-5{
-	text-align: center;
-	padding-bottom: 15px;
-	padding-top: 15px; 
-}
 .user-post{
 	margin-left: 50px;
 	margin-right: 50px;

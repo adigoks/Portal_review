@@ -30,6 +30,7 @@ class Welcome extends CI_Controller {
 		$this->load->model('user_model');
 		$this->load->model('logf_model');
 		$this->load->model('attribute_model');
+		$this->load->model('layout_model');
 	}
 
 	public function index()
@@ -41,7 +42,7 @@ class Welcome extends CI_Controller {
 		$data['req_page'] = 1;
 		$this->menu_list($data);
 		$this->compose($data);
-		$this->load->view('front_footer');
+		$this->init_footer();
 		$this->add_log($this->uri->uri_string());
 	}
 	public function initHead($data = null)
@@ -70,7 +71,7 @@ class Welcome extends CI_Controller {
 		$this->load->view('front_head');
 		$this->menu_list();
 		$this->compose();
-		$this->load->view('front_footer');	
+		$this->init_footer();	
 	}
 
 	public function compose($data=null)
@@ -100,7 +101,12 @@ class Welcome extends CI_Controller {
 		//query dengan limit dan offset
 		//load view dengan data load post
 	}
-
+	public function init_footer()
+	{
+		$data['footer_data'] =$this->layout_model->showAll()->result();
+		$data['footer_parent'] = $this->layout_model->selectName('footer_layout')->row();
+		$this->load->view('front_footer',$data);
+	}
 	public function menu_list($data=null)
 	{
 		$data['menu'] = $this->menu_model->selectSort();

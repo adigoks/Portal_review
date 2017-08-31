@@ -32,19 +32,21 @@
 
 			$this->load->library('email', $config);
 		}
-		public function index()
+		public function index($uri='')
 		{
 			$this->initHead();
 			$this->menu_list();
-			$this->load_static();
-			$this->load->view('front_footer');
+			$this->load_static($uri);
+			$this->init_footer();
 		}
 
-		public function load_static()
+		public function load_static($uri='')
 		{
 			# code...
-			
-			$data['content'] = $this->load->view('front_page','',true);
+			$uri = str_replace('-', ' ', $uri);
+
+			$data['page'] = $this->page_model->select_judul($uri)->row();
+			$data['content'] = $this->load->view('front_page',$data,true);
 			$this->load->view('front_body',$data);
 		}
 
@@ -55,7 +57,7 @@
 			$this->menu_list();
 			$data['content'] = $this->load->view('form_saran','',true);
 			$this->load->view('front_body',$data);
-			$this->load->view('front_footer');
+			$this->init_footer();
 		}
 
 		public function form_login()
@@ -64,7 +66,7 @@
 			$this->menu_list();
 			$data['content'] = $this->load->view('user_login', '', true);
 			$this->load->view('front_body', $data);
-			$this->load->view('front_footer');		
+			$this->init_footer();		
 		}
 
 		public function login()
@@ -84,7 +86,7 @@
 				$this->menu_list();
 				$data['content'] = $this->load->view('user_login', '', true);
 				$this->load->view('front_body', $data);
-				$this->load->view('front_footer');	
+				$this->init_footer();
 			}
 			else
 			{
@@ -121,7 +123,7 @@
 			$this->menu_list();
 			$data['content'] = $this->load->view('user_daftar', '', true);
 			$this->load->view('front_body', $data);
-			$this->load->view('front_footer');			
+			$this->init_footer();		
 		}
 		public function form_profile()
 		{
@@ -131,7 +133,7 @@
 			$data['detail_id'] = $this->user_model->selectId($id)->row();
 			$data['content'] = $this->load->view('front_profile', $data, true);
 			$this->load->view('front_body', $data);
-			$this->load->view('front_footer');			
+			$this->init_footer();			
 		}
 
 		public function update()
@@ -259,7 +261,7 @@
 						$data['detail_id'] = $this->user_model->selectId($id)->row();
 						$data['content'] = $this->load->view('front_profile', $data, true);
 						$this->load->view('front_body', $data);
-						$this->load->view('front_footer');	
+						$this->init_footer();
 					}
 					elseif ($pass != $pass2) {
 						$this->session->set_flashdata('notification', 'Peringatan : Password baru dan Re-Type Password tidak cocok');
@@ -362,7 +364,7 @@
 				$this->menu_list();
 				$data['content'] = $this->load->view('user_daftar', '', true);
 				$this->load->view('front_body', $data);
-				$this->load->view('front_footer');
+				$this->init_footer();
 			}
 			else{
 				if ($num == 1) {
@@ -465,7 +467,7 @@
 			$this->menu_list();
 			$data['content'] = $this->load->view('front_success', '', true);
 			$this->load->view('front_body', $data);
-			$this->load->view('front_footer');	
+			$this->init_footer();
 
 		}
 
@@ -474,7 +476,7 @@
 			$this->menu_list();
 			$data['content'] = $this->load->view('front_lupa_pass','',true);
 			$this->load->view('front_body', $data);
-			$this->load->view('front_footer');	
+			$this->init_footer();
 
 		}
 	}
