@@ -14,7 +14,8 @@
 			</div>
 			<form action="<?php echo site_url('admin_pengaturan/ubah_pass'); ?>" method="POST" class="form_level" id="form_level">
 				<div class="modal-body">
-				<input type="hidden" name="akun" value="<?php echo $data->user_email;?>" />
+				<input type="hidden" name="email" value="<?php echo $data->user_email;?>" />
+				<input type="hidden" name="id" value="<?php echo $data->id;?>" />
 					<h5>Apakah anda yakin ?</h5>
 				</div>
 			
