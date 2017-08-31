@@ -49,6 +49,9 @@
 		<?php echo $post->post_isi;?>	
 	</div>
 	<div class="col-md-12 container-fluid">
+	<div class="f-head-bord">
+				<h4><b>commment</b></h4>
+			</div>
 	<?php if($post->post_enable_comment == 1){
 		if (!isset($_SESSION['logged'])) {
 

@@ -1,5 +1,6 @@
-<div id="" class="container-fluid">
-		<div>
+<div id="" class="container-fluid ">
+
+		<div style="padding-top: 10px; padding-bottom: 10px">
 		<?php if ($data->komen_parent == 0) { ?>
 			<div class="thor col-md-1 col-md-offset-1">
 			<?php if ($data->user_profile_img == NULL) { ?>
@@ -9,21 +10,21 @@
 			<?php } ?>
 				
 			</div>
-			<div class="col-md-10" style="padding-bottom: 20px">
+			<div class="col-md-10" style="padding-bottom: 20px;">
 			<div class="user-com" >
 				<h5><b><?php echo $data->user_name;?> &#8226;&nbsp;</b></h5> 
 			</div>
 			<div>
 				<h5><?php $date=$data->komen_waktu; echo date("d - F - Y, l H:i:s",strtotime($date)); ?></h5>
 			</div>
-				<div class="comment-isi">
+				<div class="comment-isi" style="padding-bottom: 10px;">
 					<?php echo $data->komen_isi; ?>
 				</div>
 
 				<?php if(isset($_SESSION['logged'])){ ?>
 				<div  class="rp-comment reply_button" target="<?php echo $data->komentar_id; ?>"><a>Reply</a></div>
 				<?php } ?>
-				<div id="balas">	
+				<div id="balas" class="c-reply">	
 					<div id="<?php echo $data->komentar_id; ?>" class="comment-r">
 					
 						<div>
@@ -38,9 +39,11 @@
 												<img class="f-img" src="<?php echo base_url().'image/user_profil/'.$name_user->user_profile_img; ?>">
 											<?php } ?>
 										</div>
-										<div class="col-md-8 col-md-offset-1" style="padding-bottom: 20px">
-											<textarea class=" c-textarea form-control" id="komen-box" name="reply" placeholder="join the discusion"></textarea>
-											<input class="" type="submit" name="balas" value="Balas"  />
+										<div class="col-md-8 col-md-offset-1" style="padding-bottom: 20px; margin-left:3%;">
+											<textarea class=" c-textarea2 form-control" id="komen-box" name="reply" placeholder="join the discusion"></textarea>
+											<div class="c-submit2">
+											<input class="btn btn-default" type="submit" name="balas" value="Balas"  />
+											</div>
 											<input type="hidden" name="balas_id" value="<?php echo $data->komentar_id; ?>" />
 											<input type="hidden" name="post_id" value="<?php echo $data_uri->id; ?>" />
 											<input type="hidden" name="post_url" value="<?php echo $data_uri->post_uri; ?>" />
@@ -66,7 +69,7 @@
 										<img class="f-img" src="<?php echo base_url().'image/user_profil/'.$data2->user_profile_img; ?>">
 									<?php } ?>
 								</div>
-								<div class="col-md-10 col-md-offset-1" style="padding-bottom: 20px; margin-left: 3%">
+								<div class="col-md-10 col-md-offset-1" style="padding-bottom: 20px; margin-left: 3%;">
 								<div class="user-com" >
 									<h5><b><?php echo $data2->user_name; ?> &#8226;&nbsp;</b></h5> 
 								</div>

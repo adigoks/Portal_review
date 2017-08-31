@@ -25,7 +25,7 @@
 	    				<label for="user_name" >Password</label>
 					<input type="password" class="form-control" id="password" name="password" placeholder="Password">
 					</div>
-					<div class="col-md-8">lupa password?</div>
+					<div class="col-md-8"><a href="<?php echo site_url('admin_login/lupa_password'); ?>">lupa password?</a></div>
 					<div class="col-md-4">
 					<input type="submit" value="Masuk" name="login" class="btn btn-default col-md-12">
 					</form>
