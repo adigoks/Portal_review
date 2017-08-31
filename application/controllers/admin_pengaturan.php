@@ -144,13 +144,8 @@
 					$this->email->message('silahkan gunakan password berikut untuk login!'.$p);
 					$this->email->send();
 
-<<<<<<< HEAD
-					$data['user_password']=md5("pnvs#%12".$p."41;1*");					
-=======
 					$data['user_forgot'] = 0;
 					$data['user_password']=md5("pnvs#%12".$p."41;1*");
-					
->>>>>>> b17adf6f35d3778d2ce966b584a029dbc2bd639d
 					$this->user_model->update($data,$id);
 
 
