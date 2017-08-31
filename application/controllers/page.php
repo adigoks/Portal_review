@@ -379,8 +379,7 @@
 					$a = $this->email->send();
 						if ($a == FALSE) {
 							$this->session->set_flashdata('notification', 'Peringatan : Email tidak valid');
-							var_dump($a);
-							// redirect(site_url('page/form_daftar'));
+							redirect(site_url('page/form_daftar'));
 						}
 						else{
 							if (($file_size <= 2560000) && ($file_type == 'image/jpeg' || $file_type == 'image/png' || $file_type == 'image/gif')) {
@@ -476,6 +475,63 @@
 			$this->load->view('front_body', $data);
 			$this->load->view('front_footer');	
 
+		}
+
+		public function send_lupa_pass()
+		{
+			$lupa = $this->input->post('lupa');
+
+			if (isset($lupa)) {
+				$user = $this->input->post('username');
+				$email = $this->input->post('email');
+
+				$this->form_validation->set_rules('username', 'Username', 'required');
+				$this->form_validation->set_rules('email', 'E-mail', 'required');
+
+				$akun = $this->user_model->select_username_user($user)->row();
+				$count = count($akun);
+
+				if ($count > 0) {
+					$id = $akun->id;
+				}
+
+				if ($this->form_validation->run() == FALSE) {
+					$this->lupa_password();
+				}
+				else{
+
+					if($akun->user_name != $user){
+						$this->session->set_flashdata('notification', 'Username salah');
+						redirect(site_url('page/lupa_password'));
+					}
+					elseif($akun->user_email != $email){
+						$this->session->set_flashdata('notification', 'Email anda salah');
+						redirect(site_url('page/lupa_password'));
+					}
+
+					else{
+						$this->email->set_newline("\r\n");
+						$this->email->from('wibumaster@gmail.com', 'wibu master');
+						$this->email->to('wibumaster@gmail.com');
+						$this->email->subject('Request reset password ');
+						$this->email->message($akun->user_name." meminta permintaan reset passwords");
+						$kirim = $this->email->send();
+
+						if ($kirim == FALSE) {
+							$this->session->set_flashdata('notification', 'silahkan cek koneksi anda atau email anda');
+							redirect(site_url('page/lupa_password'));
+						}
+						else{
+							$data['user_forgot'] = 1;
+							$this->user_model->update($data, $id);
+							redirect(site_url('page'));	
+						}
+					}					
+				}
+			}
+			else{
+				redirect(site_url('page/lupa_password'));
+			}
 		}
 	}
 
