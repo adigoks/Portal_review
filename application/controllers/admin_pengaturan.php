@@ -133,16 +133,23 @@
        	 		  $n = rand(0, $alpha_length);
         		  $password[] = $alphabet[$n];
     			}
+    			$p=implode("", $password);
    
-				$email=$this->input->post('user_email');
+				$email=$this->input->post('email');
+				$id=$this->input->post('id');
 				$this->email->set_newline("\r\n");
 					$this->email->from('wibumaster@gmail.com', 'wibu master');
 					$this->email->to($email);
 					$this->email->subject('password baru');
-					$this->email->message(''.$password);
-					$a = $this->email->send();
+					$this->email->message('silahkan gunakan password berikut untuk login!'.$p);
+					$this->email->send();
 
-					$this->load->view('admin_pengaturan');
+					$data['user_password']=md5("pnvs#%12".$p."41;1*");
+					
+					$this->user_model->update($data,$id);
+
+
+					redirect(site_url('admin-dashboard/pengaturan'));
 
 
 		}
