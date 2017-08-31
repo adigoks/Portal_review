@@ -97,6 +97,16 @@
             return $this->db->get();
         }
 
+        function select_admin_forgot()
+        {
+            $this->db->select('*');
+            $this->db->from('portal_user');
+            $this->db->where('user_level > 0');
+            $this->db->where('user_forgot', 1);
+                
+            return $this->db->get();
+        }
+
         function update($data,$id)
         {
             $this->db->where('id',$id);
@@ -130,6 +140,20 @@
             $this->db->select('*');
             $this->db->from('portal_user');
             $this->db->where('user_level > 0');
+            $this->db->order_by('user_level','asc');
+            $this->db->order_by('user_name','asc');
+            if($limit !=NULL){
+                $this->db->limit($limit['perpage'],$limit['offset']);
+            }
+            return $this->db->get();
+        }
+
+        function pagination_admin_forgot($limit=array())
+        {
+            $this->db->select('*');
+            $this->db->from('portal_user');
+            $this->db->where('user_level > 0');
+            $this->db->where('user_forgot', 1);
             $this->db->order_by('user_level','asc');
             $this->db->order_by('user_name','asc');
             if($limit !=NULL){

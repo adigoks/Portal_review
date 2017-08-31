@@ -1,20 +1,21 @@
 <?php
-	class Layout_model extends CI_Model
+	class Saran_model extends CI_Model
     {
         function __construct()
         {
             parent::__construct();
+            $this->load->database();
         }
         
         function insert($data)
         {
-            $this->db->insert('portal_layout',$data);
+            $this->db->insert('portal_saran',$data);
         }
         
         function showAll()
         {
             $this->db->select('*');
-            $this->db->from('portal_layout');
+            $this->db->from('portal_saran');
             
             return $this->db->get();
         }
@@ -22,7 +23,7 @@
         function selectId($id)
         {
             $this->db->select('*');
-            $this->db->from('portal_layout');
+            $this->db->from('portal_saran');
             $this->db->where('id',$id);
                 
             return $this->db->get();
@@ -30,7 +31,7 @@
         function update($data,$id)
         {
             $this->db->where('id',$id);
-            $this->db->update('portal_layout',$data);
+            $this->db->update('portal_saran',$data);
         }
         
         function delete($id)
@@ -41,7 +42,7 @@
         function pagination($limit=array())
         {
             $this->db->select('*');
-            $this->db->from('portal_layout');
+            $this->db->from('portal_saran');
             $this->db->order_by('id','asc');
             if($limit !=NULL)
             {
