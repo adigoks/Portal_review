@@ -19,6 +19,7 @@
 			$this->load->model('page_model');
 			$this->load->model('user_model');
 			$this->load->model('menu_model');
+			$this->load->model('saran_model');
 
 			$config = Array(
    				'protocol' => 'smtp',
@@ -50,12 +51,66 @@
 
 		public function saran()
 		{
-			# code...
 			$this->initHead();
 			$this->menu_list();
-			$data['content'] = $this->load->view('form_saran','',true);
+
+			if (isset($_SESSION['logged']) == false) {
+				$data['content'] = $this->load->view('form_saran','',true);
+			}
+			else{
+				$id = $this->session->userdata('id_user');
+				$user = $this->user_model->selectId($id)->row();
+				$data['username'] = $user->user_name;
+				$data['email'] = $user->user_email;
+				$data['content'] = $this->load->view('form_saran',$data,true);
+			}
+			
 			$this->load->view('front_body',$data);
 			$this->load->view('front_footer');
+		}
+
+		public function send_saran()
+		{	
+
+			$username = $this->input->post('username');
+			$email = $this->input->post('email');
+			$tipe = $this->input->post('pesan');
+			$isi = $this->input->post('isi');
+
+			$this->form_validation->set_rules('username','Username','required');
+			$this->form_validation->set_rules('email','Email','required');
+			$this->form_validation->set_rules('pesan','Tipe','required');
+			$this->form_validation->set_rules('isi','Isi pesan','required');
+
+			if($this->form_validation->run()==FALSE){
+				$this->saran();
+			}
+			else{
+				$this->email->set_newline("\r\n");
+				$this->email->from('wibumaster@gmail.com', 'wibu master');
+				$this->email->to('wibumaster@gmail.com');
+				$this->email->subject($tipe);
+				$this->email->message('Dari : '.$username.'<br/>Email :'.$email.'<br/>Isi Pesan :'.$isi);
+				$send = $this->email->send();
+
+				if ($send == FALSE) {
+					$this->session->set_flashdata('notification', 'silahkan cek koneksi anda atau email anda');
+					redirect(site_url('page/saran'));
+				}
+				else{
+					$data['saran_name'] = $this->input->post('username');
+					$data['saran_email'] = $this->input->post('email');
+					$data['saran_tipe'] = $this->input->post('pesan');
+					$data['saran_isi'] = $this->input->post('isi');
+					$data['saran_readed'] = 0;
+
+					$this->saran_model->insert($data);
+
+					$this->session->set_flashdata('notification', 'Pesan telah terkirim');
+					redirect(site_url('page/saran'));
+				}
+			}	
+
 		}
 
 		public function form_login()
@@ -451,11 +506,11 @@
 				else{
 					unset($_SESSION['logged']); 
 					$this->session->set_flashdata('notification', 'Tidak dapat menemukan kode verifikasi yang cocok');
-					redirect(site_url('page'));	
+					redirect(site_url('page/form_login'));	
 				}
 			}
 			else{
-				redirect(site_url('page'));
+				redirect(site_url('page/form_login'));
 			}
 		}
 
@@ -524,13 +579,14 @@
 						else{
 							$data['user_forgot'] = 1;
 							$this->user_model->update($data, $id);
-							redirect(site_url('page'));	
+							$this->session->set_flashdata('notification', 'tunggu beberapa saat lalu silahkan cek email anda untuk mendapatkan password baru');
+							redirect(site_url('page/form_login'));	
 						}
 					}					
 				}
 			}
 			else{
-				redirect(site_url('page/lupa_password'));
+				redirect(site_url('page/form_login'));
 			}
 		}
 	}

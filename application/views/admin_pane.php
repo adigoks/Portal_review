@@ -26,7 +26,7 @@
 			<a href="<?php echo base_url().'admin-dashboard';?>">
 				<span class="glyphicon glyphicon-home" style="font-size: 30px;"></span>
 			</a>
-			Hello, <?php echo $this->session->userdata('username');?>
+			Hello, <?php echo $usr->user_name; ?>
 	</div>
 	 
 	<a href="<?php echo base_url().'admin_preview/?default=admin-dashboard';?>" >

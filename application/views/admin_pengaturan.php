@@ -94,14 +94,13 @@
 
 		<div id="pengaturan3" class="panel-collapse collapse">
 			<div class="panel-body">
-				<?php echo form_open('admin_layout/set_identity', 'id="form_identity"'); ?>
+	
 					<div class="form-group">
 						<label for="daftar-akun" >Daftar Akun</label>
 						<div id = "pass_reset">
 							
 						</div>
 					</div>
-				<?php echo form_close();?>
 			</div>
 		</div>
 

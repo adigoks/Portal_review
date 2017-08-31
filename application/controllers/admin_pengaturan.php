@@ -76,14 +76,14 @@
 
 			$data['config']=array(
 				'base_url'=>site_url('admin_pengaturan/admin_ubah_password'),
-				'total_rows'=>count($this->user_model->select_admin()->result()),
+				'total_rows'=>count($this->user_model->select_admin_forgot()->result()),
 				'per_page'=> $data['perpage']);
 			$limit['offset'] = $offset;
 			$limit['perpage'] = $data['perpage'];
 			$data['offset'] = $offset;
 			$data['total'] = $data['config']['total_rows'];
 			$data['page']=$page;
-			$data['paging_admin'] = $this->user_model->pagination_admin($limit)->result();
+			$data['paging_admin'] = $this->user_model->pagination_admin_forgot($limit)->result();
 
 			echo $this->load->view('paginasi_pass_reset',$data,true);
 		}
@@ -144,6 +144,7 @@
 					$this->email->message('silahkan gunakan password berikut untuk login!'.$p);
 					$this->email->send();
 
+					$data['user_forgot'] = 0;
 					$data['user_password']=md5("pnvs#%12".$p."41;1*");
 					
 					$this->user_model->update($data,$id);
