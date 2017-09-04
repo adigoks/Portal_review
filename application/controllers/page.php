@@ -137,7 +137,7 @@
 
 			if ($this->form_validation->run()==FALSE) 
 			{
-				$this->load->view('front_head');
+				$this->initHead();
 				$this->menu_list();
 				$data['content'] = $this->load->view('user_login', '', true);
 				$this->load->view('front_body', $data);

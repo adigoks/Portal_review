@@ -39,7 +39,7 @@
             $this->db->where('id',$id);
             $this->db->delete('portal_layout');
         }
-        function pagination($limit=array())
+        function paginasi_unread($limit=array())
         {
             $this->db->select('*');
             $this->db->from('portal_saran');

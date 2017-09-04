@@ -17,6 +17,7 @@
 			$this->load->library('pagination');
 			$this->load->model('user_model');
 			$this->load->model('attribute_model');
+			$this->load->model('saran_model');
 			if ($this->session->userdata('logged_in') == FALSE) 
 			{
 				redirect(site_url('admin_login'));
@@ -88,6 +89,24 @@
 			echo $this->load->view('paginasi_pass_reset',$data,true);
 		}
 
+		public function paginasi_unread($page=1){
+			$data['perpage'] = 5;
+			$offset = ($page - 1) * $data['perpage'];
+
+			$data['config']=array(
+				'base_url'=>site_url('admin_pengaturan/paginasi_unread'),
+				'total_rows'=>count($this->saran_model->showAll()->result()),
+				'per_page'=> $data['perpage']);
+			$limit['offset'] = $offset;
+			$limit['perpage'] = $data['perpage'];
+			$data['offset'] = $offset;
+			$data['total'] = $data['config']['total_rows'];
+			$data['page']=$page;
+			$data['paging_unread'] = $this->saran_model->paginasi_unread($limit)->result();
+
+			echo $this->load->view('paginasi_unread',$data,true);
+		}
+
 		public function update_kategori()
 		{
 			
@@ -152,6 +171,16 @@
 					redirect(site_url('admin-dashboard/pengaturan'));
 
 
+		}
+
+		public function inbox_read()
+		{
+			$id = $this->input->post('id_inbox');
+			// $pesan = $this->saran_model->selectId($id)->row();
+
+			$data['saran_readed'] = 1;
+
+			$this->saran_model->update($data,$id);
 		}
 
 	}
