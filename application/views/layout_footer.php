@@ -1,3 +1,4 @@
+
 <div class="col-md-6">jumlah baris maksimal 3 buah. jumlah kolom tiap barisnya maksimal 4 buah. <br>
 halaman ini disimpan secara otomatis</div>
 <div class="col-md-6">
@@ -56,15 +57,15 @@ halaman ini disimpan secara otomatis</div>
 						<?php
 							$obj = json_decode($key1->layout_content);
 							
-							for ($i=0; $i < count($obj) ; $i++) { 
-								$j= $i+1;
+							for ($l=0; $l < count($obj) ; $l++) { 
+								$m= $l+1;
 								?>
-								<div id="column-data-<?php echo $key1->id.'-'.$j?>" class='col-md-12 layout column-data'>
-									<input class='data-text' name='text[]' value="<?php echo $obj[$i]->text;?>" hidden>
+								<div id="column-data-<?php echo $key1->id.'-'.$l;?>" class='col-md-12 layout column-data'>
+									<input class='data-text' name='text[]' value="<?php echo $obj[$l]->text;?>" hidden>
 									<input class='data-link' name='link[]' value='' hidden>
 									<div>
-									<b><?php echo $obj[$i]->text;?></b> 
-									<button class='remove-item' data-target="#column-data-<?php echo $key1->id.'-'.$j?>">
+									<b><?php echo $obj[$l]->text;?></b> 
+									<button class='remove-item' data-target="#column-data-<?php echo $key1->id.'-'.$l;?>" data-parent="#footer-column-<?php echo $key->id.'-'.$j;?>">
 										<span class='glyphicon glyphicon-remove-circle' ></span>
 									</button>
 									</div>
@@ -177,6 +178,32 @@ $(document).bind('DOMSubtreeModified', function () {
 		return false;
 	});
 
+   	$('.column-data > div > .remove-item').off().click(function(){
+   		var target = $(this).attr('data-target');
+		var parent = $(this).attr('data-parent');
+		
+		$(target).remove();
+		var data = [];
+		data['layout_id'] = [];
+		data['layout_content'] = [];
+		data['layout_id'][0] = $(parent+' > .column-id').attr('value');
+		console.log(data);
+		var i = 0;
+		var obj = [];
+		$(parent+' > .column-data').each(function(){
+			
+			var text = $(this).children('.data-text').val();
+			var link = $(this).children('.data-link').val();
+			obj[i] = {"text":text, "link":link};
+			
+			i++;
+		});
+		data['layout_content'][0] = JSON.stringify(obj);
+		updateFooter(data,function(){
+			return false;
+		});
+
+   	});
    	$('.footer-column > div > .remove-item').off().click(function(){
 		var target = $(this).attr('data-target');
 		var parent = $(this).attr('data-parent');
