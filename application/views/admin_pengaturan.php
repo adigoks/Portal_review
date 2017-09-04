@@ -114,60 +114,11 @@
 
 		<div id="pengaturan4" class="panel-collapse collapse">
 			<div class="panel-body">
-				<?php echo form_open('admin_layout/set_identity', 'id="form_identity"'); ?>
-					<div class="form-group">
-						<label for="pesan-masuk">Pesan Belum Terbaca </label>
-						<div  style="padding-bottom: 10px;" class="col-md-12">
-								<span style='width:82%;font-size: 16px;' class='col-md-1 input-group-addon'>Nama User</span>
-								<a class='btn btn-default col-md-1'>
-								<span style ='font-size: 16px;' class='glyphicon glyphicon-remove'></span>						
-								</a>
-								<a class='btn btn-default col-md-1'>
-								<span style ='font-size: 16px;' class='glyphicon glyphicon-eye-open' data-toggle="modal" data-target="#modalBaca"></span>	
-								</a>
-						</div>
-						<div  style="padding-bottom: 10px;" class="col-md-12">
-								<span style='width:82%;font-size: 16px;' class='col-md-1 input-group-addon'>Nama User</span>
-								<a class='btn btn-default col-md-1'>
-								<span style ='font-size: 16px;' class='glyphicon glyphicon-remove'></span>						
-								</a>
-								<a class='btn btn-default col-md-1'>
-								<span style ='font-size: 16px;' class='glyphicon glyphicon-eye-open'  data-toggle="modal" data-target="#modalBaca"></span>	
-								</a>
-						</div>
-						<div  style="padding-bottom: 10px;" class="col-md-12">
-								<span style='width:82%;font-size: 16px;' class='col-md-1 input-group-addon'>Nama User</span>
-								<a class='btn btn-default col-md-1'>
-								<span style ='font-size: 16px;' class='glyphicon glyphicon-remove'></span>						
-								</a>
-								<a class='btn btn-default col-md-1'>
-								<span style ='font-size: 16px;' class='glyphicon glyphicon-eye-open'  data-toggle="modal" data-target="#modalBaca"></span>	
-								</a>
-						</div>
+			<label for="pesan-masuk">Pesan Belum Terbaca </label>
+					<div id="pesan">
+						
 					</div>
-					<div class="form-group">
-						<label for="pesan-keluar">Pesan Terbaca</label>
-
-						<div  style="padding-bottom: 10px;" class="col-md-12">
-								<span style='width:82%;font-size: 16px;' class='col-md-1 input-group-addon'>Nama User</span>
-								<a class='btn btn-default col-md-1'>
-								<span style ='font-size: 16px;' class='glyphicon glyphicon-remove'></span>						
-								</a>
-								<a class='btn btn-default col-md-1'>
-								<span style ='font-size: 16px;' class='glyphicon glyphicon-eye-open'  data-toggle="modal" data-target="#modalBaca"></span>	
-								</a>
-						</div>
-						<div  style="padding-bottom: 10px;" class="col-md-12">
-								<span style='width:82%;font-size: 16px;' class='col-md-1 input-group-addon'>Nama User</span>
-								<a class='btn btn-default col-md-1'>
-								<span style ='font-size: 16px;' class='glyphicon glyphicon-remove'></span>						
-								</a>
-								<a class='btn btn-default col-md-1'>
-								<span style ='font-size: 16px;' class='glyphicon glyphicon-eye-open'  data-toggle="modal" data-target="#modalBaca"></span>	
-								</a>
-						</div>
-					</div>
-				<?php echo form_close();?>
+					
 			</div>
 		</div>
 		<div id="modalBaca" class="modal fade" role="dialog">
@@ -207,11 +158,22 @@ $(document).ready(function() {
 		
 		$("#pass_reset *" ).remove();
 		var $target = '<?php echo base_url().'admin_pengaturan/permission_admin/';?>'+$val;
-		$("#pass_reset" ).load($target,$admin_paging);
+		$("#pass_reset" ).load($target,$pass_reset);
+	});  
+	}
+
+	var $pesan = function (){
+	    $('.unread').click(function (){
+		var $val =$(this).val();
+		
+		$("#pesan *" ).remove();
+		var $target = '<?php echo base_url().'admin_pengaturan/paginasi_unread/';?>'+$val;
+		$("#pesan" ).load($target,$pesan);
 	});  
 	}
 
 	$("#admin_paging" ).load( "<?php echo base_url().'admin_pengaturan/permission_admin'; ?>",$admin_paging);
-	$("#pass_reset" ).load( "<?php echo base_url().'admin_pengaturan/admin_ubah_password'; ?>",$admin_paging);
+	$("#pass_reset" ).load( "<?php echo base_url().'admin_pengaturan/admin_ubah_password'; ?>",$pass_reset);
+	$("#pesan" ).load( "<?php echo base_url().'admin_pengaturan/paginasi_unread'; ?>",$pesan);
 });
 </script>

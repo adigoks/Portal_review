@@ -40,7 +40,7 @@
 	<div class="col-md-8 topbar">
 		
 	</div>
-	<a href="#" >
+	<a href="<?php echo base_url().'admin-dashboard/pengaturan#pengaturan4'; ?>" >
 		<div class="col-md-1 topbar topbar-text-center">
 			<span class="glyphicon glyphicon-envelope" style="font-size: 30px;"></span>
 			

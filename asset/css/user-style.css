@@ -269,10 +269,6 @@
 	padding-bottom: 1px;
 }
 
-#top-news{
-	
-}
-
 .top-news-title{
 	padding-left: 5px;
 	padding-right: 5px;
@@ -513,6 +509,26 @@
 	.font-log{
 		padding-bottom: 33px;
 	}
+
+	.c-textarea{
+		width: 400px;
+	}
+	.c-textarea2{
+		width: 298px;
+		margin-left: 50px;
+	}
+	.c-submit{
+		padding-left: 68px;
+	}
+	.c-submit2{
+		padding-left: 49px;
+	}
+	.rp-comment{
+		padding-left: 69px;
+	}
+	.c-reply{
+		padding-left:1px;
+	}
 }
 
 @media only screen and (max-width: 420px){
@@ -529,7 +545,7 @@
 		padding-left: 69px;
 	}
 	.c-textarea2{
-		width: 170px;
+		width: 135px;
 	}
 	.c-submit{
 		padding-left: 68px;
@@ -585,6 +601,14 @@
 	padding-top: 10px;
 	}
 	
+}
+@media only screen and (max-width: 320px) {
+	.c-textarea{
+		width: 138px;
+	}
+	.c-textarea2{
+		width: 82px;
+	}
 }
 @media only screen and (min-width: 20cm) {
 	.top-news .top-content{
