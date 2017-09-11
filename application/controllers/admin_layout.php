@@ -145,6 +145,14 @@
 			//var_dump($data);
 			echo json_encode(array('id_layout' => $id));
 		}
+		function del_footer(){
+			$data['id'] = $this->input->post('id');
+			
+			$id = $data['id'];
+			$this->layout_model->delete($id);
+			//var_dump($data);
+			echo json_encode(array('id_layout' => $id));
+		}
 		function update_footer(){
 				$data['id'] = $this->input->post('id');
 				$data['layout_name'] = $this->input->post('layout_name');
