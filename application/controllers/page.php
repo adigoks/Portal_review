@@ -35,10 +35,25 @@
 		}
 		public function index($uri='')
 		{
-			$this->initHead();
-			$this->menu_list();
-			$this->load_static($uri);
-			$this->init_footer();
+			switch ($uri) {
+				case 'saran':
+					$this->saran();
+					break;
+				case 'form_daftar':
+					$this->form_daftar();
+					break;
+				case 'login':
+					$this->form_login();
+					break;
+				default:
+					$this->initHead();
+					$this->menu_list();
+					$this->load_static($uri);
+					$this->init_footer();
+					break;
+			}
+			
+			
 		}
 
 		public function load_static($uri='')
