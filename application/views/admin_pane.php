@@ -64,6 +64,8 @@
 			<div id="sidebar-menu">
 				<br>
 				<div id='menu-accordion' class="panel-group">
+
+				<?php if ($usr->user_level == 0) { ?>			
 				    <div class="panel panel-default">
 				      	<div class="panel-heading">
 				        	<h4 class="panel-title">
@@ -79,6 +81,8 @@
 				        
 				      	</div>
 				    </div>
+				<?php } ?>
+
 				    <div class="panel panel-default">
 				      	<div class="panel-heading">
 				        	<h4 class="panel-title">
@@ -94,6 +98,8 @@
 				        
 				      	</div>
 				    </div>
+
+				<?php if ($usr->user_level == 0) { ?>
 				    <div class="panel panel-default">
 				      	<div class="panel-heading">
 				        	<h4 class="panel-title">
@@ -109,6 +115,8 @@
 				        
 				      	</div>
 				    </div>
+				<?php } ?>
+				
 				    <div class="panel panel-default">
 				      	<div class="panel-heading">
 				        	<h4 class="panel-title">

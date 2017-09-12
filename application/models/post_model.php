@@ -34,7 +34,7 @@
             $this->db->select('*');
             $this->db->from('portal_post');
             $this->db->where('post_published', 1);
-            $this->db->order_by('rand()');
+            $this->db->order_by('post_view','desc');
             $this->db->limit('4');
 
             return $this->db->get();
@@ -46,7 +46,7 @@
             $this->db->from('portal_post');
             $this->db->where('post_published', 1);
             $this->db->order_by('rand()');
-            $this->db->limit('5');
+            $this->db->limit('4');
 
             return $this->db->get();
         }
@@ -146,6 +146,12 @@
         function update($data,$id)
         {
             $this->db->where('id',$id);
+            $this->db->update('portal_post',$data);
+        }
+
+        function update_view($data,$url)
+        {
+            $this->db->where('post_uri',$url);
             $this->db->update('portal_post',$data);
         }
         

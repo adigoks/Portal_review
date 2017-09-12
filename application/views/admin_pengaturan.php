@@ -63,6 +63,7 @@
 			</div>
 		</div>
 
+		<?php if ($usr->user_level == 0) { ?>
 		<div class="panel panel-default" id="pengaturan_permission">
 			<div class="panel-heading">
 				<h4 class="panel-title">
@@ -103,6 +104,8 @@
 					</div>
 			</div>
 		</div>
+		<?php } ?>
+		
 	</div>
 </div>
 
