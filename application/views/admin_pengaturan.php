@@ -103,41 +103,6 @@
 					</div>
 			</div>
 		</div>
-
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h4 class="panel-title">
-					<a data-toggle="collapse" data-parent='#pengaturan-accordion' href="#pengaturan4">Pesan</a>
-				</h4>
-			</div>
-		</div>
-
-		<div id="pengaturan4" class="panel-collapse collapse">
-			<div class="panel-body">
-			<label for="pesan-masuk">Pesan Belum Terbaca </label>
-					<div id="pesan">
-						
-					</div>
-					
-			</div>
-		</div>
-		<div id="modalBaca" class="modal fade" role="dialog">
-			<div class="modal-dialog">
-				<div class="modal-content">
-				<div class="modal-header">
-						<h4>Nama user</h4>
-				</div>
-				<div class="modal-body">
-					<h6>Dari : eunha@gmail.com</h6>
-					<p>isi pesan dan saran isi pesan dan saran isi pesan dan saran isi pesan dan saran isi pesan dan saran
-					isi pesan dan saran isi pesan dan saranisi pesan dan saran</p>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				</div>
-				</div>
-			</div>
-		</div>
 	</div>
 </div>
 

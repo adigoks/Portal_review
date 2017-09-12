@@ -37,16 +37,22 @@
 		</div>
 	</a>
 	
+	<?php if ($usr->user_level == 0) { ?>
 	<div class="col-md-8 topbar">
 		
 	</div>
-	<a href="<?php echo base_url().'admin-dashboard/pengaturan#pengaturan4'; ?>" >
+	<a href="<?php echo base_url().'admin-dashboard/inbox'; ?>" >
 		<div class="col-md-1 topbar topbar-text-center">
-			<span class="glyphicon glyphicon-envelope" style="font-size: 30px;"></span>
-			
-				
+			<span class="glyphicon glyphicon-envelope" style="font-size: 30px;"></span>	
+	
 		</div>
 	</a>
+	<?php }else{ ?>
+			<div class="col-md-9 topbar">		
+				
+			</div>
+	<?php } ?>
+
 	<div class="col-md-1 topbar">
 		<a href="<?php echo site_url('admin_logout/logout');?>">Logout</a>
 	</div>
