@@ -37,13 +37,14 @@
         function delete($id)
         {
             $this->db->where('id',$id);
-            $this->db->delete('portal_layout');
+            $this->db->delete('portal_saran');
         }
         function paginasi_unread($limit=array())
         {
             $this->db->select('*');
             $this->db->from('portal_saran');
-            $this->db->order_by('id','asc');
+            $this->db->order_by('saran_readed', 0, 'asc');
+            $this->db->order_by('id', 'asc');
             if($limit !=NULL)
             {
                 $this->db->limit($limit['perpage'],$limit['offset']);

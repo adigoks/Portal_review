@@ -42,8 +42,14 @@
 				case 'form_daftar':
 					$this->form_daftar();
 					break;
-				case 'login':
+				case 'form_login':
 					$this->form_login();
+					break;
+				case 'login':
+					$this->login();
+					break;
+				case 'kirim_saran':
+					$this->send_saran();
 					break;
 				default:
 					$this->initHead();

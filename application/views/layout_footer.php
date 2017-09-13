@@ -25,14 +25,14 @@ halaman ini disimpan secara otomatis</div>
 		{
 			$j=1;
 			?>
-			<div id='footer-row-<?php echo $i;?>' class='col-md-12 layout footer-row' >
+			<div id='footer-row-<?php echo $key->id;?>' class='col-md-12 layout footer-row' >
 				<input class='row-id' type='text' name='id[]' value='<?php echo $key->id;?>' hidden>
 				<input class='row-order' type='text' name='order[]' value='<?php echo $key->layout_order;?>' hidden>
 				<div>
 				<b><?php echo $key->layout_name;?></b>
-				<button class='remove-item' data-target='#footer-row-<?php echo $i;?>' data-parent= '#layout_footer' >
+				<button class='remove-item' data-target='#footer-row-<?php echo $key->id;?>' data-parent= '#layout_footer' >
 				<span class='glyphicon glyphicon-remove-circle' ></span></button>
-				<button class='add-items' data-target='#footer-row-<?php echo $i;?>' hidden><span class='glyphicon glyphicon-plus-sign' ></span></button>
+				<button class='add-items' data-target='#footer-row-<?php echo $key->id;?>' hidden><span class='glyphicon glyphicon-plus-sign' ></span></button>
 				</div>
 			<?php
 			foreach($footer_data as $key1)
@@ -40,17 +40,17 @@ halaman ini disimpan secara otomatis</div>
 				if($key1->layout_parent == $key->id)
 				{
 					?>
-					<div id="footer-column-<?php echo $key->id.'-'.$j;?>" class="col-md-<?php echo $key1->layout_span;?> layout footer-column">
+					<div id="footer-column-<?php echo $key1->id;?>" class="col-md-<?php echo $key1->layout_span;?> layout footer-column">
 						<input class='column-id' type='text' name="id[]" value='<?php echo $key1->id;?>' hidden>
 						<input class='column-parent' type='text' name='parent[]' value='<?php echo $key1->layout_parent;?>' hidden>
 						<input class='column-span' type='text' name="span[]" value='<?php echo $key1->layout_span;?>' hidden>
 						<input class='column-order' type='text' name='order[]' value='<?php echo $key1->layout_order;?>' hidden>
 						<div>
 							<b><?php echo $key1->layout_name;?></b>
-							<button class='remove-item' data-target='#footer-column-<?php echo $key->id.'-'.$j;?>' data-parent='#footer-row-<?php echo $i;?>'>
+							<button class='remove-item' data-target='#footer-column-<?php echo $key1->id;?>' data-parent='#footer-row-<?php echo $key->id;?>'>
 								<span class='glyphicon glyphicon-remove-circle' ></span>
 							</button>
-							<button class='add-items' data-target='#footer-column-<?php echo $key->id.'-'.$j;?>' >
+							<button class='add-items' data-target='#footer-column-<?php echo $key1->id;?>' >
 								<span class='glyphicon glyphicon-plus-sign' ></span>
 							</button>
 						</div>
@@ -60,12 +60,12 @@ halaman ini disimpan secara otomatis</div>
 							for ($l=0; $l < count($obj) ; $l++) { 
 								$m= $l+1;
 								?>
-								<div id="column-data-<?php echo $key1->id.'-'.$l;?>" class='col-md-12 layout column-data'>
+								<div id="column-data-<?php echo $key1->id.'-'.$m;?>" class='col-md-12 layout column-data'>
 									<input class='data-text' name='text[]' value="<?php echo $obj[$l]->text;?>" hidden>
 									<input class='data-link' name='link[]' value='' hidden>
 									<div>
 									<b><?php echo $obj[$l]->text;?></b> 
-									<button class='remove-item' data-target="#column-data-<?php echo $key1->id.'-'.$l;?>" data-parent="#footer-column-<?php echo $key->id.'-'.$j;?>">
+									<button class='remove-item' data-target="#column-data-<?php echo $key1->id.'-'.$m;?>" data-parent="#footer-column-<?php echo $key1->id;?>">
 										<span class='glyphicon glyphicon-remove-circle' ></span>
 									</button>
 									</div>
@@ -111,6 +111,16 @@ $(document).ready(function(){
 		}
 	});
 
+	$('.footer-column').each(function(){
+		var ini = $(this).children('div');
+		if($(this).children('.column-data').length >= 6)
+		{
+			ini.children('.add-items').css('display', 'none');
+		}else{
+			ini.children('.add-items').css('display', 'block');
+		}
+	})
+
 })
 
 
@@ -133,11 +143,11 @@ $(document).bind('DOMSubtreeModified', function () {
 		addFooter(arr,function(e){
 			id = e;
 			console.log(id);
-			var node = "<div id='footer-row-"+count+"' class='col-md-12 layout footer-row' >"+
+			var node = "<div id='footer-row-"+id+"' class='col-md-12 layout footer-row' >"+
 						"<input class='row-id' type='text' name='id[]' value='"+id+"' hidden>"+
-						"<input type='text' name='order[]' value='"+arr['layout_order']+"' hidden>"+
-					"<div><b>Baris - "+count+"</b><button class='remove-item' data-target='#footer-row-"+count+"' data-parent= '#layout_footer' >" +
-					"<span class='glyphicon glyphicon-remove-circle' ></span></button><button class='add-items' data-target='#footer-row-"+count+"'><span class='glyphicon glyphicon-plus-sign' ></span></button></div></div>";
+						"<input class='row-order' type='text' name='order[]' value='"+arr['layout_order']+"' hidden>"+
+					"<div><b>Baris - "+count+"</b><button class='remove-item' data-target='#footer-row-"+id+"' data-parent= '#layout_footer' >" +
+					"<span class='glyphicon glyphicon-remove-circle' ></span></button><button class='add-items' data-target='#footer-row-"+id+"'><span class='glyphicon glyphicon-plus-sign' ></span></button></div></div>";
 			$('#layout_footer').append(node);
 			if($('.footer-row').length >= 3)
 			{
@@ -148,85 +158,8 @@ $(document).bind('DOMSubtreeModified', function () {
 		
 	});
 
-   $('.footer-row > div > .remove-item').off().click(function(){
-		var target = $(this).attr('data-target');
-		var parent = $(this).attr('data-parent');
-		$(target).remove();
-		$(parent+' > div > .add-items').css('display','block');
-		var i = 1;
-		$(parent+' > .footer-row').each(function(){
-			$(this).attr('id','footer-row-'+i);
-			i++;
-		});
-		i=1;
-		$(parent+' > .footer-row > div > b').each(function(){
-			$(this).html('Baris - '+i);
-			i++;
-		});
-		i=0;
-		p=0;
-		$(parent+' > .footer-row > div > button').each(function(){
-			if(i%2 == 0)
-			{
-				p++;
-				$(this).attr('data-target', '#footer-row-'+p);
-			}else{
-				$(this).attr('data-target', '#footer-row-'+p);
-			}
-			i++;
-		});
-		return false;
-	});
-
-   	$('.column-data > div > .remove-item').off().click(function(){
-   		var target = $(this).attr('data-target');
-		var parent = $(this).attr('data-parent');
-		
-		$(target).remove();
-		var data = [];
-		data['layout_id'] = [];
-		data['layout_content'] = [];
-		data['layout_id'][0] = $(parent+' > .column-id').attr('value');
-		console.log(data);
-		var i = 0;
-		var obj = [];
-		$(parent+' > .column-data').each(function(){
-			
-			var text = $(this).children('.data-text').val();
-			var link = $(this).children('.data-link').val();
-			obj[i] = {"text":text, "link":link};
-			
-			i++;
-		});
-		data['layout_content'][0] = JSON.stringify(obj);
-		updateFooter(data,function(){
-			return false;
-		});
-
-   	});
-   	$('.footer-column > div > .remove-item').off().click(function(){
-		var target = $(this).attr('data-target');
-		var parent = $(this).attr('data-parent');
-		var precount = $(parent+' .footer-column').length;
-		var count = $(parent+' .footer-column').length - 1;
-		var size;
-		$(target).remove();
-		$(parent+' > div > .add-items').css('display','block');
-		if(count > 0)
-		{
-			size = 12/count;
-			$(parent+' .footer-column').each(function(){
-				$(this).removeClass();
-				$(this).addClass('col-md-'+size+' layout footer-column');
-			});
-		}
-		console.log('ou');
-		
-
-
-	});
-
 	$('.footer-row > div > .add-items').off().click(function(){
+		$(this).prop('disabled',true);
 		var target = $(this).attr('data-target');
 		var precount = $(target+" .footer-column").length ;
 		var count = $(target+" .footer-column").length + 1;
@@ -269,8 +202,13 @@ $(document).bind('DOMSubtreeModified', function () {
 		if(count > 1)
 		{
 			updateFooter(data, addFooter(arr,function(e){
+				$(target+' .footer-column').each(function(){
+				
+					$(this).removeClass();
+					$(this).addClass('col-md-'+size+' layout footer-column');
+				});
 				id=e;
-				var node = '<div id="footer-column-'+arr["layout_parent"]+'-'+count+'"class="col-md-'+size+' layout footer-column">'+
+				var node = '<div id="footer-column-'+id+'"class="col-md-'+size+' layout footer-column">'+
 					"<input class='column-id' type='text' name='id[]' value='"+id+"' hidden>"+
 					"<input class='column-parent' type='text' name='parent[]' value='"+arr["layout_parent"]+"' hidden>"+
 					"<input class='column-span' type='text' name='span[]' value='"+arr["layout_span"]+"' hidden>"+
@@ -291,12 +229,18 @@ $(document).bind('DOMSubtreeModified', function () {
 				{
 					ini.css('display','none');
 				}
+				ini.removeAttr('disabled');
 				return false;
 			}));
 		}else{
 			addFooter(arr,function(e){
+				$(target+' .footer-column').each(function(){
+				
+					$(this).removeClass();
+					$(this).addClass('col-md-'+size+' layout footer-column');
+				});
 				id=e;
-				var node = '<div id="footer-column-'+arr["layout_parent"]+'-'+count+'"class="col-md-'+size+' layout footer-column">'+
+				var node = '<div id="footer-column-'+id+'" class="col-md-'+size+' layout footer-column">'+
 					"<input class='column-id' type='text' name='id[]' value='"+id+"' hidden>"+
 					"<input class='column-parent' type='text' name='parent[]' value='"+arr["layout_parent"]+"' hidden>"+
 					"<input class='column-span' type='text' name='span[]' value='"+arr["layout_span"]+"' hidden>"+
@@ -317,14 +261,16 @@ $(document).bind('DOMSubtreeModified', function () {
 				{
 					ini.css('display','none');
 				}
+				ini.removeAttr('disabled');
 				return false;
 			});
-
 		}
 		
 	});
 
-	$('.footer-column > div .add-items').off().click(function(){
+	$('.footer-column > div > .add-items').off().click(function(){
+		$(this).prop('disabled',true);
+		var ini = $(this);
 		var target = $(this).attr('data-target');
 		var count = $(target+" .column-data").length + 1;
 		var parent = $(target+' > .column-id').val();
@@ -356,17 +302,156 @@ $(document).bind('DOMSubtreeModified', function () {
 		data['layout_content'][0] = JSON.stringify(obj);
 		console.log(data);
 		updateFooter(data,function(){
+			console.log($(target+' > .column-data').length);
+			if($(target+' > .column-data').length >= 6){
+				ini.css('display','none');
+				ini.removeAttr('disabled');
+			}else{
+				ini.removeAttr('disabled');
+			}
 			return false;
 		});
-	})
+	});
+
+	$('.footer-row > div > .remove-item').off().click(function(){
+		var target = $(this).attr('data-target');
+		var parent = $(this).attr('data-parent');
+		var count = $(parent+' > .footer-row').length;
+		var id = $(target+' > .row-id').val();
+		var del_data = {layout_id:id};
+		var up_data = [];
+		up_data['layout_id'] = [];
+		up_data['layout_order'] = [];
+		$(target).remove();
+		
+		count = count - 1 ;
+		$(parent+' > div > .add-items').css('display','block');
+		var i = 0;
+		
+		if(count > 0)
+		{
+			$(parent+' > .footer-row').each(function(){
+				j= i+1;
+				$(this).children('.row-order').attr('value',j);
+				
+				up_data['layout_id'][i] = $(this).children('.row-id').val();
+				up_data['layout_order'][i]= $(this).children('.row-order').val();
+				
+				i++;
+				
+			});
+			delFooter(del_data,updateFooter(up_data, function(){
+				
+				return false;
+			}));
+
+		}else{
+			delFooter(del_data,function(){
+				return false;
+			});
+		}
+		
+	});
+
+   	$('.column-data > div > .remove-item').off().click(function(){
+   		var target = $(this).attr('data-target');
+		var parent = $(this).attr('data-parent');
+		var parent_id  = $(parent+' > .column-id').val();
+		$(parent+' > div > .add-items').css('display', 'block');
+		var i = 0;
+		$(target).remove();
+		$(parent+'> .column-data').each(function(){
+			i++;
+			$(this).attr('id', 'column-data-'+parent_id+'-'+i);
+			$(this).children('div').children('.remove-item').attr('data-target', '#column-data-'+parent_id+'-'+i);
+		});
+		var data = [];
+		data['layout_id'] = [];
+		data['layout_content'] = [];
+		data['layout_id'][0] = $(parent+' > .column-id').attr('value');
+		console.log(data);
+		i = 0;
+		var obj = [];
+		$(parent+' > .column-data').each(function(){
+			
+			var text = $(this).children('.data-text').val();
+			var link = $(this).children('.data-link').val();
+			obj[i] = {"text":text, "link":link};
+			
+			i++;
+		});
+		data['layout_content'][0] = JSON.stringify(obj);
+		updateFooter(data,function(){
+			return false;
+		});
+
+   	});
+
+   	$('.footer-column > div > .remove-item').off().click(function(){
+		var target = $(this).attr('data-target');
+		var parent = $(this).attr('data-parent');
+		var precount = $(parent+' .footer-column').length;
+		var count = $(parent+' .footer-column').length - 1;
+		var size;
+		var del_data = [];
+		
+		del_data['layout_id'] = $(target+' > .column-id').val();
+		
+		var up_data = [];
+		up_data['layout_id'] = [];
+		up_data['layout_order'] = [];
+		up_data['layout_span'] = [];
+		$(target).remove();
+		var i=0;
+		var j;
+		$(parent+' > div > .add-items').css('display','block');
+		if(count > 0)
+		{
+			size = 12/count;
+
+			$(parent+' .footer-column').each(function(){
+				j= i+1;
+				$(this).children('.column-order').attr('value',j);
+				$(this).children('.column-span').attr('value',size);
+				up_data['layout_id'][i] = $(this).children('.column-id').val();
+				up_data['layout_order'][i]= $(this).children('.column-order').val();
+				up_data['layout_span'][i]= $(this).children('.column-span').val();
+				i++;
+				
+			});
+			delFooter(del_data,updateFooter(up_data, function(){
+				$(parent+' .footer-column').each(function(){
+					$(this).removeClass();
+					$(this).addClass('col-md-'+size+' layout footer-column');
+				});
+				return false;
+			}))
+		}else{
+			delFooter(del_data,function(){
+				return false;
+			});
+		}
+		console.log('ou');
+		
+
+
+	});
 
 	$('.column-data').off().click(function(){
 		var id = $(this).attr('id');
+		var text = $(this).children('.data-text').val();
+		$('.footer-column').each(function(){
+			$(this).removeClass('layout-selected');
+		});
+		$('.column-data').each(function(){
+			$(this).removeClass('layout-selected');
+		});
+		$(this).addClass('layout-selected');
 		var node="<div class='form-inline thin-bottom-gap'>"+
 					"<input type='hidden' id='option_target' value='#"+id+"'>"+
 					"<div class='form-group'>"+
 						"<label class='sr-only' for='option-text'>duh</label>"+
-						"<input type='text' class='form-control' id='option-text' name='option-text' placeholder='text...'>"+
+						"<input type='text' class='form-control' id='option-text' name='option-text' value='"+text+"' placeholder='text...'>"+
 					"</div> "+
 					"<div class='form-group'>"+
 						"<label class='sr-only' for='option_tipe'>uh</label>"+
@@ -387,8 +472,52 @@ $(document).bind('DOMSubtreeModified', function () {
 				"<button type='submit' id='option_save' class='btn btn-primary' style='float:right'> simpan </button>";
 
 		$('#option-box').html(node);
+		return false;
 	})
 
+	$('.footer-column').off().click(function(){
+		var id = $(this).attr('id');
+		var text = $(this).children('div').children('b').text();
+		$('.footer-column').each(function(){
+			$(this).removeClass('layout-selected');
+		});
+		$('.column-data').each(function(){
+			$(this).removeClass('layout-selected');
+
+		});
+		$(this).addClass('layout-selected');
+		var node="<div class='form-inline thin-bottom-gap'>"+
+					"<input type='hidden' id='option_target' value='#"+id+"'>"+
+					"<div class='form-group'>"+
+						"<label for='option-text'>Text </label> "+
+						"<input type='text' class='form-control' id='option-text' name='option-text' value='"+text+"' placeholder='text...'>"+
+					"</div> "+
+					
+				"</div>"+
+				"<button type='submit' id='column_save' class='btn btn-primary' style='float:right'> simpan </button>";
+
+		$('#option-box').html(node);
+		return false;
+	})
+
+	$('#column_save').off().click(function(){
+		var target = $('#option_target').val();
+		
+		var text = $('#option-text').val();
+		var link =$('#option_link').val();
+		
+		$(target+' > div > b').html(text);
+		var data = [];
+		data['layout_id'] = [];
+		data['layout_name'] = [];
+		data['layout_id'][0] = $(target+' > .column-id').attr('value');
+		
+		data['layout_name'][0] = text;
+		console.log(data);
+		updateFooter(data,function(){
+			return false;
+		});
+	})
 	$('#option_save').off().click(function(){
 		var target = $('#option_target').val();
 		var parent = $(target).parent().attr('id');
@@ -447,6 +576,37 @@ function addFooter (data , callback){
 	$.ajax({
 		method :"POST", 
 		url : "<?php echo base_url()."admin_layout/add_footer"; ?>", 
+		data : oData,
+		dataType : 'json',
+		async :true ,
+		processData: false,
+		contentType: false,
+		timeout: 120000,
+		success : function (response){
+			console.log(response);
+			console.log(response.id_layout);
+			var result = response;
+			if (callback && typeof(callback) === "function") {
+			  callback(result.id_layout);
+			}
+		},	
+		error : function (response)
+		{
+			console.log(response.responseText);
+		}
+	});
+	
+}
+
+function delFooter (data , callback){
+			
+		var oData = new FormData();
+		oData.append('id', data['layout_id']);
+		
+
+	$.ajax({
+		method :"POST", 
+		url : "<?php echo base_url()."admin_layout/del_footer"; ?>", 
 		data : oData,
 		dataType : 'json',
 		async :true ,

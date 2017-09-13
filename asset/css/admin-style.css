@@ -82,6 +82,11 @@
 .layout-def{
 	background-image: -webkit-linear-gradient(top, #ffecdc 0%, #f5d0b2 100%);
 }
+
+.layout-selected{
+	border: 4px solid brown;
+}
+
 .loader{
 	position :absolute;
 	background-color: rgba(70,70,70, 0.7);

@@ -69,6 +69,7 @@ $route['search/(:any)/(:any)'] = 'post/search/$1/$2';
 $route['search/(:any)'] = 'post/search/$1';
 $route['search'] = 'post/search';
 $route['user-post-tags'] = 'post';
+$route['admin-dashboard/inbox'] = 'admin_inbox';
 $route['admin-dashboard/tampilan'] = 'admin_layout';
 $route['admin-dashboard/layout'] = 'admin_layout/layout';
 $route['admin-dashboard/layout/footer'] = 'admin_layout/footer';
