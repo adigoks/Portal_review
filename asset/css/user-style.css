@@ -280,7 +280,10 @@
 	width: inherit;
 	text-align:center;
 	bottom: 0px;
+	right:0px;
+	
 }
+
 
 .top-news-title h5{
 	line-height: 120%;

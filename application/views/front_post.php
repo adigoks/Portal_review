@@ -55,9 +55,9 @@
 	<?php if($post->post_enable_comment == 1){
 		if (!isset($_SESSION['logged'])) {
 
-			if (!isset($komentar) || $komentar->komen_post != NULL) {?>
+			if (!isset($komentar) || $komentar->komen_post != NULL)
+			$this->load->view('front_comment_off'); {?>
 				<div id="komen_paging">
-					
 				</div>
 				<!-- $this->load->view('paginasi_komen'); -->
 
