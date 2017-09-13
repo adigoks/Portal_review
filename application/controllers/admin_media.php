@@ -30,6 +30,13 @@
 			$this->load->view('admin_pane', $data);
 		}
 
+		function getUserDir(){
+			$id = $this->session->userdata('id_author');
+			$user = $this->user_model->selectId($id)->row();
+			$name = $user->user_name;
+			$directory = "image/".md5($name.$id)."/";
+			return $directory;
+		}	
 		function sortDirToArray($dir) {
   
 			$result = array();
@@ -83,8 +90,15 @@
 			return $result;
 		}
 
-		function media_list($directory='image'){
-			
+		function media_list(){
+			$id = $this->session->userdata('id_author');
+			$user = $this->user_model->selectId($id)->row();
+			$name = $user->user_name;
+			$directory = "image/".md5($name.$id);
+			if(!is_dir($directory))
+			{
+				mkdir($directory);
+			}
 			$data['directory'] = $directory;
 			$data['dir'] = $this->dirToArray($directory);
 
@@ -92,7 +106,14 @@
 		}
 
 		function do_upload(){
-				
+			$id = $this->session->userdata('id_author');
+			$user = $this->user_model->selectId($id)->row();
+			$name = $user->user_name;
+			$directory = "./image/".md5($name.$id);
+			if(!is_dir($directory))
+			{
+				mkdir($directory);
+			}
 			if(isset($_FILES['userimg']))
 			{
 				
@@ -105,12 +126,21 @@
 				for ($i=0; $i < $length; $i++) { 
 					if(($file_size[$i] <= 2560000) && ($file_type[$i] == 'image/jpeg' || $file_type[$i] == 'image/png' || $file_type[$i] == 'image/gif'))
 					{
+						
 						$name = str_replace(" ", "-", $file_name[$i]);
+						$new_name = $name;
 						$file_tmp_name = $img['tmp_name'][$i];
-						if($file_name)
-						{
-							move_uploaded_file($file_tmp_name, "./image/$name");	
+						$x = 1 ;
+						while (file_exists($directory."/$name")) {
+							$pathinf = pathinfo($directory."/$new_name");
+							
+							$name = $pathinf['filename'].'_('.$x.').'.$pathinf['extension'];
+
+							$x++;
 						}
+						
+						move_uploaded_file($file_tmp_name, $directory."/$name");	
+						
 					}
 					else{
 						echo json_encode(array('status'=> 'error', 'error_message' => 3	 ));
@@ -125,26 +155,32 @@
 		}
 
 		function detail(){
-			$file = 'image/'.$this->input->post('file_name');
+			$dir = $this->getUserDir();
+			$file = $dir.$this->input->post('file_name');
 
 			$data = array('size' => filesize($file), 'mime' => mime_content_type($file) , 'type' => filetype($file));
 			echo json_encode($data);
 		}
 
 		function delete(){
+			$dir = $this->getUserDir();
 			$file = $this->input->post('file_name');
 			for ($i=0; $i < count($file); $i++) { 
-				unlink('image/'.$file[$i]);
+				unlink($dir.$file[$i]);
 			}
 			echo json_encode(array('status' => 'ok'));
 			
 		}
 
 		function rename(){
-			$old = 'image/'.$this->input->post('old_name');
-			$new = 'image/'.$this->input->post('new_name');
-			rename($old, $new);
-			echo json_encode(array('old' => $old, 'new'=> $new));
+			$dir = $this->getUserDir();
+			$old = $this->input->post('old_name');
+			$new = $this->input->post('new_name');
+			$old = './'.$dir.$old;
+
+			$new = './'.$dir.$new;
+			$status = rename($old, $new);
+			echo json_encode(array('status_rn'=> $status,'old' => $old, 'new'=> $new));
 		}
 	}
 

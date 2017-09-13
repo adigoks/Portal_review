@@ -100,7 +100,7 @@
 			$("[name='nama-file']").val(name);
 			$('#file-ext').text(type);
 		});
-		$('#rename-button').click(function(){
+		$('#rename-button').off().click(function(){
 			var oldName;
 			$('.media-checkbox > input').each(function(){
 				console.log('cek');
