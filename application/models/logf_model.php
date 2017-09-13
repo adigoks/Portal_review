@@ -27,6 +27,16 @@
                 
             return $this->db->get();
         }
+
+        function selectpost($post)
+        {
+            $this->db->select('*');
+            $this->db->from('portal_logf');
+            $this->db->where('logf_url',$post);
+                
+            return $this->db->get();
+        }
+
         function update($data,$id)
         {
             $this->db->where('id',$id);

@@ -29,6 +29,7 @@
 				$this->initHead($data);
 				$this->menu_list();
 				$this->post_detail($this->uri->segment(2));
+				$this->view_post($this->uri->uri_string(), $this->uri->segment(2));
 			}else if ($this->uri->segment(1)=='post' && $this->uri->segment(2) == false){
 				redirect(site_url());
 			}else{
@@ -293,6 +294,13 @@
 			$this->komentar_model->insert($data);
 
 			redirect(site_url('post/'.$url));
+		}
+
+		public function view_post($log, $uri=Null)
+		{
+			$post = $this->logf_model->selectpost($log)->result();
+			$data['post_view'] = count($post);
+			$this->post_model->update_view($data,$uri);
 		}
 	}
 
