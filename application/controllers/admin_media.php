@@ -13,6 +13,7 @@
 			$this->load->helper('html');
 			$this->load->helper('url');
 			$this->load->library('session');
+			$this->load->library('image_lib');
 			$this->load->model('user_model');
 			if ($this->session->userdata('logged_in') == FALSE) 
 			{
@@ -94,7 +95,7 @@
 			$id = $this->session->userdata('id_author');
 			$user = $this->user_model->selectId($id)->row();
 			$name = $user->user_name;
-			$directory = "image/".md5($name.$id);
+			$directory = "image/".md5($name.$id)."/thumbnail";
 			if(!is_dir($directory))
 			{
 				mkdir($directory);
@@ -109,7 +110,8 @@
 			$id = $this->session->userdata('id_author');
 			$user = $this->user_model->selectId($id)->row();
 			$name = $user->user_name;
-			$directory = "./image/".md5($name.$id);
+			$user_name = $name;
+			$directory = "./image/".md5($user_name.$id);
 			if(!is_dir($directory))
 			{
 				mkdir($directory);
@@ -139,7 +141,20 @@
 							$x++;
 						}
 						
-						move_uploaded_file($file_tmp_name, $directory."/$name");	
+						move_uploaded_file($file_tmp_name, $directory."/$name");
+						$size = getimagesize($directory."/$name");
+						$newdir = "./image/".md5($user_name.$id)."/thumbnail";
+						if(!is_dir($newdir))
+						{
+
+							mkdir($newdir);
+						}	
+						$thumbcfg['width'] = 150;
+						$thumbcfg['height'] = 150;
+						$thumbcfg['new_image'] = $newdir."/$name" ;
+						$thumbcfg['source_image'] = $directory."/$name";
+						$this->image_lib->initialize($thumbcfg);
+						$this->image_lib->resize();
 						
 					}
 					else{
@@ -164,9 +179,11 @@
 
 		function delete(){
 			$dir = $this->getUserDir();
+			$thumbdir = $dir."thumbnail/";
 			$file = $this->input->post('file_name');
 			for ($i=0; $i < count($file); $i++) { 
 				unlink($dir.$file[$i]);
+				unlink($thumbdir.$file[$i]);
 			}
 			echo json_encode(array('status' => 'ok'));
 			
@@ -174,12 +191,15 @@
 
 		function rename(){
 			$dir = $this->getUserDir();
+			$thumbdir = $dir."thumbnail/";
 			$old = $this->input->post('old_name');
 			$new = $this->input->post('new_name');
-			$old = './'.$dir.$old;
-
-			$new = './'.$dir.$new;
-			$status = rename($old, $new);
+			$olddir = './'.$dir.$old;
+			$newdir = './'.$dir.$new;
+			$status = rename($olddir, $newdir);
+			$olddir = './'.$thumbdir.$old;
+			$newdir = './'.$thumbdir.$new;
+			$status = rename($olddir, $newdir);
 			echo json_encode(array('status_rn'=> $status,'old' => $old, 'new'=> $new));
 		}
 	}

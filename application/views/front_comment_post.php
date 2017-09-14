@@ -4,7 +4,7 @@
 		<?php if ($data->komen_parent == 0) { ?>
 			<div class="thor col-md-1 col-md-offset-1">
 			<?php if ($data->user_profile_img == NULL) { ?>
-				<img class="f-img" src="<?php echo base_url();?>image/default/empty_image.png">
+				<img class="f-img" src="<?php echo base_url();?>image/default/blank-profile.png">
 			<?php }else{ ?>
 				<img class="f-img" src="<?php echo base_url().'image/user_profil/'.$data->user_profile_img; ?>">
 			<?php } ?>

@@ -6,7 +6,7 @@
 					<?php echo form_open('post/komentar', 'id="komen-box"'); ?>
 						<div class="thor col-md-1">
 						<?php if ($name_user->user_profile_img == NULL) { ?>
-							<img class="f-img" src="<?php echo base_url();?>image/default/empty_image.png">
+							<img class="f-img" src="<?php echo base_url();?>image/default/blank-profile.png">
 						<?php }else{?>
 							<img class="f-img" src="<?php echo base_url().'image/user_profil/'.$name_user->user_profile_img; ?>">
 						<?php } ?>
