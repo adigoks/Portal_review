@@ -46,7 +46,7 @@
 										</button>
 									</a>
 									
-									$key[menu_name]
+									<span class='menu-text'>$key[menu_name]</span>
 									<button class='btn btn-default' style='float:right' form='form-menu-config' type='submit' name='hapus' value='$key[id]'> hapus </button>
 									<button class='btn btn-default' style='float:right' form='form-menu-config' type='submit' name='edit' value='$key[id]'> edit </button>
 								</div>
@@ -93,6 +93,7 @@
 	<script type="text/javascript">
 
 	$(".view-sub").click(function(){
+		
 		var $target = $(this).attr("target");
 
 		$(".view-sub").each(function(){
@@ -174,7 +175,14 @@
 	});
 
 	$( function() {
-		
+		var count;
+		$('li.panel-default').each(function(){
+			count = $(this).find('.sub-menu').length;
+			if(count>0){
+				$(this).find('.menu-text').append(" <span class='badge'>"+count+"</span>");	
+			}
+			
+		});
 		
 
 	    $( "#parent-menu" ).sortable({
