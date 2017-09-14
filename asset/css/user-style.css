@@ -1,3 +1,10 @@
+.text-s{
+	color: white;
+}
+.text-s:hover{
+	text-decoration:none;
+	color: black;
+}
 
 #main{ 
 	padding-bottom: 15px;
