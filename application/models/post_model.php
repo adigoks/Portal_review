@@ -42,10 +42,12 @@
 
         function showTrending()
         {
-            $this->db->select('*');
+            $this->db->select('* , count(portal_post.id) as count_id');
             $this->db->from('portal_post');
-            $this->db->where('post_published', 1);
-            $this->db->order_by('rand()');
+            $this->db->join('portal_komentar', 'portal_post.id = portal_komentar.komen_post');
+            $this->db->where('komen_waktu >= DATE_SUB(NOW(),INTERVAL 7 DAY)');
+            $this->db->GROUP_by('portal_post.id');
+            $this->db->order_by('count_id', 'desc');
             $this->db->limit('4');
 
             return $this->db->get();

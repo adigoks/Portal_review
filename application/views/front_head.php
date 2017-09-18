@@ -30,9 +30,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<script type="text/javascript" src="<?php echo base_url();?>asset/js/jquery-3.2.1.js"></script>
 	<script type="text/javascript" src="<?php echo base_url();?>asset/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="<?php echo base_url();?>asset/js/portal.js"></script>
+	<script src="//connect.facebook.net/en_US/all.js"></script>
 	<?php echo link_tag('asset/css/bootstrap-theme.css'); ?>
 	<?php echo link_tag('asset/css/bootstrap.css'); ?>
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>asset/css/user-style.css"/>
+	<meta property="og:url"           content="http://[::1]/portal2/post/eunha-is-love" />
+  	<meta property="og:type"          content="website" />
+  	<meta property="og:title"         content="Your Website Title" />
+  	<meta property="og:description"   content="Your description" />
+  	<meta property="og:image"         content="http://www.your-domain.com/path/image.jpg" />
 	
 	<style type="text/css">
 		.bg{

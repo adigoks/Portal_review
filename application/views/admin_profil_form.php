@@ -19,7 +19,7 @@
 					<?php 
 						if($user->user_profile_img == '')
 						{
-							$img = 'image/default/empty_image.png';
+							$img = 'image/default/blank-profile.png';
 							$val = ''; //image default kalo nggak ada fotonya
 						}else{
 							$img = $user->user_profile_img;

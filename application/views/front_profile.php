@@ -19,7 +19,7 @@
 				<div class="col-md-2 pic-prof">
 					<div class="preview-img">
 					<?php if ($detail_id->user_profile_img == NULL) { ?>
-						<img class="img-responsive"  id="preview" src="<?php echo base_url();?>image/default/empty_image.png"><br/>
+						<img class="img-responsive"  id="preview" src="<?php echo base_url();?>image/default/blank-profile.png"><br/>
 					<?php }else{?>
 						<img class="img-responsive"  id="preview" src="<?php echo base_url().'image/user_profil/'.$detail_id->user_profile_img; ?>"><br/>
 					<?php } ?>

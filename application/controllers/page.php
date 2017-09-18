@@ -26,7 +26,7 @@
     			'smtp_host' => 'ssl://smtp.gmail.com',
 			    'smtp_port' => 465,
 			    'smtp_user' => 'wibumaster@gmail.com',
-			    'smtp_pass' => 'wibumaster12345',
+			    'smtp_pass' => 'Akulupasandinnya',
 			    'mailtype'  => 'html', 
 			    'charset'   => 'iso-8859-1'
 				);
