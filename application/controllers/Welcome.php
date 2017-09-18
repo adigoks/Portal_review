@@ -61,8 +61,8 @@ class Welcome extends CI_Controller {
 		$data['req_page'] = $page;
 		$this->menu_list($data);
 		$this->compose($data);
-		$this->load->view('front_footer');
-		$this->add_log($this->uri->uri_string());
+		$this->init_footer();
+		
 	}	
 
 	public function loadinit()
