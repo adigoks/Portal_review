@@ -77,21 +77,7 @@ class Welcome extends CI_Controller {
 
 	public function compose($data=null)
 	{
-		$idpost = $this->post_model->showAll()->result();
-		$komen_view = $this->komentar_model->show_limit7()->result();
-		$count = array();
-		$id_count = array();
-
-		foreach ($idpost as $id) {
-			if ($id->id == $komen_view) {
-
-				$a = count($this->komentar_model->selectpost($id->id)->result());
-
-				$count[] = $a;
-				$id_count[] = $id->id;
-			}
-		}
-
+	
 		$data['news'] = $this->post_model->showPublish()->result();
 		$data['widget'] = $this->post_model->showPopuler()->result();
 		$data['trending'] = $this->post_model->showTrending()->result();

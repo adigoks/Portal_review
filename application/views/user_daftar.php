@@ -30,7 +30,7 @@
 						<h5>*Email akan digunakan sebagai validasi akun</h5><br/>
 				</div>
 				<div class="preview-img">
-					<img  style="border:100%" class="img-responsive" height="200" width="200" id="preview" src="<?php echo base_url();?>image/default/empty_image.png"><br/>
+					<img  style="border:100%" class="img-responsive" height="200" width="200" id="preview" src="<?php echo base_url();?>image/default/blank-profile.png"><br/>
 				</div>
 				<label class="btn btn-default">
 					pilih gambar profile	<input type="file" name="foto" id="foto" size="100" style="display: none;" /><br/>

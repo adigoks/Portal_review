@@ -29,7 +29,7 @@
 			Hello, <?php echo $usr->user_name; ?>
 	</div>
 	
-	<div class="col-md-8 topbar">
+	<div class="col-md-9 topbar">
 		
 	</div>
 	<a href="<?php echo base_url().'admin-dashboard/inbox'; ?>" >
