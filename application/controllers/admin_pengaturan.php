@@ -18,6 +18,7 @@
 			$this->load->model('user_model');
 			$this->load->model('attribute_model');
 			$this->load->model('saran_model');
+			$this->load->model('komentar_model');
 			if ($this->session->userdata('logged_in') == FALSE) 
 			{
 				redirect(site_url('admin_login'));
@@ -48,7 +49,6 @@
 			$data['content'] =$this->load->view('admin_body', $data,true);
 			$this->load->view('admin_pane', $data);
 		}
-
 
 		public function permission_admin($page=1){
 
@@ -120,6 +120,7 @@
 				$data['user_level'] = $this->input->post('level');
 
 				$this->user_model->update_level($data, $user);
+				$this->session->set_flashdata('pesan','status user berhasil di ubah');
 
 				redirect(site_url('admin-dashboard/pengaturan'));
 		}
@@ -148,7 +149,7 @@
 					$data['user_forgot'] = 0;
 					$data['user_password']=md5("pnvs#%12".$p."41;1*");
 					$this->user_model->update($data,$id);
-
+					$this->session->set_flashdata('pesan','password sudah di reset');
 
 					redirect(site_url('admin-dashboard/pengaturan'));
 

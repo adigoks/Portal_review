@@ -50,7 +50,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['post/paging/(:any)/(:any)'] = 'post/paginasi_komen/$1/$2';
+$route['admin-edit-komen/paging/(:any)/(:any)'] = 'admin_post/view_edit_komen/$1/$2';
 $route['post/paging'] = 'post/paginasi_komen';
+$route['admin-dashboard/post/komentar/delete/(:any)'] = 'admin_post/del_com/$1';
+$route['admin-dashboard/post/komentar/(:any)/(:any)'] = 'admin_post/paginasi_edit_komen/$1/$2';
 $route['post/balas'] = 'post/balas_komen';
 $route['post/komentar'] = 'post/komentar';
 $route['kategori/(:any)/(:any)'] = 'post/kategori/$1/$2';
