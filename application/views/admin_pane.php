@@ -3,6 +3,7 @@
 	<script type="text/javascript" src="<?php echo base_url();?>asset/js/jquery-3.2.1.js"></script>
 	<script src="<?php echo base_url();?>asset/js/jquery-ui/jquery-ui.js"></script>
 	<script type="text/javascript" src="<?php echo base_url();?>asset/js/bootstrap.min.js"></script>
+	<script src="<?php echo base_url();?>asset/js/chartjs/Chart.js"></script>
 	<script type="text/javascript" src="<?php echo base_url();?>asset/js/portal.js"></script>
 	<script type="text/javascript" src="<?php echo base_url();?>asset/summernote/summernote.js"></script>
 	<?php echo link_tag('asset/css/bootstrap-theme.css'); ?>

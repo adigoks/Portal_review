@@ -95,6 +95,11 @@
 			$id = $this->session->userdata('id_author');
 			$user = $this->user_model->selectId($id)->row();
 			$name = $user->user_name;
+			$directory = "image/".md5($name.$id);
+			if(!is_dir($directory))
+			{
+				mkdir($directory);
+			}
 			$directory = "image/".md5($name.$id)."/thumbnail";
 			if(!is_dir($directory))
 			{

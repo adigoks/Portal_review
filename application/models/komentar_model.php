@@ -19,12 +19,21 @@
             
             return $this->db->get();
         }
-        
-        function selectId($id)
+
+        function show_limit7()
+        {
+            $this->db->select('komen_post');
+            $this->db->from('portal_komentar');
+            $this->db->where('komen_waktu >= DATE_SUB(NOW(),INTERVAL 1 DAY)');
+
+            return $this->db->get();
+        }
+
+        function selectpost($id)
         {
             $this->db->select('*');
             $this->db->from('portal_komentar');
-            $this->db->where('id',$id);
+            $this->db->where('komen_post',$id);
                 
             return $this->db->get();
         }

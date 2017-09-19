@@ -31,6 +31,7 @@ class Welcome extends CI_Controller {
 		$this->load->model('logf_model');
 		$this->load->model('attribute_model');
 		$this->load->model('layout_model');
+		$this->load->model('komentar_model');
 	}
 
 	public function index()
@@ -61,8 +62,8 @@ class Welcome extends CI_Controller {
 		$data['req_page'] = $page;
 		$this->menu_list($data);
 		$this->compose($data);
-		$this->load->view('front_footer');
-		$this->add_log($this->uri->uri_string());
+		$this->init_footer();
+		
 	}	
 
 	public function loadinit()
@@ -76,6 +77,7 @@ class Welcome extends CI_Controller {
 
 	public function compose($data=null)
 	{
+	
 		$data['news'] = $this->post_model->showPublish()->result();
 		$data['widget'] = $this->post_model->showPopuler()->result();
 		$data['trending'] = $this->post_model->showTrending()->result();
