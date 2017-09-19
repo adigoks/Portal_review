@@ -16,7 +16,7 @@
 			$this->load->library('form_validation');
 			$this->load->helper('form');
 			$this->load->model('attribute_model');
-			$this->load->model(array('post_model','user_model','page_model'));
+			$this->load->model(array('post_model','user_model','page_model','komentar_model'));
 			$this->load->library('pagination');
 			
 			
@@ -206,7 +206,55 @@
 			$data['content'] =$this->load->view('admin_body', $data, true);
 			$this->load->view('admin_pane', $data);
 		}
+
+		function paginasi_edit_komen($page=1,$id)
+		{
+			$data['post']= $this->post_model->selectId($id)->row();
+
+			$id_user = $this->session->userdata('id_user');
+			$data['name_user'] = $this->user_model->selectId($id_user)->row();
+
+			$koment = $data['post']->id;
+			$total = count($this->komentar_model->select_komentar_post($koment)->row());
+
+			if ($total > 0) {
+				$data['komentar'] = $this->komentar_model->select_komentar_post($koment)->row();
+				$data['balas'] = $this->komentar_model->select_komentar_balas()->result();
+			}
+
+			$data['perpage'] = 3;
+			$offset = ($page - 1) * $data['perpage'];
+					
+			$data['config'] =array(
+				'base_url' =>site_url('admin_post/paginasi_edit_komen'),
+				'total_rows' =>count($this->komentar_model->select_komentar_post($koment)->result()),
+				'per_page' =>$data['perpage']);
+			$limit['offset'] = $offset;
+			$limit['perpage'] = $data['perpage'];
+					
+			$data['offset'] = $offset;
+			$data['total'] = $data['config']['total_rows'];
+			$data['page'] = $page;
+			$data['paging_kom'] = $this->komentar_model->paging_komen($limit, $koment)->result();
+			echo $this->load->view('paginasi_edit_komen',$data, true);
+		}
 		
+		function view_edit_komen($id){
+			$data['post']= $this->post_model->selectId($id)->row();
+			$id_user = $this->session->userdata('id_user');
+			$data['name_user'] = $this->user_model->selectId($id_user)->row();
+
+			$koment = $data['post']->id;
+			$total = count($this->komentar_model->select_komentar_post($koment)->row());
+
+			$id_author = $this->session->userdata('id_author');
+			$data['usr']=$this->user_model->selectId($id_author)->row();
+			$data['id_page'] = $this->page_model->selectId($id)->row();
+			$data['content'] = $this->load->view('post_komen', $data, true);
+			$data['content'] = $this->load->view('admin_body',$data,true);
+			$this->load->view('admin_pane',$data);
+		}
+
 		function form_edit_page($id)
 		{
 
@@ -330,6 +378,35 @@
 		{
 			$this->page_model->delete($id);
 			$this->sesuaikan_post('page');
+		}
+		function del_com($id)
+		{
+			// if (!isset($id)==NULL) {
+
+				$id_komen=$this->komentar_model->selectId($id)->row();
+				$id2=$id_komen->komen_parent;
+				
+				if ($id2 > 0) {
+					$this->komentar_model->delete($id);
+					$this->session->set_flashdata('pesan','komen sudah terhapus');
+					$this->view_edit_komen($id_komen->komen_post);
+				}
+				else {
+					$a=$id_komen->komen_parent;
+					$b=$this->komentar_model->select_parent($a)->result();
+					
+					foreach ($b as $key) {
+
+						
+						$this->komentar_model->delete_child($id2);
+					}
+
+					$this->komentar_model->delete($id);
+					$this->session->set_flashdata('pesan','komen sudah terhapus');
+					$this->view_edit_komen($id_komen->komen_post);
+					// $this->view_edit_komen($id_komen->komen_post);
+				}
+			// }
 		}
 
 	}

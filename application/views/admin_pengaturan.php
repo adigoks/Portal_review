@@ -3,10 +3,11 @@
 		<h4>Pengaturan</h4><br/>
 	</div>
 </div>
-
-<div>
+<?php if($this->session->flashdata('pesan') != null) {?>
+<div class="alert alert-success">
 	<?php echo $this->session->flashdata('pesan'); ?>
 </div>
+<?php }?>
 <div>
 	<div id='pengaturan-accordion' class="panel-group">
 		<div class="panel panel-default">
@@ -76,6 +77,11 @@
 			<div class="panel-body">
 				
 					<div class="form-group">
+						<div class="alert alert-warning">
+							<p>
+								Fitur ini digunakan untuk merubah hak akses user
+							</p>
+						</div>
 						<label for="daftar-admin" >Daftar Akun</label>
 							<div id = "admin_paging">
 		    			
@@ -97,6 +103,11 @@
 			<div class="panel-body">
 	
 					<div class="form-group">
+						<div class="alert alert-warning">
+							<p>
+								Berisi list user dan admin yang meminta reset password
+							</p>
+						</div>
 						<label for="daftar-akun" >Daftar Akun</label>
 						<div id = "pass_reset">
 							

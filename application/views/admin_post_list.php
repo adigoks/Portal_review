@@ -43,7 +43,7 @@
 		</span>
 		<span style='width:22%;font-size: 16px;' class=' input-group-addon'><?php echo $data->user_name; ?></span>
 		<span style='font-size: 16px;' class=' input-group-btn '>
-			<a href='#'  class='btn btn-default input-group-btn'>
+			<a href='<?php echo site_url('admin_post/view_edit_komen/'.$data->id); ?>'  class='btn btn-default input-group-btn'>
 				
 				<span style ='font-size: 16px;' class='glyphicon glyphicon-comment'></span>						
 			</a>
