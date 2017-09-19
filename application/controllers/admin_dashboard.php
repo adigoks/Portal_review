@@ -15,6 +15,7 @@
 			$this->load->library('session');
 			$this->load->model('user_model');
 			$this->load->model('logf_model');
+			
 			if ($this->session->userdata('logged_in') == FALSE) 
 			{
 				redirect(site_url('admin_login'));

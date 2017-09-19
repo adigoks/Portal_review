@@ -17,10 +17,8 @@
 			$this->load->model('user_model');
 			$this->load->library('session');
 
-			if (isset($_SESSION['logged_in']) && $this->session->userdata('logged_in') === 'true') 
-			{
-				redirect(site_url('admin-dashboard'));
-			}
+			
+
 			$config = Array(
    				'protocol' => 'smtp',
     			'smtp_host' => 'ssl://smtp.gmail.com',
@@ -37,10 +35,18 @@
 
 		public function index()
 		{
+			$this->cek_login();
 			$this->load->view('admin_login');
 
 		}
+		public function cek_login()
+		{
+			if ($this->session->userdata('logged_in') == true) 
+			{
 
+				redirect(site_url('admin-dashboard'));
+			}
+		}
 		public function login ()
 		{
 			$username = $this->input->post('user_name', true);
@@ -84,7 +90,7 @@
 			$logged_in = $this->session->userdata('logged_in');
 			if ($logged_in) 
 			{
-				redirect(site_url('admin-dashboard/menu'));
+				redirect(site_url('admin-dashboard'));
 				
 			}
 			else
@@ -95,11 +101,13 @@
 
 		public function lupa_password()
 		{
+			$this->cek_login();
 			$this->load->view('admin_lupa_pass');
 		}
 
 		public function admin_lupa_pass()
 		{
+			$this->cek_login();
 			$a = $this->input->post('kirim');
 			if(isset($a)){
 
