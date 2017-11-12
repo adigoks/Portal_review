@@ -18,8 +18,6 @@
 			$this->load->model('attribute_model');
 			$this->load->model(array('post_model','user_model','page_model','komentar_model'));
 			$this->load->library('pagination');
-			
-			
 
 			$this->load->model('post_model');
 			$this->load->model('page_model');

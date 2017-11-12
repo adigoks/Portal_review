@@ -208,17 +208,17 @@ $(document).bind('DOMSubtreeModified', function () {
 					$(this).addClass('col-md-'+size+' layout footer-column');
 				});
 				id=e;
-				var node = '<div id="footer-column-'+id+'"class="col-md-'+size+' layout footer-column">'+
+				var node = '<div id="footer-column-'+id+'" class="col-md-'+size+' layout footer-column">'+
 					"<input class='column-id' type='text' name='id[]' value='"+id+"' hidden>"+
 					"<input class='column-parent' type='text' name='parent[]' value='"+arr["layout_parent"]+"' hidden>"+
 					"<input class='column-span' type='text' name='span[]' value='"+arr["layout_span"]+"' hidden>"+
 					"<input class='column-order' type='text' name='order[]' value='"+arr['layout_order']+"' hidden>"+
 					"<div>"+
 						"<b>Column-"+count+"</b> "+
-						"<button class='remove-item' data-target='#footer-column-"+arr["layout_parent"]+'-'+count+"' data-parent='"+target+"'>"+
+						"<button class='remove-item' data-target='#footer-column-"+id+"' data-parent='"+target+"'>"+
 							"<span class='glyphicon glyphicon-remove-circle' ></span>"+
 						"</button>"+
-						"<button class='add-items' data-target='#footer-column-"+arr["layout_parent"]+'-'+count+"'>"+
+						"<button class='add-items' data-target='#footer-column-"+id+"'>"+
 							"<span class='glyphicon glyphicon-plus-sign' ></span>"+
 						"</button>"+
 					"</div>"+
