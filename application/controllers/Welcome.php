@@ -38,7 +38,7 @@ class Welcome extends CI_Controller {
 	{
 		$data['identitas'] = $this->attribute_model->selectName('identitas_situs')->row();
 		$data['warna'] = $this->attribute_model->selectName('tampilan_warna')->row();
-
+		$data['font'] = $this->attribute_model->selectName('tampilan_font')->row();
 		$this->load->view('front_head',$data);
 		$data['req_page'] = 1;
 		$this->menu_list($data);
@@ -51,6 +51,7 @@ class Welcome extends CI_Controller {
 		
 		$data['identitas'] = $this->attribute_model->selectName('identitas_situs')->row();
 		$data['warna'] = $this->attribute_model->selectName('tampilan_warna')->row();
+		$data['font'] = $this->attribute_model->selectName('tampilan_font')->row();
 
 		$this->load->view('front_head',$data);
 	}
@@ -58,6 +59,7 @@ class Welcome extends CI_Controller {
 	{
 		$data['identitas'] = $this->attribute_model->selectName('identitas_situs')->row();
 		$data['warna'] = $this->attribute_model->selectName('tampilan_warna')->row();
+		$data['font'] = $this->attribute_model->selectName('tampilan_font')->row();
 		$this->load->view('front_head',$data);
 		$data['req_page'] = $page;
 		$this->menu_list($data);

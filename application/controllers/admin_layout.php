@@ -100,7 +100,34 @@
 		}
 
 		function set_font(){
+			$data['attribute_name'] = 'tampilan_font';
 
+			$family = $this->input->post('font_type');
+			$size = $this->input->post('font_size');
+			$color = $this->input->post('font_warna');
+			$style = ($this->input->post('font_style') == 'italic')? 'italic' : 'normal';
+			$weight = ($this->input->post('font_weight') == 'bold')? 'bold' : 'normal';
+
+			$value = array(	'family' => $family,
+							'size' => $size,
+							'color' => $color,
+							'style' => $style,
+							'weight' => $weight,
+					);
+
+			$data['attribute_values'] = json_encode($value);
+			
+			$warna = $this->attribute_model->selectName('tampilan_font')->row();
+			
+			if($warna == null)
+			{
+				$this->attribute_model->insert($data);
+				redirect(site_url('admin-dashboard/tampilan'));
+			}else{
+				$id = $warna->id;
+				$this->attribute_model->update($data, $id);
+				redirect(site_url('admin-dashboard/tampilan'));
+			}
 		}
 
 		function layout(){

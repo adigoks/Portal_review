@@ -23,6 +23,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			$warna_aksen = $warna_value->aksen;
 			$warna_dasar = $warna_value->dasar;
 		}
+
+		if(is_null($font))
+	{
+	}else{
+		$font_value = json_decode($font->attribute_values);
+		$font_type = $font_value->family;
+		$font_style = $font_value->style;
+		$font_size = $font_value->size;
+		$font_color = $font_value->color;
+		$font_weight = $font_value->weight;
+	}
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,6 +57,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		}
 		body{
 			background-color: <?php echo $warna_dasar;?>;
+
+		}
+		*{
+
+			<?php echo (isset($font_type))? 'font-family: '.$font_type.';' : '' ; ?>
+			<?php echo (isset($font_style))? 'font-style: '.$font_style.';' : '' ; ?>
+			<?php echo (isset($font_weight))? 'font-weight: '.$font_weight.';' : '' ; ?>
+		}
+		p{
+			<?php echo (isset($font_color))? 'color: '.$font_color.';' : '' ; ?>
+			<?php echo (isset($font_size))? 'font-size: '.$font_size.';' : '' ; ?>
 		}
 		.act{
 			background-color: <?php echo $warna_aksen;?>;

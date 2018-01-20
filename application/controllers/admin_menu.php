@@ -51,16 +51,16 @@
 
 		}
 
-		public function menu_edit()
-		{
+		// public function menu_edit()
+		// {
 			
-			$this->cek_login();
+		// 	$this->cek_login();
 
-			$this->load->model('menu_model');
-			$this->load->helper('url');
-			$this->load->library('form_validation');
-			$this->load->helper('form');
-		}
+		// 	$this->load->model('menu_model');
+		// 	$this->load->helper('url');
+		// 	$this->load->library('form_validation');
+		// 	$this->load->helper('form');
+		// }
 
 
 		function menu_tambah()

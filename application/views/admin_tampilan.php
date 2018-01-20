@@ -31,6 +31,31 @@
 		$warna_dasar = $warna_value->dasar;
 	}
 
+	$warna_option = array(
+		'Georgia' => 'Georgia, serif',
+		'Helvetica' => '"Helvetica Neue",Helvetica,Arial,sans-serif',
+		'Times New Roman' => '"Times New Roman", Times, serif',
+		'Lucida' =>'"Lucida Sans Unicode", "Lucida Grande", sans-serif',
+		'Tahoma' => 'Tahoma, Geneva, sans-serif',
+		'Trebuchet MS' => '"Trebuchet MS", Helvetica, sans-serif',
+		'Courier New' => '"Courier New", Courier, monospace'
+		 );
+	if(is_null($font))
+	{
+		$font_type = '"Helvetica Neue",Helvetica,Arial,sans-serif';
+		$font_style = 'normal';
+		$font_size = '14';
+		$font_color = '#000000';
+		$font_weight = 'normal';
+	}else{
+		$font_value = json_decode($font->attribute_values);
+		$font_type = $font_value->family;
+		$font_style = $font_value->style;
+		$font_size = $font_value->size;
+		$font_color = $font_value->color;
+		$font_weight = $font_value->weight;
+	}
+
 
 		$target = '';
 		$default = 'admin-dashboard/tampilan';
@@ -134,48 +159,53 @@
 			</div>
 			<div id="tampilan3" class="panel-collapse collapse">
 				<div class="panel-body">
-					<form>
-						<div class="form-group">
+					<?php echo form_open('admin_layout/set_font', 'id="form_font"'); ?>
+						<div class="row">
+						<div class="form-group col-md-8">
 							<label for='font_type'>Default Font</label>
-							<Select id='font_type' class='form-control' name="font_type" >
+							<Select id='font_type' class='form-control font-option' name="font_type" >
+							<?php
+								foreach ($warna_option as $key => $value) {
+									?>
+									<option value='<?php echo $value;?>' <?php echo ($value == $font_type)? 'selected' : '';?>>
+										<?php echo $key;?>
+									</option>
+									<?php
+								}
+							?>
 								
-								<option value="none">None</option>
-								<option value="external_link">External Link</option>
-								<option value="post">Post</option>
-								<option value="kategori">Kategori</option>
-								<option value="tag">tag</option>
-								<option value="page">page</option>
 							</select>
+						</div>
+						<div class="col-md-4">
+							<b>preview</b>
+							<div id="font-preview" style='font-family: <?php echo $font_type;?>;font-size: <?php echo $font_size;?>;font-weight: <?php echo $font_weight;?>; font-style: <?php echo $font_style;?>; color: <?php echo $font_color;?>'>
+								The quick brown fox jumps over the lazy dog
+							</div>
+						</div>
 						</div>
 						<div class="form-group" >
 							<label for='font_style'>Font Style</label>
-							<select id="font_style" class='form-control' name="font_type">
-								<option value="none">Normal</option>
-								<option value="external_link">Bold</option>
-								<option value="post">Italic</option>
-								<option value="kategori">Underline</option>
-								<option value="tag">Bold Italic</option>
-								<option value="page">Bold Underline</option>
-								<option value="tag">Italic Underline</option>
-								<option value="page">Bold Underline Italic</option>
-							</select>
-
+							<br>
+							<input type="checkbox" name="font_style" value="italic" <?php echo ($font_style == 'italic')?'checked':'';?>> <i>italic</i>
+							<input type="checkbox" name="font_weight" value="bold" <?php echo ($font_weight == 'bold')?'checked':'';?>> <b>bold</b>
 						</div>
 						<div class="form-group">
 							<label for='font_size'>Ukuran Font</label>
-							<input class='form-control' type="number" name="font_size">
+							<input class='form-control font-option' type="number" name="font_size" value="<?php echo $font_size;?>">
 						</div>
 						<div class="form-group">
 							<label for='warna_font'>Warna Font</label>
 							<div class="input-group">
 								<span class="input-group-btn">
 									<span class="btn btn-default" style="padding-top: 5px;padding-bottom: 4px;">
-									<input class='btn btn-default' id="warna_font" type="color" name="warna_font" style="padding: 0px;">	
+									<input class='btn btn-default font-option' id="warna_font" type="color" name="font_warna" style="padding: 0px;" value="<?php echo $font_color;?>">	
 									</span>
 								</span>
-								<input class='form-control' type="text" name="warna_font_hex" readonly="">
+								<input class='form-control' type="text" name="warna_font_hex" readonly=""
+								value="<?php echo $font_color;?>">
 							</div>
 						</div>
+						nb: warna dan ukuran font hanya akan berlaku pada bagian paragraf. tidak berlaku pada bagian judul, subjudul,link dll.
 						<input style='float: right;' type="submit" class="btn btn-primary" name='simpan_font' value="simpan">
 					</form>
 				</div>
@@ -237,9 +267,42 @@
 		$("[name='warna_aksen']").change(function(){
 			$("[name='warna_aksen_hex']").val($(this).val());
 		});
-		$("[name='warna_font']").change(function(){
+		$("[name='font_warna']").change(function(){
 			$("[name='warna_font_hex']").val($(this).val());
 		});
+
+		$("[name='font_type']").change(function(){
+			$("#font-preview").css('font-family',$(this).val());
+		});
+
+		$("[name='font_style']").change(function(){
+			if($(this).prop('checked'))
+			{
+				$("#font-preview").css('font-style','italic');
+			}else{
+				$("#font-preview").css('font-style','normal');
+			}
+			
+		});
+
+		$("[name='font_weight']").change(function(){
+			if($(this).prop('checked'))
+			{
+				$("#font-preview").css('font-weight','bold');
+			}else{
+				$("#font-preview").css('font-weight','normal');
+			}
+			
+		});
+
+		$("[name='font_size']").change(function(){
+			$("#font-preview").css('font-size',$(this).val());
+		});
+
+		$("[name='font_warna']").change(function(){
+			$("#font-preview").css('color',$(this).val());
+		});
+
 
 		$('#del-file').click(function(){
 
