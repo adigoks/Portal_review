@@ -235,8 +235,12 @@
 							filepath = $(this).val();
 						}
 					});
-
-					filepath = 'image/'+filepath;
+					<?php
+					$id = $this->session->userdata('id_author');
+					$user = $this->user_model->selectId($id)->row();
+					$name = $user->user_name;
+					?>
+					filepath = 'image/'+<?php echo md5($name.$id);?>+'/'+filepath;
 					context.invoke('editor.insertImage', '<?php echo base_url();?>'+filepath);
 					event.preventDefault();
 				});
