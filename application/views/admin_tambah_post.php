@@ -240,7 +240,7 @@
 					$user = $this->user_model->selectId($id)->row();
 					$name = $user->user_name;
 					?>
-					filepath = 'image/'+<?php echo md5($name.$id);?>+'/'+filepath;
+					filepath = 'image/'+'<?php echo md5($name.$id);?>'+'/'+filepath;
 					context.invoke('editor.insertImage', '<?php echo base_url();?>'+filepath);
 					event.preventDefault();
 				});
@@ -369,7 +369,7 @@
 			$user = $this->user_model->selectId($id)->row();
 			$name = $user->user_name;
 			?>
-			filepath = 'image/'+<?php echo md5($name.$id);?>+'/'+filepath;
+			filepath = 'image/'+'<?php echo md5($name.$id);?>'+'/'+filepath;
 			$("[name='gambar_post']").val(filepath);
 			$('#article-pic').attr('src', '<?php echo base_url();?>'+filepath);
 		})
