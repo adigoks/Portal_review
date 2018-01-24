@@ -37,7 +37,14 @@
                 
             return $this->db->get();
         }
-
+         function selectid($id)
+        {
+            $this->db->select('*');
+            $this->db->from('portal_komentar');
+            $this->db->where('id',$id);
+                
+            return $this->db->get();
+        }
         function select_komentar_post($id)
         {
             $this->db->select('*, portal_komentar.id as komentar_id');

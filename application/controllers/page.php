@@ -25,8 +25,8 @@
    				'protocol' => 'smtp',
     			'smtp_host' => 'ssl://smtp.gmail.com',
 			    'smtp_port' => 465,
-			    'smtp_user' => 'portal.myreview@gmail.com',
-			    'smtp_pass' => 'intel inside',
+			    'smtp_user' => 'emailcobaportal@gmail.com',
+			    'smtp_pass' => 'cobaportal',
 			    'mailtype'  => 'html', 
 			    'charset'   => 'iso-8859-1'
 				);
@@ -110,8 +110,8 @@
 			}
 			else{
 				$this->email->set_newline("\r\n");
-				$this->email->from('portal.myreview@gmail.com', 'wibu master');
-				$this->email->to('portal.myreview@gmail.com');
+				$this->email->from('emailcobaportal@gmail.com', 'portal admin');
+				$this->email->to('emailcobaportal@gmail.com');
 				$this->email->subject($tipe);
 				$this->email->message('Dari : '.$username.'<br/>Email :'.$email.'<br/>Isi Pesan :'.$isi);
 				$send = $this->email->send();
@@ -258,7 +258,7 @@
 						elseif($user->user_email != $email){
 							if($file_name){
 							$this->email->set_newline("\r\n");
-							$this->email->from('portal.myreview@gmail.com', 'portal review');
+							$this->email->from('emailcobaportal@gmail.com', 'portal review');
 							$this->email->to($email);
 							$this->email->subject('Validasi New Email ');
 							$this->email->message('Please go to this link to verify your new register email <a href="'.base_url().'page/validasi/'.$user->user_validation.'">here</a>');
@@ -292,7 +292,7 @@
 						if($user->user_email != $email){
 							if($file_name){
 								$this->email->set_newline("\r\n");
-								$this->email->from('portal.myreview@gmail.com', 'wibu master');
+								$this->email->from('emailcobaportal@gmail.com', 'wibu master');
 								$this->email->to($email);
 								$this->email->subject('Validasi New Email ');
 								$this->email->message('Please go to this link to verify your new register email <a href="'.base_url().'page/validasi/'.$user->user_validation.'">here</a>');
@@ -350,7 +350,7 @@
 					elseif($user->user_email != $email){
 
 						$this->email->set_newline("\r\n");
-						$this->email->from('portal.myreview@gmail.com', 'wibu master');
+						$this->email->from('emailcobaportal@gmail.com', 'wibu master');
 						$this->email->to($email);
 						$this->email->subject('Validasi New Email ');
 						$this->email->message('Please go to this link to verify your new register email <a href="'.base_url().'page/validasi/'.$user->user_validation.'">here</a>');
@@ -380,7 +380,7 @@
 					if($user->user_email != $email){
 
 						$this->email->set_newline("\r\n");
-						$this->email->from('portal.myreview@gmail.com', 'wibu master');
+						$this->email->from('emailcobaportal@gmail.com', 'wibu master');
 						$this->email->to($email);
 						$this->email->subject('Validasi New Email ');
 						$this->email->message('Please go to this link to verify your new register email <a href="'.base_url().'page/validasi/'.$user->user_validation.'">here</a>');
@@ -450,7 +450,7 @@
 				else{
 					if ($pass == $repass) {
 					$this->email->set_newline("\r\n");
-					$this->email->from('portal.myreview@gmail.com', 'portal review');
+					$this->email->from('emailcobaportal@gmail.com', 'portal review');
 					$this->email->to($email);
 					$this->email->subject('Validasi Register');
 					$this->email->message('Please go to this link to verify your register <a href="'.base_url().'page/validasi/'.$hash_valid.'">here</a>');
@@ -589,8 +589,8 @@
 
 					else{
 						$this->email->set_newline("\r\n");
-						$this->email->from('portal.myreview@gmail.com', 'wibu master');
-						$this->email->to('portal.myreview@gmail.com');
+						$this->email->from('emailcobaportal@gmail.com', 'wibu master');
+						$this->email->to('emailcobaportal@gmail.com');
 						$this->email->subject('Request reset password ');
 						$this->email->message($akun->user_name." meminta permintaan reset passwords");
 						$kirim = $this->email->send();

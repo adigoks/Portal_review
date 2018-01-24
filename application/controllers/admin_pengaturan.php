@@ -28,8 +28,8 @@
    				'protocol' => 'smtp',
     			'smtp_host' => 'ssl://smtp.gmail.com',
 			    'smtp_port' => 465,
-			    'smtp_user' => 'wibumaster@gmail.com',
-			    'smtp_pass' => 'wibumaster12345',
+			    'smtp_user' => 'emailcobaportal@gmail.com',
+			    'smtp_pass' => 'cobaportal',
 			    'mailtype'  => 'html', 
 			    'charset'   => 'iso-8859-1'
 				);
@@ -140,7 +140,7 @@
 				$email=$this->input->post('email');
 				$id=$this->input->post('id');
 				$this->email->set_newline("\r\n");
-					$this->email->from('wibumaster@gmail.com', 'wibu master');
+					$this->email->from('emailcobaportal@gmail.com', 'wibu master');
 					$this->email->to($email);
 					$this->email->subject('password baru');
 					$this->email->message('silahkan gunakan password berikut untuk login!'.$p);

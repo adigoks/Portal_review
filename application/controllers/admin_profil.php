@@ -24,8 +24,8 @@
    				'protocol' => 'smtp',
     			'smtp_host' => 'ssl://smtp.gmail.com',
 			    'smtp_port' => 465,
-			    'smtp_user' => 'wibumaster@gmail.com',
-			    'smtp_pass' => 'Akulupasandinnya',
+			    'smtp_user' => 'emailcobaportal@gmail.com',
+			    'smtp_pass' => 'cobaportal',
 			    'mailtype'  => 'html', 
 			    'charset'   => 'iso-8859-1'
 				);

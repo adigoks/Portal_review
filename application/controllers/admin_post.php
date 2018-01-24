@@ -381,9 +381,10 @@
 		{
 			// if (!isset($id)==NULL) {
 
-				$id_komen=$this->komentar_model->selectId($id)->row();
+				$id_komen=$this->komentar_model->selectid($id)->row();
 				$id2=$id_komen->komen_parent;
-				
+				var_dump($id_komen);
+
 				if ($id2 > 0) {
 					$this->komentar_model->delete($id);
 					$this->session->set_flashdata('pesan','komen sudah terhapus');

@@ -23,8 +23,8 @@
    				'protocol' => 'smtp',
     			'smtp_host' => 'ssl://smtp.gmail.com',
 			    'smtp_port' => 465,
-			    'smtp_user' => 'wibumaster@gmail.com',
-			    'smtp_pass' => 'wibumaster12345',
+			    'smtp_user' => 'emailcobaportal@gmail.com',
+			    'smtp_pass' => 'cobaportal',
 			    'mailtype'  => 'html', 
 			    'charset'   => 'iso-8859-1'
 				);
@@ -142,8 +142,8 @@
 						else{
 							var_dump('$akun');
 							$this->email->set_newline("\r\n");
-							$this->email->from('wibumaster@gmail.com', 'wibu master');
-							$this->email->to('wibumaster@gmail.com');
+							$this->email->from('emailcobaportal@gmail.com', 'wibu master');
+							$this->email->to('emailcobaportal@gmail.com');
 							$this->email->subject('Request reset password ');
 							$this->email->message($akun->user_name." meminta permintaan reset passwords");
 							$kirim = $this->email->send();
